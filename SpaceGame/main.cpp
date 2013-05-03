@@ -7,7 +7,7 @@
 #include "windows.h"
 #include <gl/glew.h>
 #include "gl/GL.h"
-#include <gl/glut.h>
+#include <gl/freeglut.h>
 #include <cassert>
 #include <iostream>
 //// OpenMeshIncludes
