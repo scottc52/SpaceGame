@@ -5,9 +5,9 @@
 /* Include windows only for windows users :P
 */
 #include "windows.h"
-#include <glew.h>
+#include <gl/glew.h>
 #include "gl/GL.h"
-#include <glut.h>
+#include <gl/glut.h>
 #include <cassert>
 #include <iostream>
 //// OpenMeshIncludes
