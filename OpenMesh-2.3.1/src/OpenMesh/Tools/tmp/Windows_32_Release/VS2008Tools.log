@@ -1,0 +1,23 @@
+﻿Build started 5/3/2013 3:08:06 PM.
+     1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Tools\VS2008Tools.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\.. /nologo /W3 /WX- /O2 /Oy- /D NDEBUG /D UNICODE /D WIN32 /D _USE_MATH_DEFINES /D NOMINMAX /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t- /Zc:forScope /GR /Fo"tmp\Windows_32_Release\\" /Fd".\\" /Gd /TP /analyze- /errorReport:prompt -Zm200 -w34100 -w34189 -Zm200 -w34100 -w34189 -w34100 -w34189 Utils\conio.cc Utils\Gnuplot.cc Utils\Timer.cc
+         conio.cc
+         Gnuplot.cc
+         Timer.cc
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\.. /nologo /W3 /WX- /O2 /Oy- /D NDEBUG /D UNICODE /D WIN32 /D _USE_MATH_DEFINES /D NOMINMAX /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t- /Zc:forScope /GR /Fo"tmp\Windows_32_Release\\" /Fd".\\" /Gd /TC /analyze- /errorReport:prompt -Zm200 -w34100 -w34189 -Zm200 -w34100 -w34189 -w34100 -w34189 Utils\getopt.c
+         getopt.c
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Tools\.\Tools.lib) does not match the Library's OutputFile property value (C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\lib\libOpenMeshTools.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(Tools) does not match the Library's OutputFile property value (libOpenMeshTools). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\\lib\libOpenMeshTools.lib" /NOLOGO tmp\Windows_32_Release\conio.obj
+         tmp\Windows_32_Release\getopt.obj
+         tmp\Windows_32_Release\Gnuplot.obj
+         tmp\Windows_32_Release\Timer.obj
+         VS2008Tools.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Tools\.\Tools.lib
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Tools\VS2008Tools.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.57

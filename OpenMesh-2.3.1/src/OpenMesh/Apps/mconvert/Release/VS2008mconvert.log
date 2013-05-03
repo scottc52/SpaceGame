@@ -1,0 +1,57 @@
+﻿Build started 5/3/2013 3:08:08 PM.
+     1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Apps\mconvert\VS2008mconvert.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../../../ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _USE_MATH_DEFINES /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt mconvert.cc
+         mconvert.cc
+     1>c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+                 c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(397) : see reference to function template instantiation 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const' being compiled
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(204) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 mconvert.cc(256) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh/Core/Mesh/TriMeshT.hh(89) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh(93) : see reference to class template instantiation 'OpenMesh::TriMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<MyTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 mconvert.cc(149) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<Traits>' being compiled
+                 with
+                 [
+                     Traits=MyTraits
+                 ]
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\Release\VS2008mconvert.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\Release\VS2008mconvert.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\Release\VS2008mconvert.lib" /MACHINE:X86 /SAFESEH Release\mconvert.obj
+         "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\lib\libOpenMeshCore.lib"
+         "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\lib\libOpenMeshTools.lib"
+         Generating code
+         Finished generating code
+         VS2008mconvert.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\Release\VS2008mconvert.exe
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Apps\mconvert\VS2008mconvert.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.76

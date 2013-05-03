@@ -1,0 +1,63 @@
+﻿Build started 5/3/2013 3:07:50 PM.
+     1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Core\VS2008Core.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\.. /nologo /W3 /WX- /O2 /Oy- /D QT_NO_DEBUG /D NDEBUG /D UNICODE /D WIN32 /D QT_LARGEFILE_SUPPORT /D _USE_MATH_DEFINES /D NOMINMAX /D QT_THREAD_SUPPORT /D QT_NO_DEBUG /D QT_WEBKIT_LIB /D QT_SCRIPT_LIB /D QT_SQL_LIB /D QT_XML_LIB /D QT_OPENGL_LIB /D QT_GUI_LIB /D QT_NETWORK_LIB /D QT_CORE_LIB /D NDEBUG /Gm- /EHsc /MD /GS- /fp:precise /Zc:wchar_t- /Zc:forScope /GR /Fo"tmp\Windows_32_Release\\" /Fd".\\" /Gd /TP /analyze- /errorReport:prompt -Zm200 -w34100 -w34189 -Zm200 -w34100 -w34189 -w34100 -w34189 Mesh\ArrayKernel.cc Mesh\BaseKernel.cc Utils\BaseProperty.cc IO\reader\BaseReader.cc IO\writer\BaseWriter.cc IO\BinaryHelper.cc Utils\Endian.cc IO\IOManager.cc IO\reader\OBJReader.cc IO\writer\OBJWriter.cc IO\reader\OFFReader.cc IO\writer\OFFWriter.cc IO\OMFormat.cc IO\reader\OMReader.cc System\omstream.cc IO\writer\OMWriter.cc IO\reader\PLYReader.cc IO\writer\PLYWriter.cc Mesh\PolyConnectivity.cc IO\reader\STLReader.cc IO\writer\STLWriter.cc Mesh\TriConnectivity.cc
+         ArrayKernel.cc
+         BaseKernel.cc
+         BaseProperty.cc
+         BaseReader.cc
+         BaseWriter.cc
+         BinaryHelper.cc
+         Endian.cc
+         IOManager.cc
+         OBJReader.cc
+         OBJWriter.cc
+         OFFReader.cc
+     1>IO\reader\OFFReader.cc(592): warning C4244: 'initializing' : conversion from 'std::streamsize' to 'size_t', possible loss of data
+         OFFWriter.cc
+         OMFormat.cc
+         OMReader.cc
+         omstream.cc
+         OMWriter.cc
+         PLYReader.cc
+     1>IO\reader\PLYReader.cc(901): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'size_t', possible loss of data
+     1>IO\reader\PLYReader.cc(1038): warning C4244: '=' : conversion from 'std::streamoff' to 'size_t', possible loss of data
+         PLYWriter.cc
+         PolyConnectivity.cc
+         STLReader.cc
+         Generating Code...
+         Compiling...
+         STLWriter.cc
+         TriConnectivity.cc
+         Generating Code...
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1299,5): warning MSB8012: TargetPath(C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Core\.\Core.lib) does not match the Library's OutputFile property value (C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\lib\libOpenMeshCore.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(1301,5): warning MSB8012: TargetName(Core) does not match the Library's OutputFile property value (libOpenMeshCore). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\\lib\libOpenMeshCore.lib" /NOLOGO tmp\Windows_32_Release\ArrayKernel.obj
+         tmp\Windows_32_Release\BaseKernel.obj
+         tmp\Windows_32_Release\BaseProperty.obj
+         tmp\Windows_32_Release\BaseReader.obj
+         tmp\Windows_32_Release\BaseWriter.obj
+         tmp\Windows_32_Release\BinaryHelper.obj
+         tmp\Windows_32_Release\Endian.obj
+         tmp\Windows_32_Release\IOManager.obj
+         tmp\Windows_32_Release\OBJReader.obj
+         tmp\Windows_32_Release\OBJWriter.obj
+         tmp\Windows_32_Release\OFFReader.obj
+         tmp\Windows_32_Release\OFFWriter.obj
+         tmp\Windows_32_Release\OMFormat.obj
+         tmp\Windows_32_Release\OMReader.obj
+         tmp\Windows_32_Release\omstream.obj
+         tmp\Windows_32_Release\OMWriter.obj
+         tmp\Windows_32_Release\PLYReader.obj
+         tmp\Windows_32_Release\PLYWriter.obj
+         tmp\Windows_32_Release\PolyConnectivity.obj
+         tmp\Windows_32_Release\STLReader.obj
+         tmp\Windows_32_Release\STLWriter.obj
+         tmp\Windows_32_Release\TriConnectivity.obj
+         VS2008Core.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Core\.\Core.lib
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh\Core\VS2008Core.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:16.47
