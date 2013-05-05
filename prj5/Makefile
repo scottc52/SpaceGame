@@ -2,7 +2,7 @@
 #Makefile for project 1
 
 FLAGS = -Wall -g 
-BIN = project2
+BIN = project
 #MATH = MMath.a
 LIBS = -lglut -lGLU -lGL -lpthread
 #ALIBS = $(MATH) $(LIBS)

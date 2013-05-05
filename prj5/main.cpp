@@ -41,6 +41,7 @@ struct window{
 	TaskQueue *taskQueue;     
 } win; 
 
+#define NUM_THREADS 8
 
 inline unsigned long millisPassed(clock_t c){
 	return (unsigned long)(((long double) clock() - c) / ((long double )CLOCKS_PER_SEC)*1000.0);
@@ -54,16 +55,20 @@ void nextMesh(){
 	unsigned int mesh = (unsigned int) win.mesh + 1;
 	if (mesh == win.meshes.size()){
 		cout << "subdivide!" << endl;
-		Mesh *next = win.meshes[win.mesh]->parallelSubdivide(win.taskQueue, 8);
+		Mesh *next = win.meshes[win.mesh]->parallelSubdivide(win.taskQueue, NUM_THREADS);
 		next->computeNormals();
 		cout << "Done!" << endl;
 		win.meshes.push_back(next); 
 	}
 	win.mesh = mesh;
+	if (win.an){
+		win.an->obj = curMesh();
+	}
 }
 
 void prevMesh(){
-	win.mesh = (win.mesh > 0)? win.mesh -1 : 0;	
+	win.mesh = (win.mesh > 0)? win.mesh -1 : 0;
+	win.an->obj = curMesh(); 	
 }
 
 GLuint loadTexture(const char *fname){
@@ -170,7 +175,7 @@ void init(){
 	gluLookAt(0.0f,0.0f,-1.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
 	setUpLights();
 	glEnable (GL_DEPTH_TEST);
-	win.taskQueue = new TaskQueue(8);
+	win.taskQueue = new TaskQueue(NUM_THREADS);
 }
 
 void switchLights(){
@@ -326,17 +331,18 @@ void display(){
 		win.an->drawFrame(f);
 	}else{ 
 
-	if (win.tex){
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, win.texture);
-		curMesh()->draw(win.lighting);
-		glDisable(GL_TEXTURE_2D);
-	} else{
-		glColor4f(0, 0, 0, 1.0f);
-		//curMesh()->drawWireframe();
-		glColor4f(0.5f, 0.3f, 0.7f, 0.5f);
-		curMesh()->draw(win.lighting);
-	}}
+		if (win.tex){
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, win.texture);
+			curMesh()->draw(win.lighting);
+			glDisable(GL_TEXTURE_2D);
+		} else{
+			glColor4f(0, 0, 0, 1.0f);
+			//curMesh()->drawWireframe();
+			glColor4f(0.5f, 0.3f, 0.7f, 0.5f);
+			curMesh()->draw(win.lighting);
+		}
+	}
 	glPopMatrix(); 
 	drawPlane();
 	

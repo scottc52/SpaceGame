@@ -1,0 +1,23 @@
+Project 5 Code
+Jon Tatum
+
+I have been mainly testing on linux, but I did set up a project in VS.
+It needs to be updated to work again. 
+
+command line: project5 [animation file .an or object file] [path to texture file]
+
+controls: 
+
+mouse: rotate the entire scene
+q,e: move object along z axis
+a,d: move object along x axis
+w,s: move object along y axis
+z,x: rotate object about y axis
+c,v: rotate object about x axis 
+r,f: scale 
+o,l: subdivide mesh / previous mesh
+b: reset animation
+
+Bugs: Some normals arent computed / guessed correctly. these areas appear as dark patches on the object
+
+TODO: make subdivision work on animated files (should be a one-two liner)
