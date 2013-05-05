@@ -68,7 +68,7 @@ void nextMesh(){
 
 void prevMesh(){
 	win.mesh = (win.mesh > 0)? win.mesh -1 : 0;
-	win.an->obj = curMesh(); 	
+	if (win.an) win.an->obj = curMesh(); 	
 }
 
 GLuint loadTexture(const char *fname){
