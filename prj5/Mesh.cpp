@@ -230,18 +230,23 @@ unsigned int Mesh::addFace(const int *v, const int *n, const int *t){
 //==============================
 
 class SubdivideTask : public Task{
-	public: 
+public: 
 	Mesh *old;
 	EdgeMap *wingedEdge; 
 	int min, max;
 	Mesh *next;
-	SubdivideTask(): Task(){}
+	SubdivideTask(){}
 	SubdivideTask(Mesh *old1, EdgeMap *we, int min1, int max1):
-	Task(), old(old1), wingedEdge(we), min(min1), max(max1){}
+	  old(old1), wingedEdge(we), min(min1), max(max1){}
+	
 	void run(){
 		next = old->subdivide(min, max, *wingedEdge); 
 	}
-	void done(){}
+
+	int getType(){
+		return TASK_GENERAL;
+	}
+	~SubdivideTask(){}
 };
 
 void mergeHelper(Mesh *base, Mesh *add, vector<bool> &isSet){
@@ -283,9 +288,9 @@ Mesh *merge(SubdivideTask *arr, int len){
 		}  
 	}
 	for (int i = 1; i < len; i++){
-		Mesh * next =  arr[i].next;
+		Mesh *next =  arr[i].next;
 		mergeHelper(val, next, isSet);
-		delete next;
+		delete next; 
 	}  
 	return val;
 } 
@@ -304,15 +309,16 @@ Mesh *Mesh::parallelSubdivide(TaskQueue *tq, int branch){
 		cerr<<"Warning: branch factor reduced from " << branch << " to " << b << endl;
 	} 
 	int range = n / b + 1; 
-	SubdivideTask tasks[b];
-	int i; 
-	for (i = 0; i < branch; i++){
+	SubdivideTask *tasks = (SubdivideTask *) malloc(sizeof(SubdivideTask) * b);
+	
+	for (int i = 0; i < b; i++){
 		int min = i * range; 
 		if (min >= n) {b=i; break;} 
 		int max = ((i + 1) *range);
 		if (max > n) max = n;  
-		tasks[i] = SubdivideTask(this,em, min, max); 
-		tq->enqueue(&tasks[i]);
+		
+		*(tasks + i) = SubdivideTask(this, em, min, max); 
+		tq->enqueue(tasks + i);
 	} 
 
 	for (int i = 0; i < b; i++){
@@ -320,7 +326,8 @@ Mesh *Mesh::parallelSubdivide(TaskQueue *tq, int branch){
 	}
 	cout << "merging" << endl;
 	Mesh* val = merge(tasks, b);
-	delete em;  
+	delete em;
+	free(tasks);
 	return val;   
 }
 

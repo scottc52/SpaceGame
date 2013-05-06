@@ -15,35 +15,36 @@ void Task::join(){
 	pthread_mutex_unlock(&lock); 
 }
 
-void *workerLoop(void *aux){
+void *Task::workerLoop(void *aux){
 	ThreadData *data = (ThreadData *)aux;
 	while (1){
-		pthread_mutex_lock(&data->mutex); 
+		pthread_mutex_lock(&(data->mutex)); 
 			while (data->t == NULL){
-				pthread_cond_wait(&data->todo, &data->mutex); 
+				pthread_cond_wait(&(data->todo), &(data->mutex)); 
 			}
-		pthread_mutex_unlock(&data->mutex); 
-		pthread_mutex_lock(&data->t->lock);
-		data->t->started = true; 
-		pthread_mutex_unlock(&data->t->lock);
-		if (data->t->getType() == TASK_EXITER){
+		Task* task = data->t;
+		pthread_mutex_unlock(&(data->mutex)); 
+		pthread_mutex_lock(&(task->lock));
+		task->started = true; 
+		pthread_mutex_unlock(&(task->lock));
+		if (task->getType() == TASK_EXITER){
 			data->status = THREAD_KILLED;
 		}
-		data->t->run();
-		pthread_mutex_lock(&data->t->lock);
-		data->t->finished = true;
-		pthread_cond_broadcast(&data->t->wait); 
-		pthread_mutex_unlock(&data->t->lock);
+		task->run();
+		pthread_mutex_lock(&(task->lock));
+		task->finished = true;
+		pthread_cond_broadcast(&(task->wait)); 
+		pthread_mutex_unlock(&(task->lock));
 		data->status = THREAD_WAITING;
 		data->parent->notifyDone(data);
 	} 
 	return NULL;  
 }
 
-void *supervisorLoop(void *data){
+void *TaskQueue::supervisorLoop(void *data){
 	TaskQueue *tq = (TaskQueue *)data; 
 	while(1){
-		pthread_mutex_lock(&tq->mutex);
+		pthread_mutex_lock(&(tq->mutex));
 		while(tq->waitingThreads.empty() || tq->taskQueue.empty()){
 			if (tq->numWorkers == 0){
 				int tmp; pthread_exit(&tmp); 
@@ -52,14 +53,14 @@ void *supervisorLoop(void *data){
 		}
 		ThreadData *thread = tq->waitingThreads.front(); tq->waitingThreads.pop();
 		Task *task = tq->taskQueue.front(); tq->taskQueue.pop();
-		pthread_mutex_unlock(&tq->mutex); 
+		pthread_mutex_unlock(&(tq->mutex)); 
 
-		pthread_mutex_lock(&thread->mutex);
+		pthread_mutex_lock(&(thread->mutex));
 		thread->tid = task->getTid();
 		thread->t = task; 
 		thread->status = THREAD_RUNNING;
-		pthread_cond_signal(&thread->todo); 
-		pthread_mutex_unlock(&thread->mutex);  
+		pthread_cond_signal(&(thread->todo)); 
+		pthread_mutex_unlock(&(thread->mutex));  
 	}
 	return NULL;
 }
@@ -74,7 +75,7 @@ void TaskQueue::initThread(ThreadData *w){
 	w->parent = this;
 	w->t=NULL; 
 	w->tid=0;
-	pthread_create(&w->thread, NULL, workerLoop, w);  
+	pthread_create(&w->thread, NULL, Task::workerLoop, w);  
 }
 
 void TaskQueue::notifyDone(ThreadData *td){
@@ -103,7 +104,8 @@ TaskQueue::TaskQueue(unsigned int numWorkers1): numWorkers(numWorkers1){
 		initThread(workers + i);
 		waitingThreads.push(workers+i);
 	}
-	pthread_create(&controller, NULL, supervisorLoop, this);
+	task_no = 1;
+	pthread_create(&controller, NULL, TaskQueue::supervisorLoop, this);
 	pthread_mutex_unlock(&mutex); 
 }
 
@@ -112,8 +114,8 @@ int TaskQueue::enqueue(Task *t){
 	task_no ++; 
 	t->started = false;
 	t->finished = false; 
-	pthread_mutex_init(&t->lock, NULL);
-	pthread_cond_init(&t->wait, NULL);
+	pthread_mutex_init(&(t->lock), NULL);
+	pthread_cond_init(&(t->wait), NULL);
 
 	pthread_mutex_lock(&mutex);
 	taskQueue.push(t);

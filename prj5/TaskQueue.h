@@ -43,7 +43,7 @@ public:
 	int enqueue(Task *t);
 	static TaskQueue *defQueue;
 	void notifyDone(ThreadData *td);
-	friend void *supervisorLoop(void *data);
+	static void *supervisorLoop(void *data);
 };
 
 #define TASK_GENERAL 1
@@ -54,21 +54,19 @@ private:
 	unsigned int tid;
 	pthread_mutex_t lock;
 	pthread_cond_t wait; 
-	static const int type = TASK_GENERAL;
 protected:
  	bool started;
  	bool finished;  
 public:
-	Task(){}
-	~Task(){} 
-	friend void *workerLoop(void *data); 
-	virtual void run() = 0;
-	virtual int getType(){
-		return type;
-	} 
 	void join(); 
-	unsigned int getTid(); 
-	friend int TaskQueue::enqueue(Task *t);   
+	unsigned int getTid();
+	static void *workerLoop(void *aux);
+	friend int TaskQueue::enqueue(Task *t);
+	virtual void run(){};
+	virtual int getType(){
+		return TASK_GENERAL;
+	}
+	virtual ~Task(){}
 };
 
 class Exit_Task: public Task{
@@ -87,6 +85,7 @@ public:
 		return TASK_EXITER;
 	} 
 };
+
 
 #endif
 
