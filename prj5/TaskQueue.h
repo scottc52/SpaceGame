@@ -62,7 +62,7 @@ public:
 	unsigned int getTid();
 	static void *workerLoop(void *aux);
 	friend int TaskQueue::enqueue(Task *t);
-	virtual void run(){};
+	virtual void run() = 0;
 	virtual int getType(){
 		return TASK_GENERAL;
 	}
