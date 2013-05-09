@@ -11,11 +11,11 @@
 #include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 using namespace OpenMesh;
 
-typedef PolyMesh_ArrayKernelT<> MyMesh;
-
 //HERE WE CAN DEFINE CUSTOM TRAITS TO THE MESH AND IT WILL APPLY ACROSS ALL MODULES.
 
 class GameMesh{
+private:
+	typedef PolyMesh_ArrayKernelT<> MyMesh;
 public: 
 	MyMesh mesh;
 	GameMesh::GameMesh(){}
