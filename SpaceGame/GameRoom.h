@@ -1,8 +1,9 @@
 /*Room.h*/
 
-class Room{
+class GameRoom{
 	public:
 	
 	static void load_room(char *fname); 
 
-} 
+};
+
