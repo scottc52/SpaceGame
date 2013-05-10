@@ -225,7 +225,7 @@ void myIdle() {
 void RenderGlutInitialize(){
 	cout<<"Start SpaceGame!\n";
 	//This initializes glut
-	glutInit(&c, v);
+	
 
 	//This tells glut to use a double-buffered window with red, green, and blue channels 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
