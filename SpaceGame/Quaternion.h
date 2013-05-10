@@ -34,10 +34,12 @@ public:
 
 	Quaternion identity(){return Quaternion();}
 	double dot(const Quaternion& q) const{return w*q.w + x*q.x + y*q.y + z*q.z;}
-	Quaternion cross(Quaternion& q){return Quaternion(w*q.w - x*q.x - y*q.y - z*q.z,
+	inline Quaternion cross(Quaternion q){q = Quaternion(w*q.w - x*q.x - y*q.y - z*q.z,
 													   w*q.x + x*q.w + y*q.z - z*q.y,
 													   w*q.y - x*q.z + y*q.w + z*q.x,
-													   w*q.z + x*q.y - y*q.x + z*q.w);}
+													   w*q.z + x*q.y - y*q.x + z*q.w);
+		return q; 
+	}
 
 	Quaternion conjugate(){return Quaternion(w, x*-1, y*-1, z*-1);}
 

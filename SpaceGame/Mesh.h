@@ -3,7 +3,9 @@
  * The additional benefit is that we can also simply declare pointers to a particular mesh, to avoid multiple instances of the same mesh
  * for multiple objects
  */
+#ifdef _WIN32
 #include "windows.h"
+#endif
 //// OpenMeshIncludes
 #undef min
 #undef max

@@ -10,7 +10,9 @@
  * class include: ActiveObject, Camera, Character, Player, etc.
  *
  */
+#ifdef _WIN32
 #include "windows.h"
+#endif
 #include "Quaternion.h"
 #include "Mesh.h"
 
