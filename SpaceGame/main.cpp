@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
 
 	int c = argc;
 	char** v = argv;
-	RenderGlutInitialize(c, v);
+	RenderGlutInitialize();
 	cin.ignore(1);
 	return 0;
 }
