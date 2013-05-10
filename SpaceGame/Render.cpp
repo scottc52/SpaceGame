@@ -222,7 +222,7 @@ void myIdle() {
 	glutPostRedisplay(); // forces glut to call the display function (myDisplay())
 }
 
-void RenderGlutInitialize(int c, char** v){
+void RenderGlutInitialize(){
 	cout<<"Start SpaceGame!\n";
 	//This initializes glut
 	glutInit(&c, v);

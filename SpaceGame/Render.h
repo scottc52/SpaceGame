@@ -34,5 +34,5 @@ void initScene();
 MyMesh squareMesh();
 void myDisplay();
 void myIdle();
-void RenderGlutInitialize(int c, char** v);
+void RenderGlutInitialize();
 #endif _RENDER_H_

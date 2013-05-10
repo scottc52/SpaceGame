@@ -25,6 +25,7 @@
 // Main function, initialize program here
 //****************************************************
 int main(int argc, char *argv[]){
+	glutInit(&argc, argv);
 	GameDebugger* debugger = GameDebugger::GetInstance();
 	debugger->OpenDebugFile();
 	debugger->WriteDebugMessageToConsole("Hello, World", 31);
