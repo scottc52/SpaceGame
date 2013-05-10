@@ -11,10 +11,13 @@
 #include "windows.h"
 #endif
 #include "GameObject.h"
+#include "GameLight.h"
+#include "GameCamera.h"
 #include <vector>
 
 #define OBJECT_NOT_FOUND -1
 
+using namespace std; 
 class GameRoom{
 public:
 	//default constructor
@@ -56,24 +59,33 @@ public:
 	//Prints the names of very Object in the Room in sorted order
 	void PrintObjectNames();
 	
+	//setter / Getter for camera
+	GameCamera *GetCamera(){return camera;}
+	void SetCamera(GameCamera *c){camera = c;}	
+	
+	//Setter / Getter for lights
+	void AddLight(GameLight *l){lights.push_back(l);}
+	  
 	/* 	Loads a room object from a file in the room format 
 		described in documentation. */ 
-	static void load_room(char *fname, GameRoom &room);
+	static bool LoadRoom(char *fname, GameRoom &room);
 
 	/* 	Writes a file in the specified room format 
 		see documentation for further details*/ 
-	static void write_room(char *fname, GameRoom &room);
-
+	static bool WriteRoom(char *fname, GameRoom &room);
+		
 private:
 	char *name;
 	vector<GameObject *> objects;
-	
+	vector<GameLight *> lights; 
+	GameCamera *camera; //null means 1st P 	
+		
 	// Comparator for Objects
 	static bool ObjectComparator(GameObject *o1, GameObject *o2);
 	
 	// Returns the index of the Object specified by the given name in the given vector
 	// Adapted from code found on Wikipedia (en.wikipedia.org/wiki/Binary_search_algorithm);
-	int binaryObjectSearch(vector<GameObject *> objects, char *objectName);
+	int binaryObjectSearch(vector<GameObject *> bjects, char *objectName);
 	
 	// Returns the midpoint of the given indices
 	int GameRoom::midpoint(int imin, int imax) {return (imin + imax) / 2;}

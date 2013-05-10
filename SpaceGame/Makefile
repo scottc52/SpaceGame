@@ -8,12 +8,15 @@ opts = $(incl) $(libs) $(flags)
 openmeshdir = ../OpenMesh-2.3.1/ 
 openmesh = ../OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshCored.a
 #modules that can be compiled into intermediary binaries individualy (ie not a static library or an executable)
-cpps = $(wildcard *.cpp)
-objs = $(cpps:.cpp=.o)
+
+mains = main.cpp room_test.cpp
+cpps_all = $(wildcard *.cpp)
+cpps = $(filter-out $(mains),$(cpps_all))
+objs = $(cpps:.cpp=.o) $(openmesh)
 hdrs = $(wildcard *.h)  
 
 main: main.cpp $(objs) $(hdrs) 
-	g++ -o $@ $< $(objs) $(openmesh) $(opts)
+	g++ -o $@ $< $(objs) $(opts)
 
 room_test: room_test.cpp $(objs) $(hdrs)  
 	g++ -o $@ $< $(objs) $(opts) 

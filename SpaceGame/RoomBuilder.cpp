@@ -69,7 +69,8 @@ void ConsoleCreateRoom(){
 					wobj.SetName(oName);
 					wobj.SetMeshFile(meshName);
 					//wobj.SetRotation(Quaternion());
-					wobj.SetPosition(Vec3f(x, y, z));
+					Vec3f p(x,y,z);
+					wobj.SetPosition(p);
 					wobj.SetScale(scale);
 					//To do: use Room callback to add to room.
 					break;
@@ -102,9 +103,12 @@ void ConsoleCreateRoom(){
 					//To do: Additional data.
 					GameCamera cam;
 					cam.SetName(name);
-					cam.SetPosition(Vec3f(x,y,z));
-					cam.SetUpVector(Vec3f(uX,uY,uZ));
-					cam.SetViewVector(Vec3f(vX,vY,vZ));
+					Vec3f p(x,y,z);
+					Vec3f u(uX, uY, uZ);
+					Vec3f v(vX, vY, vZ); 
+					cam.SetPosition(p);
+					cam.SetUpVector(u);
+					cam.SetViewVector(v);
 					//To do: use Room callback to add to room.
 					break;
 				}

@@ -16,6 +16,10 @@ using namespace std;
 #define GAME_DEBUG_INVALID_ERROR (-1)
 #define GAME_DEBUG_SUCCESS (0)
 
+#define GAME_DEBUG_ASSERT(A) \
+if (!(A)){ \
+std::cerr << "assertion "<< #A << " failed in " << __FILE__ << " at :" << __LINE__ << std::endl;\
+}
 
 class GameDebugger{
 private: 
