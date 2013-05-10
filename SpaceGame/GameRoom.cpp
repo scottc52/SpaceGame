@@ -53,12 +53,15 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			if (strcmp(v[1], "player")){
 
 			} else { 
-				Vec3f view (atof(v[1]),
+				Vec3f pos (atof(v[1]),
 					atof(v[2]), atof(v[3])
 				); 
-				if (v.size() >= 7){
+				Vec3f view (atof(v[4]),
+					atof(v[5]), atof(v[6])
+				); 
+				if (v.size() >= 10){
 					Vec3f up (
-						atof(v[4]), atof(v[5]), atof(v[6])
+						atof(v[7]), atof(v[8]), atof(v[9])
 					);	
 				}  
 			}
@@ -74,7 +77,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			float rs = atof(v[5]); 
 			float gs = atof(v[6]); 
 			float bs = atof(v[7]); 
-			float rd = atof(v[8]); 
+			float rd = atof(v[8])tw; 
 			float gd = atof(v[9]); 
 			float bd = atof(v[10]); 
 			string info(v[11]); 		
