@@ -1,6 +1,8 @@
 /* 
  * A basic camera object subclass.  Inherits all properties from GameObject
  */
+#ifndef _GAMECAMERA_H_
+#define _GAMECAMERA_H_
 #include "GameObject.h"
 
 class GameCamera : public GameObject{
@@ -15,3 +17,4 @@ public:
 	Vec3f GameCamera::GetViewVector(){return viewVec;}
 	void GameCamera::SetViewVector(Vec3f &v){viewVec = v;}
 };
+#endif _GAMECAMERA_H_

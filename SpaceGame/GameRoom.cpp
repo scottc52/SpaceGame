@@ -37,7 +37,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		return; 
 
 	if (v.size() < 2){
-		DebugWriteMessageToConsole("parseRoomFile: line");  
+		GameDebugger::GetInstance()->WriteDebugMessageToConsole("parseRoomFile: line");  
 	}
 	switch (line_type[0]) {
 		//name of entrance object 
@@ -108,7 +108,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		} 
 		case '\0':
 		default: 
-			DebugWriteMessageToConsole("parseRoomFile: unexpected line type");
+			GameDebugger::GetInstance()->WriteDebugMessageToConsole("parseRoomFile: unexpected line type");
 			break; 	
 	}
 }

@@ -10,21 +10,30 @@
  * class include: ActiveObject, Camera, Character, Player, etc.
  *
  */
+#ifndef _GAMEOBJECT_H_
+#define _GAMEOBJECT_H_
+#include "windows.h"
+#include <Eigen/Core>
+#include <Eigen/Eigenvalues>
+#include <Eigen/Dense>
 #ifdef _WIN32
 #include "windows.h"
 #endif
-#include "Quaternion.h"
 #include "Mesh.h"
+
+using namespace Eigen;
 
 //Abstract class GameObject
 class GameObject{
 private:
 	//Pointer to the GameMesh stored elsewhere
-	GameMesh* meshptr;
+	MyMesh* meshptr;
 	Vec3f position;
-	Quaternion rotation;
+	//Quaternion rotation;
 	float scale;
 	bool isModified;
+	char* name;
+	char* meshFile;
 
 	//TEXTURE POINTER txtptr;
 	
@@ -46,10 +55,10 @@ public:
 	GameObject::~GameObject(){}
 
 	//Get a POINTER to the current Object's mesh
-	GameMesh* GameObject::GetMesh(){return meshptr;}
+	MyMesh* GameObject::GetMesh(){return meshptr;}
 
 	//Redefine the object's mesh
-	void GameObject::SetMesh(GameMesh* NewMesh){meshptr = NewMesh;}
+	void GameObject::SetMesh(MyMesh* NewMesh){meshptr = NewMesh;}
 
 	//Getters and Setters//////////////////////////////////
 	Vec3f GameObject::GetPosition(){return position;}
@@ -61,11 +70,15 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
-	Quaternion GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Quaternion &newRotation){rotation = newRotation;}
-	void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
+	//Quaternion GameObject::GetRotation(){return rotation;}
+	//void GameObject::SetRotation(Quaternion &newRotation){rotation = newRotation;}
+	//void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
+	char* GameObject::GetName(){return name;}
+	void GameObject::SetName(char* n){name = n;}
+	char* GameObject::GetMeshFile(){return meshFile;}
+	void GameObject::SetMeshFile(char* f){meshFile = f;}
 
 	/////////////////////////////////////////////////////////////////////////////////
 
@@ -76,3 +89,4 @@ public:
 	//TO DO: Create linker function to link sound object to object.
 	//TO DO: Create a getter/setter for an objects textures
 };
+#endif _GAMEOBJECT_H_
