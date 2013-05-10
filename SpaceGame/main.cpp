@@ -25,16 +25,15 @@
 // Main function, initialize program here
 //****************************************************
 int main(int argc, char *argv[]){
-	int err = GameDebugInitialize();
-	assert(err == 0);
+	GameDebugger* debugger = GameDebugger::GetInstance();
+	debugger->OpenDebugFile();
+	debugger->WriteDebugMessageToConsole("Hello, World", 31);
+	debugger->WriteToDebugFile("Wrote to file", 32);
 	ConsoleCreateRoom();
 
 	int c = argc;
 	char** v = argv;
 	RenderGlutInitialize(c, v);
-
-	err = GameDebugFinish();
-	assert(err == 0);
 	cin.ignore(1);
 	return 0;
 }
