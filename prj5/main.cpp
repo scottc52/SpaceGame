@@ -163,7 +163,7 @@ void setUpLights(){
 void init(){
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(win.width, win.height);
-	glutInitWindowPosition(500,500);
+	glutInitWindowPosition(50,50);
 	glutCreateWindow("Project 1");
 	glLoadIdentity();
 	glMatrixMode(GL_PROJECTION);
