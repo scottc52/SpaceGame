@@ -12,7 +12,9 @@
  */
 #ifndef _GAMEOBJECT_H_
 #define _GAMEOBJECT_H_
+#ifdef _WIN32
 #include "windows.h"
+#endif
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>

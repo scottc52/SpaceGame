@@ -2,9 +2,11 @@
 // INCLUDES
 //////////////////////////////////////////////////////
 
+#ifdef _WIN32
 /* Include windows only for windows users :P
 */
 #include "windows.h"
+#endif
 #include <gl/glew.h>
 #include "gl/GL.h"
 #include <GL/glu.h>
