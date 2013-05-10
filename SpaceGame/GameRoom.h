@@ -1,4 +1,4 @@
-/*Room.h*/
+/*GameRoom.h*/
 
 /*Author: Jordan Davidson
  * Space Game
@@ -7,8 +7,7 @@
  // GAME ROOM CLASS
  ////////////////////////////////////////////////////////////////////////////////
 /* This class is the basic class for rooms in the game. */
-#ifdef __APPLE__
-#else
+#ifdef _WIN32
 #include "windows.h"
 #endif
 #include "GameObject.h"
@@ -57,7 +56,13 @@ public:
 	//Prints the names of very Object in the Room in sorted order
 	void PrintObjectNames();
 	
-	static void load_room(char *fname); 
+	/* 	Loads a room object from a file in the room format 
+		described in documentation. */ 
+	static void load_room(char *fname, GameRoom &room);
+
+	/* 	Writes a file in the specified room format 
+		see documentation for further details*/ 
+	static void write_room(char *fname, GameRoom &room);
 
 private:
 	char *name;

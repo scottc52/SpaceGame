@@ -1,6 +1,8 @@
 /* 
  * A basic game light class.  Subclass of GameObject. 
  */
+#ifndef _GAMELIGHT_H_
+#define _GAMELIGHT_H_
 
 #include "GameObject.h"
 
@@ -17,3 +19,4 @@ public:
 	Vec4f GameLight::GetSpecular(){return specular;}
 	void GameLight::SetSpecular(Vec4f &s){specular = s;}
 };
+#endif _GAMELIGHT_H_

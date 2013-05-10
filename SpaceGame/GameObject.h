@@ -10,26 +10,34 @@
  * class include: ActiveObject, Camera, Character, Player, etc.
  *
  */
-#ifdef __APPLE__
-#else
+#ifndef _GAMEOBJECT_H_
+#define _GAMEOBJECT_H_
+#ifdef _WIN32
 #include "windows.h"
 #endif
-
-#include "Quaternion.h"
+#include <Eigen/Core>
+#include <Eigen/Eigenvalues>
+#include <Eigen/Dense>
+#ifdef _WIN32
+#include "windows.h"
+#endif
 #include "Mesh.h"
+
+using namespace Eigen;
 
 #define MAX_NAME_CHARS 40
 
 //Abstract class GameObject
 class GameObject{
 private:
-	char* name;
 	//Pointer to the GameMesh stored elsewhere
-	GameMesh* meshptr;
+	MyMesh* meshptr;
 	Vec3f position;
-	Quaternion rotation;
+	//Quaternion rotation;
 	float scale;
 	bool isModified;
+	char* name;
+	char* meshFile;
 
 	//TEXTURE POINTER txtptr;
 	
@@ -41,9 +49,6 @@ public:
 	//default constructor
 	GameObject::GameObject()
 	{
-		this->name = new char[MAX_NAME_CHARS + 1];
-		this->name[MAX_NAME_CHARS] = '\0';
-		strcpy(name, "");
 		isModified = false;
 		position = Vec3f(0,0,0);
 		scale = 1.f;
@@ -51,11 +56,9 @@ public:
 	}
 	
 	//constructor with name
-	GameObject::GameObject(char* name)
+	GameObject::GameObject(char* n)
 	{
-		this->name = new char[MAX_NAME_CHARS + 1];
-		this->name[MAX_NAME_CHARS] = '\0';
-		strncpy(this->name, name, MAX_NAME_CHARS);
+		name = n
 		isModified = false;
 		position = Vec3f(0,0,0);
 		scale = 1.f;
@@ -76,18 +79,12 @@ public:
 	
 	//destructor
 	GameObject::~GameObject(){}
-	
-	//Get the current Object's name
-	char *GameObject::GetName() {return name;}
-	
-	//Redefine the Object's name
-	void GameObject::SetName(char *newName) {strncpy(name, newName, MAX_NAME_CHARS);}
 
 	//Get a POINTER to the current Object's mesh
-	GameMesh* GameObject::GetMesh(){return meshptr;}
+	MyMesh* GameObject::GetMesh(){return meshptr;}
 
 	//Redefine the object's mesh
-	void GameObject::SetMesh(GameMesh* NewMesh){meshptr = NewMesh;}
+	void GameObject::SetMesh(MyMesh* NewMesh){meshptr = NewMesh;}
 
 	//Getters and Setters//////////////////////////////////
 	Vec3f GameObject::GetPosition(){return position;}
@@ -99,12 +96,16 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
-	Quaternion GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Quaternion &newRotation){rotation = newRotation;}
-	void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
+	//Quaternion GameObject::GetRotation(){return rotation;}
+	//void GameObject::SetRotation(Quaternion &newRotation){rotation = newRotation;}
+	//void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
 	bool GameObject::IsModified(){return isModified;}
+	char* GameObject::GetName(){return name;}
+	void GameObject::SetName(char* n){name = n;}
+	char* GameObject::GetMeshFile(){return meshFile;}
+	void GameObject::SetMeshFile(char* f){meshFile = f;}
 
 	/////////////////////////////////////////////////////////////////////////////////
 
@@ -115,3 +116,4 @@ public:
 	//TO DO: Create linker function to link sound object to object.
 	//TO DO: Create a getter/setter for an objects textures
 };
+#endif _GAMEOBJECT_H_
