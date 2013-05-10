@@ -32,9 +32,9 @@ int main(int argc, char *argv[]){
 	debugger->WriteToDebugFile("Wrote to file", 32);
 	ConsoleCreateRoom();
 
-	int c = argc;
-	char** v = argv;
 	RenderGlutInitialize();
+
+	glutMainLoop(); //this should only be called one, and AT THE END of the initialization routine.
 	cin.ignore(1);
 	return 0;
 }
