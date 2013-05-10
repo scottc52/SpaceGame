@@ -8,7 +8,8 @@ opts = $(incl) $(libs) $(flags)
 openmeshdir = ../OpenMesh-2.3.1/ 
 openmesh = ../OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshCored.a
 #modules that can be compiled into intermediary binaries individualy (ie not a static library or an executable)
-objs = GameRoom.o
+cpps = $(wildcard *.cpp)
+objs = $(cpps:.cpp=.o)
 hdrs = $(wildcard *.h)  
 
 main: main.cpp $(objs) $(hdrs) 
