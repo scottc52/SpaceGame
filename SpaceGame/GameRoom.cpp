@@ -5,8 +5,10 @@
 //======================
 #include <fstream>
 #include <cstring>
+#include <vector>
 #include "GameDebug.h"
 #include "GameRoom.h"
+#include "GameCamera.h"
 
 using namespace std; 
 //=========================
@@ -27,27 +29,28 @@ void split(char *s, const char *delim, vector<char *> &buff){
 }
 
 //Heavy lifting for reading info from lines
-void parseRoomLine(vector<char *> &v, Room &r){
+void parseRoomLine(vector<char *> &v, GameRoom &r){
 	char* line_type = v[0];
 	
 	//comment
-	if (strcomp(line_type,'#') == 0)
+	if (line_type[0] == '#')
 		return; 
 
 	if (v.size() < 2){
 		DebugWriteMessageToConsole("parseRoomFile: line");  
 	}
-	switch(line_type[0]){
+	switch (line_type[0]) {
 		//name of entrance object 
-		case 'R': 	
+		case 'R':{ 	
 			string entrance_name(v[1]);
 			break;
+		}
 
 		//camera location (3rd person location or FP)	
-		case 'C':
+		case 'C':{
 			GameCamera cam; 
 			 
-			if (strcomp(v[1], "player")){
+			if (strcmp(v[1], "player")){
 
 			} else { 
 				Vec3f view (atof(v[1]),
@@ -61,9 +64,9 @@ void parseRoomLine(vector<char *> &v, Room &r){
 			}
 
 			break; 
-
+		}
 		//Light
-		case 'L':
+		case 'L':{
 			string light_name(v[1]); 
 			float x = atof(v[2]);
 			float y = atof(v[3]);
@@ -77,10 +80,10 @@ void parseRoomLine(vector<char *> &v, Room &r){
 			string info(v[11]); 		
 
 			break;
-
+		}
 		// Object / Actor
 		// local_name global_name x y z rotation scale		
-		case 'O':
+		case 'O':{
 			string object_name(v[1]);
 			string object_fname(v[2]);
 			float x= atof(v[3]);
@@ -90,9 +93,9 @@ void parseRoomLine(vector<char *> &v, Room &r){
 			float scale = atof(v[7]);
 		
 			break; 
-
+		}
 		//load object as a door
-		case 'P':
+		case 'P':{
 			string object_name(v[1]);
 			string object_fname(v[2]);
 			float x= atof(v[3]);
@@ -101,7 +104,8 @@ void parseRoomLine(vector<char *> &v, Room &r){
 			float rot = atof(v[6]);
 			float scale = atof(v[7]);
 	
-			break; 
+			break;
+		} 
 		case '\0':
 		default: 
 			DebugWriteMessageToConsole("parseRoomFile: unexpected line type");
@@ -109,13 +113,13 @@ void parseRoomLine(vector<char *> &v, Room &r){
 	}
 }
 
-void GameRoom::load_room(char *fname, Room& room){
+void GameRoom::load_room(char *fname, GameRoom& room){
 	std::ifstream myfile (fname, std::ifstream::in);
 
-	char buf[MAX_LINE_LEN]; 
+	char line[MAX_LINE_LEN]; 
 	vector<char *> parsed; 
 	while (myfile.good()){
-		myfile.getline(buf, MAX_LINE_LEN);
+		myfile.getline(line, MAX_LINE_LEN);
 		split(line, DELIM, parsed);
 		if (parsed.size() == 0) continue;
 		parseRoomLine(parsed, room);      
@@ -125,6 +129,6 @@ void GameRoom::load_room(char *fname, Room& room){
 
 }
 
-void GameRoom::write_room(char *fname, Room& room){
+void GameRoom::write_room(char *fname, GameRoom& room){
 
 }

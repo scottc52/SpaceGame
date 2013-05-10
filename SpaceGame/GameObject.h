@@ -16,6 +16,9 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
+#ifdef _WIN32
+#include "windows.h"
+#endif
 #include "Mesh.h"
 
 using namespace Eigen;
