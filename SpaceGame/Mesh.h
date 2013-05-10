@@ -3,6 +3,8 @@
  * The additional benefit is that we can also simply declare pointers to a particular mesh, to avoid multiple instances of the same mesh
  * for multiple objects
  */
+#ifndef _MESH_H_
+#define _MESH_H_
 #include "windows.h"
 //// OpenMeshIncludes
 #undef min
@@ -21,3 +23,4 @@ public:
 	GameMesh::GameMesh(){}
 	GameMesh::~GameMesh(){}
 };
+#endif _MESH_H_

@@ -10,6 +10,8 @@
  * class include: ActiveObject, Camera, Character, Player, etc.
  *
  */
+#ifndef _GAMEOBJECT_H_
+#define _GAMEOBJECT_H_
 #include "windows.h"
 #include "Quaternion.h"
 #include "Mesh.h"
@@ -23,6 +25,8 @@ private:
 	Quaternion rotation;
 	float scale;
 	bool isModified;
+	char* name;
+	char* meshFile;
 
 	//TEXTURE POINTER txtptr;
 	
@@ -64,6 +68,10 @@ public:
 	void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
+	char* GameObject::GetName(){return name;}
+	void GameObject::SetName(char* n){name = n;}
+	char* GameObject::GetMeshFile(){return meshFile;}
+	void GameObject::SetMeshFile(char* f){meshFile = f;}
 
 	/////////////////////////////////////////////////////////////////////////////////
 
@@ -74,3 +82,4 @@ public:
 	//TO DO: Create linker function to link sound object to object.
 	//TO DO: Create a getter/setter for an objects textures
 };
+#endif _GAMEOBJECT_H_

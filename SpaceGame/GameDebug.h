@@ -3,6 +3,8 @@
  * For now, we just print messages, but later, it might be nice to be able to actively 
  * modify variables to ensure they function properly. 
  */
+#ifndef _GAMEDEBUG_H_
+#define _GAMEDEBUG_H_
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -68,3 +70,5 @@ void DebugWriteMessageToConsole(char* message, int line = -1){
 	time(&debugTimer);
 	cout<<"Time: "<<ctime(&debugTimer)<<endl;
 }
+
+#endif _GAMEDEBUG_H_

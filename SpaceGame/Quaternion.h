@@ -6,8 +6,6 @@ Homemade Quaternion Class
 #define _QUATERNION_H_
 
 #include <vector>
-#include <OpenMesh/Core/IO/MeshIO.hh>
-#include <OpenMesh/Core/Mesh/PolyMesh_ArrayKernelT.hh>
 
 using namespace std;
 using namespace OpenMesh;
@@ -47,5 +45,5 @@ public:
 		Quaternion result = Quaternion(q.cross(vq.cross(q.conjugate())));
 		return Vec3f(result.x, result.y, result.z);
 	}
-#endif // _QUATERNION_H
 };
+#endif // _QUATERNION_H
