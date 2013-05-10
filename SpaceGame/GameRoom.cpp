@@ -77,7 +77,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			float rs = atof(v[5]); 
 			float gs = atof(v[6]); 
 			float bs = atof(v[7]); 
-			float rd = atof(v[8])tw; 
+			float rd = atof(v[8]);
 			float gd = atof(v[9]); 
 			float bd = atof(v[10]); 
 			string info(v[11]); 		

@@ -29,7 +29,7 @@
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
 	GameDebugger* debugger = GameDebugger::GetInstance();
-	debugger->OpenDebugFile();
+	assert(debugger->OpenDebugFile());
 	debugger->WriteDebugMessageToConsole("Hello, World", 31);
 	debugger->WriteToDebugFile("Wrote to file", 32);
 	ConsoleCreateRoom();
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 	RenderGlutInitialize();
 
 	glutMainLoop(); //this should only be called one, and AT THE END of the initialization routine.
-	cin.ignore(1);
+	assert(debugger->CloseDebugFile());
 	return 0;
 }
 
