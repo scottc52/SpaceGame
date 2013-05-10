@@ -70,13 +70,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameDebug.h" />
+    <ClInclude Include="GameItem.h" />
+    <ClInclude Include="GameLight.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameDoor.h" />
+    <ClInclude Include="GameRoom.h" />
+    <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="GameWorldObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
