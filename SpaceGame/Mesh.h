@@ -15,12 +15,6 @@ using namespace OpenMesh;
 
 //HERE WE CAN DEFINE CUSTOM TRAITS TO THE MESH AND IT WILL APPLY ACROSS ALL MODULES.
 
-class GameMesh{
-private:
-	typedef PolyMesh_ArrayKernelT<> MyMesh;
-public: 
-	MyMesh mesh;
-	GameMesh::GameMesh(){}
-	GameMesh::~GameMesh(){}
-};
+typedef PolyMesh_ArrayKernelT<> MyMesh;
+
 #endif _MESH_H_

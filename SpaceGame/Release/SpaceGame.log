@@ -1,31 +1,43 @@
-<<<<<<< HEAD
-﻿Build started 5/9/2013 8:17:44 PM.
+﻿Build started 5/9/2013 9:19:19 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameRoom.cpp main.cpp Render.cpp RoomBuilder.cpp
+         GameRoom.cpp
+     1>GameRoom.cpp(19): error C2061: syntax error : identifier 'vector'
+     1>GameRoom.cpp(20): error C2065: 'buff' : undeclared identifier
+     1>GameRoom.cpp(20): error C2228: left of '.clear' must have class/struct/union
+                 type is ''unknown-type''
+     1>GameRoom.cpp(23): error C2065: 'buff' : undeclared identifier
+     1>GameRoom.cpp(23): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>GameRoom.cpp(30): error C2065: 'vector' : undeclared identifier
+     1>GameRoom.cpp(30): error C2062: type 'char' unexpected
+     1>GameRoom.cpp(30): error C2143: syntax error : missing ';' before '{'
+     1>GameRoom.cpp(30): error C2447: '{' : missing function header (old-style formal list?)
+     1>GameRoom.cpp(112): error C2061: syntax error : identifier 'Room'
+     1>GameRoom.cpp(116): error C2065: 'vector' : undeclared identifier
+     1>GameRoom.cpp(116): error C2062: type 'char' unexpected
+     1>GameRoom.cpp(119): error C2065: 'line' : undeclared identifier
+     1>GameRoom.cpp(119): error C2065: 'parsed' : undeclared identifier
+     1>GameRoom.cpp(120): error C2065: 'parsed' : undeclared identifier
+     1>GameRoom.cpp(120): error C2228: left of '.size' must have class/struct/union
+                 type is ''unknown-type''
+     1>GameRoom.cpp(121): error C2065: 'parsed' : undeclared identifier
+     1>GameRoom.cpp(121): error C2065: 'room' : undeclared identifier
+     1>GameRoom.cpp(121): error C3861: 'parseRoomLine': identifier not found
+     1>GameRoom.cpp(128): error C2039: 'write_room' : is not a member of 'GameRoom'
+                 c:\users\austin\documents\github\spacegame\spacegame\GameRoom.h(3) : see declaration of 'GameRoom'
+     1>GameRoom.cpp(128): error C2061: syntax error : identifier 'Room'
          main.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\Quaternion.h(19): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\Quaternion.h(21): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\Quaternion.h(24): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" glew32.lib freeglut.lib glu32.lib libOpenMeshCore.lib libOpenMeshTools.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\GameRoom.obj
-         Release\main.obj
-         Generating code
-         Finished generating code
-         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+         Render.cpp
+     1>Render.cpp(144): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(148): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(150): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(152): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(208): warning C4101: 'dt' : unreferenced local variable
+         RoomBuilder.cpp
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:03.36
-=======
-﻿Build started 5/9/2013 5:22:04 PM.
-     1>Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         SpaceGame.vcxproj -> C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.04
->>>>>>> 2b37cfe26effe4f6bf2e9729535c1799880646c8
+Time Elapsed 00:00:07.22
