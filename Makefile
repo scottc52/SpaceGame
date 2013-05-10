@@ -3,7 +3,8 @@
 CPP = g++
 LD = g++
 OPENMESH_DIR = OpenMesh-2.3.1/src
-CPPFLAGS = -O3 -fPIC -I$(OPENMESH_DIR)
+EIGEN_DIR = SpaceGame/Eigen
+CPPFLAGS = -O3 -fPIC -I$(OPENMESH_DIR) -I$(EIGEN_DIR)
 LDFLAGS = -O3 -framework GLUT -framework OpenGL -framework Cocoa -l pthread
 INCLUDE = -Iinclude/
 TARGET = SpaceGame-master
@@ -19,6 +20,15 @@ objs/main.o: SpaceGame/main.cpp
 
 objs/GameRoom.o: SpaceGame/GameRoom.cpp
 	$(CPP) -c $(CPPFLAGS) $(INCLUDE) SpaceGame/GameRoom.cpp -o objs/GameRoom.o
+
+objs/GameDebug.o: SpaceGame/GameDebug.cpp
+	$(CPP) -c $(CPPFLAGS) $(INCLUDE) SpaceGame/GameDebug.cpp -o objs/GameDebug.o
+
+objs/Render.o: SpaceGame/Render.cpp
+	$(CPP) -c $(CPPFLAGS) $(INCLUDE) SpaceGame/Render.cpp -o objs/Render.o
+
+objs/RoomBuilder.o: SpaceGame/RoomBuilder.cpp
+	$(CPP) -c $(CPPFLAGS) $(INCLUDE) SpaceGame/RoomBuilder.cpp -o objs/RoomBuilder.o
 
 clean:
 	rm $(OBJ_FILES) SpaceGame-master -f

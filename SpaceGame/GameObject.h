@@ -58,7 +58,7 @@ public:
 	//constructor with name
 	GameObject::GameObject(char* n)
 	{
-		name = n
+		name = n;
 		isModified = false;
 		position = Vec3f(0,0,0);
 		scale = 1.f;
@@ -68,8 +68,7 @@ public:
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
-		this->name = new char[MAX_NAME_CHARS + 1];
-		this->name[MAX_NAME_CHARS] = '\0';
+		this->name = object->GetName();
 		strncpy(this->name, object->GetName(), MAX_NAME_CHARS);
 		isModified = object->IsModified();
 		position = object->GetPosition();

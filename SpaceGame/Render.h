@@ -4,10 +4,14 @@
  */
 #ifndef _RENDER_H_
 #define _RENDER_H_
+#ifdef _WIN32
 #include <gl/glew.h>
 #include "gl/GL.h"
 #include <GL/glu.h>
 #include <gl/freeglut.h>
+#else
+#include <GLUT/glut.h>
+#endif
 #include <fstream>
 #include <sstream>
 #include <cmath>
