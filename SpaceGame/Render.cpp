@@ -250,7 +250,7 @@ void myDisplay() {
 
 	//----------------------- code to draw objects --------------------------
 	
-	glEnable(GL_NORMALIZE);
+	
 	int numObjects = 1;
 	for(int i = 0; i<numObjects;i++){
 		MyMesh mesh = squareMesh();
@@ -290,6 +290,14 @@ void myDisplay() {
 		glPushMatrix();
 		glTranslatef(-0.5, 0, 0); //move cube2 to the left
 		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		bool non_uniform_scaling = true;
+		if(non_uniform_scaling){
+			//This is here so scaling doesn't screw up normal vectors.
+			//It should only be used if there's non-uniform scaling, since it's less efficient.
+			glEnable(GL_NORMALIZE);
+		}else{
+			glEnable(GL_RESCALE_NORMAL);
+		}
 		glScalef(0.8f, 1.2f, 1.0f);
 		glBegin(GL_TRIANGLES);
 		for (MyMesh::FaceIter it = mesh.faces_begin(); it != mesh.faces_end(); ++it) {
@@ -319,6 +327,8 @@ void myDisplay() {
 		}
 		glEnd();
 		glPopMatrix(); // you need one of these for every glPushMatrix()
+		glDisable(GL_NORMALIZE);
+		glDisable(GL_RESCALE_NORMAL);
 	}
 	
 	//glutSolidSphere(1.0, 20, 20); //for debugging
