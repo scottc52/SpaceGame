@@ -36,43 +36,41 @@ private:
 	//Quaternion rotation;
 	float scale;
 	bool isModified;
-	char* name;
+	char name[MAX_NAME_CHARS];
 	char* meshFile;
 
 	//TEXTURE POINTER txtptr;
 	
 	//Thread Lock (mutex_t ?) object lock;
 	//Sound link sound??  Play sound indirectly?
-
+	
+	setName(char *c){
+		int len = strlen(c);
+		len = (len < MAX_NAME_CHARS-1)? len : MAX_NAME_CHARS-1; 
+		strncpy(this->name, c, len);
+		this->name[len] = '\0';  
+	} 
 public:
 
 	//default constructor
-	GameObject::GameObject()
+	GameObject::GameObject(const char *n = "\0")
 	{
+		setName(n);		
 		isModified = false;
 		position = Vec3f(0,0,0);
 		scale = 1.f;
-		/*TO DO: Initialize lock*/
-	}
-	
-	//constructor with name
-	GameObject::GameObject(char* n)
-	{
-		name = n;
-		isModified = false;
-		position = Vec3f(0,0,0);
-		scale = 1.f;
+		meshFile = NULL;
 		/*TO DO: Initialize lock*/
 	}
 	
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
-		this->name = object->GetName();
-		strncpy(this->name, object->GetName(), MAX_NAME_CHARS);
+		setName(object->GetName());  		
 		isModified = object->IsModified();
 		position = object->GetPosition();
 		scale = object->GetScale();
+		meshFile = object->GetMeshFile();
 		/*TO DO: Initialize lock*/
 	}
 	
@@ -102,7 +100,7 @@ public:
 	void GameObject::SetScale(float &newScale){scale = newScale;}
 	bool GameObject::IsModified(){return isModified;}
 	char* GameObject::GetName(){return name;}
-	void GameObject::SetName(char* n){name = n;}
+	void GameObject::SetName(char* n){setName(n);}
 	char* GameObject::GetMeshFile(){return meshFile;}
 	void GameObject::SetMeshFile(char* f){meshFile = f;}
 

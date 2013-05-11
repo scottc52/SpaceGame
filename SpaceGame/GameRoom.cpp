@@ -13,6 +13,8 @@
 #include "GameObject.h"
 #include "GameLight.h"
 
+#include "TextIOHelpers.h"
+
 using namespace std; 
 //=========================
 // IO function implementations
@@ -107,7 +109,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			Vec4f diff(rd, gd, bd, 1.0f);
 			GameLight *light = new GameLight();
 			light->SetPosition(pos);
-			light->SetName(newCString(v[1]));
+			light->SetName(v[1]);
 			light->SetAmbient(amb);
 			light->SetDiffuse(diff);
 			light->SetSpecular(spec);
@@ -127,9 +129,10 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			Vec3f p(x,y,z); 			
 			obj->SetPosition(p);
 			obj->SetScale(scale);
-			obj->SetName(newCString(v[1]));
+			obj->SetName(v[1]);
 			obj->SetMeshFile(newCString(v[2]));
 			r.AddObject(obj);
+			delete obj; 
 			break; 
 		}
 		//load object as a door
@@ -145,9 +148,10 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			Vec3f p(x,y,z); 			
 			obj->SetPosition(p);
 			obj->SetScale(scale);
-			obj->SetName(newCString(v[1]));
+			obj->SetName(v[1]);
 			obj->SetMeshFile(newCString(v[2]));
-			r.AddObject(obj);						
+			r.AddObject(obj);
+			delete(obj);
 			break;
 		} 
 		case '\0': 
@@ -176,24 +180,45 @@ bool GameRoom::LoadRoom(char *fname, GameRoom& room){
 	return true; 
 }
 
-bool writeGameObject(ostream &os, GameObject *o){
-	os << o->GetName() << "\t" << o->GetMeshFile();
-	Vec3f pos = o->GetPosition();
-	os << "\t" << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
-	os << "\t" << o->GetScale();
-	return true;
-}	
 
-bool GameRoom::WriteRoom(char *fname, GameRoom& room){
-	int olen = room.objects.size(); 	
-	ofstream os(fname, ofstream::out); 	
+
+bool GameRoom::WriteRoom(const char *fname, GameRoom& room){	
+	ofstream ofs;
+	ofs.open(fname);
+	if (!ofs.is_open()){return false;}
+	bool stat = WriteRoom(ofs, room);
+	ofs.close();
+	return stat;
+}
+bool GameRoom::WriteRoom(ostream &os, GameRoom &room){		
+	int olen = room.objects.size(); 
+	os << "# Automatically generated Room Text file" << endl; 
+	os << "N\t" << room.GetName()  << endl; 	
+	
+	//TODO: specialize for doors	
+	os << "# Objects: O name filename x y z scale" << endl; 
 	for(int i = 0; i < olen; i++){
 		os << "O\t";
 		writeGameObject(os, room.objects[i]);
 		os << endl;  
-	} 
-	os.close();
-	return false;	
+	}
+
+	int llen = room.lights.size();
+	os << "# Lights: name x y z ra ga ba rd gd bd rs bs gs" << endl; 
+	for(int i = 0; i < llen; i ++ ){
+		os << "L\t";
+		writeGameLight(os, room.lights[i]);
+		os << endl; 
+	}
+
+	if (room.camera == NULL)
+		os << "C\tplayer" << endl;  	 
+	else{
+		os << "C\t";
+		writeGameCamera(os, room.camera);
+		os << endl;  
+	}
+	return true;	
 }
 
 //=======================================
@@ -202,11 +227,14 @@ bool GameRoom::WriteRoom(char *fname, GameRoom& room){
 
 GameRoom::~GameRoom()
 {
-	delete this->name;
 	int objectSize = this->objects.size();
 	for (int i = 0; i < objectSize; i++)
 	{
 		delete this->objects[i];
+	}
+	int lightSize = this->lights.size();
+	for (int i = 0; i < lightSize; i ++){
+		delete this->lights[i];
 	}
 }
 

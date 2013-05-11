@@ -23,8 +23,6 @@ public:
 	//default constructor
 	GameRoom::GameRoom()
 	{
-		this->name = new char[MAX_NAME_CHARS + 1];
-		this->name[MAX_NAME_CHARS] = '\0';
 		strcpy(name, "");
 		/*TO DO: Initialize lock*/
 	}
@@ -32,8 +30,6 @@ public:
 	//constructor with name
 	GameRoom::GameRoom(char *name)
 	{
-		this->name = new char[MAX_NAME_CHARS + 1];
-		this->name[MAX_NAME_CHARS] = '\0';
 		strncpy(this->name, name, MAX_NAME_CHARS);
 		/*TO DO: Initialize lock*/
 	}
@@ -72,10 +68,10 @@ public:
 
 	/* 	Writes a file in the specified room format 
 		see documentation for further details*/ 
-	static bool WriteRoom(char *fname, GameRoom &room);
-		
+	static bool WriteRoom(const char *fname, GameRoom &room);
+	static bool GameRoom::WriteRoom(ostream &os, GameRoom &room);
 private:
-	char *name;
+	char name[MAX_NAME_CHARS];
 	vector<GameObject *> objects;
 	vector<GameLight *> lights; 
 	GameCamera *camera; //null means 1st P 	
