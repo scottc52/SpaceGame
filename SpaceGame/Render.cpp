@@ -175,6 +175,8 @@ MyMesh squareMesh(){
 	mesh.add_face(face_vhandles);
 
 	 mesh.request_vertex_normals();
+	 mesh.request_face_normals();
+	 mesh.update_normals();
 	return mesh;
 }
 
@@ -222,9 +224,9 @@ void myDisplay() {
 		//light colors
 		GLfloat ambientcolor[] = {0.2, 0.2, 0.2, 1.0};
 		glLightfv(gl_lights[0], GL_AMBIENT, ambientcolor);
-		GLfloat diffusecolor[] = {0.8, 0.8, 0.8, 1.0};
+		GLfloat diffusecolor[] = {0.8, 0.8, 0.4, 1.0};
 		glLightfv(gl_lights[0], GL_DIFFUSE, diffusecolor);
-		GLfloat specularcolor[] = {0.8, 0.8, 0.8, 1.0};
+		GLfloat specularcolor[] = {0.2, 0.2, 0.2, 1.0};
 		glLightfv(gl_lights[0], GL_SPECULAR, specularcolor);
 
 		GLfloat lightposition[] = {300.0, 300.0, 300.0, 1.0};
@@ -247,6 +249,8 @@ void myDisplay() {
 
 
 	//----------------------- code to draw objects --------------------------
+	
+	glEnable(GL_NORMALIZE);
 	int numObjects = 1;
 	for(int i = 0; i<numObjects;i++){
 		MyMesh mesh = squareMesh();
@@ -272,7 +276,7 @@ void myDisplay() {
 		GLfloat emmisionmat[] = { material.Ke[0], material.Ke[1], material.Ke[2], 1.0-material.Tr };
 		glMaterialfv(GL_FRONT, GL_EMISSION, emmisionmat);
 
-		bool useTexture = false  && mesh.has_vertex_normals(); //TODO
+		bool useTexture = false; //TODO
 		if(useTexture){
 			glEnable(GL_TEXTURE_2D);
 			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -282,15 +286,29 @@ void myDisplay() {
 			glDisable(GL_TEXTURE_2D);
 		}
 
+		//set transformations - opengl will apply these in REVERSE order.
+		glPushMatrix();
+		glTranslatef(-0.5, 0, 0); //move cube2 to the left
+		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		glScalef(0.8f, 1.2f, 1.0f);
 		glBegin(GL_TRIANGLES);
 		for (MyMesh::FaceIter it = mesh.faces_begin(); it != mesh.faces_end(); ++it) {
 			//assuming triangular meshes
 			MyMesh::HalfedgeHandle it2 = mesh.halfedge_handle(it.handle());
 			for(int v = 0; v< 3; v++){
 				MyMesh::VertexHandle v_handle = mesh.to_vertex_handle(it2);
+				if(false){ // should there be a setting for using face or vertex normals?
+					if(mesh.has_vertex_normals()){
+						Vec3f avg =mesh.normal(v_handle);
+						glNormal3f(avg[0], avg[1], avg[2]);
+					}
+				}else{
+					if(mesh.has_face_normals()){
+						Vec3f avg =mesh.normal(it.handle());
+						glNormal3f(avg[0], avg[1], avg[2]);
+					}
+				}
 				if(useTexture){
-					Vec3f avg =mesh.normal(v_handle);
-					glNormal3f(avg[0], avg[1], avg[2]);
 					Vec2f texCoord; //TODO
 					glTexCoord2f(texCoord[0], texCoord[1]);
 				}
@@ -300,7 +318,10 @@ void myDisplay() {
 			}
 		}
 		glEnd();
+		glPopMatrix(); // you need one of these for every glPushMatrix()
 	}
+	
+	//glutSolidSphere(1.0, 20, 20); //for debugging
 	//-----------------------------------------------------------------------
 
 	glFlush();
