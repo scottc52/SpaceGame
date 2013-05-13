@@ -1,9 +1,9 @@
-﻿Build started 2013/05/13 7:22:10.
-     1>Project "C:\Users\Stephen\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/13/2013 3:48:53 PM.
+     1>Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>Link:
-         SpaceGame.vcxproj -> C:\Users\Stephen\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Stephen\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+         SpaceGame.vcxproj -> C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
+     1>Done Building Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.25
+Time Elapsed 00:00:00.04

@@ -4,6 +4,7 @@
 *
 */
 #include "Render.h"
+#include "shader_utils.h"
 
 //****************************************************
 // classes
@@ -30,6 +31,16 @@ Material exampleMaterial(){
 }
 
 //****************************************************
+// global variables
+//****************************************************
+int lastHit;
+
+//post-processing
+GLuint fbo, fbo_texture, rbo_depth;
+GLuint vbo_fbo_vertices;
+GLuint program_postproc, attribute_v_coord_postproc, uniform_fbo_texture, uniform_hit_time;
+
+//****************************************************
 // reshape viewport if the window is resized
 //****************************************************
 void myReshape(int w, int h) {
@@ -48,16 +59,16 @@ void myReshape(int w, int h) {
 	//glOrtho(-1, 1, -1, 1, 1, -1);	// resize type = stretch
 
 	//------------------------------------------------------------
-}
 
-
-//****************************************************
-// sets the window up
-//****************************************************
-void initScene(){
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear to black, fully transparent
-
-	myReshape(640,480);
+	//post-processing
+	//resize framebuffer and render buffer
+	glBindTexture(GL_TEXTURE_2D, fbo_texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
+ 
+	glBindRenderbuffer(GL_RENDERBUFFER, rbo_depth);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w, h);
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 }
 
 
@@ -180,36 +191,8 @@ MyMesh squareMesh(){
 	return mesh;
 }
 
-//function that actually does the drawing
-void myDisplay() {
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();				// loading the identity matrix for the screen
-
-	int w = glutGet(GLUT_WINDOW_WIDTH);
-	int h = glutGet(GLUT_WINDOW_HEIGHT);
-	float aspect_ratio = (float) w / (float) h;
-	float fieldOfView = 45.0f; //TODO
-	gluPerspective(fieldOfView, aspect_ratio, 0.01f, 600.0f);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear to black, fully transparent
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glEnable(GL_DEPTH_TEST);
-
-
-	glMatrixMode(GL_MODELVIEW);					// indicate we are specifying camera transformations
-	glLoadIdentity();
-	Vector3f cameraPos = Vector3f(0,0,4); //TODO
-	Vector3f up = Vector3f(0,1,0); //TODO
-	Vector3f direction = Vector3f(0,0,-1); //TODO
-	gluLookAt(cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[0]+direction[0], cameraPos[1]+direction[1], cameraPos[2]+direction[2], up[0], up[1], up[2]);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);				// clear the color buffer (sets everything to black)
-
-	//glMatrixMode(GL_MODELVIEW);					// indicate we are specifying camera transformations
-	//glLoadIdentity();							// make sure transformation is "zero'd"
-
-
-
-
+//functions that actually does the drawing
+void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
 	unsigned int gl_lights[] = {GL_LIGHT0, GL_LIGHT1, GL_LIGHT2, GL_LIGHT3, GL_LIGHT4,
@@ -243,14 +226,8 @@ void myDisplay() {
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
 	}
-
-
-
-
-
-	//----------------------- code to draw objects --------------------------
-	
-	
+}
+void drawMeshes(){
 	int numObjects = 1;
 	for(int i = 0; i<numObjects;i++){
 		MyMesh mesh = squareMesh();
@@ -330,9 +307,72 @@ void myDisplay() {
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 	}
+}
+
+void myDisplay() {
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	GLfloat dt = (float)(glutGet(GLUT_ELAPSED_TIME) - lastHit);  // 3/4 of a wave cycle per second
+	glUniform1f(uniform_hit_time, dt);
+	glUseProgram(0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();				// loading the identity matrix for the screen
+
+	int w = glutGet(GLUT_WINDOW_WIDTH);
+	int h = glutGet(GLUT_WINDOW_HEIGHT);
+	float aspect_ratio = (float) w / (float) h;
+	float fieldOfView = 45.0f; //TODO
+	gluPerspective(fieldOfView, aspect_ratio, 0.01f, 600.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear to black, fully transparent
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);				// clear the color buffer (sets everything to black)
+	glEnable(GL_DEPTH_TEST);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	//glMatrixMode(GL_MODELVIEW);					// indicate we are specifying camera transformations
+	//glLoadIdentity();
+	Vector3f cameraPos = Vector3f(0,0,4); //TODO
+	Vector3f up = Vector3f(0,1,0); //TODO
+	Vector3f direction = Vector3f(0,0,-1); //TODO
+	gluLookAt(cameraPos[0], cameraPos[1], cameraPos[2], cameraPos[0]+direction[0], cameraPos[1]+direction[1], cameraPos[2]+direction[2], up[0], up[1], up[2]);
+	
+
+	//glMatrixMode(GL_MODELVIEW);					// indicate we are specifying camera transformations
+	//glLoadIdentity();							// make sure transformation is "zero'd"
+
+	setupLighting();
+
+	//----------------------- code to draw objects --------------------------
+	
+	drawMeshes();
+	
 	
 	//glutSolidSphere(1.0, 20, 20); //for debugging
 	//-----------------------------------------------------------------------
+	
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+ 
+	glUseProgram(program_postproc);
+	glBindTexture(GL_TEXTURE_2D, fbo_texture);
+	glUniform1i(uniform_fbo_texture, /*GL_TEXTURE*/0);
+	glEnableVertexAttribArray(attribute_v_coord_postproc);
+ 
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_fbo_vertices);
+	glVertexAttribPointer(
+		attribute_v_coord_postproc,  // attribute
+		2,                  // number of elements per vertex, here (x,y)
+		GL_FLOAT,           // the type of each element
+		GL_FALSE,           // take our values as-is
+		0,                  // no extra data between each position
+		0                   // offset of first element
+	);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	glDisableVertexAttribArray(attribute_v_coord_postproc);
+	
 
 	glFlush();
 	glutSwapBuffers();					// swap buffers (we earlier set double buffer)
@@ -361,10 +401,133 @@ void myIdle() {
 	glutPostRedisplay(); // forces glut to call the display function (myDisplay())
 }
 
+//****************************************************
+// UI callback functions
+//****************************************************
+void myKeyboard(unsigned char key, int x, int y){
+	if (key == 'p' || key == 'P') {
+		lastHit = glutGet(GLUT_ELAPSED_TIME);
+	}
+	else if (key == 'o' || key == 'O') {
+		//reload file
+		//yeah do nothing! This is here to show how to add new input keys here.
+	}
+	else if (key == 'q' || key == 'Q') exit(0);
+	glutPostRedisplay();
+}
+
+//****************************************************
+// Loading Programs
+//****************************************************
+int loadPostProcessingProgram(string vertexShader, string fragmentShader){
+	GLuint vs, fs;
+	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0) return 0;
+	if ((fs = create_shader(fragmentShader.c_str(), GL_FRAGMENT_SHADER)) == 0) return 0;
+ 
+	GLint link_ok, validate_ok;
+	program_postproc = glCreateProgram();
+	glAttachShader(program_postproc, vs);
+	glAttachShader(program_postproc, fs);
+	glLinkProgram(program_postproc);
+	glGetProgramiv(program_postproc, GL_LINK_STATUS, &link_ok);
+	if (!link_ok) {
+		//fprintf(stderr, "glLinkProgram:");
+		//print_shader_log(program_postproc);
+		return 0;
+	}
+	glValidateProgram(program_postproc);
+	glGetProgramiv(program_postproc, GL_VALIDATE_STATUS, &validate_ok); 
+	if (!validate_ok) {
+		//fprintf(stderr, "glValidateProgram:");
+		//print_shader_log(program_postproc);
+	}
+ 
+	//attribute_name = "v_coord";
+	attribute_v_coord_postproc = glGetAttribLocation(program_postproc, "v_coord");
+	if (attribute_v_coord_postproc == -1) {
+		//fprintf(stderr, "Could not bind attribute %s\n", "v_coord");
+		return 0;
+	}
+ 
+	//uniform_name = "fbo_texture";
+	uniform_fbo_texture = glGetUniformLocation(program_postproc, "fbo_texture");
+	if (uniform_fbo_texture == -1) {
+		//fprintf(stderr, "Could not bind uniform %s\n", "fbo_texture");
+		return 0;
+	}
+
+	//uniform_name = "hit_time";
+	uniform_hit_time = glGetUniformLocation(program_postproc, "hit_time");
+	if (uniform_hit_time == -1) {
+		//fprintf(stderr, "Could not bind uniform %s\n", "fbo_texture");
+		return 0;
+	}
+}
+
+//****************************************************
+// Initialize GLUT and resources
+//****************************************************
+int effectsResourcesInitialize(){
+	int w = glutGet(GLUT_WINDOW_WIDTH);
+	int h = glutGet(GLUT_WINDOW_HEIGHT);
+	/* Texture Color Buffer*/
+	glActiveTexture(GL_TEXTURE0);
+	glGenTextures(1, &fbo_texture);
+	glBindTexture(GL_TEXTURE_2D, fbo_texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
+ 
+	/* Depth buffer */
+	glGenRenderbuffers(1, &rbo_depth);
+	glBindRenderbuffer(GL_RENDERBUFFER, rbo_depth);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, w, h);
+	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+ 
+	/* Framebuffer to link everything together */
+	glGenFramebuffers(1, &fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, fbo_texture, 0);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rbo_depth);
+	GLenum status;
+	if ((status = glCheckFramebufferStatus(GL_FRAMEBUFFER)) != GL_FRAMEBUFFER_COMPLETE) {
+		fprintf(stderr, "glCheckFramebufferStatus: error %p", status);
+		return 0;
+	}
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	// Vertices for mapping texture to output screen
+	GLfloat fbo_vertices[] = {
+		-1, -1,
+		1, -1,
+		-1,  1,
+		1,  1,
+	};
+	glGenBuffers(1, &vbo_fbo_vertices);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_fbo_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(fbo_vertices), fbo_vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//load post-processing program
+	loadPostProcessingProgram("shaders/postHit.v.glsl", "shaders/postHit.f.glsl");
+
+
+	//
+	//
+	//
+	//Addditional resources for bloom effect
+
+}
+
+
 void RenderGlutInitialize(){
 	cout<<"Start SpaceGame!\n";
 	//This initializes glut
-	
+	glutGet(GLUT_ELAPSED_TIME); //certain implementations start time from when this is called.
+	lastHit = -10000000000000;
 
 	//This tells glut to use a double-buffered window with red, green, and blue channels 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
@@ -374,14 +537,29 @@ void RenderGlutInitialize(){
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow("SpaceGame!");
 
-	initScene();							// quick function to set up scene
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear to black, fully transparent
 
+	glewExperimental=GL_TRUE; 
+	GLenum err=glewInit();
+	  if(err!=GLEW_OK)
+	  {
+		//Problem: glewInit failed, something is seriously wrong.
+		cout<<"glewInit failed, aborting."<<endl;
+	  }
+
+	//setup resources for post-processing
+	effectsResourcesInitialize();
+
+
+	//calling reshape before binding callbacks makes inconsistencies from 
+	//reshape operations apparent from the beginning
+	myReshape(640,480);
 	//setup glut callback funtions
 	glutDisplayFunc(myDisplay);				// function to run when its time to draw something
 	glutReshapeFunc(myReshape);				// function to run when the window gets resized
 	glutIdleFunc(myIdle);				// function to run when not handling any other task
 	//glutMotionFunc(mouseMoved);
 	//glutMouseFunc(mouse);
-	//glutKeyboardFunc(keyboard);
+	glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
 }
