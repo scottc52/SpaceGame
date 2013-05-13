@@ -44,7 +44,7 @@ private:
 	//Thread Lock (mutex_t ?) object lock;
 	//Sound link sound??  Play sound indirectly?
 	
-	setName(char *c){
+	void setName(const char *c){
 		int len = strlen(c);
 		len = (len < MAX_NAME_CHARS-1)? len : MAX_NAME_CHARS-1; 
 		strncpy(this->name, c, len);
