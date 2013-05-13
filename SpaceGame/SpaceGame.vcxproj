@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;glew-1.9.0/lib;freeglut/lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glu32.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
