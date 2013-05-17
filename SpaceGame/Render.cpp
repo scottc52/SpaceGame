@@ -680,7 +680,7 @@ void myIdle() {
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int dt = t- prevT;
 	prevT = t;
-	cout << "myIdle dt: " << dt << "\n";
+	//cout << "myIdle dt: " << dt << "\n";
 
 	//update bullet
 	if(bullet->t > 4000 && !bullet->hitB){
