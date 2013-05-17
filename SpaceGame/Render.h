@@ -30,7 +30,7 @@
 #include <math.h>
 #include "Mesh.h"
 
-#define PI 3.14159265
+#define PI 3.14159265358979323846
 
 //// EigenIncludes
 #include <Eigen/Core>

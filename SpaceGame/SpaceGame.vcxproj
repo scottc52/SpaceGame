@@ -79,14 +79,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
     <ClCompile Include="shader_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameDebug.h" />
     <ClInclude Include="GameItem.h" />
@@ -97,6 +100,7 @@
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="GameWorldObject.h" />
+    <ClInclude Include="projectile_particles.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
     <ClInclude Include="shader_utils.h" />
