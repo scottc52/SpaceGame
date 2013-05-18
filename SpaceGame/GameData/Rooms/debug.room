@@ -1,0 +1,19 @@
+# Debug Room design still in progress
+# all numeric values considered floats
+#ROOM Details 
+N	debug_dungeon
+# OBJECTS
+# O	 localroomname	mesh_file_name	x	y	z angle aX aY aZ scale
+O wall1 sampleWall.obj 
+# DOORS (same as objects, but flagged with different line)
+# P	localroomname	mesh_file_name	x	y	z	scale
+P	ESCAPE	box.obj	1.0f	1.0f	10.0f	10.0f	
+#Lights for now, all point lights, may extend later
+# L	name x y z ar ag ab dr dg db st sg sb	
+L ceiling 0.0f	30.0f 0.0f 0 0 0 180 180 180 180 180 180
+
+#Camera
+#specify a third person camera or explicitly state first person
+# C 	player
+# C	x	y	z	vx	vy	vz	ux	uy	uz
+C player	 

@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
+#include "LocationDefines.h"
 #include "GameDebug.h"
 #include "GameRoom.h"
 #include "GameCamera.h"
@@ -119,16 +120,20 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		// Object / Actor
 		// local_name global_name x y z rotation scale		
 		case 'O':{
-			GAME_DEBUG_ASSERT(v.size() >= 7);
+			GAME_DEBUG_ASSERT(v.size() >= 11);
 			float x= atof(v[3]);
 			float y= atof(v[4]);
 			float z= atof(v[5]);
-			//float rot = atof(v[6]);
-			float scale = atof(v[6]);
+			float angle = atof(v[6]);
+			float nX = atof(v[7]);
+			float nY = atof(v[8]);
+			float nZ = atof(v[9]);
+			float scale = atof(v[10]);
 			GameObject *obj = new GameObject();
 			Vec3f p(x,y,z); 			
 			obj->SetPosition(p);
 			obj->SetScale(scale);
+			obj->SetRotation(Quaternionf(angle, nX, nY, nZ));
 			obj->SetName(v[1]);
 			obj->SetMeshFile(newCString(v[2]));
 			r.AddObject(obj);
@@ -162,6 +167,11 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 }
 
 bool GameRoom::LoadRoom(char *fname, GameRoom& room){
+	//Maybe make this  buffer larger?
+	char roomFileName[100];
+	assert(strlen(fname)+ strlen(GAME_DATA_ROOMS_FOLDER) < 100);
+	strcpy(roomFileName, GAME_DATA_ROOMS_FOLDER);
+	strcat(roomFileName, fname);
 	std::ifstream myfile (fname, std::ifstream::in);
 	if (!myfile.good()){
 		myfile.close();
@@ -196,7 +206,7 @@ bool GameRoom::WriteRoom(ostream &os, GameRoom &room){
 	os << "N\t" << room.GetName()  << endl; 	
 	
 	//TODO: specialize for doors	
-	os << "# Objects: O name filename x y z scale" << endl; 
+	os << "# Objects: O name filename x y z angle x y z scale" << endl; 
 	for(int i = 0; i < olen; i++){
 		os << "O\t";
 		writeGameObject(os, room.objects[i]);
