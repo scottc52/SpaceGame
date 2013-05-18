@@ -7,6 +7,7 @@
 #include "GameCamera.h"
 #include "GameItem.h"
 #include "GameWorldObject.h"
+#include "GameRoom.h"
 #include "GameLight.h"
 
 /* Room setup command via the console....*/
@@ -23,7 +24,7 @@ void ConsoleCreateRoom(){
 		cin>>roomName;
 		cin.clear();
 		cin.ignore(10000, '\n');
-		//To do: Create Room object.
+		GameRoom newRoom = GameRoom(roomName);
 		bool loop = true;
 		char createChar;
 		while(loop){
@@ -46,10 +47,10 @@ void ConsoleCreateRoom(){
 					cin.clear();
 					cin.ignore(10000, '\n');
 					float angle;
-					float nX, nY, nZ;
+					float qX, qY, qZ;
 					cout<<"quat rotation: angle, axis ";
-					cin>>angle>>nX>>nY>>nZ;
-					cout<<endl<<"angle: "<<angle<<" axis: <"<<nX<<", "<<nY<<", "<<nZ<<">"<<endl;
+					cin>>angle>>qX>>qY>>qZ;
+					cout<<endl<<"angle: "<<angle<<" axis: <"<<qX<<", "<<qY<<", "<<qZ<<">"<<endl;
 					cin.clear();
 					cin.ignore(10000, '\n');
 					cout<<"Mesh name: ";
@@ -59,20 +60,20 @@ void ConsoleCreateRoom(){
 					cin.ignore(10000, '\n');
 					//To do: Texture.
 					//To do: Additional data.
-					//NOTE: For now, just create WorldObject, but later will make correct object....
 					cout<<"Scale: ";
 					float scale;
 					cin>>scale;
 					cin.clear();
 					cin.ignore(10000, '\n');
-					GameWorldObject wobj;
+					GameWorldObject wobj = GameWorldObject();
 					wobj.SetName(oName);
 					wobj.SetMeshFile(meshName);
-					//wobj.SetRotation(Quaternion());
+					wobj.SetRotation(Quaternionf(angle, qX, qY, qZ));
 					Vec3f p(x,y,z);
 					wobj.SetPosition(p);
 					wobj.SetScale(scale);
-					//To do: use Room callback to add to room.
+					//To do: Controller adds object into buffer?
+					//To do: Room includes pointer to object from controller...
 					break;
 				}
 			case 'c':

@@ -33,7 +33,7 @@ private:
 	//Pointer to the GameMesh stored elsewhere
 	MyMesh* meshptr;
 	Vec3f position;
-	//Quaternion rotation;
+	Quaternionf rotation;
 	float scale;
 	bool isModified;
 	char name[MAX_NAME_CHARS];
@@ -93,9 +93,9 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
-	//Quaternion GameObject::GetRotation(){return rotation;}
-	//void GameObject::SetRotation(Quaternion &newRotation){rotation = newRotation;}
-	//void GameObject::RotateByQuaternion(Quaternion &deltaQ){rotation = rotation + deltaQ;}
+	Quaternionf GameObject::GetRotation(){return rotation;}
+	void GameObject::SetRotation(Quaternionf &newRotation){rotation = newRotation;}
+	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
 	bool GameObject::IsModified(){return isModified;}
