@@ -29,13 +29,18 @@ bool writeVec3f(ostream &os, Vec4f pos, bool ifo = false){
 }
 
 bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
-	if (ifo) os <<"# Game Object" << endl << "#\tname\tfilename\tx\ty\tz\tscale" << endl; 
+	if (ifo) os <<"# Game Object" << endl << "#\tname\tfilename\tx\ty\tz\tangle\taxisX\taxisY\taxisZ\tscale" << endl; 
 	char *name = o->GetName();
 	name = (name)? name : "NULL"; 
 	char *mesh_name = o->GetMeshFile();
 	mesh_name = (mesh_name)? mesh_name : "NULL";  
 	os << name << "\t" << mesh_name << "\t";
 	writeVec3f(os, o->GetPosition());
+	Quaternionf rotation = o->GetRotation();
+	os<<rotation.w<<"\t";
+	os<<rotation.x<<"\t";
+	os<<rotation.y<<"\t";
+	os<<rotation.z<<"\t";
 	os << o->GetScale() << "\t";
 	return true;
 }	
