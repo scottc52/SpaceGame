@@ -73,7 +73,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 //****************************************************
 void myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
 	
 
@@ -434,7 +434,7 @@ void drawGlow(){
 void drawBullets(bool glow){
 	glDepthMask(GL_FALSE);
 	glEnable( GL_BLEND );
-	glEnable( GL_PROGRAM_POINT_SIZE );
+	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
 	int numBullets = 1;
@@ -650,7 +650,7 @@ void myDisplay() {
     glEnd();
 	
 
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
 	
 	glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -714,8 +714,8 @@ void myKeyboard(unsigned char key, int x, int y){
 // Loading Programs
 //****************************************************
 int loadPostProcessingProgram(){
-	string vertexShader = "shaders/postHit.v.glsl";
-	string fragmentShader = "shaders/postHit.f.glsl";
+	string vertexShader = SHADERS_POSTHIT_VERTEX_FILE;
+	string fragmentShader = SHADERS_POSTHIT_FRAGMENT_FILE;
 	GLuint vs, fs;
 	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0) return 0;
 	if ((fs = create_shader(fragmentShader.c_str(), GL_FRAGMENT_SHADER)) == 0) return 0;
@@ -762,8 +762,8 @@ int loadPostProcessingProgram(){
 }
 
 int loadFogProgram(){
-	string vertexShader = "shaders/pass.v.glsl";
-	string fragmentShader = "shaders/fog.f.glsl";
+	string vertexShader = SHADERS_PASS_VERTEX_FILE;
+	string fragmentShader = SHADERS_FOG_FRAGMENT_FILE;
 	GLuint vs, fs;
 	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0) return 0;
 	if ((fs = create_shader(fragmentShader.c_str(), GL_FRAGMENT_SHADER)) == 0) return 0;
@@ -903,8 +903,8 @@ void setSimpleFog(float offset, float scale, GLuint texture, GLuint depth){
 }
 
 int loadBlurProgram(){
-	string vertexShader = "shaders/pass.v.glsl";
-	string fragmentShader = "shaders/sum3.f.glsl";
+	string vertexShader = SHADERS_PASS_VERTEX_FILE;
+	string fragmentShader = SHADERS_SUM3_FRAGMENT_FILE;
 	GLuint vs, fs;
 	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0){ 
 		fprintf(stderr, "failed to create vertex shader");
@@ -977,8 +977,8 @@ int loadBlurProgram(){
 }
 
 int loadBlur9Program(){
-	string vertexShader = "shaders/pass.v.glsl";
-	string fragmentShader = "shaders/sum5.f.glsl";
+	string vertexShader = SHADERS_PASS_VERTEX_FILE;
+	string fragmentShader = SHADERS_SUM5_FRAGMENT_FILE;
 	GLuint vs, fs;
 	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0){ 
 		fprintf(stderr, "failed to create vertex shader");
@@ -1067,8 +1067,8 @@ int loadBlur9Program(){
 }
 
 int loadBloomProgram(){
-	string vertexShader = "shaders/pass.v.glsl";
-	string fragmentShader = "shaders/sumTextures4.f.glsl";
+	string vertexShader = SHADERS_PASS_VERTEX_FILE;
+	string fragmentShader = SHADERS_SUMTEXTURES4_FRAGMENT_FILE;
 	GLuint vs, fs;
 	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0){ 
 		fprintf(stderr, "failed to create vertex shader");
@@ -1250,7 +1250,7 @@ void RenderGlutInitialize(){
 	cout<<"Start SpaceGame!\n";
 	//This initializes glut
 	glutGet(GLUT_ELAPSED_TIME); //certain implementations start time from when this is called.
-	lastHit = -10000000000000;
+	lastHit = INT_MIN;
 
 	//This tells glut to use a double-buffered window with red, green, and blue channels 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);

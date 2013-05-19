@@ -16,6 +16,7 @@
 #include <GL/glu.h>
 #include <GL/gl.h>
 #else
+#include <GL/glew.h>
 #include <GLUT/glut.h>
 #endif
 #endif
@@ -39,6 +40,14 @@
 
 using namespace std;
 using namespace Eigen;
+
+#define SHADERS_POSTHIT_VERTEX_FILE "SpaceGame/shaders/postHit.v.glsl"
+#define SHADERS_POSTHIT_FRAGMENT_FILE "SpaceGame/shaders/postHit.f.glsl"
+#define SHADERS_PASS_VERTEX_FILE "SpaceGame/shaders/pass.v.glsl"
+#define SHADERS_FOG_FRAGMENT_FILE "SpaceGame/shaders/fog.f.glsl"
+#define SHADERS_SUM3_FRAGMENT_FILE "SpaceGame/shaders/sum3.f.glsl"
+#define SHADERS_SUM5_FRAGMENT_FILE "SpaceGame/shaders/sum5.f.glsl"
+#define SHADERS_SUMTEXTURES4_FRAGMENT_FILE "SpaceGame/shaders/sumTextures4.f.glsl"
 
 void myReshape(int w, int h);
 void initScene();
