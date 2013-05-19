@@ -18,6 +18,7 @@
 
 #include <cassert>
 #include <iostream>
+#include "LocationDefines.h"
 #include "Mesh.h"
 #include "GameDebug.h"
 #include "GameWorldObject.h"
@@ -27,6 +28,7 @@
 #include "GameLight.h"
 #include "Render.h"
 #include "RoomBuilder.h"
+#include "GameRoom.h"
 
 //****************************************************
 // Main function, initialize program here
@@ -39,9 +41,37 @@ int main(int argc, char *argv[]){
 	debugger->WriteToDebugFile("Wrote to file", 32);
 	ConsoleCreateRoom();
 
+	//For testing purposes.  To make sure it reads debug.room
+	char debugName[1000];
+	strcpy(debugName, GAME_DATA_ROOMS_FOLDER);
+	strcat(debugName, "debug.room");
+	GameRoom debug;
+	assert(GameRoom::LoadRoom(debugName, debug));
+	cout<<"Room name: "<<debug.GetName()<<endl;
+	GameObject* object = debug.GetWorldObject("monkeyHead");
+	assert(object != NULL);
+	cout<<"Object name: "<<object->GetName()<<endl;
+	cout<<"Object position: "<<object->GetPosition()<<endl;
+	cout<<"Object rotation: "<<object->GetRotation()<<endl;
+	cout<<"Object scale: "<<object->GetScale()<<endl;
+	cout<<"Object meshFile: "<<object->GetMeshFile()<<endl;
+	GameObject* light = debug.GetLight("ceiling");
+	//To do: differentiate at the room level between object types....
+	assert(light != NULL);
+	cout<<"Light name: "<<light->GetName()<<endl;
+
+	cin.ignore(1);
+	///////////////////////////////////////////////////
 	RenderGlutInitialize();
 
-	glutMainLoop(); //this should only be called one, and AT THE END of the initialization routine.
+
+	/////////////////////////////////////////////////
+	// TO DO:
+	// Pass GameRoom debug to Render module.  Render the 
+	// room.
+	/////////////////////////////////////////////////
+
+	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	assert(debugger->CloseDebugFile());
 	return 0;
 }
