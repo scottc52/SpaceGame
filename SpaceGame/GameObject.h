@@ -94,7 +94,7 @@ public:
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
 	Quaternionf GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Quaternionf newRotation){rotation = newRotation;}
+	void GameObject::SetRotation(Quaternionf &newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
