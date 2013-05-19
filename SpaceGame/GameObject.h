@@ -18,9 +18,6 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#ifdef _WIN32
-#include "windows.h"
-#endif
 #include "Mesh.h"
 #include "LocationDefines.h"
 
@@ -34,6 +31,7 @@ private:
 	//Pointer to the GameMesh stored elsewhere
 	MyMesh* meshptr;
 	Vec3f position;
+
 	//In the form of quaternion data!
 	Vec4f rotation;
 	float scale;
