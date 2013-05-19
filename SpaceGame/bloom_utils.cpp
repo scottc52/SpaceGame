@@ -56,24 +56,24 @@ void createSurface(Surface *surface, GLboolean depth, GLboolean fp, GLboolean li
     }
 
     // create FBO itself
-    glGenFramebuffers(1, &surface->fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, surface->fbo);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, surface->texture, 0);
+    glGenFramebuffersEXT(1, &surface->fbo);
+    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, surface->fbo);
+    glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, surface->texture, 0);
     if (surface->useDepth)
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, surface->depth, 0);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, surface->depth, 0);
         //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, surface->depth);
     GLenum status;
-	if ((status = glCheckFramebufferStatus(GL_FRAMEBUFFER)) != GL_FRAMEBUFFER_COMPLETE) {
+	if ((status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT)) != GL_FRAMEBUFFER_COMPLETE_EXT) {
 		fprintf(stderr, "glCheckFramebufferStatus: error %p", status);
 		fprintf(stderr, "\n");
 		return;
 	}
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 void bindSurface(Surface *surface)
 {
-    glBindFramebuffer(GL_FRAMEBUFFER, surface->fbo);
+    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, surface->fbo);
     glViewport(surface->viewport.x, surface->viewport.y, surface->viewport.width, surface->viewport.height);
     currentSurface = surface;
 }
