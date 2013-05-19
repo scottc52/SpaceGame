@@ -7,28 +7,34 @@
 * all other classes are passed as pointers
 */ 
 
-#ifndef _TEXT_IO_HELPERS_H_
-#define _TEXT_IO_HELPERS_H_
+#ifndef TEXT_IO_HELPERS_H_
+#define TEXT_IO_HELPERS_H_
 
 #include "GameObject.h"
 #include "GameLight.h"
 #include "GameCamera.h"
 #include "GameDoor.h"
 #include <iostream>
-using namespace std; 
-bool writeVec3f(ostream &os, Vec3f pos, bool ifo = false){
+#include <string>
+using namespace std;
+
+inline string pathCat(const char *root, const char *child){
+	return string (root) + string("/") + string(child);  
+}
+
+inline bool writeVec3f(ostream &os, Vec3f pos, bool ifo = false){
 	if(ifo) os <<"#Vec3f" << endl <<"#\tx\ty\tz\t" << endl;  	
 	os << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
 	return true;
 }
 
-bool writeVec3f(ostream &os, Vec4f pos, bool ifo = false){
+inline bool writeVec3f(ostream &os, Vec4f pos, bool ifo = false){
 	if(ifo) os << "#Vec4f as Vec3f" << endl <<"#\tx\ty\tz\t" << endl; 
 	os << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
 	return true;
 }
 
-bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
+inline bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 	if (ifo) os <<"# Game Object" << endl << "#\tname\tfilename\tx\ty\tz\tangle\taxisX\taxisY\taxisZ\tscale" << endl; 
 	const char *name = o->GetName();
 	name = (name)? name : "NULL"; 
@@ -45,7 +51,7 @@ bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 	return true;
 }	
 
-bool writeGameLight(ostream &os, GameLight *l){
+inline bool writeGameLight(ostream &os, GameLight *l){
 	os << l->GetName() << "\t";
 	writeVec3f(os, l->GetPosition()); 
 	writeVec3f(os, l->GetAmbient());
@@ -54,7 +60,7 @@ bool writeGameLight(ostream &os, GameLight *l){
 	return true; 
 }
 
-bool writeGameCamera(ostream &os, GameCamera *c){
+inline bool writeGameCamera(ostream &os, GameCamera *c){
 	writeVec3f(os, c->GetPosition());
 	writeVec3f(os, c->GetViewVector());
 	writeVec3f(os, c->GetUpVector()); 	

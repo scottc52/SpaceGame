@@ -23,10 +23,16 @@
 #include "GameWorldObject.h"
 #include "GameCamera.h"
 #include "GameDoor.h"
+#include "GameRoom.h"
 #include "GameItem.h"
 #include "GameLight.h"
 #include "Render.h"
 #include "RoomBuilder.h"
+#include "TaskQueue.h"
+#include "LocationDefines.h"
+#include "TextIOHelpers.h"
+
+#define NUM_THREADS ((unsigned int )8)
 
 //****************************************************
 // Main function, initialize program here
@@ -37,8 +43,18 @@ int main(int argc, char *argv[]){
 	assert(debugger->OpenDebugFile());
 	debugger->WriteDebugMessageToConsole("Hello, World", 31);
 	debugger->WriteToDebugFile("Wrote to file", 32);
+	
+	TaskQueue *main = new TaskQueue(NUM_THREADS);
 	ConsoleCreateRoom();
 
+	GameRoom gr; 	
+
+	if (argc > 1){
+		string path = pathCat(GAME_DATA_ROOMS_FOLDER, argv[1]);
+		GameRoom::LoadRoom(path.c_str(), gr);
+	}
+	
+	
 	RenderGlutInitialize();
 
 	glutMainLoop(); //this should only be called one, and AT THE END of the initialization routine.

@@ -1,3 +1,5 @@
+#ifndef SHADER_UTILS_H
+#define SHADER_UTILS_H
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -22,3 +24,4 @@
 char* file_read(const char* filename);
 void print_shader_log(GLuint object);
 GLuint create_shader(const char* filename, GLenum type);
+#endif

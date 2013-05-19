@@ -40,7 +40,6 @@ void split(char *s, const char *delim, vector<char *> &buff){
 	}
 	return; 
 }
-
 //Heavy lifting for reading info from lines
 void parseRoomLine(vector<char *> &v, GameRoom &r){
 	char* line_type = v[0];
@@ -52,6 +51,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 	if (v.size() < 2){
 		GameDebugger::GetInstance()->WriteDebugMessageToConsole("parseRoomFile: line");  
 	}
+	bool door = false; 
 	switch (line_type[0]) {
 		//room id		
 		case 'N': {
@@ -119,6 +119,8 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		}
 		// Object / Actor
 		// local_name global_name x y z rotation scale		
+		case 'P':
+			door = true;
 		case 'O':{
 			GAME_DEBUG_ASSERT(v.size() >= 11);
 			float x= atof(v[3]);
@@ -129,36 +131,21 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 			float nY = atof(v[8]);
 			float nZ = atof(v[9]);
 			float scale = atof(v[10]);
-			GameObject *obj = new GameObject();
+
+			GameObject *obj; 
+			obj = (door)? new GameDoor() : new GameObject();
 			Vec3f p(x,y,z); 			
 			obj->SetPosition(p);
 			obj->SetScale(scale);
-			obj->SetRotation(Quaternionf(angle, nX, nY, nZ));
+			Quaternionf q =Quaternionf(angle, nX, nY, nZ); 
+			obj->SetRotation(q);
 			obj->SetName(v[1]);
 			obj->SetMeshFile(newCString(v[2]));
-			r.AddObject(obj);
+			if (door) r.AddDoor((GameDoor *)obj); else r.AddObject(obj);
 			delete obj; 
 			break; 
 		}
-		//load object as a door
-		case 'P':{
-			GAME_DEBUG_ASSERT(v.size() >= 7 );
-			float x= atof(v[3]);
-			float y= atof(v[4]);
-			float z= atof(v[5]);
-			//float rot = atof(v[6]);
-			float scale = atof(v[6]);
-			
-			GameObject *obj = new GameObject();
-			Vec3f p(x,y,z); 			
-			obj->SetPosition(p);
-			obj->SetScale(scale);
-			obj->SetName(v[1]);
-			obj->SetMeshFile(newCString(v[2]));
-			r.AddObject(obj);
-			delete(obj);
-			break;
-		} 
+	
 		case '\0': 
 		default: 
 			GameDebugger::GetInstance()->WriteDebugMessageToConsole("parseRoomFile: unexpected line type");
@@ -250,9 +237,8 @@ GameRoom::~GameRoom()
 
 void GameRoom::AddObject(GameObject *newObject)
 {
-	GameObject *object = new GameObject(newObject);
-	this->objects.push_back(object);
 	
+	this->objects.push_back(newObject);
 	sort(this->objects.begin(), this->objects.end(), ObjectComparator);
 }
 

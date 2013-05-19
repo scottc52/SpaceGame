@@ -1,3 +1,5 @@
+#ifndef PROJECTILE_PARTICLES_H
+#define PROJECTILE_PARTICLES_H
 
 #ifdef _WIN32
 #include <gl/glew.h>
@@ -131,3 +133,4 @@ public:
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
 };
+#endif

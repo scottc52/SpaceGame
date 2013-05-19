@@ -13,6 +13,7 @@
 #include "GameObject.h"
 #include "GameLight.h"
 #include "GameCamera.h"
+#include "GameDoor.h"
 #include <vector>
 
 #define OBJECT_NOT_FOUND -1
@@ -55,6 +56,12 @@ public:
 	//Prints the names of very Object in the Room in sorted order
 	void PrintObjectNames();
 	
+	//Setter / Getter for doors
+	void AddDoor(GameDoor *door){doors.push_back(door); objects.push_back(door); }
+	unsigned int NumDoors(){return doors.size();}
+	GameDoor *GetDoor(int idx){return doors[idx];}
+	bool RemoveDoor(GameDoor *door){/*not yet implemented */ return false;} 
+
 	//setter / Getter for camera
 	GameCamera *GetCamera(){return camera;}
 	void SetCamera(GameCamera *c){camera = c;}	
@@ -73,7 +80,8 @@ public:
 private:
 	char name[MAX_NAME_CHARS];
 	vector<GameObject *> objects;
-	vector<GameLight *> lights; 
+	vector<GameLight *> lights;
+	vector<GameDoor *> doors;  
 	GameCamera *camera; //null means 1st P 	
 		
 	// Comparator for Objects
