@@ -86,5 +86,8 @@
     <ClInclude Include="projectile_particles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextIOHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

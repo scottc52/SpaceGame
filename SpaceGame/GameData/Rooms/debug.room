@@ -3,13 +3,13 @@
 #ROOM Details 
 N	debug_room
 # OBJECTS
-# O	 localroomname	mesh_file_name	x	y	z angle aX aY aZ scale
-O monkeyHead sampleHead.obj 0 0 0 0.7356 0 0 1 1.0
+# W	 localroomname	mesh_file_name	x	y	z angle aX aY aZ scale
+W monkeyHead sampleHead.obj 0 0 0 0.7356 0 0 1 1.0
 # DOORS (same as objects, but flagged with different line)
 # P	localroomname	mesh_file_name	x	y	z	scale
 #Lights for now, all point lights, may extend later
 # L	name x y z ar ag ab dr dg db st sg sb	
-L ceiling 0.0f	30.0f 0.0f 0 0 0 180 180 180 180 180 180
+L ceiling 0.0f 30.0f 0.0f 0 0 0 180 180 180 180 180 180
 
 #Camera
 #specify a third person camera or explicitly state first person

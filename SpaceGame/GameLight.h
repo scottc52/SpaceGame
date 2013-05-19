@@ -18,5 +18,6 @@ public:
 	void GameLight::SetDiffuse(Vec4f &d){diffuse = d;}
 	Vec4f GameLight::GetSpecular(){return specular;}
 	void GameLight::SetSpecular(Vec4f &s){specular = s;}
+	GameLight::GameLight(){};
 };
 #endif _GAMELIGHT_H_

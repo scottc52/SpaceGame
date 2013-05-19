@@ -22,6 +22,7 @@
 #include "windows.h"
 #endif
 #include "Mesh.h"
+#include "LocationDefines.h"
 
 using namespace Eigen;
 
@@ -33,11 +34,12 @@ private:
 	//Pointer to the GameMesh stored elsewhere
 	MyMesh* meshptr;
 	Vec3f position;
-	Quaternionf rotation;
+	//In the form of quaternion data!
+	Vec4f rotation;
 	float scale;
 	bool isModified;
 	char name[MAX_NAME_CHARS];
-	char* meshFile;
+	string meshFile;
 
 	//TEXTURE POINTER txtptr;
 	
@@ -59,7 +61,6 @@ public:
 		isModified = false;
 		position = Vec3f(0,0,0);
 		scale = 1.f;
-		meshFile = NULL;
 		/*TO DO: Initialize lock*/
 	}
 	
@@ -71,6 +72,8 @@ public:
 		position = object->GetPosition();
 		scale = object->GetScale();
 		meshFile = object->GetMeshFile();
+		rotation = object->GetRotation();
+		meshptr = object->GetMesh();
 		/*TO DO: Initialize lock*/
 	}
 	
@@ -93,16 +96,21 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
-	Quaternionf GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Quaternionf &newRotation){rotation = newRotation;}
+	Vec4f GameObject::GetRotation(){return rotation;}
+	void GameObject::SetRotation(Vec4f &newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}
 	bool GameObject::IsModified(){return isModified;}
 	char* GameObject::GetName(){return name;}
 	void GameObject::SetName(char* n){setName(n);}
-	char* GameObject::GetMeshFile(){return meshFile;}
-	void GameObject::SetMeshFile(char* f){meshFile = f;}
+	const char* GameObject::GetMeshFile(){return meshFile.c_str();}
+	void GameObject::SetMeshFile(char* f){
+		string meshFileName = GAME_DATA_MESH_FOLDER;
+		meshFileName = meshFileName + f;
+		meshFile.clear();
+		meshFile = meshFileName;
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////
 

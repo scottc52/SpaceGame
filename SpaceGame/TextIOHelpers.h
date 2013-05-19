@@ -42,11 +42,11 @@ inline bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 	mesh_name = (mesh_name)? mesh_name : "NULL";  
 	os << name << "\t" << mesh_name << "\t";
 	writeVec3f(os, o->GetPosition());
-	Quaternionf rotation = o->GetRotation();
-	os<<rotation.w()<<"\t";
-	os<<rotation.x()<<"\t";
-	os<<rotation.y()<<"\t";
-	os<<rotation.z()<<"\t";
+	Vec4f rotation = o->GetRotation();
+	os<<rotation[0]<<"\t";
+	os<<rotation[1]<<"\t";
+	os<<rotation[2]<<"\t";
+	os<<rotation[3]<<"\t";
 	os << o->GetScale() << "\t";
 	return true;
 }	

@@ -104,6 +104,7 @@
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
     <ClInclude Include="shader_utils.h" />
+    <ClInclude Include="TextIOHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,69 +1,42 @@
-﻿Build started 5/17/2013 7:45:44 AM.
-     1>Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/19/2013 1:34:27 PM.
+     1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Scott\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ZI /nologo /W3 /WX- /Od /Oy- /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Render.cpp
-         Render.cpp
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(34): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(35): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(266): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(270): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(272): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(274): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(311): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(313): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(315): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(319): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(438): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(599): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(705): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(706): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(1253): warning C4305: '=' : truncation from '__int64' to 'int'
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(1253): warning C4309: '=' : truncation of constant value
-     1>c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
-                 with
-                 [
-                     Scalar=float,
-                     N=3,
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(397) : see reference to function template instantiation 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const' being compiled
-                 with
-                 [
-                     Scalar=float,
-                     N=3,
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(204) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)'
-                 with
-                 [
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(189) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)' being compiled
-                 with
-                 [
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(186) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)'
-                 with
-                 [
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\spacegame\render.cpp(223) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
-                 with
-                 [
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesh_arraykernelt.hh(93) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
-                 with
-                 [
-                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,false>,OpenMesh::PolyConnectivity>
-                 ]
-                 c:\users\scott\documents\github\spacegame\spacegame\render.cpp(111) : see reference to class template instantiation 'OpenMesh::PolyMesh_ArrayKernelT<>' being compiled
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(762): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
-     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(874): warning C4715: 'loadFogProgram' : not all control paths return a value
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ZI /nologo /W3 /WX- /Od /Oy- /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameRoom.cpp RoomBuilder.cpp main.cpp
+         GameRoom.cpp
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(75): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(77): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(83): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(95): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(96): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(97): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(98): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(99): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(100): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(101): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(102): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(103): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(104): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(105): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(106): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(126): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(127): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(128): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(129): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(130): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(131): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(132): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(133): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(148): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(149): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(150): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameroom.cpp(152): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         main.cpp
+         RoomBuilder.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Scott\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Scott\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:"glew-1.9.0/lib" /LIBPATH:freeglut/lib glew32.lib glu32.lib libOpenMeshCored.lib libOpenMeshToolsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Scott\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Scott\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:"glew-1.9.0/lib" /LIBPATH:freeglut/lib glew32.lib glu32.lib libOpenMeshCored.lib libOpenMeshToolsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
          Debug\GameDebug.obj
          Debug\GameRoom.obj
          Debug\main.obj
@@ -71,9 +44,29 @@
          Debug\Render.obj
          Debug\RoomBuilder.obj
          Debug\shader_utils.obj
-         SpaceGame.vcxproj -> C:\Users\Scott\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
-     1>Done Building Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+     1>libOpenMeshCored.lib(ArrayKernel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(ArrayKernel.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseProperty.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseProperty.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BinaryHelper.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BinaryHelper.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(Endian.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(Endian.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(IOManager.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(IOManager.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OBJReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OBJReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OBJWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OBJWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OFFReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OFFReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OFFWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OFFWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMFormat.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMFormat.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(omstream.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(omstream.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PLYReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PLYReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PLYWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PLYWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PolyConnectivity.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PolyConnectivity.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(STLReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(STLReader.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(STLWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(STLWriter.obj)' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.27
+Time Elapsed 00:00:10.95
