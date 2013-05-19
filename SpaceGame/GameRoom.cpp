@@ -8,11 +8,7 @@
 #include <cstring>
 #include <vector>
 #include <map>
-#include "GameDebug.h"
-#include "GameRoom.h"
-#include "GameCamera.h"
-#include "GameObject.h"
-#include "GameLight.h"
+#include "GameObjectHeaderList.h"
 #include "LocationDefines.h"
 
 #include "TextIOHelpers.h"

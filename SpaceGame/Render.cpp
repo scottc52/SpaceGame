@@ -7,6 +7,7 @@
 #include "shader_utils.h"
 #include "bloom_utils.h"
 #include "projectile_particles.h"
+#include "GameObjectHeaderList.h"
 
 
 //****************************************************

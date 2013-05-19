@@ -10,7 +10,6 @@
 
 class GameState{
 	public:
-		GetRoom;
 
 }; 
 

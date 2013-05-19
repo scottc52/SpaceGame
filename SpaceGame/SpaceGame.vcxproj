@@ -90,16 +90,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloom_utils.h" />
+    <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
-    <ClInclude Include="GameDebug.h" />
+    <ClInclude Include="GameDoor.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameLight.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameDoor.h" />
+    <ClInclude Include="GameObjectHeaderList.h" />
     <ClInclude Include="GameRoom.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameWorldObject.h" />
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="GameWorldObject.h" />
     <ClInclude Include="projectile_particles.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
