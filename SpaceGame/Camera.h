@@ -14,8 +14,8 @@
 #ifndef _CAMERA_H
 #define _CAMERA_H
 
-#include <Eigen\Core>
-#include <Eigen\Geometry>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
 /*
  * CLASS: Camera
  * =========================

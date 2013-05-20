@@ -1,6 +1,10 @@
 #include "UI.h"
 
-#include <gl\freeglut.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <gl/freeglut.h>
+#endif
 
 #ifdef _WIN32
 #pragma comment(lib, "pthreadVCE2.lib")
