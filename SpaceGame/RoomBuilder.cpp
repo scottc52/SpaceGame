@@ -68,7 +68,8 @@ void ConsoleCreateRoom(){
 					GameWorldObject wobj = GameWorldObject();
 					wobj.SetName(oName);
 					wobj.SetMeshFile(meshName);
-					wobj.SetRotation(Vec4f(angle, qX, qY, qZ));
+					Vec4f rot(angle, qX, qY, qZ);
+					wobj.SetRotation(rot);
 					Vec3f p(x,y,z);
 					wobj.SetPosition(p);
 					wobj.SetScale(scale);

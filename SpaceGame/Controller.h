@@ -1,5 +1,6 @@
 /**
-*Controller.h
+*Controller.h The game controller handles the tie-ins with the windowing system
+* (glut) and handles synchronizing the calls to the various models in the gameplay pipeline  
 */ 
 
 #ifndef CONTROLLER_H
@@ -25,12 +26,18 @@
 
 #include "TaskQueue.h"
 #include "GameDebug.h"
-#include "ctime.h"
+#include <ctime>
 
 #define FPS (60) 
-#define MSPF () 
+#define MSPF ((double)(1.0 / ((GLFloat) FPS) * 1000.0))  
+
+
 
 Controller *gameController = NULL; 
+
+double diffTime(clock_t ref){
+	clock_t cur
+}
 
 /**
 *
@@ -55,9 +62,17 @@ public:
 		//render here
 	}
 
-	static void glutSync(){
+	static void glutSync(int framesDropped){
 		GAME_DEBUG_ASSERT(gameController != NULL);
+		clock_t ref = clock();               
 		gameController->run();
+		double frame_time = difftime(ref); 
+		int DroppedFrames = frame_time / MSPF;
+		int time_out = MSPF - frame_time; 
+		if (DroppedFrames){
+			time_out = 0;		
+		}  
+		glutTimerFunc((int)MSPF - frame_time, Controller::glutSync, droppedFrames); 
 	}
 };
 
