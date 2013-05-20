@@ -20,13 +20,7 @@
 #include <iostream>
 #include "LocationDefines.h"
 #include "Mesh.h"
-#include "GameDebug.h"
-#include "GameWorldObject.h"
-#include "GameCamera.h"
-#include "GameDoor.h"
-#include "GameRoom.h"
-#include "GameItem.h"
-#include "GameLight.h"
+#include "GameObjectHeaderList.h"
 #include "Render.h"
 #include "RoomBuilder.h"
 //#include "TaskQueue.h"
@@ -34,7 +28,6 @@
 #include "TextIOHelpers.h"
 
 #define NUM_THREADS ((unsigned int )8)
-#include "GameRoom.h"
 
 //****************************************************
 // Main function, initialize program here
@@ -74,6 +67,12 @@ int main(int argc, char *argv[]){
 	//To do: differentiate at the room level between object types....
 	assert(light != NULL);
 	cout<<"Light name: "<<light->GetName()<<endl;
+
+	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
+	while(wobs != debug.GetRoomWorldObjectsEnd()){
+		cout<<(*wobs).second.GetName()<<endl;
+		wobs++;
+	}
 
 	cin.ignore(1);
 	///////////////////////////////////////////////////

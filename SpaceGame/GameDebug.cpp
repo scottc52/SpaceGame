@@ -3,7 +3,7 @@
  * Singleton source code for debug
  *
  */
-#include "GameDebug.h"
+#include "GameObjectHeaderList.h"
 
 ofstream outFile;
 GameDebugger* GameDebugger::m_pinstance = NULL;

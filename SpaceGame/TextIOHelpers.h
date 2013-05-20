@@ -10,10 +10,7 @@
 #ifndef TEXT_IO_HELPERS_H_
 #define TEXT_IO_HELPERS_H_
 
-#include "GameObject.h"
-#include "GameLight.h"
-#include "GameCamera.h"
-#include "GameDoor.h"
+#include "GameObjectHeaderList.h"
 #include <iostream>
 #include <string>
 using namespace std;
