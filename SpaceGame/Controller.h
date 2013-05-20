@@ -33,10 +33,12 @@
 
 
 
+using namespace std; 
+
 Controller *gameController = NULL; 
 
 double diffTime(clock_t ref){
-	clock_t cur
+	clock_t cur = clock() ; 
 }
 
 /**
@@ -49,8 +51,12 @@ private:
 	RenderHandle *rh;  
 public: 
 	
-	void init(TaskQueue *taskPool):taskManager(taskPool){
-		
+	Contoller(TaskQueue *taskPool):taskManager(taskPool){
+		//TODO: logic for picking controller scheme
+		state=new GameState(); 
+		PCInputManager::EnableUI(*state);
+		RenderGlutInitialize();
+
 	}
 
 	void run(){
@@ -60,6 +66,11 @@ public:
 		//animate here
 
 		//render here
+	}
+
+	static Initialize(TaskQueue tq){
+		GameController *gc = new GameController(tq);
+		gameController = gc; 
 	}
 
 	static void glutSync(int framesDropped){

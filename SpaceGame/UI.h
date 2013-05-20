@@ -18,8 +18,8 @@
 #ifndef _UI_H
 #define _UI_H
 
-//#include "GameState.h"
-/***********TEMPORARY CLASS DEFINITION***********/
+#include "GameState.h"
+/***********TEMPORARY CLASS DEFINITION**********
 #include "Camera.h"
 
 class GameState {

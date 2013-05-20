@@ -20,7 +20,9 @@
 #include <Eigen/Dense>
 #include "Mesh.h"
 #include "LocationDefines.h"
+#include <string>
 
+using namespace std;
 using namespace Eigen;
 
 #define MAX_NAME_CHARS 40

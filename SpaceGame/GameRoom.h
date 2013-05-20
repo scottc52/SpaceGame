@@ -14,6 +14,7 @@
 #include "windows.h"
 #endif
 #include "GameWorldObject.h"
+#include "GameActiveObject.h"
 #include "GameLight.h"
 #include "GameCamera.h"
 #include "GameItem.h"
