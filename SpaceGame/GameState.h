@@ -16,7 +16,6 @@ private:
 public:
 	GameRoom *GetRoom();
 	Vec3f GetPlayerPosition(); 
-	
 }; 
 
 #endif

@@ -4,11 +4,7 @@
  */
 
 #include "RoomBuilder.h"
-#include "GameCamera.h"
-#include "GameItem.h"
-#include "GameWorldObject.h"
-#include "GameRoom.h"
-#include "GameLight.h"
+#include "GameObjectHeaderList.h"
 
 /* Room setup command via the console....*/
 void ConsoleCreateRoom(){

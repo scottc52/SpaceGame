@@ -18,9 +18,6 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#ifdef _WIN32
-#include "windows.h"
-#endif
 #include "Mesh.h"
 #include "LocationDefines.h"
 
@@ -34,6 +31,7 @@ private:
 	//Pointer to the GameMesh stored elsewhere
 	MyMesh* meshptr;
 	Vec3f position;
+
 	//In the form of quaternion data!
 	Vec4f rotation;
 	float scale;
@@ -97,7 +95,7 @@ public:
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
 	Vec4f GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Vec4f &newRotation){rotation = newRotation;}
+	void GameObject::SetRotation(Vec4f newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}

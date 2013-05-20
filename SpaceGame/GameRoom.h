@@ -34,28 +34,16 @@ class GameRoom{
 	vector<GameDoor *> doors;  
 	GameCamera *camera; //null means 1st P 	
 		*/
-	int wobjectsIndex, lightsIndex, camerasIndex, doorsIndex, itemsIndex, aobjectsIndex, playersIndex;
-
 
 	map<string, GameWorldObject> wobjects;
 	map<string, GameLight> lights;
 	map<string, GameCamera> cameras;
 	map<string, GameDoor> doors;
 	map<string, GameItem> items;
-	//hash_map<char*, GameActiveObject*, hash<char*>, eqstr> aobjects;
+	map<string, GameActiveObject> aobjects;
 	//hash_map<char*, GamePlayer*, hash<char*>, eqstr> players;
 	GameCamera* currentCamera; //null means 1st P 
 	//GamePlayer* player;
-
-	// Comparator for Objects
-	//	static bool ObjectComparator(GameObject *o1, GameObject *o2);
-
-	// Returns the index of the Object specified by the given name in the given vector
-	// Adapted from code found on Wikipedia (en.wikipedia.org/wiki/Binary_search_algorithm);
-	//	int binaryObjectSearch(vector<GameObject *> &objects, char *objectName);
-
-	// Returns the midpoint of the given indices
-	//	int GameRoom::midpoint(int imin, int imax) {return (imin + imax) / 2;}
 
 public:
 	//default constructor
@@ -123,6 +111,31 @@ public:
 	see documentation for further details*/ 
 	static bool WriteRoom(const char *fname, GameRoom &room);
 	static bool GameRoom::WriteRoom(ostream &os, GameRoom &room);
+
+	map<string, GameWorldObject>::iterator GetRoomWorldObjectsIterator(){
+		return wobjects.begin();
+	}
+
+	map<string, GameWorldObject>::iterator GetRoomWorldObjectsEnd(){
+		return wobjects.end();
+	}
+
+	map<string, GameLight>::iterator GetRoomLightsIterator(){
+		return lights.begin();
+	}
+
+	map<string, GameLight>::iterator GetRoomLightsEnd(){
+		return lights.end();
+	}
+
+	map<string, GameCamera>::iterator GetRoomCamerasIterator(){
+		return cameras.begin();
+	}
+
+	map<string,GameCamera>::iterator GetRoomCamerasEnd(){
+		return cameras.end();
+	}
+
 };
 
 #endif _GAMEROOM_H_
