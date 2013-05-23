@@ -23,7 +23,7 @@
 #include "GameObjectHeaderList.h"
 #include "Render.h"
 #include "RoomBuilder.h"
-//#include "TaskQueue.h"
+#include "TaskQueue.h"
 #include "LocationDefines.h"
 #include "TextIOHelpers.h"
 
