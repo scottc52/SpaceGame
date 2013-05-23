@@ -6,6 +6,20 @@
 #include <pthread.h>
 #include <queue>
 
+#ifdef _WIN32
+/* Include windows only for windows users :P
+*/
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include "windows.h"
+#endif
+#include <gl/glew.h>
+#include "gl/GL.h"
+#include <GL/glu.h>
+#include <gl/freeglut.h>
+#endif
+
 #define DEF_NUM_THREADS 3 
 
 #define THREAD_WAITING 1
