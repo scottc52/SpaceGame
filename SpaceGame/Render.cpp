@@ -72,7 +72,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 //****************************************************
 // reshape viewport if the window is resized
 //****************************************************
-void myReshape(int w, int h) {
+void Render::myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
@@ -290,6 +290,7 @@ void setupLighting(){
 		}
 	}
 }
+
 void drawFrame(){
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
@@ -579,9 +580,9 @@ void performBlur9(Surface *original, Surface *temporary, int numBuffers){
     }
 }
 
-void myDisplay() {
-	int w = glutGet(GLUT_WINDOW_WIDTH);
-	int h = glutGet(GLUT_WINDOW_HEIGHT);
+void Render::myDisplay() {
+	int w = 640;//glutGet(GLUT_WINDOW_WIDTH);
+	int h = 480;//glutGet(GLUT_WINDOW_HEIGHT);
 	GLfloat dt = (float)(glutGet(GLUT_ELAPSED_TIME) - lastHit);  
 	
 
@@ -677,7 +678,7 @@ void myDisplay() {
 //****************************************************
 // called by glut when there are no messages to handle
 //****************************************************
-void myIdle() {
+void Render::myIdle() {
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int dt = t- prevT;
 	prevT = t;
@@ -689,13 +690,13 @@ void myIdle() {
 	}
 	bullet->update(dt);
 
-	glutPostRedisplay(); // forces glut to call the display function (myDisplay())
+	//glutPostRedisplay(); // forces glut to call the display function (myDisplay())
 }
 
 //****************************************************
 // UI callback functions
 //****************************************************
-void myKeyboard(unsigned char key, int x, int y){
+void Render::myKeyboard(unsigned char key, int x, int y){
 	if (key == 'p' || key == 'P') {
 		//hit effect
 		lastHit = glutGet(GLUT_ELAPSED_TIME);
@@ -1247,7 +1248,7 @@ void effectsResourcesInitialize(){
 }
 
 
-void RenderGlutInitialize(){
+void Render::GlutInitialize(){
 	cout<<"Start SpaceGame!\n";
 	//This initializes glut
 	glutGet(GLUT_ELAPSED_TIME); //certain implementations start time from when this is called.

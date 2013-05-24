@@ -29,62 +29,68 @@
 #include <ctime>
 
 #define FPS (60) 
-#define MSPF ((double)(1.0 / ((GLFloat) FPS) * 1000.0))  
+#define MSPF ((double)(1.0 / ((double) FPS) * 1000.0))  
 
 
 
 using namespace std; 
 
-Controller *gameController = NULL; 
-
-double diffTime(clock_t ref){
-	clock_t cur = clock() ; 
+double diffTimeMS(clock_t ref){
+	clock_t cur = clock();
+	clock_t delta = ref- cur; 
+	double ms = (double)delta / ((double)(CLOCKS_PER_SEC)) * 1000.0; 	
+	return ms;	 
 }
 
 /**
 *
 */ 
-class Controller{
+class Controller : public Task{
 private: 
 	TaskQueue* taskManager;
 	GameState* state; 
-	RenderHandle *rh;  
-public: 
-	
-	Contoller(TaskQueue *taskPool):taskManager(taskPool){
-		//TODO: logic for picking controller scheme
-		state=new GameState(); 
-		PCInputManager::EnableUI(*state);
-		RenderGlutInitialize();
-
-	}
-
-	void run(){
-		
+	//RenderHandle *rh;
+	static Controller *gameController;  
+	clock_t ref;  
+	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
+public:
+	/* 
+	main loop for drawing a frame -- updates state
+	*/
+	virtual void run(){
+		cout << "Update Frame" << endl; 
+		//Poll events
+	 
 		//update state here
 
 		//animate here
 
 		//render here
-	}
-
-	static Initialize(TaskQueue tq){
-		GameController *gc = new GameController(tq);
-		gameController = gc; 
-	}
-
-	static void glutSync(int framesDropped){
-		GAME_DEBUG_ASSERT(gameController != NULL);
-		clock_t ref = clock();               
-		gameController->run();
-		double frame_time = difftime(ref); 
+		Render::myDisplay(); 		
+		//glutPostRedisplay();
+		
+		double frame_time = diffTimeMS(ref);
+		cout << "it took (but not really): " << frame_time << endl; 
 		int DroppedFrames = frame_time / MSPF;
 		int time_out = MSPF - frame_time; 
 		if (DroppedFrames){
 			time_out = 0;		
 		}  
-		glutTimerFunc((int)MSPF - frame_time, Controller::glutSync, droppedFrames); 
+		glutTimerFunc(time_out, Controller::GlutSync, DroppedFrames); 
+	}
+
+	static void Initialize(TaskQueue *tq, GameState *gs){
+		Controller *gc = new Controller(tq, gs);
+		gameController = gc;  
+	}
+
+	static void GlutSync(int framesDropped){
+		GAME_DEBUG_ASSERT(gameController != NULL);
+		gameController->ref = clock(); 		
+		gameController->taskManager->enqueue(gameController);  
 	}
 };
+
+Controller *Controller::gameController = NULL;
 
 #endif

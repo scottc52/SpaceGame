@@ -26,6 +26,7 @@
 #include "TaskQueue.h"
 #include "LocationDefines.h"
 #include "TextIOHelpers.h"
+#include "Controller.h"
 
 #define NUM_THREADS ((unsigned int )8)
 
@@ -39,7 +40,7 @@ int main(int argc, char *argv[]){
 	debugger->WriteDebugMessageToConsole("Hello, World", 31);
 	debugger->WriteToDebugFile("Wrote to file", 32);
 	
-	//TaskQueue *main = new TaskQueue(NUM_THREADS);
+	TaskQueue *taskManager = new TaskQueue(NUM_THREADS);
 	ConsoleCreateRoom();
 
 	GameRoom gr; 	
@@ -76,7 +77,12 @@ int main(int argc, char *argv[]){
 
 	cin.ignore(1);
 	///////////////////////////////////////////////////
-	RenderGlutInitialize();
+	GameState *gs = new GameState(); 
+	gs->SetRoom(&debug);
+	
+	Controller::Initialize(taskManager, gs); 	
+	 	
+	Render::GlutInitialize();
 
 
 	/////////////////////////////////////////////////
@@ -84,7 +90,7 @@ int main(int argc, char *argv[]){
 	// Pass GameRoom debug to Render module.  Render the 
 	// room.
 	/////////////////////////////////////////////////
-
+	glutTimerFunc(0, Controller::GlutSync, 0);
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	assert(debugger->CloseDebugFile());
 	return 0;

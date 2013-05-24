@@ -19,15 +19,6 @@
 #define _UI_H
 
 #include "GameState.h"
-/***********TEMPORARY CLASS DEFINITION**********
-#include "Camera.h"
-
-class GameState {
-public:
-	GameState(const Camera& cam) : cam(cam) {}
-	Camera cam;
-};
-/***********************************************/
 
 #ifdef _WIN32
 #include <Windows.h>
