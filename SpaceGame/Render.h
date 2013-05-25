@@ -52,7 +52,7 @@ using namespace Eigen;
 #define SHADERS_SUMTEXTURES4_FRAGMENT_FILE "../SpaceGame/shaders/sumTextures4.f.glsl"
 class Render{
 	public:
-	GameState *gs;	
+	static GameState *gameState;	
 	//initializer	
 	static void GlutInitialize();
 	//exported helpers	

@@ -27,8 +27,45 @@
 #include "LocationDefines.h"
 #include "TextIOHelpers.h"
 #include "Controller.h"
+#include "UI.h"
 
 #define NUM_THREADS ((unsigned int )8)
+
+/*if (key == 'p' || key == 'P') {
+		//hit effect
+		lastHit = glutGet(GLUT_ELAPSED_TIME);
+	}
+	else if (key == 'o' || key == 'O') {
+		//fire bullet!
+		Vector3f loc = Vector3f(0, -1, 4); //below camera
+		Vector3f vel = Vector3f(0.0, 0.0, -4.8);
+		Vector4f col = Vector4f(0.95, 0.0, 0.0, 0.5);
+		bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
+	}
+	else if (key == 'q' || key == 'Q') exit(0);
+*/
+void fireCB(GameState *s){
+	s->FireBullet(); 
+}
+
+void killCB(GameState *s){
+	exit(0);
+}
+
+/*void foggifyCB(GameState *s){ 
+	s->
+}*/ 
+
+/**
+Define Behaviors for the game. This is here so that people can see them easily. We can move it into a particular module if
+that seems more appropriate. I can't follow the code in UI Input, so someone can map the functions here to that as needed.  
+*/
+void mapCallbacksPC(){
+	PCInputManager *controls = new PCInputManager();
+	controls->setKeyCallback(0, 'o', true, fireCB);
+	controls->setKeyCallback(0, 'q', true, killCB);
+	controls->setActiveCommandSet();  
+}
 
 //****************************************************
 // Main function, initialize program here
@@ -77,14 +114,18 @@ int main(int argc, char *argv[]){
 
 	cin.ignore(1);
 	///////////////////////////////////////////////////
+	
+	//TODO: load from file	
 	GameState *gs = new GameState(); 
 	gs->SetRoom(&debug);
-	
+		
+
+	PCInputManager::EnableUI(gs);	
+	mapCallbacksPC(); 
 	Controller::Initialize(taskManager, gs); 	
-	 	
 	Render::GlutInitialize();
-
-
+	Render::gameState = gs;
+	
 	/////////////////////////////////////////////////
 	// TO DO:
 	// Pass GameRoom debug to Render module.  Render the 

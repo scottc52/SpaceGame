@@ -26,6 +26,7 @@
 
 #include "TaskQueue.h"
 #include "GameDebug.h"
+#include "UI.h"
 #include <ctime>
 
 #define FPS (60) 
@@ -51,23 +52,26 @@ private:
 	GameState* state; 
 	//RenderHandle *rh;
 	static Controller *gameController;  
-	clock_t ref;  
+	clock_t ref;
+	int dt;   
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
 public:
 	/* 
+	polls events -- updates state 
 	main loop for drawing a frame -- updates state
 	*/
 	virtual void run(){
 		cout << "Update Frame" << endl; 
-		//Poll events
-	 
-		//update state here
-
+		//Poll events and update state 
+	 	PCInputManager::ExecutePendingEvents(); 
+		
+		//update particles 
+		state->updateParticleSystems(dt);  	
 		//animate here
 
 		//render here
-		Render::myDisplay(); 		
-		//glutPostRedisplay();
+		//Render::myDisplay(); 		
+		glutPostRedisplay();
 		
 		double frame_time = diffTimeMS(ref);
 		cout << "it took (but not really): " << frame_time << endl; 
@@ -76,17 +80,18 @@ public:
 		if (DroppedFrames){
 			time_out = 0;		
 		}  
-		glutTimerFunc(time_out, Controller::GlutSync, DroppedFrames); 
+		glutTimerFunc(time_out, Controller::GlutSync, (int)time_out + frame_time); 
 	}
-
+	
 	static void Initialize(TaskQueue *tq, GameState *gs){
 		Controller *gc = new Controller(tq, gs);
-		gameController = gc;  
+		gameController = gc;   
 	}
 
-	static void GlutSync(int framesDropped){
+	static void GlutSync(int dt){
 		GAME_DEBUG_ASSERT(gameController != NULL);
-		gameController->ref = clock(); 		
+		gameController->ref = clock(); 
+		gameController->dt = dt;		
 		gameController->taskManager->enqueue(gameController);  
 	}
 };

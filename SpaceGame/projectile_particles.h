@@ -133,4 +133,5 @@ public:
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
 };
+ 
 #endif

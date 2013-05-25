@@ -9,6 +9,9 @@
 #include "projectile_particles.h"
 #include "GameObjectHeaderList.h"
 
+//Allocate Statics
+Render::gameState = NULL;
+
 
 //****************************************************
 // function prototypes (so they can be called before they are defined)
@@ -439,9 +442,10 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	int numBullets = 1;
-	for(int i = 0; i<numBullets; i++){
-		SmokyBullet *curBullet = bullet;
+	list<SmokyBullet *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();   	
+	list<SmokyBullet *>::iterator it = bullets ->begin; 
+	while(it != bullets->end());  
+		SmokyBullet *curBullet = *it;
 		if(!curBullet->isDead() && (glow || !curBullet->glow)){
 			if(glow && !curBullet->glow){
 				//mask glow
@@ -453,6 +457,7 @@ void drawBullets(bool glow){
 			}
 			curBullet->display(cameraPos, glow);
 		}
+		it++;
 	}
 	glDisable(GL_BLEND);
 	glDepthMask(GL_TRUE);
@@ -581,8 +586,8 @@ void performBlur9(Surface *original, Surface *temporary, int numBuffers){
 }
 
 void Render::myDisplay() {
-	int w = 640;//glutGet(GLUT_WINDOW_WIDTH);
-	int h = 480;//glutGet(GLUT_WINDOW_HEIGHT);
+	int w = glutGet(GLUT_WINDOW_WIDTH);
+	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	GLfloat dt = (float)(glutGet(GLUT_ELAPSED_TIME) - lastHit);  
 	
 
@@ -709,7 +714,7 @@ void Render::myKeyboard(unsigned char key, int x, int y){
 		bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
 	}
 	else if (key == 'q' || key == 'Q') exit(0);
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
 
 //****************************************************
