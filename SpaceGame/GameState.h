@@ -11,12 +11,15 @@
 
 class GameState{
 private:
-	GameRoom *room; 
-	Camera *cam;
+	GameState(){}
+	static GameState* m_pinstance;
+	float gravity;
+	GameState(GameState const &stateMachine){};
+	void operator=(GameState const &stateMachine){};
 public:
-	GameRoom *GetRoom(){return room;}
-	Camera *GetCamera(){return cam;}
-	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);} 
+	static GameState* GameState::GetInstance();
+	//bool GameState::ReadStateFile();
+	//void GameState::UpdateState(GameRoom &room/*, GameInput input*/);
 }; 
 
-#endif
+#endif GAME_STATE_H

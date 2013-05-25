@@ -94,6 +94,7 @@
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameDebug.h" />
     <ClInclude Include="GameDoor.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameLight.h" />
