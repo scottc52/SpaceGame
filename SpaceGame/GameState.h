@@ -9,6 +9,16 @@
 #include "Render.h" 
 #include "Camera.h"
 
+//TODO
+/*
+ *
+ * Read in file for start state: include center of mass as a param...
+ * Create reactionary physics motion
+ * Collision Detection 
+ * Debug and test
+ *
+ */
+
 class GameState{
 private:
 	GameState(){}

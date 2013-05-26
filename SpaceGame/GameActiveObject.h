@@ -8,7 +8,8 @@
 
 class GameActiveObject : public GameObject{
 private:
-	
+	Vec3f CenterOfMass;
+	vector<GameObject*> collidedMotionObjects;
 public:
 	GameActiveObject::GameActiveObject(){}
 

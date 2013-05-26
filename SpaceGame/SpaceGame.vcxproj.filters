@@ -110,5 +110,8 @@
     <ClInclude Include="GameDebug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GamePhysics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

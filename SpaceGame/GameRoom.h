@@ -42,7 +42,7 @@ class GameRoom{
 	map<string, GameDoor> doors;
 	map<string, GameItem> items;
 	map<string, GameActiveObject> aobjects;
-	//hash_map<char*, GamePlayer*, hash<char*>, eqstr> players;
+	//hash_map<char*, GameChar*> characters;
 	GameCamera* currentCamera; //null means 1st P 
 	//GamePlayer* player;
 
