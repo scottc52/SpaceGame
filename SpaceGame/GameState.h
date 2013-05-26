@@ -25,16 +25,20 @@ public:
 		list<SmokeyBullet *>::iterator it = projectiles.begin();
 		while(it != projectiles.end()){
 			SmokeyBullet *sb = *it;			
-			if(sb->isDead())
+			if(sb->isDead()){
 				it = projectiles.erase(it);
-			else{ 			
-				//hitboxing; 
+				delete (sb);
+			}else{ 			
+				//hitboxing;
+				if(sb->t > 4000 && !sb->hitB){
+					sb->hit(sb->location);
+				} 
 				sb->update(dt);
 				it ++; 
 			}  
 		} 
 	}
-	list<SmokyBullet *> GetBullets(){return projectiles;} 
+	list<SmokyBullet *> *GetBullets(){return &projectiles;} 
 };
 
 class GameState{
@@ -55,9 +59,9 @@ public:
 	void FireBullet(){//fire bullet!
 		Vector3f loc = Vector3f(0, -1, 4); //below camera
 		Vector3f vel = Vector3f(0.0, 0.0, -4.8);
-		Vector4f col = Vector4f(0.95, 0.0, 0.5, 0.5);
+		Vector4f col = Vector4f(0.5, 0.0, 0.45, 0.5);
 		SmokyBullet *bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
-		ps->projectiles.push_back(bullet);}
+		ps->GetBullets()->push_back(bullet);}
 	void UpdateParticleSystems(int dt /*ms*/){ps->updateAll(dt);}
 	PSystems *GetParticleSystems(){return ps;} 
 }; 

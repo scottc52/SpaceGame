@@ -6,7 +6,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-
 #ifdef _WIN32
 #include <gl/glew.h>
 #include "gl/GL.h"
@@ -28,20 +27,14 @@
 #include "GameDebug.h"
 #include "UI.h"
 #include <ctime>
+#include "GameTime.h"
 
-#define FPS (60) 
+#define FPS (30) 
 #define MSPF ((double)(1.0 / ((double) FPS) * 1000.0))  
 
 
 
 using namespace std; 
-
-double diffTimeMS(clock_t ref){
-	clock_t cur = clock();
-	clock_t delta = ref- cur; 
-	double ms = (double)delta / ((double)(CLOCKS_PER_SEC)) * 1000.0; 	
-	return ms;	 
-}
 
 /**
 *
@@ -52,7 +45,7 @@ private:
 	GameState* state; 
 	//RenderHandle *rh;
 	static Controller *gameController;  
-	clock_t ref;
+	GameTime::GameTimer ref;
 	int dt;   
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
 public:
@@ -60,23 +53,34 @@ public:
 	polls events -- updates state 
 	main loop for drawing a frame -- updates state
 	*/
+	//virtual void *run(void *aux){
 	virtual void run(){
-		cout << "Update Frame" << endl; 
-		//Poll events and update state 
-	 	PCInputManager::ExecutePendingEvents(); 
+		double delta = GameTime::DiffTimeMS(ref);
 		
-		//update particles 
-		state->updateParticleSystems(dt);  	
+
+		cout << "Update Frame. dt: " << dt <<endl;
+		cout << "TaskQueue overhead: " << delta  << endl;
+		//Poll events and update state 
+	 	GameTime::GameTimer t = GameTime::GetTime();  
+	 	PCInputManager::ExecutePendingEvents(); 
+		delta = GameTime::DiffTimeMS(t);
+		cout<<"it took: " << delta << "ms to process events" << endl; 
+		
+		//update particles
+		t = GameTime::GetTime(); 
+		state->UpdateParticleSystems(dt);
+		delta = GameTime::DiffTimeMS(t);
+		int len = state->GetParticleSystems()->GetBullets()->size();  	
+		cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
 		//animate here
 
 		//render here
 		//Render::myDisplay(); 		
 		glutPostRedisplay();
-		
-		double frame_time = diffTimeMS(ref);
-		cout << "it took (but not really): " << frame_time << endl; 
+		double frame_time = GameTime::DiffTimeMS(ref);
+		//cout << "it took (but not really): " << frame_time << endl; 
 		int DroppedFrames = frame_time / MSPF;
-		int time_out = MSPF - frame_time; 
+		int time_out = MSPF- frame_time; 
 		if (DroppedFrames){
 			time_out = 0;		
 		}  
@@ -90,7 +94,7 @@ public:
 
 	static void GlutSync(int dt){
 		GAME_DEBUG_ASSERT(gameController != NULL);
-		gameController->ref = clock(); 
+		gameController->ref = GameTime::GetTime(); 
 		gameController->dt = dt;		
 		gameController->taskManager->enqueue(gameController);  
 	}

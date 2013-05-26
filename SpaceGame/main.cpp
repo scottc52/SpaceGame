@@ -58,7 +58,7 @@ void killCB(GameState *s){
 
 /**
 Define Behaviors for the game. This is here so that people can see them easily. We can move it into a particular module if
-that seems more appropriate. I can't follow the code in UI Input, so someone can map the functions here to that as needed.  
+that seems more appropriate.  
 */
 void mapCallbacksPC(){
 	PCInputManager *controls = new PCInputManager();
@@ -99,8 +99,8 @@ int main(int argc, char *argv[]){
 	cout<<"Object name: "<<object->GetName()<<endl;
 	cout<<"Object position: "<<object->GetPosition()<<endl;
 	cout<<"Object rotation: "<<object->GetRotation()<<endl;
-	cout<<"Object scale: "<<object->GetScale()<<endl;
-	cout<<"Object meshFile: "<<object->GetMeshFile()<<endl;
+	cout<<"Object scale: "<< object->GetScale()<<endl;
+	cout<<"Object meshFile: "<< object->GetMeshFile()<<endl;
 	GameObject* light = debug.GetLight("ceiling");
 	//To do: differentiate at the room level between object types....
 	assert(light != NULL);
@@ -108,8 +108,19 @@ int main(int argc, char *argv[]){
 
 	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
 	while(wobs != debug.GetRoomWorldObjectsEnd()){
-		cout<<(*wobs).second.GetName()<<endl;
+		//load starting meshes
+		GameWorldObject *gwo = &(wobs->second);
+		cout<<gwo->GetName()<<endl;
+		MyMesh *tmp = new MyMesh();
+		if (gwo->GetMeshFile()){
+			if (! IO::read_mesh(*tmp, gwo->GetMeshFile(), 0)){
+				cerr<<"couldn't load (" << gwo->GetMeshFile() << ") for " <<gwo -> GetName() <<endl;  
+			}else{
+				gwo->SetMesh(tmp);
+			} 
+		} 
 		wobs++;
+		
 	}
 
 	cin.ignore(1);
@@ -119,12 +130,13 @@ int main(int argc, char *argv[]){
 	GameState *gs = new GameState(); 
 	gs->SetRoom(&debug);
 		
+	Render::GlutInitialize();
+	Render::gameState = gs;
 
 	PCInputManager::EnableUI(gs);	
 	mapCallbacksPC(); 
 	Controller::Initialize(taskManager, gs); 	
-	Render::GlutInitialize();
-	Render::gameState = gs;
+	
 	
 	/////////////////////////////////////////////////
 	// TO DO:

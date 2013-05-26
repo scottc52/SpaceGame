@@ -10,7 +10,7 @@
 #include "GameObjectHeaderList.h"
 
 //Allocate Statics
-Render::gameState = NULL;
+GameState *Render::gameState = NULL;
 
 
 //****************************************************
@@ -298,10 +298,13 @@ void drawFrame(){
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
-
-	int numObjects = 1;
-	for(int i = 0; i<numObjects;i++){
-		MyMesh mesh = squareMesh();
+	GameRoom *gr = Render::gameState->GetRoom(); 	
+	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsIterator(); 
+	//for(int i = 0; i<numObjects;i++){
+	while(iter != end){
+		GameWorldObject *gwo = &(iter->second); 
+		MyMesh *mesh = gwo->GetMesh();
+		iter ++;  
 		bool useCustomShader = false; //TODO
 		if(useCustomShader){ //check if you should use custom shader
 			GLuint programID = 1; //TODO
@@ -348,19 +351,19 @@ void drawFrame(){
 		}
 		glScalef(0.8f, 1.2f, 1.0f);
 		glBegin(GL_TRIANGLES);
-		for (MyMesh::FaceIter it = mesh.faces_begin(); it != mesh.faces_end(); ++it) {
+		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
-			MyMesh::HalfedgeHandle it2 = mesh.halfedge_handle(it.handle());
+			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 3; v++){
-				MyMesh::VertexHandle v_handle = mesh.to_vertex_handle(it2);
+				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				if(false){ // should there be a setting for using face or vertex normals?
-					if(mesh.has_vertex_normals()){
-						Vec3f avg =mesh.normal(v_handle);
+					if(mesh->has_vertex_normals()){
+						Vec3f avg =mesh->normal(v_handle);
 						glNormal3f(avg[0], avg[1], avg[2]);
 					}
 				}else{
-					if(mesh.has_face_normals()){
-						Vec3f avg =mesh.normal(it.handle());
+					if(mesh->has_face_normals()){
+						Vec3f avg =mesh->normal(it.handle());
 						glNormal3f(avg[0], avg[1], avg[2]);
 					}
 				}
@@ -368,9 +371,9 @@ void drawFrame(){
 					Vec2f texCoord; //TODO
 					glTexCoord2f(texCoord[0], texCoord[1]);
 				}
-				Vec3f p = mesh.point(v_handle);
+				Vec3f p = mesh->point(v_handle);
 				glVertex3f(p[0],p[1],p[2]);
-				it2 = mesh.next_halfedge_handle(it2);
+				it2 = mesh->next_halfedge_handle(it2);
 			}
 		}
 		glEnd();
@@ -443,8 +446,8 @@ void drawBullets(bool glow){
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
 	list<SmokyBullet *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();   	
-	list<SmokyBullet *>::iterator it = bullets ->begin; 
-	while(it != bullets->end());  
+	list<SmokyBullet *>::iterator it = bullets->begin(); 
+	while(it != bullets->end()){  
 		SmokyBullet *curBullet = *it;
 		if(!curBullet->isDead() && (glow || !curBullet->glow)){
 			if(glow && !curBullet->glow){
@@ -684,16 +687,6 @@ void Render::myDisplay() {
 // called by glut when there are no messages to handle
 //****************************************************
 void Render::myIdle() {
-	int t = glutGet(GLUT_ELAPSED_TIME);
-	int dt = t- prevT;
-	prevT = t;
-	//cout << "myIdle dt: " << dt << "\n";
-
-	//update bullet
-	if(bullet->t > 4000 && !bullet->hitB){
-		bullet->hit(bullet->location);
-	}
-	bullet->update(dt);
 
 	//glutPostRedisplay(); // forces glut to call the display function (myDisplay())
 }
