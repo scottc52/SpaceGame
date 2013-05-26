@@ -7,3 +7,4 @@
 #include "GameCamera.h"
 #include "GameDoor.h"
 #include "GameRoom.h"
+#include "GameState.h"

@@ -82,6 +82,7 @@
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameRoom.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />

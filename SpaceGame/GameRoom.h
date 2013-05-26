@@ -29,12 +29,6 @@ using namespace std;
 class GameRoom{
 	private:
 	char name[MAX_NAME_CHARS];
-	/*
-	vector<GameObject *> objects;
-	vector<GameLight *> lights;
-	vector<GameDoor *> doors;  
-	GameCamera *camera; //null means 1st P 	
-		*/
 
 	map<string, GameWorldObject> wobjects;
 	map<string, GameLight> lights;
@@ -42,7 +36,7 @@ class GameRoom{
 	map<string, GameDoor> doors;
 	map<string, GameItem> items;
 	map<string, GameActiveObject> aobjects;
-	//hash_map<char*, GameChar*> characters;
+	//hash_map<string, GameChar*> characters;
 	GameCamera* currentCamera; //null means 1st P 
 	//GamePlayer* player;
 
@@ -55,7 +49,7 @@ public:
 	}
 
 	//constructor with name
-	GameRoom::GameRoom(char *name)
+	GameRoom::GameRoom(const char *name)
 	{
 		strncpy(this->name, name, MAX_NAME_CHARS);
 		/*TO DO: Initialize lock*/
@@ -68,20 +62,24 @@ public:
 	char *GameRoom::GetName() {return name;}
 
 	//Redefine the Room's name
-	void GameRoom::SetName(char *newName) {strncpy(name, newName, MAX_NAME_CHARS);}
+	void GameRoom::SetName(const char *newName) {strncpy(name, newName, MAX_NAME_CHARS);}
 
 	//Adds the given Object to the Room
 	void AddWorldObject(GameWorldObject newObject);
 
 	//Get the Object with the given name in the current Room if one exists
-	GameWorldObject* GetWorldObject(char *wobjectName);
+	GameWorldObject* GetWorldObject(const char *wobjectName);
 
 	//Get the light with the given name in the current Room if one exists
-	GameLight* GetLight(char* lightName);
+	GameLight* GetLight(const char* lightName);
 
 	//Remove the Object with the given name in the current Room if it exists
-	void RemoveWorldObject(char *wobjectName);
+	void RemoveWorldObject(const char *wobjectName);
 
+	GameActiveObject* GetActiveObject(const char* aobjName){
+		if(aobjects.find(aobjName) == aobjects.end()) return NULL;
+		else return &(aobjects[aobjName]);
+	}
 	//Prints the names of very Object in the Room in sorted order
 	/*void PrintObjectNames();*/
 	

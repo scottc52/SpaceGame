@@ -31,7 +31,7 @@ public:
 	static GameDebugger* GameDebugger::GetInstance();
 	bool GameDebugger::OpenDebugFile();
 	bool GameDebugger::CloseDebugFile();
-	void WriteToDebugFile(char* message, int lineNo = 0);
-	void WriteDebugMessageToConsole(char* message, int lineNo = 0);
+	void WriteToDebugFile(const char* message, int lineNo = 0);
+	void WriteDebugMessageToConsole(const char* message, int lineNo = 0);
 };
 #endif _GAMEDEBUG_H_
