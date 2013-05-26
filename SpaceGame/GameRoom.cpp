@@ -248,20 +248,20 @@ void GameRoom::AddLight(GameLight l){
 	this->lights[l.GetName()]=l;
 }
 
-GameWorldObject *GameRoom::GetWorldObject(char *wobjectName)
+GameWorldObject *GameRoom::GetWorldObject(const char *wobjectName)
 {
 
 	if(wobjects.find(wobjectName) == wobjects.end()) return NULL;
 	else return &(wobjects[wobjectName]);
 }
 
-GameLight *GameRoom::GetLight(char *lightName)
+GameLight *GameRoom::GetLight(const char *lightName)
 {
 	if(lights.find(lightName) == lights.end()) return NULL;
 	return &(lights[lightName]);
 }
 
-void GameRoom::RemoveWorldObject(char *wobjectName)
+void GameRoom::RemoveWorldObject(const char *wobjectName)
 {
 	map<string, GameWorldObject>::iterator it = wobjects.find(wobjectName);
 	if(it != wobjects.end()) wobjects.erase(it);

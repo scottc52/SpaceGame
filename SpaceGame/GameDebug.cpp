@@ -31,7 +31,7 @@ bool GameDebugger::CloseDebugFile(){
 	return(!outFile.is_open());
 }
 
-void GameDebugger::WriteDebugMessageToConsole(char* message, int lineNo){
+void GameDebugger::WriteDebugMessageToConsole(const char* message, int lineNo){
 	//Lock here
 	cout<<"-----------------------------------------------------"<<endl;
 	cout<<message<<" @ line: "<<lineNo<<endl;
@@ -39,7 +39,7 @@ void GameDebugger::WriteDebugMessageToConsole(char* message, int lineNo){
 	cout<<"*Found at: "<<ctime(&timer)<<endl;
 }
 
-void GameDebugger::WriteToDebugFile(char* message, int lineNo){
+void GameDebugger::WriteToDebugFile(const char* message, int lineNo){
 	if(!outFile.is_open()) return;
 	//Lock here;
 	outFile<<"-----------------------------------------------------"<<endl;

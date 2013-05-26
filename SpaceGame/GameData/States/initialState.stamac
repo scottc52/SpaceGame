@@ -1,0 +1,29 @@
+debug.room
+#Initial State Machine
+#First line is always room file
+#This is the first state to always load after a saved game...
+
+# Delimeter between assignments: $
+
+# Object properties:
+# new position/rotation
+# set forces
+# new state
+# deleted
+# added 
+
+# Player properties:
+# new position/rotation
+# alertness level
+# change ammo/weapons
+# change health
+# change alignment (enemy, ally, captive, rescued)
+# status (dead, alive)
+# set forces
+# deleted
+# set Inventory
+
+# Item Properties:
+# change acquired status (in container/not in container)
+# change property?
+
