@@ -230,15 +230,17 @@ MyMesh squareMesh(){
 
 //functions that actually does the drawing
 void setupCamera(){
+	Camera *cam  = Render::gameState->GetCamera();
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();				// loading the identity matrix for the screen
 
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	float aspect_ratio = (float) w / (float) h;
-	float fieldOfView = 45.0f; //TODO
-	near_p = 0.01f;
-	far_p = 600.0f;
+	float fieldOfView = cam->getHorizontalFieldOfView(); //TODO
+	near_p = cam->getNearViewPlane();
+	far_p = cam->getFarViewPlane();
 	gluPerspective(fieldOfView, aspect_ratio, near_p, far_p);
 
 	
@@ -248,7 +250,7 @@ void setupCamera(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	Camera *cam  = Render::gameState->GetCamera();
+	
 
 
 	Vector3f pos = cam->getPivotPoint(); //TODO
@@ -349,9 +351,9 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(-0.5, 0, -20); //move cube2 to the left
-		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
-		bool non_uniform_scaling = true;
+		glTranslatef(0.0, 0, -20.0f); //move cube2 to the left
+		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		bool non_uniform_scaling = false;
 		if(non_uniform_scaling){
 			//This is here so scaling doesn't screw up normal vectors.
 			//It should only be used if there's non-uniform scaling, since it's less efficient.
@@ -359,7 +361,7 @@ void drawFrame(){
 		}else{
 			glEnable(GL_RESCALE_NORMAL);
 		}
-		glScalef(0.8f, 1.2f, 1.0f);
+		glScalef(1.0f, 1.0, 1.0f);
 		glBegin(GL_TRIANGLES);
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
@@ -427,12 +429,16 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(-0.5, 0, -20); //move cube2 to the left
-		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		glTranslatef(0.0f, 0.0f, -20.0f); //move cube2 to the left
+		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
-		glScalef(0.8f, 1.2f, 1.0f);
+		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_TRIANGLES);
-		glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
+		if(true){
+			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
+		}else{
+			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
+		}
 		//glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //for debugging
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
