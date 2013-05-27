@@ -65,42 +65,77 @@ public:
 	void GameRoom::SetName(const char *newName) {strncpy(name, newName, MAX_NAME_CHARS);}
 
 	//Adds the given Object to the Room
-	void AddWorldObject(GameWorldObject newObject);
+	void GameRoom::AddWorldObject(GameWorldObject newObject);
 
 	//Get the Object with the given name in the current Room if one exists
-	GameWorldObject* GetWorldObject(const char *wobjectName);
+	GameWorldObject* GameRoom::GetWorldObject(const char *wobjectName);
 
 	//Get the light with the given name in the current Room if one exists
-	GameLight* GetLight(const char* lightName);
+	GameLight* GameRoom::GetLight(const char* lightName);
 
 	//Remove the Object with the given name in the current Room if it exists
-	void RemoveWorldObject(const char *wobjectName);
+	void GameRoom::RemoveWorldObject(const char *wobjectName);
 
-	GameActiveObject* GetActiveObject(const char* aobjName){
+	void GameRoom::RemoveActiveObject(const char* aobjectName){
+		map<string, GameActiveObject>::iterator it = aobjects.find(aobjectName);
+		if(it != aobjects.end()) aobjects.erase(it);
+	}
+
+	GameActiveObject* GameRoom::GetActiveObject(const char* aobjName){
 		if(aobjects.find(aobjName) == aobjects.end()) return NULL;
 		else return &(aobjects[aobjName]);
 	}
+
+	GameItem* GameRoom::GetItem(const char* iName){
+		if(items.find(iName) != items.end()){
+			return &(items[iName]);
+		}
+		return NULL;
+	}
+
+	void GameRoom::RemoveItem(const char* iName){
+		map<string, GameItem>::iterator it = items.find(iName);
+		if(it != items.end()){
+			items.erase(it);
+		}
+	}
+
 	//Prints the names of very Object in the Room in sorted order
 	/*void PrintObjectNames();*/
 	
 	//Setter / Getter for doors
-	void AddDoor(GameDoor door){doors[door.GetName()] = door;}
+	void GameRoom::AddDoor(GameDoor door){doors[door.GetName()] = door;}
 	unsigned int NumDoors(){return doors.size();}
 	GameDoor *GetDoor(char* doorName){
 		if(doors.find(doorName) != doors.end()) return &(doors[doorName]);
 		return NULL;
 	}
-	bool RemoveDoor(GameDoor *door){}/*not yet implemented // return false;} */
-	void PrintWorldObjectNames();
+	void GameRoom::RemoveDoor(const char* dName){
+		map<string, GameDoor>::iterator it = doors.find(dName);
+		if(it != doors.end()) doors.erase(it);
+	}
+
+	GameCamera* GameRoom::GetCamera(const char* cName){
+		map<string, GameCamera>::iterator it = cameras.find(cName);
+		if(it!= cameras.end()) return &(cameras[cName]);
+		return NULL;
+	}
+
+	void GameRoom::RemoveCamera(const char* cName){
+		map<string, GameCamera>::iterator it = cameras.find(cName);
+		if(it != cameras.end()) cameras.erase(it);
+	}
+
+	void GameRoom::PrintWorldObjectNames();
 
 	//setter / Getter for camera
-	GameCamera *GetCurrentCamera(){return currentCamera;}
+	GameCamera* GameRoom::GetCurrentCamera(){return currentCamera;}
 	void SetCurrentCamera(char *cName){
 		currentCamera = &(cameras[cName]);
 	}	
 
 	//Setter / Getter for lights
-	void AddLight(GameLight l);
+	void GameRoom::AddLight(GameLight l);
 
 	/* 	Loads a room object from a file in the room format 
 	described in documentation. */ 
@@ -111,27 +146,27 @@ public:
 	static bool WriteRoom(const char *fname, GameRoom &room);
 	static bool GameRoom::WriteRoom(ostream &os, GameRoom &room);
 
-	map<string, GameWorldObject>::iterator GetRoomWorldObjectsIterator(){
+	map<string, GameWorldObject>::iterator GameRoom::GetRoomWorldObjectsIterator(){
 		return wobjects.begin();
 	}
 
-	map<string, GameWorldObject>::iterator GetRoomWorldObjectsEnd(){
+	map<string, GameWorldObject>::iterator GameRoom::GetRoomWorldObjectsEnd(){
 		return wobjects.end();
 	}
 
-	map<string, GameLight>::iterator GetRoomLightsIterator(){
+	map<string, GameLight>::iterator GameRoom::GetRoomLightsIterator(){
 		return lights.begin();
 	}
 
-	map<string, GameLight>::iterator GetRoomLightsEnd(){
+	map<string, GameLight>::iterator GameRoom::GetRoomLightsEnd(){
 		return lights.end();
 	}
 
-	map<string, GameCamera>::iterator GetRoomCamerasIterator(){
+	map<string, GameCamera>::iterator GameRoom::GetRoomCamerasIterator(){
 		return cameras.begin();
 	}
 
-	map<string,GameCamera>::iterator GetRoomCamerasEnd(){
+	map<string,GameCamera>::iterator GameRoom::GetRoomCamerasEnd(){
 		return cameras.end();
 	}
 

@@ -31,7 +31,7 @@ private:
 public:
 	static GameState* GameState::GetInstance();
 	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);
-	//void GameState::UpdateState(GameRoom &room/*, GameInput input*/);
+	void GameState::UpdateState(GameRoom &room/*, GameInput input*/);
 }; 
 
 #endif GAME_STATE_H
