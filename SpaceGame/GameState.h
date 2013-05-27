@@ -58,18 +58,16 @@ private:
 	GameRoom *room; 
 	Camera *cam;
 	PSystems *ps; 
-	GameState(){ps = new PSystems()}
+	GameState(){ps = new PSystems();}
 	static GameState* m_pinstance;
 	float gravity;
-	GameState(GameState const &stateMachine){};
-	void operator=(GameState const &stateMachine){};}
-	static GameState* m_pinstance;
-	float gravity;
-	GameState(GameState const &stateMachine){};
-	void operator=(GameState const &stateMachine){};
+	GameState(GameState const &stateMachine){}
+	void operator=(GameState const &stateMachine){}
 public: 
 	void SetRoom(GameRoom *gr){this->room = gr;}
-	void SetCamera(Camera *cam){this->cam =  cam;} 
+	void SetCamera(Camera *cam){this->cam =  cam;}
+	GameRoom *GetRoom(){return this->room;}
+	Camera *GetCamera(){return this->cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
 
 	//Action API --> update state based of event handlers

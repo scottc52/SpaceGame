@@ -15,6 +15,15 @@ using namespace std;
 
 #define STATE_FILE_DELIM ('$')
 
+GameState *GameState::m_pinstance = NULL; 
+
+GameState *GameState::GetInstance(){
+	if (m_pinstance == NULL){
+		m_pinstance = new GameState();
+	}
+	return m_pinstance;
+}
+
 void splitString(string &s, vector<string>& buff){
 	buff.clear(); 
 	istringstream iss(s);

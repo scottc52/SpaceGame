@@ -113,7 +113,8 @@ int main(int argc, char *argv[]){
 		cout<<gwo->GetName()<<endl;
 		MyMesh *tmp = new MyMesh();
 		if (gwo->GetMeshFile()){
-			if (! IO::read_mesh(*tmp, gwo->GetMeshFile(), 0)){
+			string fname(gwo->GetMeshFile()); 
+			if (! OpenMesh::IO::read_mesh(*tmp, fname)){
 				cerr<<"couldn't load (" << gwo->GetMeshFile() << ") for " <<gwo -> GetName() <<endl;  
 			}else{
 				gwo->SetMesh(tmp);
@@ -127,7 +128,7 @@ int main(int argc, char *argv[]){
 	///////////////////////////////////////////////////
 	
 	//TODO: load from file	
-	GameState *gs = new GameState(); 
+	GameState *gs = GameState::GetInstance(); 
 	gs->SetRoom(&debug);
 		
 	Render::GlutInitialize();
