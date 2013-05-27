@@ -17,6 +17,7 @@ class PSystems;
 
 typedef class SmokyBullet SmokeyBullet; 
 
+
 class PSystems{
 	list<SmokyBullet *> projectiles; // add a super class to generalize if we add more types
 public: 
@@ -41,15 +42,32 @@ public:
 	list<SmokyBullet *> *GetBullets(){return &projectiles;} 
 };
 
+/*
+ *
+ * Read in file for start state: include center of mass as a param...
+ * Create reactionary physics motion
+ * Collision Detection 
+ * Debug and test
+ *
+ */
+
+#define INITIAL_STATE_LOAD ("initialState.stamac")
+
 class GameState{
 private:
 	GameRoom *room; 
 	Camera *cam;
 	PSystems *ps; 
-public:
-	GameState(){ps = new PSystems();} 
-	GameRoom *GetRoom(){return room;}
-	Camera *GetCamera(){return cam;}
+	GameState(){ps = new PSystems()}
+	static GameState* m_pinstance;
+	float gravity;
+	GameState(GameState const &stateMachine){};
+	void operator=(GameState const &stateMachine){};}
+	static GameState* m_pinstance;
+	float gravity;
+	GameState(GameState const &stateMachine){};
+	void operator=(GameState const &stateMachine){};
+public: 
 	void SetRoom(GameRoom *gr){this->room = gr;}
 	void SetCamera(Camera *cam){this->cam =  cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
@@ -64,6 +82,10 @@ public:
 		ps->GetBullets()->push_back(bullet);}
 	void UpdateParticleSystems(int dt /*ms*/){ps->updateAll(dt);}
 	PSystems *GetParticleSystems(){return ps;} 
+	static GameState* GameState::GetInstance();
+	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);
+	
 }; 
 
 #endif
+

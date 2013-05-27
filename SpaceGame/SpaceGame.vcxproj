@@ -82,6 +82,7 @@
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameRoom.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
@@ -94,11 +95,13 @@
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameDebug.h" />
     <ClInclude Include="GameDoor.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameLight.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectHeaderList.h" />
+    <ClInclude Include="GamePhysics.h" />
     <ClInclude Include="GameRoom.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameWorldObject.h" />
