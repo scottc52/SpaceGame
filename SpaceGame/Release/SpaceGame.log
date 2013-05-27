@@ -1,27 +1,59 @@
-﻿Build started 5/26/2013 3:16:59 PM.
+﻿Build started 5/27/2013 11:57:01 AM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameState.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameState.cpp main.cpp
          GameState.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib glew32.lib freeglut.lib glu32.lib libOpenMeshCore.lib libOpenMeshTools.lib pthreadVCE2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
-         Release\GameDebug.obj
-         Release\GameRoom.obj
-         Release\GameState.obj
-         Release\main.obj
-         Release\projectile_particles.obj
-         Release\Render.obj
-         Release\RoomBuilder.obj
-         Release\shader_utils.obj
-         Release\TaskQueue.obj
-         Release\UI.obj
-         Generating code
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(763): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(875): warning C4715: 'loadFogProgram' : not all control paths return a value
-         Finished generating code
-         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(78): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(79): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>GameState.cpp(64): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>GameState.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+         main.cpp
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(78): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(79): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(13): error C2146: syntax error : missing ';' before identifier 'GameTimer'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(14): error C2146: syntax error : missing ';' before identifier 'GetTime'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(14): error C2086: 'int GameTime::GameTimer' : redefinition
+                 c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(13) : see declaration of 'GameTime::GameTimer'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(15): error C2146: syntax error : missing ';' before identifier 'val'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(15): error C2065: 'val' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(16): error C2065: 'val' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(17): error C2065: 'val' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(20): error C2882: 'GameTime' : illegal use of namespace identifier in expression
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(20): error C2065: 'a' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(20): error C2065: 'b' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(20): error C2448: 'DiffTimeMS' : function-style initializer appears to be a function definition
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(46): error C2563: mismatch in formal parameter list
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(46): error C2568: '&' : unable to resolve function overload
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xrefwrap(891): could be 'std::reference_wrapper<_Ty> std::ref(std::reference_wrapper<_Ty>) throw()'
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xrefwrap(887): or       'void std::ref(const _Ty &&)'
+                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xrefwrap(881): or       'std::reference_wrapper<_Ty> std::ref(_Ty &) throw()'
+     1>c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(46): error C2448: 'DiffTimeMS' : function-style initializer appears to be a function definition
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(48): error C2146: syntax error : missing ';' before identifier 'ref'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(48): error C2886: 'GameTime::GameTimer' : symbol cannot be used in a member using-declaration
+                 c:\users\austin\documents\github\spacegame\spacegame\GameTime.h(13) : see declaration of 'GameTime::GameTimer'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(48): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(58): error C2039: 'DiffTimeMS' : is not a member of 'GameTime'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(58): error C3861: 'DiffTimeMS': identifier not found
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(64): error C2146: syntax error : missing ';' before identifier 't'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(64): error C2065: 't' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(66): error C2039: 'DiffTimeMS' : is not a member of 'GameTime'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(66): error C2065: 't' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(66): error C3861: 'DiffTimeMS': identifier not found
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(70): error C2065: 't' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(72): error C2039: 'DiffTimeMS' : is not a member of 'GameTime'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(72): error C2065: 't' : undeclared identifier
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(72): error C3861: 'DiffTimeMS': identifier not found
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(80): error C2039: 'DiffTimeMS' : is not a member of 'GameTime'
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(80): error C3861: 'DiffTimeMS': identifier not found
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(82): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(83): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(87): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(97): error C2039: 'ref' : is not a member of 'Controller'
+                 c:\users\austin\documents\github\spacegame\spacegame\Controller.h(42) : see declaration of 'Controller'
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:08.88
+Time Elapsed 00:00:04.62
