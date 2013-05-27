@@ -5,25 +5,30 @@ debug.room
 
 # Delimeter between assignments: $
 
-# Object properties:
-# new position/rotation
-# set forces
-# new state
-# deleted
-# added 
+# Object properties:  O "name"
+# p new position
+# r rotation 
+# f set forces
+# s new state
+# d deleted
 
-# Player properties:
-# new position/rotation
-# alertness level
-# change ammo/weapons
-# change health
-# change alignment (enemy, ally, captive, rescued)
-# status (dead, alive)
-# set forces
-# deleted
-# set Inventory
+# Player properties: P "name" //Players refers to any AI character
+# p new position
+# r rotation
+# a "alertness level"
+# w "primary weapon name" ammo //(Use this to change/update weapon info of enemies)
+# h set health
+# y set alignment (enemy, ally)
+# s status (dead, alive)
+# l liberty (trapped/free)
+# f set forces
+# d deleted
+# i set Inventory
 
-# Item Properties:
-# change acquired status (in container/not in container)
-# change property?
+# Item Properties: I "name"
+# a change acquired status (0 = in container/1 = not in container, player's possesion)
+# u set num Uses (int)
 
+#Camera Properties: C "name"
+# p position
+# c "current camera"

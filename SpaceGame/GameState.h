@@ -55,9 +55,9 @@ public:
 
 class GameState{
 private:
-	GameRoom *room; 
+	GameRoom* room; 
 	Camera *cam;
-	PSystems *ps; 
+	PSystems *ps;
 	GameState(){ps = new PSystems();}
 	static GameState* m_pinstance;
 	float gravity;
@@ -69,6 +69,7 @@ public:
 	GameRoom *GetRoom(){return this->room;}
 	Camera *GetCamera(){return this->cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
+	bool GameState::ReadStateFile(const char *fname);
 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples
@@ -84,6 +85,4 @@ public:
 	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);
 	
 }; 
-
-#endif
-
+#endif GAME_STATE_H
