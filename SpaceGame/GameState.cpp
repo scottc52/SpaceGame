@@ -15,6 +15,10 @@ using namespace std;
 
 #define STATE_FILE_DELIM ('$')
 
+GameState *GameState::m_pinstance = NULL; 
+
+GameState *GameState::GetInstance(){if(!m_pinstance) m_pinstance = new GameState(); return m_pinstance;}
+
 void splitString(string &s, vector<string>& buff){
 	buff.clear(); 
 	istringstream iss(s);
@@ -61,7 +65,8 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			if(parsed.size() != 4){
 				GameDebugger::GetInstance()->WriteToDebugFile("Bad position input");
 			}else{
-				aobj->SetPosition(Vec3f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str())));
+				Vec3f pos(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()));
+				aobj->SetPosition(pos);
 			}
 			break;
 				 }
