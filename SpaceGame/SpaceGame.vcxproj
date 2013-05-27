@@ -85,6 +85,7 @@
     <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
