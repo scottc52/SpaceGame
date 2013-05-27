@@ -20,7 +20,9 @@
 #include <Eigen/Dense>
 #include "Mesh.h"
 #include "LocationDefines.h"
+#include <string>
 
+using namespace std;
 using namespace Eigen;
 
 #define MAX_NAME_CHARS 40
@@ -95,7 +97,7 @@ public:
 	}
 	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
 	Vec4f GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Vec4f &newRotation){rotation = newRotation;}
+	void GameObject::SetRotation(Vec4f newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}

@@ -18,16 +18,7 @@
 #ifndef _UI_H
 #define _UI_H
 
-//#include "GameState.h"
-/***********TEMPORARY CLASS DEFINITION***********/
-#include "Camera.h"
-
-class GameState {
-public:
-	GameState(const Camera& cam) : cam(cam) {}
-	Camera cam;
-};
-/***********************************************/
+#include "GameState.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -77,6 +68,7 @@ public:
 	static void DisableUI();
 	static bool QueueEmpty();
 	static void ExecuteQueuedEvent();
+	static void ExecutePendingEvents();
 	static void FlushQueue();
 
 	//Constructor
@@ -84,9 +76,9 @@ public:
 
 
 	void setKeyCallback(int modifier, unsigned char key, bool pressDown /*vs release*/,
-						void (*callback)(GameState&));
+						void (*callback)(GameState *));
 	void setSpecialKeyCallback(int modifier, int key, bool pressDown /*vs release*/,
-							   void (*callback)(GameState&));
+							   void (*callback)(GameState *));
 	//void setMouseButtonCallback(int modifier, int button, bool pressDown /*vs release*/,
 	//							void (*callback)(GameState&, int, int));
 	//void setMouseMoveCallback(int modifier, bool buttonDown /*vs button up*/,
@@ -122,7 +114,7 @@ private:
 	static void Enqueue(UIEvent *uiEvent);
 
 	struct KeyPress: UIEvent {
-		typedef void (*Callback)(GameState&);
+		typedef void (*Callback)(GameState *);
 
 		struct Command {
 			Command(int modifier, unsigned char key, bool pressDown):
@@ -141,7 +133,7 @@ private:
 	};
 
 	struct SpecialKeyPress: UIEvent {
-		typedef void (*Callback)(GameState&);
+		typedef void (*Callback)(GameState *);
 
 		struct Command {
 			Command(int modifier, int key, bool pressDown):

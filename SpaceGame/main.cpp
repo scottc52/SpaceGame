@@ -23,11 +23,49 @@
 #include "GameObjectHeaderList.h"
 #include "Render.h"
 #include "RoomBuilder.h"
-//#include "TaskQueue.h"
+#include "TaskQueue.h"
 #include "LocationDefines.h"
 #include "TextIOHelpers.h"
+#include "Controller.h"
+#include "UI.h"
 
 #define NUM_THREADS ((unsigned int )8)
+
+/*if (key == 'p' || key == 'P') {
+		//hit effect
+		lastHit = glutGet(GLUT_ELAPSED_TIME);
+	}
+	else if (key == 'o' || key == 'O') {
+		//fire bullet!
+		Vector3f loc = Vector3f(0, -1, 4); //below camera
+		Vector3f vel = Vector3f(0.0, 0.0, -4.8);
+		Vector4f col = Vector4f(0.95, 0.0, 0.0, 0.5);
+		bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
+	}
+	else if (key == 'q' || key == 'Q') exit(0);
+*/
+void fireCB(GameState *s){
+	s->FireBullet(); 
+}
+
+void killCB(GameState *s){
+	exit(0);
+}
+
+/*void foggifyCB(GameState *s){ 
+	s->
+}*/ 
+
+/**
+Define Behaviors for the game. This is here so that people can see them easily. We can move it into a particular module if
+that seems more appropriate.  
+*/
+void mapCallbacksPC(){
+	PCInputManager *controls = new PCInputManager();
+	controls->setKeyCallback(0, 'o', true, fireCB);
+	controls->setKeyCallback(0, 'q', true, killCB);
+	controls->setActiveCommandSet();  
+}
 
 //****************************************************
 // Main function, initialize program here
@@ -39,7 +77,7 @@ int main(int argc, char *argv[]){
 	debugger->WriteDebugMessageToConsole("Hello, World", 31);
 	debugger->WriteToDebugFile("Wrote to file", 32);
 	
-	//TaskQueue *main = new TaskQueue(NUM_THREADS);
+	TaskQueue *taskManager = new TaskQueue(NUM_THREADS);
 	ConsoleCreateRoom();
 
 	GameRoom gr; 	
@@ -61,8 +99,8 @@ int main(int argc, char *argv[]){
 	cout<<"Object name: "<<object->GetName()<<endl;
 	cout<<"Object position: "<<object->GetPosition()<<endl;
 	cout<<"Object rotation: "<<object->GetRotation()<<endl;
-	cout<<"Object scale: "<<object->GetScale()<<endl;
-	cout<<"Object meshFile: "<<object->GetMeshFile()<<endl;
+	cout<<"Object scale: "<< object->GetScale()<<endl;
+	cout<<"Object meshFile: "<< object->GetMeshFile()<<endl;
 	GameObject* light = debug.GetLight("ceiling");
 	//To do: differentiate at the room level between object types....
 	assert(light != NULL);
@@ -70,21 +108,43 @@ int main(int argc, char *argv[]){
 
 	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
 	while(wobs != debug.GetRoomWorldObjectsEnd()){
-		cout<<(*wobs).second.GetName()<<endl;
+		//load starting meshes
+		GameWorldObject *gwo = &(wobs->second);
+		cout<<gwo->GetName()<<endl;
+		MyMesh *tmp = new MyMesh();
+		if (gwo->GetMeshFile()){
+			string fname(gwo->GetMeshFile()); 
+			if (! OpenMesh::IO::read_mesh(*tmp, fname)){
+				cerr<<"couldn't load (" << gwo->GetMeshFile() << ") for " <<gwo -> GetName() <<endl;  
+			}else{
+				gwo->SetMesh(tmp);
+			} 
+		} 
 		wobs++;
+		
 	}
 
 	cin.ignore(1);
 	///////////////////////////////////////////////////
-	RenderGlutInitialize();
+	
+	//TODO: load from file	
+	GameState *gs = GameState::GetInstance(); 
+	gs->SetRoom(&debug);
+		
+	Render::GlutInitialize();
+	Render::gameState = gs;
 
-
+	PCInputManager::EnableUI(gs);	
+	mapCallbacksPC(); 
+	Controller::Initialize(taskManager, gs); 	
+	
+	
 	/////////////////////////////////////////////////
 	// TO DO:
 	// Pass GameRoom debug to Render module.  Render the 
 	// room.
 	/////////////////////////////////////////////////
-
+	glutTimerFunc(0, Controller::GlutSync, 0);
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	assert(debugger->CloseDebugFile());
 	return 0;

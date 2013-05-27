@@ -1,3 +1,5 @@
+#ifndef _BLOOMUTILS_H_
+#define _BLOOMUTILS_H_
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
@@ -42,3 +44,4 @@ void createSurface(Surface *, GLboolean depth, GLboolean fp, GLboolean linear, G
 void bindSurface(Surface *);
 void clearSurfaceColor(GLfloat c0, GLfloat c1, GLfloat c2, GLfloat c3);
 void resizeSurface(Surface *surface, int w, int h);
+#endif _BLOOMUTILS_H_

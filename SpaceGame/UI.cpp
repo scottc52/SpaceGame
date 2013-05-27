@@ -1,6 +1,10 @@
 #include "UI.h"
 
-#include <gl\freeglut.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <gl/freeglut.h>
+#endif
 
 #ifdef _WIN32
 #pragma comment(lib, "pthreadVCE2.lib")
@@ -63,6 +67,22 @@ void PCInputManager::ExecuteQueuedEvent() {
 	delete nextEvent;
 }
 
+void PCInputManager::ExecutePendingEvents() {
+	list<UIEvent *> events;
+	pthread_mutex_lock(&eventQueue_mutex);
+	while(!eventQueue.empty()){
+		events.push_back(eventQueue.front());
+		eventQueue.pop(); 
+	}
+	pthread_mutex_unlock(&eventQueue_mutex);
+	list<UIEvent *>::iterator it;
+	for (it = events.begin(); it != events.end(); it++){
+		UIEvent *ev = *it;
+		(*ev)();
+		delete ev;  
+	}
+} 
+
 void PCInputManager::FlushQueue() {
 	pthread_mutex_lock(&eventQueue_mutex);
 	while(!eventQueue.empty()) {
@@ -77,14 +97,14 @@ PCInputManager::PCInputManager() {
 }
 
 void PCInputManager::setKeyCallback(int modifier, unsigned char key, bool pressDown,
-						void (*callback)(GameState&)) {
+						void (*callback)(GameState *)) {
 	stateStack.back().keyboardCallbacks[
 		KeyPress::Command(modifier, key, pressDown)
 	] = callback;
 }
 
 void PCInputManager::setSpecialKeyCallback(int modifier, int key, bool pressDown,
-										   void (*callback)(GameState&)) {
+										   void (*callback)(GameState *)) {
 	stateStack.back().specialKeyboardCallbacks[
 		SpecialKeyPress::Command(modifier, key, pressDown)
 	] = callback;
@@ -141,7 +161,7 @@ void PCInputManager::KeyPress::operator()() const {
 		activeCommandSet->stateStack.back().keyboardCallbacks.find(cmd);
 	if(callbackMapping != activeCommandSet->stateStack.back().keyboardCallbacks.end()
 	   && callbackMapping->second != NULL)
-		callbackMapping->second(*gameState);
+		callbackMapping->second(gameState);
 }
 
 bool PCInputManager::SpecialKeyPress::Command::operator<(const Command& other) const {
@@ -159,5 +179,5 @@ void PCInputManager::SpecialKeyPress::operator()() const {
 		activeCommandSet->stateStack.back().specialKeyboardCallbacks.find(cmd);
 	if(callbackMapping != activeCommandSet->stateStack.back().specialKeyboardCallbacks.end()
 	   && callbackMapping->second != NULL)
-		callbackMapping->second(*gameState);
+		callbackMapping->second(gameState);
 }
