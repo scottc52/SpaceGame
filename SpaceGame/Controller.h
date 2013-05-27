@@ -55,9 +55,7 @@ public:
 	*/
 	//virtual void *run(void *aux){
 	virtual void run(){
-		double delta = GameTime::DiffTimeMS(ref);
-		
-
+		double delta = GameTime::DiffTimeMS(ref);		
 		cout << "Update Frame. dt: " << dt <<endl;
 		cout << "TaskQueue overhead: " << delta  << endl;
 		//Poll events and update state 
@@ -66,14 +64,17 @@ public:
 		delta = GameTime::DiffTimeMS(t);
 		cout<<"it took: " << delta << "ms to process events" << endl; 
 		
+		//AI updates
+
+		//animate here
+
 		//update particles
 		t = GameTime::GetTime(); 
 		state->UpdateParticleSystems(dt);
 		delta = GameTime::DiffTimeMS(t);
 		int len = state->GetParticleSystems()->GetBullets()->size();  	
 		cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
-		//animate here
-
+		
 		//render here
 		//Render::myDisplay(); 		
 		glutPostRedisplay();
