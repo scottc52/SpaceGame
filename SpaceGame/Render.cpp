@@ -248,11 +248,18 @@ void setupCamera(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	Vector3f curCameraPos = Vector3f(0,0,4); //TODO
-	cameraPos = curCameraPos;
-	Vector3f up = Vector3f(0,1,0); //TODO
-	Vector3f direction = Vector3f(0,0,-1); //TODO
-	gluLookAt(curCameraPos[0], curCameraPos[1], curCameraPos[2], curCameraPos[0]+direction[0], curCameraPos[1]+direction[1], curCameraPos[2]+direction[2], up[0], up[1], up[2]);
+	Camera *cam  = Render::gameState->GetCamera();
+
+
+	Vector3f pos = cam->getPivotPoint(); //TODO
+	cameraPos = pos;
+	Vector3f up = cam->getUpVector(); //TODO
+	Vector3f direction = cam->getDirection(); //TODO
+	Vector3f look = pos+direction;
+	gluLookAt(
+	 	pos[0], pos[1], pos[2],
+	 	look[0], look[1], look[2], 
+	 	up[0], up[1], up[2]);
 	glDisable(GL_LIGHTING);
 }
 void setupLighting(){
@@ -299,12 +306,15 @@ void drawFrame(){
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
-	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsIterator(); 
+	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	//for(int i = 0; i<numObjects;i++){
 	while(iter != end){
 		GameWorldObject *gwo = &(iter->second); 
 		MyMesh *mesh = gwo->GetMesh();
-		iter ++;  
+		iter ++;
+		if (!mesh)
+			continue;  
+		cout << "rendering " << gwo->GetName() << endl;
 		bool useCustomShader = false; //TODO
 		if(useCustomShader){ //check if you should use custom shader
 			GLuint programID = 1; //TODO
@@ -385,9 +395,16 @@ void drawFrame(){
 }
 
 void drawGlow(){
-	int numObjects = 1;
-	for(int i = 0; i<numObjects;i++){
-		MyMesh mesh = squareMesh();
+	GameRoom *gr = Render::gameState->GetRoom(); 	
+	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	//for(int i = 0; i<numObjects;i++){
+	while(iter != end){
+		GameWorldObject *gwo = &(iter->second); 
+		MyMesh *mesh = gwo->GetMesh();
+		iter ++;
+		if (!mesh)
+			continue;  
+		cout << "glowing " << gwo->GetName() << endl;
 		bool useCustomShader = false; //TODO
 		if(useCustomShader){ //check if you should use custom shader
 			GLuint programID = 1; //TODO
@@ -417,18 +434,18 @@ void drawGlow(){
 		glBegin(GL_TRIANGLES);
 		glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		//glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //for debugging
-		for (MyMesh::FaceIter it = mesh.faces_begin(); it != mesh.faces_end(); ++it) {
+		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
-			MyMesh::HalfedgeHandle it2 = mesh.halfedge_handle(it.handle());
+			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 3; v++){
-				MyMesh::VertexHandle v_handle = mesh.to_vertex_handle(it2);
+				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				if(useTexture){
 					Vec2f texCoord; //TODO
 					glTexCoord2f(texCoord[0], texCoord[1]);
 				}
-				Vec3f p = mesh.point(v_handle);
+				Vec3f p = mesh->point(v_handle);
 				glVertex3f(p[0],p[1],p[2]);
-				it2 = mesh.next_halfedge_handle(it2);
+				it2 = mesh->next_halfedge_handle(it2);
 			}
 		}
 		glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
