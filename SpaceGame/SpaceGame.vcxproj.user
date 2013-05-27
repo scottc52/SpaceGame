@@ -8,4 +8,7 @@
     <LocalDebuggerEnvironment>PATH=freeglut\bin\x64;freeglut\bin;glew-1.9.0/bin;%PATH%;</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>true</ShowAllFiles>
+  </PropertyGroup>
 </Project>

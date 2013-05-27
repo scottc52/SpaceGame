@@ -44,6 +44,50 @@
 	}
 	else if (key == 'q' || key == 'Q') exit(0);
 */
+
+#define STEP ((float)0.5)
+
+void move(GameState *s, Vector3f &delta){
+	Camera *c = s->GetCamera(); 
+	Vector3f tmp = c->getPivotPoint();
+	tmp += delta; 
+	c->setPivotPoint(tmp);
+	cout << "position x: " << tmp.x()
+		<< " y: " << tmp.y()
+		<< " z: " << tmp.z()
+		<< endl; 
+}
+
+void moveCBQ(GameState *s){
+	Vector3f delta(0, -STEP, 0);
+	move(s, delta);  
+}
+
+void moveCBE(GameState *s){
+	Vector3f delta(0, STEP, 0);
+	move(s, delta); 
+} 
+
+void moveCBA(GameState *s){
+	Vector3f delta(-STEP, 0, 0);
+	move(s, delta);  
+} 
+
+void moveCBD(GameState *s){
+	Vector3f delta(STEP, 0, 0);
+	move(s, delta);  
+}  
+
+void moveCBW(GameState *s){
+	Vector3f delta(0, 0, STEP);
+	move(s, delta);
+} 
+
+void moveCBS(GameState *s){
+	Vector3f delta(0, 0, -STEP);
+	move(s, delta);  
+} 
+
 void fireCB(GameState *s){
 	s->FireBullet(); 
 }
@@ -63,7 +107,13 @@ that seems more appropriate.
 void mapCallbacksPC(){
 	PCInputManager *controls = new PCInputManager();
 	controls->setKeyCallback(0, 'o', true, fireCB);
-	controls->setKeyCallback(0, 'q', true, killCB);
+	controls->setKeyCallback(0, '`', true, killCB);
+	controls->setKeyCallback(0, 'q', true, moveCBQ);
+	controls->setKeyCallback(0, 'e', true, moveCBE);
+	controls->setKeyCallback(0, 'a', true, moveCBA);
+	controls->setKeyCallback(0, 'd', true, moveCBD);
+	controls->setKeyCallback(0, 's', true, moveCBS);
+	controls->setKeyCallback(0, 'w', true, moveCBW);
 	controls->setActiveCommandSet();  
 }
 
@@ -113,9 +163,10 @@ int main(int argc, char *argv[]){
 		cout<<gwo->GetName()<<endl;
 		MyMesh *tmp = new MyMesh();
 		if (gwo->GetMeshFile()){
-			string fname(gwo->GetMeshFile()); 
-			if (! OpenMesh::IO::read_mesh(*tmp, fname)){
+			string fname = pathCat(".", gwo->GetMeshFile()); 
+			if (! MyMeshIO::LoadMesh(*tmp, fname)){
 				cerr<<"couldn't load (" << gwo->GetMeshFile() << ") for " <<gwo -> GetName() <<endl;  
+				gwo->SetMesh(NULL);
 			}else{
 				gwo->SetMesh(tmp);
 			} 
@@ -129,8 +180,13 @@ int main(int argc, char *argv[]){
 	
 	//TODO: load from file	
 	GameState *gs = GameState::GetInstance(); 
+	Vector3f pos(-1.0f, 0, 0); 
+	Vector3f up(0, 1.0f, 0); 
+	Vector3f dir(0, 0, 1.0f); 
+	float radius =0, near = 0, far = 600, fovy = 80, aspect = ((float)16.0/9.0); 
+	Camera cam(pos, dir, up, radius, near, far, fovy, aspect); 
 	gs->SetRoom(&debug);
-		
+	gs->SetCamera(&cam);
 	Render::GlutInitialize();
 	Render::gameState = gs;
 

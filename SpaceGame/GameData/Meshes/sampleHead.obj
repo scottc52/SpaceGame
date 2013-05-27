@@ -1,6 +1,6 @@
 # Blender v2.65 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib ../Materials/SampleHead.mtl
+#mtllib GameData/Materials/SampleHead.mtl
 o Suzanne
 v 0.876137 0.826880 1.390861
 v -0.876137 0.826880 1.390861
