@@ -10,16 +10,17 @@ namespace GameTime{
 
 #ifdef _WIN32
 #include "windows.h"
-typedef LONG_INTEGER GameTimer;
+typedef LARGE_INTEGER GameTimer;
 GameTimer GetTime(){
 	GameTimer val;
 	QueryPerformanceCounter(&val);
 	return val;
 }
 
-double DiffTimeMS(GameTime &a, GameTime &b){
-	LONG_INTEGER freq;	
-	return ((double)(a-b)) / ((double)freq)*((double)1000.0);
+double DiffTimeMS(GameTimer &a, GameTimer &b){
+	LARGE_INTEGER freq;
+	QueryPerformanceFrequency(&freq); 
+	return ((double)(a.QuadPart-b.QuadPart)) / ((double)freq.QuadPart)*((double)1000.0);
 	 
 }
 
