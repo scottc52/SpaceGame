@@ -264,6 +264,10 @@ void setupCamera(){
 	 	up[0], up[1], up[2]);
 	glDisable(GL_LIGHTING);
 }
+static void Render::setHitTime(int t){
+	lastHit = t;
+}
+
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
@@ -287,7 +291,7 @@ void setupLighting(){
 		GLfloat specularcolor[] = {0.2, 0.2, 0.2, 1.0};
 		glLightfv(gl_lights[0], GL_SPECULAR, specularcolor);
 
-		GLfloat lightposition[] = {300.0, 300.0, 300.0, 1.0};
+		GLfloat lightposition[] = {-30.0, -30.0, -30.0, 1.0};
 		if(true){ //positional
 			lightposition[3] = 1.0;
 		}else{//directional
@@ -295,8 +299,8 @@ void setupLighting(){
 		}
 		glLightfv(gl_lights[0], GL_POSITION, lightposition);
 
-		if(true){ // should have a setting for this
-			GLfloat lightdirection[] = {-1.0,-1.0,-1.0};
+		if(false){ // should have a setting for this
+			GLfloat lightdirection[] = {1.0,1.0,1.0};
 			glLightfv(gl_lights[0], GL_SPOT_DIRECTION, lightdirection);
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
@@ -351,7 +355,7 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0, 0, -20.0f); //move cube2 to the left
+		glTranslatef(0.0, 0, 0.0f); //move cube2 to the left
 		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
 		bool non_uniform_scaling = false;
 		if(non_uniform_scaling){
@@ -429,7 +433,7 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0f, 0.0f, -20.0f); //move cube2 to the left
+		glTranslatef(0.0f, 0.0f, 0.0f); //move cube2 to the left
 		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
