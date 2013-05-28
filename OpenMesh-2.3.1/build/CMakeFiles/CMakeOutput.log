@@ -1,0 +1,252 @@
+The system is: Darwin - 9.8.0 - i386
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.11/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.11/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec612421890/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec612421890.dir/build.make CMakeFiles/cmTryCompileExec612421890.dir/build
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec612421890.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec612421890.dir/testCCompiler.c.o   -c /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec612421890
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec612421890.dir/link.txt --verbose=1
+/usr/bin/cc      -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec612421890.dir/testCCompiler.c.o  -o cmTryCompileExec612421890  
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3433135742/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3433135742.dir/build.make CMakeFiles/cmTryCompileExec3433135742.dir/build
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o   -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCCompilerABI.c"
+Linking C executable cmTryCompileExec3433135742
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec3433135742.dir/link.txt --verbose=1
+/usr/bin/cc      -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3433135742   
+Using built-in specs.
+Target: i686-apple-darwin9
+Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
+Thread model: posix
+gcc version 4.0.1 (Apple Inc. build 5493)
+ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec3433135742 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o -lgcc_s.10.5 -lgcc -lSystem
+collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
+/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec3433135742 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o -lgcc_s.10.5 -lgcc -lSystem
+@(#)PROGRAM:ld  PROJECT:ld64-85.2.1
+Library search paths:
+	/usr/lib/i686-apple-darwin9/4.0.1
+	/usr/lib/gcc/i686-apple-darwin9/4.0.1
+	/usr/lib/gcc/i686-apple-darwin9/4.0.1
+	/usr/lib/i686-apple-darwin9/4.0.1
+	/usr/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec3433135742/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec3433135742.dir/build.make CMakeFiles/cmTryCompileExec3433135742.dir/build]
+  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o   -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCCompilerABI.c"]
+  ignore line: [Linking C executable cmTryCompileExec3433135742]
+  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec3433135742.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec3433135742   ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: i686-apple-darwin9]
+  ignore line: [Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.0.1 (Apple Inc. build 5493)]
+  link line: [ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec3433135742 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o -lgcc_s.10.5 -lgcc -lSystem]
+    arg [/usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [i386] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.5.8] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec3433135742] ==> ignore
+    arg [-lcrt1.10.5.o] ==> lib [crt1.10.5.o]
+    arg [-L/usr/lib/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec3433135742.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc_s.10.5] ==> lib [gcc_s.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+  Library search paths: [;/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [crt1.10.5.o]
+  remove lib [gcc_s.10.5]
+  remove lib [gcc]
+  remove lib [System]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> [/usr/lib]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: []
+  implicit dirs: [/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1124509390/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1124509390.dir/build.make CMakeFiles/cmTryCompileExec1124509390.dir/build
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1124509390.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1124509390.dir/testCXXCompiler.cxx.o -c /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec1124509390
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec1124509390.dir/link.txt --verbose=1
+/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1124509390.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec1124509390  
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec285894634/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec285894634.dir/build.make CMakeFiles/cmTryCompileExec285894634.dir/build
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp"
+Linking CXX executable cmTryCompileExec285894634
+"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec285894634.dir/link.txt --verbose=1
+/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec285894634   
+Using built-in specs.
+Target: i686-apple-darwin9
+Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
+Thread model: posix
+gcc version 4.0.1 (Apple Inc. build 5493)
+ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec285894634 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
+collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
+/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec285894634 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
+@(#)PROGRAM:ld  PROJECT:ld64-85.2.1
+Library search paths:
+	/usr/lib/i686-apple-darwin9/4.0.1
+	/usr/lib/gcc/i686-apple-darwin9/4.0.1
+	/usr/lib/gcc/i686-apple-darwin9/4.0.1
+	/usr/lib/i686-apple-darwin9/4.0.1
+	/usr/lib
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec285894634/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec285894634.dir/build.make CMakeFiles/cmTryCompileExec285894634.dir/build]
+  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp"]
+  ignore line: [Linking CXX executable cmTryCompileExec285894634]
+  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec285894634.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec285894634   ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: i686-apple-darwin9]
+  ignore line: [Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.0.1 (Apple Inc. build 5493)]
+  link line: [ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -weak_reference_mismatches non-weak -o cmTryCompileExec285894634 -lcrt1.10.5.o -L/usr/lib/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lgcc_s.10.5 -lgcc -lSystem]
+    arg [/usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [i386] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.5.8] ==> ignore
+    arg [-weak_reference_mismatches] ==> ignore
+    arg [non-weak] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec285894634] ==> ignore
+    arg [-lcrt1.10.5.o] ==> lib [crt1.10.5.o]
+    arg [-L/usr/lib/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1]
+    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec285894634.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lgcc_s.10.5] ==> lib [gcc_s.10.5]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lSystem] ==> lib [System]
+  Library search paths: [;/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [crt1.10.5.o]
+  remove lib [gcc_s.10.5]
+  remove lib [gcc]
+  remove lib [System]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> [/usr/lib]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib/i686-apple-darwin9/4.0.1] ==> [/usr/lib/i686-apple-darwin9/4.0.1]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [stdc++]
+  implicit dirs: [/usr/lib/i686-apple-darwin9/4.0.1;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
