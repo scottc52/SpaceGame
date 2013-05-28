@@ -92,6 +92,10 @@ void fireCB(GameState *s){
 	s->FireBullet(); 
 }
 
+void hitCB(GameState *s){
+	Render::hitEffect();
+}
+
 void killCB(GameState *s){
 	exit(0);
 }
@@ -107,6 +111,7 @@ that seems more appropriate.
 void mapCallbacksPC(){
 	PCInputManager *controls = new PCInputManager();
 	controls->setKeyCallback(0, 'o', true, fireCB);
+	controls->setKeyCallback(0, 'p', true, hitCB);
 	controls->setKeyCallback(0, '`', true, killCB);
 	controls->setKeyCallback(0, 'q', true, moveCBQ);
 	controls->setKeyCallback(0, 'e', true, moveCBE);

@@ -269,6 +269,10 @@ void Render::setHitTime(int t){
 	lastHit = t;
 }
 
+void Render::hitEffect(){
+	lastHit = glutGet(GLUT_ELAPSED_TIME);
+}
+
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
@@ -322,6 +326,61 @@ void bindMaterial(Material &material){
 	glMaterialfv(GL_FRONT, GL_EMISSION, emmisionmat);
 }
 
+void drawTestPrism(){
+	glBegin(GL_TRIANGLES);
+		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
+
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(10.0f, 0, 0);
+
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(0, 0, 10.0f);
+		glVertex3f(0.0f, 0, 10.0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(0.0f, 10.0, 0);
+		glVertex3f(0.0f, 10.0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(10.0f, 0, 0);
+	glEnd();
+	glBegin(GL_LINES);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f); 
+		glVertex3f(10.1f, 0.1, 0.1);
+		glVertex3f(0.1f, 0.0, 10.1f);
+
+		glVertex3f(10.0f, 0.1, 0.1);
+		glVertex3f(0.1, 10.1f, 0.1);
+		
+		glVertex3f(10.0f, 0.1, 0.1);
+		glVertex3f(-10.0f, 0.1, 0.1);
+
+		glVertex3f(0.1, 10.1f, 0.1);
+		glVertex3f(0.1, 0.1, 10.1f);
+
+		glVertex3f(0.1, 10.1f, 0.1);
+		glVertex3f(-10.1f, 0.1, 0.1);
+
+		glVertex3f(0.1, 0.1, 10.1f);
+		glVertex3f(-10.1f, 0.1, 0.1);
+	glEnd();
+
+
+
+}
+
 void drawFrame(){
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
@@ -372,21 +431,11 @@ void drawFrame(){
 			glEnable(GL_RESCALE_NORMAL);
 		}
 		glScalef(1.0f, 1.0, 1.0f);
+		drawTestPrism();
 		glBegin(GL_TRIANGLES);
 	
 		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
 
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
 		glVertex3f(10.0f, 0, 0);
 
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
@@ -649,7 +698,7 @@ void Render::myDisplay() {
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();	
-	//drawGlow();
+	drawGlow();
 	drawBullets(true);
 
 	
