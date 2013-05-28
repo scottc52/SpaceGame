@@ -63,6 +63,6 @@ class Render{
 	static void myReshape(int w, int h);
 	static void myDisplay();
 	static void myIdle();
-
+	static void setHitTime(int t);
 };
 #endif _RENDER_H_
