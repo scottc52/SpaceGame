@@ -73,7 +73,7 @@ void Camera::setPosition(const Point3f& p) {
 
 void Camera::setDirection(const Vector3f& dir) {
 	this->dir = dir.normalized();
-	up = ProjectVectorOnPlane(up, this->dir);
+	//up = ProjectVectorOnPlane(up, this->dir);
 }
 
 void Camera::setUpVector(const Vector3f& up) {

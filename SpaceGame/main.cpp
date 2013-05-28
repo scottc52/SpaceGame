@@ -99,10 +99,43 @@ void hitCB(GameState *s){
 void killCB(GameState *s){
 	exit(0);
 }
+int X = -1; int Y = -1; 
+double theta = 0; 
 
-/*void foggifyCB(GameState *s){ 
-	s->
-}*/ 
+#include <cmath> 
+
+//x = cos(theta)
+//x = sin(theta)
+
+void mouseMoveCB(int x, int y){
+	int dx =0, dy = 0; 
+	if (X > 0){
+		dx = x -X; 
+	} 
+	if (Y > 0){
+		dy = y -Y;
+	}
+	//map add a sensitivity
+	theta += ((double)dx*2) * 3.14159 / 180.0; 
+
+	float ly = 0;
+	float lx = cos(theta);
+	float lz = sin(theta); 
+
+	Vector3f dir(lx, ly, lz); 
+
+	GameState::GetInstance()->GetCamera()->setDirection(dir); 
+
+	Y = y;
+	X = x; 
+}
+
+void mouseFunc(int button, int state, int x, int y){
+	if (button==GLUT_LEFT_BUTTON && state==GLUT_UP){
+		X=-1;
+		Y=-1;
+	}
+}
 
 /**
 Define Behaviors for the game. This is here so that people can see them easily. We can move it into a particular module if
@@ -185,9 +218,9 @@ int main(int argc, char *argv[]){
 	
 	//TODO: load from file	
 	GameState *gs = GameState::GetInstance(); 
-	Vector3f pos(-10.0f, 0, 0); 
+	Vector3f pos(0.0f, 0, -10.0f); 
 	Vector3f up(0, 1.0f, 0); 
-	Vector3f dir(1.0f, 0, 0); 
+	Vector3f dir(0.0f, 0, 1.0f); 
 	float radius =0, n = 0.1, f = 600, fovy = 80, aspect = ((float)16.0/9.0); 
 	Camera cam(pos, dir, up, radius, n, f, fovy, aspect); 
 	gs->SetRoom(&debug);
@@ -206,6 +239,8 @@ int main(int argc, char *argv[]){
 	// room.
 	/////////////////////////////////////////////////
 	glutTimerFunc(0, Controller::GlutSync, 0);
+	glutMotionFunc(mouseMoveCB);
+	glutMouseFunc(mouseFunc);
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	assert(debugger->CloseDebugFile());
 	return 0;
