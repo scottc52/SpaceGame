@@ -230,15 +230,17 @@ MyMesh squareMesh(){
 
 //functions that actually does the drawing
 void setupCamera(){
+	Camera *cam  = Render::gameState->GetCamera();
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();				// loading the identity matrix for the screen
 
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	float aspect_ratio = (float) w / (float) h;
-	float fieldOfView = 45.0f; //TODO
-	near_p = 0.01f;
-	far_p = 600.0f;
+	float fieldOfView = cam->getHorizontalFieldOfView(); //TODO
+	near_p = cam->getNearViewPlane();
+	far_p = cam->getFarViewPlane();
 	gluPerspective(fieldOfView, aspect_ratio, near_p, far_p);
 
 	
@@ -248,7 +250,7 @@ void setupCamera(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	Camera *cam  = Render::gameState->GetCamera();
+	
 
 
 	Vector3f pos = cam->getPivotPoint(); //TODO
@@ -262,6 +264,10 @@ void setupCamera(){
 	 	up[0], up[1], up[2]);
 	glDisable(GL_LIGHTING);
 }
+static void Render::setHitTime(int t){
+	lastHit = t;
+}
+
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
@@ -285,7 +291,7 @@ void setupLighting(){
 		GLfloat specularcolor[] = {0.2, 0.2, 0.2, 1.0};
 		glLightfv(gl_lights[0], GL_SPECULAR, specularcolor);
 
-		GLfloat lightposition[] = {300.0, 300.0, 300.0, 1.0};
+		GLfloat lightposition[] = {-30.0, -30.0, -30.0, 1.0};
 		if(true){ //positional
 			lightposition[3] = 1.0;
 		}else{//directional
@@ -293,8 +299,8 @@ void setupLighting(){
 		}
 		glLightfv(gl_lights[0], GL_POSITION, lightposition);
 
-		if(true){ // should have a setting for this
-			GLfloat lightdirection[] = {-1.0,-1.0,-1.0};
+		if(false){ // should have a setting for this
+			GLfloat lightdirection[] = {1.0,1.0,1.0};
 			glLightfv(gl_lights[0], GL_SPOT_DIRECTION, lightdirection);
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
@@ -349,9 +355,9 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(-0.5, 0, -20); //move cube2 to the left
-		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
-		bool non_uniform_scaling = true;
+		glTranslatef(0.0, 0, 0.0f); //move cube2 to the left
+		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		bool non_uniform_scaling = false;
 		if(non_uniform_scaling){
 			//This is here so scaling doesn't screw up normal vectors.
 			//It should only be used if there's non-uniform scaling, since it's less efficient.
@@ -359,7 +365,7 @@ void drawFrame(){
 		}else{
 			glEnable(GL_RESCALE_NORMAL);
 		}
-		glScalef(0.8f, 1.2f, 1.0f);
+		glScalef(1.0f, 1.0, 1.0f);
 		glBegin(GL_TRIANGLES);
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
@@ -427,12 +433,16 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(-0.5, 0, -20); //move cube2 to the left
-		glRotatef(45, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		glTranslatef(0.0f, 0.0f, 0.0f); //move cube2 to the left
+		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
-		glScalef(0.8f, 1.2f, 1.0f);
+		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_TRIANGLES);
-		glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
+		if(true){
+			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
+		}else{
+			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
+		}
 		//glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //for debugging
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes

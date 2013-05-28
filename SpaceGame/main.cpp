@@ -180,11 +180,11 @@ int main(int argc, char *argv[]){
 	
 	//TODO: load from file	
 	GameState *gs = GameState::GetInstance(); 
-	Vector3f pos(-1.0f, 0, 0); 
+	Vector3f pos(-10.0f, 0, 0); 
 	Vector3f up(0, 1.0f, 0); 
-	Vector3f dir(0, 0, 1.0f); 
-	float radius =0, near = 0, far = 600, fovy = 80, aspect = ((float)16.0/9.0); 
-	Camera cam(pos, dir, up, radius, near, far, fovy, aspect); 
+	Vector3f dir(1.0f, 0, 0); 
+	float radius =0, n = 0.1, f = 600, fovy = 80, aspect = ((float)16.0/9.0); 
+	Camera cam(pos, dir, up, radius, n, f, fovy, aspect); 
 	gs->SetRoom(&debug);
 	gs->SetCamera(&cam);
 	Render::GlutInitialize();
