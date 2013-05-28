@@ -24,7 +24,7 @@ pthread_mutex_t PCInputManager::eventQueue_mutex;
 
 void PCInputManager::EnableUI(GameState *gameState) {
 	glutKeyboardFunc(Keyboard);
-	glutKeyboardUpFunc(Keyboard);
+	//glutKeyboardUpFunc(Keyboard);
 	glutSpecialFunc(SpecialKey);
 	glutSpecialUpFunc(SpecialKeyUp);
 	//glutMouseFunc(MouseClick);

@@ -766,7 +766,7 @@ void Render::myDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
  
 	glUseProgram(program_postproc);
-	glUniform1f(uniform_hit_time_postproc, dt);
+	glUniform1f(uniform_hit_time_postproc, (dt>0)? dt : 100000);
 	glEnable(GL_TEXTURE_2D); 
 	glBindTexture(GL_TEXTURE_2D, fbo1.texture);
 	glUniform1i(uniform_source_postproc, /*GL_TEXTURE*/0);
