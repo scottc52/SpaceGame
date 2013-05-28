@@ -26,22 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
 
 # Include any dependencies generated for this target.
 include src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/depend.make
@@ -54,17 +51,17 @@ include src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/flags.make
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/flags.make
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o: ../src/OpenMesh/Apps/mconvert/mconvert.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o"
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mconvert.dir/mconvert.cc.o -c /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mconvert.dir/mconvert.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mconvert.dir/mconvert.cc.i"
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc > CMakeFiles/mconvert.dir/mconvert.cc.i
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc > CMakeFiles/mconvert.dir/mconvert.cc.i
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mconvert.dir/mconvert.cc.s"
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc -o CMakeFiles/mconvert.dir/mconvert.cc.s
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc -o CMakeFiles/mconvert.dir/mconvert.cc.s
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o.requires:
 .PHONY : src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o.requires
@@ -82,28 +79,27 @@ mconvert_OBJECTS = \
 # External object files for target mconvert
 mconvert_EXTERNAL_OBJECTS =
 
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/build.make
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Tools/libOpenMeshToolsd.2.3.dylib
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/mconvert/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable mconvert"
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mconvert.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E copy_if_different /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/./mconvert /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/Build/bin/mconvert
+Build/bin/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o
+Build/bin/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/build.make
+Build/bin/mconvert: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/mconvert: Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3
+Build/bin/mconvert: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/mconvert: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../../../../Build/bin/mconvert"
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mconvert.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/build: src/OpenMesh/Apps/mconvert/mconvert
+src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/build: Build/bin/mconvert
 .PHONY : src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/build
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/requires: src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o.requires
 .PHONY : src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/requires
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/clean:
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && $(CMAKE_COMMAND) -P CMakeFiles/mconvert.dir/cmake_clean.cmake
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert && $(CMAKE_COMMAND) -P CMakeFiles/mconvert.dir/cmake_clean.cmake
 .PHONY : src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/clean
 
 src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/depend:
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/depend
 

@@ -6,7 +6,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/OpenMeshDLLMacros.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/compiler.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/config.h
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -30,7 +30,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.cc
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -56,7 +56,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -77,7 +77,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.cc
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -106,7 +106,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/color_cast.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_cast.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -145,7 +145,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -185,7 +185,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -224,7 +224,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -250,7 +250,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.cc
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -269,7 +269,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/BaseProperty.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Property.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -299,7 +299,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/color_cast.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_cast.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -337,7 +337,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -378,7 +378,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/vector_traits.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -416,7 +416,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/Config.hh
  ../src/OpenMesh/Core/../../OpenMesh/Tools/Utils/NumLimitsT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Geometry/VectorT_inc.hh
@@ -442,7 +442,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.cc
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/SingletonT.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/SR_binary.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/StoreRestore.hh
@@ -461,7 +461,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/GenProg.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Property.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/SR_binary.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/StoreRestore.hh
@@ -475,7 +475,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/BaseProperty.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Property.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/SR_binary.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/StoreRestore.hh
@@ -497,7 +497,7 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/GenProg.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Property.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/SR_binary.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/StoreRestore.hh
@@ -520,14 +520,14 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/GenProg.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Property.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/PropertyContainer.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/OpenMeshDLLMacros.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/compiler.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/config.h
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/mostream.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/omstream.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/SR_binary.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/IO/StoreRestore.hh
@@ -537,16 +537,16 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/mostream.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/omstream.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/BaseProperty.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/OpenMeshDLLMacros.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/compiler.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/config.h
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/Endian.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.o
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/OpenMeshDLLMacros.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/compiler.hh
  ../src/OpenMesh/Core/../../OpenMesh/Core/System/config.h
  ../src/OpenMesh/Core/../../OpenMesh/Core/Utils/RandomNumberGenerator.hh
- /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc

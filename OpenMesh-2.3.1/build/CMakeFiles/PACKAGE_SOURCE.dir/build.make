@@ -26,22 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
 
 # Utility rule file for PACKAGE_SOURCE.
 
@@ -49,7 +46,7 @@ CMAKE_BINARY_DIR = /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build
 include CMakeFiles/PACKAGE_SOURCE.dir/progress.make
 
 CMakeFiles/PACKAGE_SOURCE:
-	"/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
 
 PACKAGE_SOURCE: CMakeFiles/PACKAGE_SOURCE
 PACKAGE_SOURCE: CMakeFiles/PACKAGE_SOURCE.dir/build.make
@@ -64,6 +61,6 @@ CMakeFiles/PACKAGE_SOURCE.dir/clean:
 .PHONY : CMakeFiles/PACKAGE_SOURCE.dir/clean
 
 CMakeFiles/PACKAGE_SOURCE.dir/depend:
-	cd /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/PACKAGE_SOURCE.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/PACKAGE_SOURCE.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PACKAGE_SOURCE.dir/depend
 
