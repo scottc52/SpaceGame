@@ -169,7 +169,7 @@ int main(int argc, char *argv[]){
 				gwo->SetMesh(NULL);
 			}else{
 				gwo->SetMesh(tmp);
-			} 
+			}
 		} 
 		wobs++;
 		
