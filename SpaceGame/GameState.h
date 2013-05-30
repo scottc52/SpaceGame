@@ -12,6 +12,7 @@ class PSystems;
 #include "GameObject.h"
 #include "Render.h" 
 #include "Camera.h" 
+#include "GamePlayer.h"
 #include <list>
 #include "projectile_particles.h"
 
@@ -51,25 +52,29 @@ public:
  *
  */
 
+#define PLAYER_LOADOUT ("profileBegin.initP")
 #define INITIAL_STATE_LOAD ("initialState.stamac")
 
 class GameState{
 private:
+	static GameState* m_pinstance;
 	GameRoom* room; 
 	Camera *cam;
 	PSystems *ps;
 	GameState(){ps = new PSystems();}
-	static GameState* m_pinstance;
 	float gravity;
 	GameState(GameState const &stateMachine){}
 	void operator=(GameState const &stateMachine){}
-public: 
+	GamePlayer player;
+public:
+	static GameState* GameState::GetInstance();
 	void SetRoom(GameRoom *gr){this->room = gr;}
 	void SetCamera(Camera *cam){this->cam =  cam;}
 	GameRoom *GetRoom(){return this->room;}
 	Camera *GetCamera(){return this->cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
+	void GameState::PerformStateActions();
 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples
@@ -81,7 +86,6 @@ public:
 		ps->GetBullets()->push_back(bullet);}
 	void UpdateParticleSystems(int dt /*ms*/){ps->updateAll(dt);}
 	PSystems *GetParticleSystems(){return ps;} 
-	static GameState* GameState::GetInstance();
 	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);
 	
 }; 
