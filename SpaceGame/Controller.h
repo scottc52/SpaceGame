@@ -77,7 +77,7 @@ public:
 		
 		//render here
 		//Render::myDisplay(); 		
-		glutPostRedisplay();
+		Render::requestFrame();
 		double frame_time = GameTime::DiffTimeMS(ref);
 		//cout << "it took (but not really): " << frame_time << endl; 
 		int DroppedFrames = frame_time / MSPF;

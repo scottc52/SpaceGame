@@ -12,6 +12,9 @@
 //Allocate Statics
 GameState *Render::gameState = NULL;
 
+pthread_mutex_t Render::lock; 
+bool Render::drawing = false;
+bool Render::frameRequested = false;  
 
 //****************************************************
 // function prototypes (so they can be called before they are defined)
@@ -780,14 +783,29 @@ void Render::myDisplay() {
 
 	glFlush();
 	glutSwapBuffers();					// swap buffers (we earlier set double buffer)
+	drawing = false; 
 }
 
 //****************************************************
 // called by glut when there are no messages to handle
 //****************************************************
 void Render::myIdle() {
+	pthread_mutex_lock(&lock);
+	if(!drawing && frameRequested){ 
+		glutPostRedisplay(); // forces glut to call the display function (myDisplay())
+		frameRequested = false; 
+		drawing = true; 
+	}
+	pthread_mutex_unlock(&lock); 
 
-	//glutPostRedisplay(); // forces glut to call the display function (myDisplay())
+}
+
+void Render::requestFrame(){
+	pthread_mutex_lock(&lock);
+	if (frameRequested)
+		cerr<< "warning: frame dropped" << endl;
+	frameRequested = true; 
+	pthread_mutex_unlock(&lock); 
 }
 
 //****************************************************
@@ -1350,6 +1368,8 @@ void Render::GlutInitialize(){
 	//This initializes glut
 	glutGet(GLUT_ELAPSED_TIME); //certain implementations start time from when this is called.
 	lastHit = INT_MIN;
+
+	pthread_mutex_init(&lock, NULL);
 
 	//This tells glut to use a double-buffered window with red, green, and blue channels 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
