@@ -6,7 +6,7 @@
 #include "GameEventObject.h"
 #include "GameItem.h"
 
-class GameDoor : public GameEventObject{
+class GameSwitch : public GameEventObject{
 public:
 	void ActivateIfConditionsMet() {
 		// Only activate if not activated already...

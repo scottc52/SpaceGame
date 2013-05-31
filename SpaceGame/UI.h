@@ -79,7 +79,7 @@ public:
 		int aux; // specific to type
 		int modifier;
 		bool down; 
-		bool operator<(const Specifier &o);
+		bool operator<(const Specifier &o) const;
 		Specifier(EventType t, int a, int m, bool d):
 			mType(t), aux(a), modifier(m), down(d) 
 		{}

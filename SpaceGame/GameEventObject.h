@@ -4,14 +4,12 @@
 #define _GAMEEVENTOBJECT_H_
 
 #include "GameActiveObject.h"
-#include "GameState.h"
+class GameState;
 
 class GameEventObject : public GameActiveObject {
 public:
-	GameEventObject(GameState *gameState) {
-		isActivated = false;
-		this->gameState = gameState;
-	}
+	GameEventObject(GameState *gameState);
+	GameEventObject();
 	virtual void ActivateIfConditionsMet() = 0;
 	virtual void Activate() = 0;
 protected: 
