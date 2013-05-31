@@ -14,25 +14,36 @@ using namespace std;
 
 //initialization of static variables
 
-GameState *PCInputManager::gameState = NULL;
-const PCInputManager *PCInputManager::activeCommandSet = NULL;
-queue<PCInputManager::UIEvent *> PCInputManager::eventQueue;
+PCInputManager *PCInputManager::activeCommandSet = NULL;
+queue<UIEvent *> PCInputManager::eventQueue;
 pthread_mutex_t PCInputManager::eventQueue_mutex;
 
+void PCInputManager::pushState(){
+	ActionMap m(stateStack.back());
+	stateStack.push_back(m); 
+}
 
+void PCInputManager::popState(){
+	stateStack.pop_back(); 
+	if(stateStack.empty())
+		stateStack.push_back(ActionMap());
+}
+
+
+int PCInputManager::oldX = -1; 
+int PCInputManager::oldY = -1; 
 //public functions
 
-void PCInputManager::EnableUI(GameState *gameState) {
+void PCInputManager::EnableUI() {
 	glutKeyboardFunc(Keyboard);
-	//glutKeyboardUpFunc(Keyboard);
+	glutKeyboardUpFunc(KeyboardUp);
 	glutSpecialFunc(SpecialKey);
 	glutSpecialUpFunc(SpecialKeyUp);
-	//glutMouseFunc(MouseClick);
-	//glutPassiveMotionFunc(MousePassiveMotion);
-	//glutMotionFunc(MouseMotion);
+	glutMouseFunc(MouseClick);
+	glutPassiveMotionFunc(MousePassiveMotion);
+	glutMotionFunc(MouseMotion);
 	//glutMouseWheelFunc(MouseWheel);
 
-	PCInputManager::gameState = gameState;
 	pthread_mutex_init(&eventQueue_mutex, NULL);
 }
 
@@ -41,13 +52,11 @@ void PCInputManager::DisableUI() {
 	glutKeyboardUpFunc(NULL);
 	glutSpecialFunc(NULL);
 	glutSpecialUpFunc(NULL);
-	//glutMouseFunc(NULL);
-	//glutPassiveMotionFunc(NULL);
-	//glutMotionFunc(NULL);
-	//glutMouseWheelFunc(NULL);
+	glutMouseFunc(NULL);
+	glutPassiveMotionFunc(NULL);
+	glutMotionFunc(NULL);
+	glutMouseWheelFunc(NULL);
 
-	gameState = NULL;
-	activeCommandSet = NULL;
 	pthread_mutex_destroy(&eventQueue_mutex);
 }
 
@@ -58,29 +67,21 @@ bool PCInputManager::QueueEmpty() {
 	return isEmtpy;
 }
 
-void PCInputManager::ExecuteQueuedEvent() {
+UIEvent *PCInputManager::PopEvent() {
 	pthread_mutex_lock(&eventQueue_mutex);
 	UIEvent *nextEvent = eventQueue.front();
 	eventQueue.pop();
 	pthread_mutex_unlock(&eventQueue_mutex);
-	(*nextEvent)();
-	delete nextEvent;
+	return nextEvent; 
 }
 
-void PCInputManager::ExecutePendingEvents() {
-	list<UIEvent *> events;
+void PCInputManager::AllPending(list<UIEvent *> &buf) {
 	pthread_mutex_lock(&eventQueue_mutex);
 	while(!eventQueue.empty()){
-		events.push_back(eventQueue.front());
-		eventQueue.pop(); 
+		buf.push_back(eventQueue.front());
+		eventQueue.pop();
 	}
 	pthread_mutex_unlock(&eventQueue_mutex);
-	list<UIEvent *>::iterator it;
-	for (it = events.begin(); it != events.end(); it++){
-		UIEvent *ev = *it;
-		(*ev)();
-		delete ev;  
-	}
 } 
 
 void PCInputManager::FlushQueue() {
@@ -93,45 +94,102 @@ void PCInputManager::FlushQueue() {
 }
 
 PCInputManager::PCInputManager() {
-	stateStack.push_back(UIState());
+	stateStack.push_back(ActionMap());
 }
 
-void PCInputManager::setKeyCallback(int modifier, unsigned char key, bool pressDown,
-						void (*callback)(GameState *)) {
-	stateStack.back().keyboardCallbacks[
-		KeyPress::Command(modifier, key, pressDown)
-	] = callback;
+void PCInputManager::setKeyCallback(int modifier, unsigned char key, bool pressDown, int val) {
+	stateStack.back()[
+		UIEvent::Specifier(UIEvent::KEY, (int) key, modifier, pressDown)
+	] = val;
 }
 
-void PCInputManager::setSpecialKeyCallback(int modifier, int key, bool pressDown,
-										   void (*callback)(GameState *)) {
-	stateStack.back().specialKeyboardCallbacks[
-		SpecialKeyPress::Command(modifier, key, pressDown)
-	] = callback;
+void PCInputManager::setSpecialKeyCallback(int modifier, int key, bool pressDown, int val) {
+	stateStack.back()[
+		UIEvent::Specifier(UIEvent::SPECIAL_KEY, key, modifier, pressDown)
+	] = val;
 }
 
-void PCInputManager::setActiveCommandSet() const {
+void PCInputManager::setMouseButtonCallback(int modifier, int button, bool pressDown, int val){
+	stateStack.back()[
+		UIEvent::Specifier(UIEvent::CLICK, button, modifier, pressDown)
+	] = val; 
+}
+void PCInputManager::setMouseMoveCallback(int modifier, bool pressDown /*vs button up*/,int val){
+	stateStack.back()[
+		UIEvent::Specifier(UIEvent::MOVE, 0, modifier, pressDown)
+	] = val; 
+}
+
+
+void PCInputManager::setActiveCommandSet(){
 	activeCommandSet = this;
 }
 
 
-//glut callbacks
+UIEvent *PCInputManager::ProcessEvent(UIEvent::Specifier &s, int x, int y){
+	ActionMap *m = &(activeCommandSet->stateStack.back());
+	ActionMap::iterator it = m->find(s);
+	if(it == m->end())
+		return NULL;  
+	UIEvent * ev = new UIEvent(s);
+	ev->value = it->second; 
+	ev->pos = Vector2f(x, y);
+	return ev; 
+}
 
 void PCInputManager::Keyboard(unsigned char key, int x, int y) {
-	//TODO also, when calling the function, get the right one from the stack
-	Enqueue(new KeyPress(KeyPress::Command(glutGetModifiers(), key, true)));
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::KEY, (int) key, glutGetModifiers(), true); 
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	  
 }
 
 void PCInputManager::KeyboardUp(unsigned char key, int x, int y) {
-	Enqueue(new KeyPress(KeyPress::Command(glutGetModifiers(), key, false)));
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::KEY, (int) key, glutGetModifiers(), false);
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	
 }
 
 void PCInputManager::SpecialKey(int key, int x, int y) {
-	Enqueue(new SpecialKeyPress(SpecialKeyPress::Command(glutGetModifiers(), key, true)));
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::SPECIAL_KEY, (int) key, glutGetModifiers(), true);
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	
 }
 
 void PCInputManager::SpecialKeyUp(int key, int x, int y) {
-	Enqueue(new SpecialKeyPress(SpecialKeyPress::Command(glutGetModifiers(), key, false)));
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::SPECIAL_KEY, (int) key, glutGetModifiers(), false);
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	
+}
+
+void PCInputManager::MouseClick(int button, int state, int x, int y){
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::CLICK, button, glutGetModifiers(), (state == GLUT_DOWN));
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	
+}
+
+void PCInputManager::MouseMotion(int x, int y){
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::MOVE, 0, glutGetModifiers(), true);
+	UIEvent *ev = ProcessEvent(s, x, y);
+	if (!ev)
+		return;
+	if (oldX >= 0 && oldY>=0){
+		ev->delta = Vector2f(x-oldX, y-oldY);
+	} else {
+		ev->delta = Vector2f(0, 0);
+	}
+	oldX = x; 
+	oldY = y;
+	Enqueue(ev); 	
+}
+
+void PCInputManager::MousePassiveMotion(int x, int y){
+	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::MOVE, 0, glutGetModifiers(), false);
+	UIEvent *ev = ProcessEvent(s, x, y);
+	if(!ev)
+		return;
+	if (oldX >= 0 && oldY>=0){
+		ev->delta = Vector2f(x-oldX, y-oldY);
+	} else {
+		ev->delta = Vector2f(0, 0);
+	}
+	oldX = x; 
+	oldY = y; 
+	Enqueue(ev);
 }
 
 
@@ -144,40 +202,16 @@ void PCInputManager::Enqueue(UIEvent *uiEvent) {
 }
 
 
-//Command and Event structs
+//Command and Event struct
 
-bool PCInputManager::KeyPress::Command::operator<(const Command& other) const {
-	if(key == other.key) {
-		if(pressDown && other.pressDown) {
-			return modifier < other.modifier;
-		} else
-			return pressDown;
-	} else
-		return key < other.key;
-}
-
-void PCInputManager::KeyPress::operator()() const {
-	map<Command, Callback>::const_iterator callbackMapping = 
-		activeCommandSet->stateStack.back().keyboardCallbacks.find(cmd);
-	if(callbackMapping != activeCommandSet->stateStack.back().keyboardCallbacks.end()
-	   && callbackMapping->second != NULL)
-		callbackMapping->second(gameState);
-}
-
-bool PCInputManager::SpecialKeyPress::Command::operator<(const Command& other) const {
-	if(key == other.key) {
-		if(pressDown && other.pressDown) {
-			return modifier < other.modifier;
-		} else
-			return pressDown;
-	} else
-		return key < other.key;
-}
-
-void PCInputManager::SpecialKeyPress::operator()() const {
-	map<Command, Callback>::const_iterator callbackMapping = 
-		activeCommandSet->stateStack.back().specialKeyboardCallbacks.find(cmd);
-	if(callbackMapping != activeCommandSet->stateStack.back().specialKeyboardCallbacks.end()
-	   && callbackMapping->second != NULL)
-		callbackMapping->second(gameState);
+bool UIEvent::Specifier::operator<(const Specifier& other) {
+	if (mType != other.mType)
+		mType < other.mType;
+	if (aux != other.aux)
+		return aux < other.aux;
+	if (down != other.down)
+		return down;
+	if (modifier != other.modifier)
+		return modifier < other.modifier;
+	return false;  //equal
 }

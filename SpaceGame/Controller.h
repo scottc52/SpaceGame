@@ -25,6 +25,7 @@
 
 #include "TaskQueue.h"
 #include "GameDebug.h"
+#include "GameState.h"
 #include "UI.h"
 #include <ctime>
 #include "GameTime.h"
@@ -35,6 +36,7 @@
 
 
 using namespace std; 
+
 
 /**
 *
@@ -50,61 +52,13 @@ private:
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
 public:
 	/* 
-	polls events -- updates state 
-	main loop for drawing a frame -- updates state
+	polls events -- updates state -- updates geometry -- returns control to render
 	*/
-	//virtual void *run(void *aux){
-	virtual void run(){
-		double delta = GameTime::DiffTimeMS(ref);		
-		//cout << "Update Frame. dt: " << dt <<endl;
-		//cout << "TaskQueue overhead: " << delta  << endl;
-		//Poll events and update state 
-	 	GameTime::GameTimer t;// = GameTime::GetTime();  
-	 	//PCInputManager::ExecutePendingEvents(); 
-		//delta = GameTime::DiffTimeMS(t);
-		//cout<<"it took: " << delta << "ms to process events" << endl; 
-		
-		//AI updates
-
-		//animate here
-
-		//update particles
-		t = GameTime::GetTime(); 
-		state->UpdateParticleSystems(dt);
-		delta = GameTime::DiffTimeMS(t);
-		int len = state->GetParticleSystems()->GetBullets()->size();  	
-		cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
-		
-		//render here
-		//Render::myDisplay(); 		
-		Render::requestFrame();
-		double frame_time = GameTime::DiffTimeMS(ref);
-		
-		//cout << "it took (but not really): " << frame_time << endl; 
-		
-		int DroppedFrames = frame_time / MSPF;
-		int time_out = MSPF- frame_time; 
-		if (DroppedFrames){
-			time_out = 0;		
-		} 
-
-		 
-		glutTimerFunc(time_out, Controller::GlutSync, (int)time_out + frame_time); 
-	}
+	virtual void run();
 	
-	static void Initialize(TaskQueue *tq, GameState *gs){
-		Controller *gc = new Controller(tq, gs);
-		gameController = gc;   
-	}
+	static void Initialize(TaskQueue *tq, GameState *gs);
 
-	static void GlutSync(int dt){
-		GAME_DEBUG_ASSERT(gameController != NULL);
-		gameController->ref = GameTime::GetTime(); 
-		gameController->dt = dt;		
-		gameController->taskManager->enqueue(gameController);  
-	}
+	static void GlutSync(int dt);
 };
-
-Controller *Controller::gameController = NULL;
 
 #endif
