@@ -290,9 +290,14 @@ bool GameState::ReadStateFile(const char *fname){
 
 
 void GameState::PerformStateActions(){
-	double deltaTime = 1.0;
-	//To do: Get change in time.
+	//If save, handle save
+	//If change room, handle change room
+
+
+	//Player action
+	//AI Calls
 	//To do: Collision detection, update forces
+	//Camera movement 
 
 }
 
