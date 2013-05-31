@@ -211,7 +211,7 @@ bool UIEvent::Specifier::operator<(const Specifier& other) const {
 		return aux < other.aux;
 	if (down != other.down)
 		return down;
-	if (modifier != o.modifier)
-		return modifier < o.modifier;
+	if (modifier != other.modifier)
+		return modifier < other.modifier;
 	return false;  //equal
 }
