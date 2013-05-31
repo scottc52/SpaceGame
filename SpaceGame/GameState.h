@@ -4,17 +4,7 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 
-
-<<<<<<< HEAD
-///////////////////////USER COMMAND 
 #define USER_COMMAND_LOOK (1)
-=======
-///////////////////////USER COMMAND
-#define USER_COMMAND_LOOK_UP (1)
-#define USER_COMMAND_LOOK_DOWN (3)
-#define USER_COMMAND_LOOK_LEFT (2)
-#define USER_COMMAND_LOOK_RIGHT (4)
->>>>>>> 013d71096703a42b560dcd65f90ee7c30bed86f6
 #define USER_COMMAND_MOVE_FORWARD (5)
 #define USER_COMMAND_MOVE_BACKWARD (7)
 #define USER_COMMAND_STRAFE_LEFT (6)
