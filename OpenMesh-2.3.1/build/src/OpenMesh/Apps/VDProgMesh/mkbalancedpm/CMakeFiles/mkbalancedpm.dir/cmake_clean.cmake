@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o"
-  "mkbalancedpm.pdb"
-  "mkbalancedpm"
+  "../../../../../Build/bin/mkbalancedpm.pdb"
+  "../../../../../Build/bin/mkbalancedpm"
 )
 
 # Per-language clean rules from dependency scanning.

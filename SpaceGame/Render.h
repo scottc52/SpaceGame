@@ -38,7 +38,7 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-
+#include <pthread.h>
 
 using namespace std;
 using namespace Eigen;
@@ -51,7 +51,11 @@ using namespace Eigen;
 #define SHADERS_SUM5_FRAGMENT_FILE "../SpaceGame/shaders/sum5.f.glsl"
 #define SHADERS_SUMTEXTURES4_FRAGMENT_FILE "../SpaceGame/shaders/sumTextures4.f.glsl"
 class Render{
-	public:
+private: 
+	static pthread_mutex_t lock; 
+	static bool drawing; 
+	static bool frameRequested;  
+public:
 	static GameState *gameState;	
 	//initializer	
 	static void GlutInitialize();
@@ -63,6 +67,9 @@ class Render{
 	static void myReshape(int w, int h);
 	static void myDisplay();
 	static void myIdle();
+	//Events
+	static void requestFrame(); 
 	static void setHitTime(int t);
+	static void hitEffect();
 };
 #endif _RENDER_H_

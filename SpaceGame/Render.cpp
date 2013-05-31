@@ -12,6 +12,9 @@
 //Allocate Statics
 GameState *Render::gameState = NULL;
 
+pthread_mutex_t Render::lock; 
+bool Render::drawing = false;
+bool Render::frameRequested = false;  
 
 //****************************************************
 // function prototypes (so they can be called before they are defined)
@@ -52,7 +55,7 @@ int prevT; //time of previous myIdle call
 int lastHit;
 Vector3f cameraPos;
 float near_p, far_p;
-SmokyBullet *bullet = new SmokyBullet();
+//SmokyBullet *bullet = new SmokyBullet();
 
 int anti_alias = 2; // should be at least 1
 //TODO: if time, do proper anti-aliasing by multi_sampling and down sampling using a kernel (borrow shader from blur).
@@ -238,7 +241,7 @@ void setupCamera(){
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	float aspect_ratio = (float) w / (float) h;
-	float fieldOfView = cam->getHorizontalFieldOfView(); //TODO
+	float fieldOfView = cam->getVerticalFieldOfView(); //TODO
 	near_p = cam->getNearViewPlane();
 	far_p = cam->getFarViewPlane();
 	gluPerspective(fieldOfView, aspect_ratio, near_p, far_p);
@@ -264,8 +267,13 @@ void setupCamera(){
 	 	up[0], up[1], up[2]);
 	glDisable(GL_LIGHTING);
 }
-static void Render::setHitTime(int t){
+
+void Render::setHitTime(int t){
 	lastHit = t;
+}
+
+void Render::hitEffect(){
+	lastHit = glutGet(GLUT_ELAPSED_TIME);
 }
 
 void setupLighting(){
@@ -281,7 +289,7 @@ void setupLighting(){
 		//TODO: all these variables must depend on game room lights 
 		glEnable(gl_lights[0]);
 		GLfloat ambientlight[] = {0.3,0.3,0.3,1.0};
-		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientlight);
+		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, &ambientlight[0]);
 
 		//light colors
 		GLfloat ambientcolor[] = {0.2, 0.2, 0.2, 1.0};
@@ -291,20 +299,89 @@ void setupLighting(){
 		GLfloat specularcolor[] = {0.2, 0.2, 0.2, 1.0};
 		glLightfv(gl_lights[0], GL_SPECULAR, specularcolor);
 
-		GLfloat lightposition[] = {-30.0, -30.0, -30.0, 1.0};
+		GLfloat lightposition[] = {-1.0, 0.0, -30.0, 1.0};
 		if(true){ //positional
 			lightposition[3] = 1.0;
 		}else{//directional
 			lightposition[3] = 0.0;
 		}
-		glLightfv(gl_lights[0], GL_POSITION, lightposition);
-
+		glLightfv(gl_lights[0], GL_POSITION, &lightposition[0]);
+		glEnable(gl_lights[0]);
+		glEnable(GL_DEPTH_TEST);
 		if(false){ // should have a setting for this
 			GLfloat lightdirection[] = {1.0,1.0,1.0};
 			glLightfv(gl_lights[0], GL_SPOT_DIRECTION, lightdirection);
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
 	}
+}
+
+void bindMaterial(Material &material){
+	GLfloat ambientmat[] = { material.Ka[0], material.Ka[1], material.Ka[2], 1.0-material.Tr };
+	glMaterialfv(GL_FRONT, GL_AMBIENT, ambientmat);
+	GLfloat diffusemat[] = { material.Kd[0], material.Kd[1], material.Kd[2], 1.0-material.Tr };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffusemat);
+	GLfloat specularmat[] = { material.Ks[0], material.Ks[1], material.Ks[2], 1.0-material.Tr };
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specularmat);
+	GLfloat shinimat[] = {material.Ns};
+	glMaterialfv(GL_FRONT, GL_SHININESS, shinimat);
+	GLfloat emmisionmat[] = { material.Ke[0], material.Ke[1], material.Ke[2], 1.0-material.Tr };
+	glMaterialfv(GL_FRONT, GL_EMISSION, emmisionmat);
+}
+
+void drawTestPrism(){
+	glBegin(GL_TRIANGLES);
+		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
+
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(10.0f, 0, 0);
+
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(0, 0, 10.0f);
+		glVertex3f(0.0f, 0, 10.0);
+		glVertex3f(0.0f, 10.0f, 0);
+		glVertex3f(-10.0f, 0, 0);
+		glVertex3f(10.0f, 0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(0.0f, 10.0, 0);
+		glVertex3f(0.0f, 10.0, 0);
+		glVertex3f(0.0f, 0, 10.0f);
+		glVertex3f(10.0f, 0, 0);
+	glEnd();
+	glBegin(GL_LINES);
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f); 
+		glVertex3f(10.1f, 0.1, 0.1);
+		glVertex3f(0.1f, 0.0, 10.1f);
+
+		glVertex3f(10.0f, 0.1, 0.1);
+		glVertex3f(0.1, 10.1f, 0.1);
+		
+		glVertex3f(10.0f, 0.1, 0.1);
+		glVertex3f(-10.0f, 0.1, 0.1);
+
+		glVertex3f(0.1, 10.1f, 0.1);
+		glVertex3f(0.1, 0.1, 10.1f);
+
+		glVertex3f(0.1, 10.1f, 0.1);
+		glVertex3f(-10.1f, 0.1, 0.1);
+
+		glVertex3f(0.1, 0.1, 10.1f);
+		glVertex3f(-10.1f, 0.1, 0.1);
+	glEnd();
+
+
+
 }
 
 void drawFrame(){
@@ -332,16 +409,7 @@ void drawFrame(){
 		//set materials and textures
 		//TODO all material properties should be read in from object
 		Material material = exampleMaterial();
-		GLfloat ambientmat[] = { material.Ka[0], material.Ka[1], material.Ka[2], 1.0-material.Tr };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, ambientmat);
-		GLfloat diffusemat[] = { material.Kd[0], material.Kd[1], material.Kd[2], 1.0-material.Tr };
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, diffusemat);
-		GLfloat specularmat[] = { material.Ks[0], material.Ks[1], material.Ks[2], 1.0-material.Tr };
-		glMaterialfv(GL_FRONT, GL_SPECULAR, specularmat);
-		GLfloat shinimat[] = {material.Ns};
-		glMaterialfv(GL_FRONT, GL_SHININESS, shinimat);
-		GLfloat emmisionmat[] = { material.Ke[0], material.Ke[1], material.Ke[2], 1.0-material.Tr };
-		glMaterialfv(GL_FRONT, GL_EMISSION, emmisionmat);
+		//bindMaterial(material); 
 
 		bool useTexture = false; //TODO
 		if(useTexture){
@@ -366,14 +434,20 @@ void drawFrame(){
 			glEnable(GL_RESCALE_NORMAL);
 		}
 		glScalef(1.0f, 1.0, 1.0f);
+		drawTestPrism();
 		glBegin(GL_TRIANGLES);
+	
+		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
+
+		glVertex3f(10.0f, 0, 0);
+
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 3; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				if(false){ // should there be a setting for using face or vertex normals?
-					if(mesh->has_vertex_normals()){
+					if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
 						Vec3f avg =mesh->normal(v_handle);
 						glNormal3f(avg[0], avg[1], avg[2]);
 					}
@@ -618,7 +692,8 @@ void performBlur9(Surface *original, Surface *temporary, int numBuffers){
 void Render::myDisplay() {
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
-	GLfloat dt = (float)(glutGet(GLUT_ELAPSED_TIME) - lastHit);  
+	int t = glutGet(GLUT_ELAPSED_TIME);
+	GLfloat dt = (float)(t - lastHit);  
 	
 
 	bindSurface(&fbo0);
@@ -671,7 +746,7 @@ void Render::myDisplay() {
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();
-	setupLighting();	
+	//setupLighting();	
 	drawFrame();
 	glDisable(GL_LIGHTING);
 	drawBullets(false);
@@ -694,7 +769,7 @@ void Render::myDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
  
 	glUseProgram(program_postproc);
-	glUniform1f(uniform_hit_time_postproc, dt);
+	glUniform1f(uniform_hit_time_postproc, (dt>0)? dt : 100000);
 	glEnable(GL_TEXTURE_2D); 
 	glBindTexture(GL_TEXTURE_2D, fbo1.texture);
 	glUniform1i(uniform_source_postproc, /*GL_TEXTURE*/0);
@@ -708,14 +783,29 @@ void Render::myDisplay() {
 
 	glFlush();
 	glutSwapBuffers();					// swap buffers (we earlier set double buffer)
+	drawing = false; 
 }
 
 //****************************************************
 // called by glut when there are no messages to handle
 //****************************************************
 void Render::myIdle() {
+	pthread_mutex_lock(&lock);
+	if(!drawing && frameRequested){ 
+		glutPostRedisplay(); // forces glut to call the display function (myDisplay())
+		frameRequested = false; 
+		drawing = true; 
+	}
+	pthread_mutex_unlock(&lock); 
 
-	//glutPostRedisplay(); // forces glut to call the display function (myDisplay())
+}
+
+void Render::requestFrame(){
+	pthread_mutex_lock(&lock);
+	if (frameRequested)
+		cerr<< "warning: frame dropped" << endl;
+	frameRequested = true; 
+	pthread_mutex_unlock(&lock); 
 }
 
 //****************************************************
@@ -731,7 +821,7 @@ void Render::myKeyboard(unsigned char key, int x, int y){
 		Vector3f loc = Vector3f(0, -1, 4); //below camera
 		Vector3f vel = Vector3f(0.0, 0.0, -4.8);
 		Vector4f col = Vector4f(0.95, 0.0, 0.0, 0.5);
-		bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
+		//bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
 	}
 	else if (key == 'q' || key == 'Q') exit(0);
 	//glutPostRedisplay();
@@ -1278,6 +1368,8 @@ void Render::GlutInitialize(){
 	//This initializes glut
 	glutGet(GLUT_ELAPSED_TIME); //certain implementations start time from when this is called.
 	lastHit = INT_MIN;
+
+	pthread_mutex_init(&lock, NULL);
 
 	//This tells glut to use a double-buffered window with red, green, and blue channels 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);

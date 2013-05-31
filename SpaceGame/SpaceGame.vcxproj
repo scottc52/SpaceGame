@@ -81,7 +81,9 @@
   <ItemGroup>
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
+    <ClCompile Include="GamePlayer.cpp" />
     <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -106,6 +108,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectHeaderList.h" />
     <ClInclude Include="GamePhysics.h" />
+    <ClInclude Include="GamePlayer.h" />
     <ClInclude Include="GameRoom.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameTime.h" />

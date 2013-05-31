@@ -626,7 +626,7 @@ float.h
 OpenMesh/Utils/NumLimitsT.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
 OpenMesh/Core/System/config.h
 -
 algorithm
@@ -634,13 +634,13 @@ algorithm
 OpenMesh/Core/IO/BinaryHelper.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/IO/IOManager.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
 OpenMesh/Core/IO/OMFormat.hh
 -
 algorithm
@@ -648,7 +648,7 @@ algorithm
 iomanip
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/IO/reader/BaseReader.hh
@@ -664,7 +664,7 @@ ctype.h
 cctype
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
 OpenMesh/Core/IO/reader/OBJReader.hh
 -
 OpenMesh/Core/IO/IOManager.hh
@@ -684,7 +684,7 @@ cctype
 string.h
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/System/omstream.hh
@@ -716,7 +716,7 @@ cctype
 string.h
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
 fstream
 -
 OpenMesh/Core/System/config.h
@@ -730,7 +730,7 @@ OpenMesh/Core/IO/OMFormat.hh
 OpenMesh/Core/IO/reader/OMReader.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/System/omstream.hh
@@ -752,7 +752,7 @@ memory
 string.h
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
 map
 -
 float.h
@@ -772,7 +772,7 @@ OpenMesh/Core/System/omstream.hh
 OpenMesh/Core/IO/importer/BaseImporter.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/IO/writer/BaseWriter.hh
@@ -788,7 +788,7 @@ ctype.h
 cctype
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
 fstream
 -
 OpenMesh/Core/System/config.h
@@ -804,7 +804,7 @@ OpenMesh/Core/System/omstream.hh
 OpenMesh/Core/Utils/color_cast.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/System/omstream.hh
@@ -820,7 +820,7 @@ OpenMesh/Core/IO/writer/OFFWriter.hh
 OpenMesh/Core/IO/SR_store.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
 OpenMesh/Core/System/config.h
 -
 time.h
@@ -844,7 +844,7 @@ OpenMesh/Core/IO/exporter/BaseExporter.hh
 OpenMesh/Core/IO/writer/OMWriter.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
 OpenMesh/Core/System/config.h
 -
 OpenMesh/Core/System/omstream.hh
@@ -860,7 +860,7 @@ OpenMesh/Core/IO/writer/PLYWriter.hh
 OpenMesh/Core/IO/SR_store.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
 fstream
 -
 OpenMesh/Core/System/config.h
@@ -876,37 +876,37 @@ OpenMesh/Core/IO/IOManager.hh
 OpenMesh/Core/IO/writer/STLWriter.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
 OpenMesh/Core/Mesh/ArrayKernel.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
 OpenMesh/Core/Mesh/BaseKernel.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
 OpenMesh/Core/Mesh/PolyConnectivity.hh
 -
 set
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
 OpenMesh/Core/Mesh/TriConnectivity.hh
 -
 OpenMesh/Core/System/omstream.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
 OpenMesh/Core/System/omstream.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
 OpenMesh/Core/Utils/BaseProperty.hh
 -
 iostream
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
 iostream
 -
 algorithm
@@ -914,7 +914,7 @@ algorithm
 OpenMesh/Core/Utils/Endian.hh
 -
 
-/Users/jordandavidson/temp/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
 OpenMesh/Core/Utils/RandomNumberGenerator.hh
 -
 cstdlib

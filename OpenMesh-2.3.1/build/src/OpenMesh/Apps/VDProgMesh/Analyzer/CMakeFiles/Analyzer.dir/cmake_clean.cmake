@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/Analyzer.dir/vdpmanalyzer.cc.o"
-  "Analyzer.pdb"
-  "Analyzer"
+  "../../../../../Build/bin/Analyzer.pdb"
+  "../../../../../Build/bin/Analyzer"
 )
 
 # Per-language clean rules from dependency scanning.

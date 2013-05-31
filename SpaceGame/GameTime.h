@@ -11,13 +11,13 @@ namespace GameTime{
 #ifdef _WIN32
 #include "windows.h"
 typedef LARGE_INTEGER GameTimer;
-GameTimer GetTime(){
+inline GameTimer GetTime(){
 	GameTimer val;
 	QueryPerformanceCounter(&val);
 	return val;
 }
 
-double DiffTimeMS(GameTimer &a, GameTimer &b){
+inline double DiffTimeMS(GameTimer &a, GameTimer &b){
 	LARGE_INTEGER freq;
 	QueryPerformanceFrequency(&freq); 
 	return ((double)(a.QuadPart-b.QuadPart)) / ((double)freq.QuadPart)*((double)1000.0);
@@ -32,13 +32,13 @@ double DiffTimeMS(GameTimer &a, GameTimer &b){
 
 typedef timespec GameTimer;
 
-GameTimer GetTime(){
+inline GameTimer GetTime(){
 	GameTimer val;
 	clock_gettime(CLOCK_MONOTONIC, &val);
 	return val;  
 }
 
-double DiffTimeMS(GameTimer &a, GameTimer &b){
+inline double DiffTimeMS(GameTimer &a, GameTimer &b){
 	return ( ((double) a.tv_sec- b.tv_sec) *1000.0) 
 		+((double)(a.tv_nsec - b.tv_nsec))/((double)1000.0)/((double)1000.0) ;
 }
@@ -53,7 +53,7 @@ double DiffTimeMS(GameTimer &a, GameTimer &b){
 	
 	typedef timespec GameTimer;
 	
-	GameTimer GetTime(){
+	inline GameTimer GetTime(){
 		GameTimer val;
 		clock_serv_t cclock;
 		mach_timespec_t mts;
@@ -65,13 +65,13 @@ double DiffTimeMS(GameTimer &a, GameTimer &b){
 		return val;  
 	}
 	
-	double DiffTimeMS(GameTimer &a, GameTimer &b){
+	inline double DiffTimeMS(GameTimer &a, GameTimer &b){
 		return ( ((double) a.tv_sec- b.tv_sec) *1000.0) 
 		+((double)(a.tv_nsec - b.tv_nsec))/((double)1000.0)/((double)1000.0) ;
 	}
 #endif
 
-double DiffTimeMS(GameTimer &ref){
+inline double DiffTimeMS(GameTimer &ref){
 	GameTimer cur = GetTime(); 
 	return (DiffTimeMS(cur, ref));
 }

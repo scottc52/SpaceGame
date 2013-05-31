@@ -15,9 +15,11 @@ using namespace std;
 
 #define STATE_FILE_DELIM ('$')
 
-GameState *GameState::m_pinstance = NULL; 
+GameState* GameState::m_pinstance = NULL; 
 
-GameState *GameState::GetInstance(){if(!m_pinstance) m_pinstance = new GameState(); return m_pinstance;}
+GameState *GameState::GetInstance(){
+	if(!m_pinstance) m_pinstance = new GameState(); return m_pinstance;
+}
 
 void splitString(string &s, vector<string>& buff){
 	buff.clear(); 
@@ -275,6 +277,29 @@ bool GameState::ReadStateFile(const char *fname){
 	return true; 
 }
 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//     WRITE STATE
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//  STATE MACIHNE ITERATTION
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void GameState::PerformStateActions(){
+	//If save, handle save
+	//If change room, handle change room
+
+
+	//Player action
+	//AI Calls
+	//To do: Collision detection, update forces
+	//Camera movement 
+
+}
 
 /*
 bool GameRoom::WriteRoom(const char *fname, GameRoom& room){	
