@@ -1,72 +1,32 @@
-﻿Build started 5/30/2013 4:04:50 PM.
+﻿Build started 5/30/2013 5:01:10 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameActiveObject.cpp GameDebug.cpp GamePlayer.cpp GameRoom.cpp GameState.cpp main.cpp Render.cpp RoomBuilder.cpp UI.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt GameActiveObject.cpp GameDebug.cpp GamePlayer.cpp GameState.cpp Render.cpp RoomBuilder.cpp UI.cpp
          GameActiveObject.cpp
          GameDebug.cpp
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
          GamePlayer.cpp
-         GameRoom.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>GameRoom.cpp(69): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(75): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(84): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(85): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(86): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(87): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(88): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(89): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(90): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(91): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(92): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(93): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(94): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(95): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(115): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(116): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(117): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(118): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(119): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(120): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(121): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(122): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(137): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(138): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(139): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(141): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>GamePlayer.cpp(16): warning C4244: 'argument' : conversion from 'const double' to 'const float', possible loss of data
          GameState.cpp
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>GameState.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
      1>GameState.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-         main.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(83): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(84): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\Controller.h(88): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>main.cpp(122): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>main.cpp(123): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>main.cpp(224): warning C4305: 'initializing' : truncation from 'double' to 'float'
          Render.cpp
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>Render.cpp(38): warning C4305: '=' : truncation from 'double' to 'float'
-     1>Render.cpp(39): warning C4305: '=' : truncation from 'double' to 'float'
-     1>Render.cpp(288): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(292): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(294): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(296): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(317): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>Render.cpp(319): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>Render.cpp(321): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>Render.cpp(325): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>Render.cpp(361): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(41): warning C4305: '=' : truncation from 'double' to 'float'
+     1>Render.cpp(42): warning C4305: '=' : truncation from 'double' to 'float'
+     1>Render.cpp(291): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(295): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(297): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(299): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(320): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(322): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(324): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(328): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
      1>Render.cpp(364): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(365): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(367): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(368): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(370): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
@@ -75,10 +35,12 @@
      1>Render.cpp(374): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(376): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(377): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(544): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(708): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>Render.cpp(804): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>Render.cpp(805): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(379): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(380): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(547): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(711): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Render.cpp(822): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(823): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
                  c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
                  with
@@ -109,7 +71,7 @@
                  [
                      Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
                  ]
-                 Render.cpp(227) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
+                 Render.cpp(230) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
                  with
                  [
                      Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
@@ -124,7 +86,7 @@
                  [
                      Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
                  ]
-                 Render.cpp(115) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
+                 Render.cpp(118) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
          RoomBuilder.cpp
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(83): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(84): warning C4305: 'argument' : truncation from 'double' to 'const float'
@@ -148,12 +110,12 @@
          Release\TaskQueue.obj
          Release\UI.obj
          Generating code
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(973): warning C4715: 'loadFogProgram' : not all control paths return a value
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(861): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
+     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(991): warning C4715: 'loadFogProgram' : not all control paths return a value
+     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(879): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
          Finished generating code
          SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
      1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:28.50
+Time Elapsed 00:00:24.51
