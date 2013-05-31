@@ -6,14 +6,11 @@
 
 
 ///////////////////////USER COMMAND 
-#define USER_COMMAND_LOOK_UP (1)
-#define USER_COMMAND_LOOK_DOWN (3)
-#define USER_COMMAND_LOOK_LEFT (2)
-#define USER_COMMAND_LOOK_RIGHT (4)
+#define USER_COMMAND_LOOK (1)
 #define USER_COMMAND_MOVE_FORWARD (5)
-#define USER_COMMAND_MOVE_BACKWARD(7)
+#define USER_COMMAND_MOVE_BACKWARD (7)
 #define USER_COMMAND_STRAFE_LEFT (6)
-#define USER_COMMAND_STRAFE_RIGHT(8)
+#define USER_COMMAND_STRAFE_RIGHT (8)
 #define USER_COMMAND_FIRE_WEAPON (9)
 #define USER_COMMAND_SWITCH_WEAPON (10)
 #define USER_COMMAND_TOGGLE_ZOOM (11)
@@ -22,8 +19,6 @@
 #define USER_COMMAND_INVENTORY (14)
 #define USER_COMMAND_PAUSE_MENU (15)
 #define USER_COMMAND_ACTION_OR_CONFIRM (16)
-
-
 
 //forward declare; 
 class GameState;
@@ -95,7 +90,7 @@ public:
 	Camera *GetCamera(){return this->cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
-	void GameState::PerformStateActions();
+	void GameState::PerformStateActions(int input, Vec2f Minput);
 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples
