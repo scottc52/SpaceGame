@@ -204,12 +204,12 @@ void PCInputManager::Enqueue(UIEvent *uiEvent) {
 
 //Command and Event struct
 
-bool UIEvent::Specifier::operator<(const Specifier& o) const{
-	if (mType != o.mType)
-		return mType < o.mType;
-	if (aux != o.aux)
-		return aux < o.aux;
-	if (down != o.down)
+bool UIEvent::Specifier::operator<(const Specifier& other) const {
+	if (mType != other.mType)
+		return mType < other.mType;
+	if (aux != other.aux)
+		return aux < other.aux;
+	if (down != other.down)
 		return down;
 	if (modifier != o.modifier)
 		return modifier < o.modifier;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 5/31/2013 4:41:29 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -6,11 +7,26 @@
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(97): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\spacegame\GameState.h(98): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>main.cpp(232): warning C4305: 'initializing' : truncation from 'double' to 'float'
+=======
+﻿Build started 5/31/2013 4:32:39 PM.
+     1>Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Owner\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp UI.cpp
+         main.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\GameState.h(102): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\GameState.h(103): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>main.cpp(232): warning C4305: 'initializing' : truncation from 'double' to 'float'
+         UI.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\GameState.h(102): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\GameState.h(103): warning C4305: 'argument' : truncation from 'double' to 'const float'
+>>>>>>> 1f250dcb6b1bd78f74e9d311ccd479e7c3987c59
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib glew32.lib freeglut.lib glu32.lib libOpenMeshCore.lib libOpenMeshTools.lib pthreadVCE2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Owner\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Owner\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib glew32.lib freeglut.lib glu32.lib libOpenMeshCore.lib libOpenMeshTools.lib pthreadVCE2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Owner\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Owner\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
          Release\Camera.obj
          Release\GameActiveObject.obj
          Release\GameDebug.obj
+         Release\GameDoor.obj
+         Release\GameEventObject.obj
          Release\GamePlayer.obj
          Release\GameRoom.obj
          Release\GameState.obj
@@ -22,13 +38,15 @@
          Release\shader_utils.obj
          Release\TaskQueue.obj
          Release\UI.obj
-         Generating code
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(991): warning C4715: 'loadFogProgram' : not all control paths return a value
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(879): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
-         Finished generating code
-         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+     1>main.obj : error LNK2001: unresolved external symbol "public: static void __cdecl Controller::GlutSync(int)" (?GlutSync@Controller@@SAXH@Z)
+     1>main.obj : error LNK2001: unresolved external symbol "public: static void __cdecl Controller::Initialize(class TaskQueue *,class GameState *)" (?Initialize@Controller@@SAXPAVTaskQueue@@PAVGameState@@@Z)
+     1>C:\Users\Owner\Documents\GitHub\SpaceGame\Release\SpaceGame.exe : fatal error LNK1120: 2 unresolved externals
+     1>Done Building Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:09.01
+=======
+Time Elapsed 00:00:19.67
+>>>>>>> 1f250dcb6b1bd78f74e9d311ccd479e7c3987c59
