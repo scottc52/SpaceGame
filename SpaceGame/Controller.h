@@ -56,13 +56,13 @@ public:
 	//virtual void *run(void *aux){
 	virtual void run(){
 		double delta = GameTime::DiffTimeMS(ref);		
-		cout << "Update Frame. dt: " << dt <<endl;
-		cout << "TaskQueue overhead: " << delta  << endl;
+		//cout << "Update Frame. dt: " << dt <<endl;
+		//cout << "TaskQueue overhead: " << delta  << endl;
 		//Poll events and update state 
-	 	GameTime::GameTimer t = GameTime::GetTime();  
-	 	PCInputManager::ExecutePendingEvents(); 
-		delta = GameTime::DiffTimeMS(t);
-		cout<<"it took: " << delta << "ms to process events" << endl; 
+	 	GameTime::GameTimer t;// = GameTime::GetTime();  
+	 	//PCInputManager::ExecutePendingEvents(); 
+		//delta = GameTime::DiffTimeMS(t);
+		//cout<<"it took: " << delta << "ms to process events" << endl; 
 		
 		//AI updates
 
@@ -79,12 +79,16 @@ public:
 		//Render::myDisplay(); 		
 		Render::requestFrame();
 		double frame_time = GameTime::DiffTimeMS(ref);
+		
 		//cout << "it took (but not really): " << frame_time << endl; 
+		
 		int DroppedFrames = frame_time / MSPF;
 		int time_out = MSPF- frame_time; 
 		if (DroppedFrames){
 			time_out = 0;		
-		}  
+		} 
+
+		 
 		glutTimerFunc(time_out, Controller::GlutSync, (int)time_out + frame_time); 
 	}
 	
