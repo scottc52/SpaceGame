@@ -30,27 +30,30 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	"/Applications/CMake 2.8-11.app/Contents/bin/ccmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -60,19 +63,19 @@ edit_cache/fast: edit_cache
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
@@ -82,7 +85,7 @@ install/local/fast: install/local
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
@@ -98,10 +101,20 @@ list_install_components:
 list_install_components/fast: list_install_components
 .PHONY : list_install_components/fast
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackSourceConfig.cmake /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -111,7 +124,7 @@ package_source/fast: package_source
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -120,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/progress.marks
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/progress.marks
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/clean
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/clean
 .PHONY : clean
 
 # The main clean target
@@ -136,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/preinstall
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/preinstall
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/rule:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/rule
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/rule
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/rule
 
 # Convenience name for target.
@@ -160,12 +173,12 @@ OpenMeshCore: src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/rule
 
 # fast build rule for target.
 OpenMeshCore/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build
 .PHONY : OpenMeshCore/fast
 
 # Convenience name for target.
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/rule:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/rule
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/rule
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/rule
 
 # Convenience name for target.
@@ -174,7 +187,7 @@ OpenMeshCoreStatic: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/rule
 
 # fast build rule for target.
 OpenMeshCoreStatic/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build
 .PHONY : OpenMeshCoreStatic/fast
 
 IO/BinaryHelper.o: IO/BinaryHelper.cc.o
@@ -182,8 +195,8 @@ IO/BinaryHelper.o: IO/BinaryHelper.cc.o
 
 # target to build an object file
 IO/BinaryHelper.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o
 .PHONY : IO/BinaryHelper.cc.o
 
 IO/BinaryHelper.i: IO/BinaryHelper.cc.i
@@ -191,8 +204,8 @@ IO/BinaryHelper.i: IO/BinaryHelper.cc.i
 
 # target to preprocess a source file
 IO/BinaryHelper.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i
 .PHONY : IO/BinaryHelper.cc.i
 
 IO/BinaryHelper.s: IO/BinaryHelper.cc.s
@@ -200,8 +213,8 @@ IO/BinaryHelper.s: IO/BinaryHelper.cc.s
 
 # target to generate assembly for a file
 IO/BinaryHelper.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/BinaryHelper.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s
 .PHONY : IO/BinaryHelper.cc.s
 
 IO/IOManager.o: IO/IOManager.cc.o
@@ -209,8 +222,8 @@ IO/IOManager.o: IO/IOManager.cc.o
 
 # target to build an object file
 IO/IOManager.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o
 .PHONY : IO/IOManager.cc.o
 
 IO/IOManager.i: IO/IOManager.cc.i
@@ -218,8 +231,8 @@ IO/IOManager.i: IO/IOManager.cc.i
 
 # target to preprocess a source file
 IO/IOManager.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i
 .PHONY : IO/IOManager.cc.i
 
 IO/IOManager.s: IO/IOManager.cc.s
@@ -227,8 +240,8 @@ IO/IOManager.s: IO/IOManager.cc.s
 
 # target to generate assembly for a file
 IO/IOManager.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/IOManager.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s
 .PHONY : IO/IOManager.cc.s
 
 IO/OMFormat.o: IO/OMFormat.cc.o
@@ -236,8 +249,8 @@ IO/OMFormat.o: IO/OMFormat.cc.o
 
 # target to build an object file
 IO/OMFormat.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o
 .PHONY : IO/OMFormat.cc.o
 
 IO/OMFormat.i: IO/OMFormat.cc.i
@@ -245,8 +258,8 @@ IO/OMFormat.i: IO/OMFormat.cc.i
 
 # target to preprocess a source file
 IO/OMFormat.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i
 .PHONY : IO/OMFormat.cc.i
 
 IO/OMFormat.s: IO/OMFormat.cc.s
@@ -254,8 +267,8 @@ IO/OMFormat.s: IO/OMFormat.cc.s
 
 # target to generate assembly for a file
 IO/OMFormat.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/OMFormat.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s
 .PHONY : IO/OMFormat.cc.s
 
 IO/reader/BaseReader.o: IO/reader/BaseReader.cc.o
@@ -263,8 +276,8 @@ IO/reader/BaseReader.o: IO/reader/BaseReader.cc.o
 
 # target to build an object file
 IO/reader/BaseReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o
 .PHONY : IO/reader/BaseReader.cc.o
 
 IO/reader/BaseReader.i: IO/reader/BaseReader.cc.i
@@ -272,8 +285,8 @@ IO/reader/BaseReader.i: IO/reader/BaseReader.cc.i
 
 # target to preprocess a source file
 IO/reader/BaseReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i
 .PHONY : IO/reader/BaseReader.cc.i
 
 IO/reader/BaseReader.s: IO/reader/BaseReader.cc.s
@@ -281,8 +294,8 @@ IO/reader/BaseReader.s: IO/reader/BaseReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/BaseReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/BaseReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s
 .PHONY : IO/reader/BaseReader.cc.s
 
 IO/reader/OBJReader.o: IO/reader/OBJReader.cc.o
@@ -290,8 +303,8 @@ IO/reader/OBJReader.o: IO/reader/OBJReader.cc.o
 
 # target to build an object file
 IO/reader/OBJReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
 .PHONY : IO/reader/OBJReader.cc.o
 
 IO/reader/OBJReader.i: IO/reader/OBJReader.cc.i
@@ -299,8 +312,8 @@ IO/reader/OBJReader.i: IO/reader/OBJReader.cc.i
 
 # target to preprocess a source file
 IO/reader/OBJReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i
 .PHONY : IO/reader/OBJReader.cc.i
 
 IO/reader/OBJReader.s: IO/reader/OBJReader.cc.s
@@ -308,8 +321,8 @@ IO/reader/OBJReader.s: IO/reader/OBJReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/OBJReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OBJReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s
 .PHONY : IO/reader/OBJReader.cc.s
 
 IO/reader/OFFReader.o: IO/reader/OFFReader.cc.o
@@ -317,8 +330,8 @@ IO/reader/OFFReader.o: IO/reader/OFFReader.cc.o
 
 # target to build an object file
 IO/reader/OFFReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
 .PHONY : IO/reader/OFFReader.cc.o
 
 IO/reader/OFFReader.i: IO/reader/OFFReader.cc.i
@@ -326,8 +339,8 @@ IO/reader/OFFReader.i: IO/reader/OFFReader.cc.i
 
 # target to preprocess a source file
 IO/reader/OFFReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i
 .PHONY : IO/reader/OFFReader.cc.i
 
 IO/reader/OFFReader.s: IO/reader/OFFReader.cc.s
@@ -335,8 +348,8 @@ IO/reader/OFFReader.s: IO/reader/OFFReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/OFFReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OFFReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s
 .PHONY : IO/reader/OFFReader.cc.s
 
 IO/reader/OMReader.o: IO/reader/OMReader.cc.o
@@ -344,8 +357,8 @@ IO/reader/OMReader.o: IO/reader/OMReader.cc.o
 
 # target to build an object file
 IO/reader/OMReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o
 .PHONY : IO/reader/OMReader.cc.o
 
 IO/reader/OMReader.i: IO/reader/OMReader.cc.i
@@ -353,8 +366,8 @@ IO/reader/OMReader.i: IO/reader/OMReader.cc.i
 
 # target to preprocess a source file
 IO/reader/OMReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i
 .PHONY : IO/reader/OMReader.cc.i
 
 IO/reader/OMReader.s: IO/reader/OMReader.cc.s
@@ -362,8 +375,8 @@ IO/reader/OMReader.s: IO/reader/OMReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/OMReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/OMReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s
 .PHONY : IO/reader/OMReader.cc.s
 
 IO/reader/PLYReader.o: IO/reader/PLYReader.cc.o
@@ -371,8 +384,8 @@ IO/reader/PLYReader.o: IO/reader/PLYReader.cc.o
 
 # target to build an object file
 IO/reader/PLYReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
 .PHONY : IO/reader/PLYReader.cc.o
 
 IO/reader/PLYReader.i: IO/reader/PLYReader.cc.i
@@ -380,8 +393,8 @@ IO/reader/PLYReader.i: IO/reader/PLYReader.cc.i
 
 # target to preprocess a source file
 IO/reader/PLYReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i
 .PHONY : IO/reader/PLYReader.cc.i
 
 IO/reader/PLYReader.s: IO/reader/PLYReader.cc.s
@@ -389,8 +402,8 @@ IO/reader/PLYReader.s: IO/reader/PLYReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/PLYReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/PLYReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s
 .PHONY : IO/reader/PLYReader.cc.s
 
 IO/reader/STLReader.o: IO/reader/STLReader.cc.o
@@ -398,8 +411,8 @@ IO/reader/STLReader.o: IO/reader/STLReader.cc.o
 
 # target to build an object file
 IO/reader/STLReader.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
 .PHONY : IO/reader/STLReader.cc.o
 
 IO/reader/STLReader.i: IO/reader/STLReader.cc.i
@@ -407,8 +420,8 @@ IO/reader/STLReader.i: IO/reader/STLReader.cc.i
 
 # target to preprocess a source file
 IO/reader/STLReader.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i
 .PHONY : IO/reader/STLReader.cc.i
 
 IO/reader/STLReader.s: IO/reader/STLReader.cc.s
@@ -416,8 +429,8 @@ IO/reader/STLReader.s: IO/reader/STLReader.cc.s
 
 # target to generate assembly for a file
 IO/reader/STLReader.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/reader/STLReader.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s
 .PHONY : IO/reader/STLReader.cc.s
 
 IO/writer/BaseWriter.o: IO/writer/BaseWriter.cc.o
@@ -425,8 +438,8 @@ IO/writer/BaseWriter.o: IO/writer/BaseWriter.cc.o
 
 # target to build an object file
 IO/writer/BaseWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o
 .PHONY : IO/writer/BaseWriter.cc.o
 
 IO/writer/BaseWriter.i: IO/writer/BaseWriter.cc.i
@@ -434,8 +447,8 @@ IO/writer/BaseWriter.i: IO/writer/BaseWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/BaseWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i
 .PHONY : IO/writer/BaseWriter.cc.i
 
 IO/writer/BaseWriter.s: IO/writer/BaseWriter.cc.s
@@ -443,8 +456,8 @@ IO/writer/BaseWriter.s: IO/writer/BaseWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/BaseWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/BaseWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s
 .PHONY : IO/writer/BaseWriter.cc.s
 
 IO/writer/OBJWriter.o: IO/writer/OBJWriter.cc.o
@@ -452,8 +465,8 @@ IO/writer/OBJWriter.o: IO/writer/OBJWriter.cc.o
 
 # target to build an object file
 IO/writer/OBJWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o
 .PHONY : IO/writer/OBJWriter.cc.o
 
 IO/writer/OBJWriter.i: IO/writer/OBJWriter.cc.i
@@ -461,8 +474,8 @@ IO/writer/OBJWriter.i: IO/writer/OBJWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/OBJWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i
 .PHONY : IO/writer/OBJWriter.cc.i
 
 IO/writer/OBJWriter.s: IO/writer/OBJWriter.cc.s
@@ -470,8 +483,8 @@ IO/writer/OBJWriter.s: IO/writer/OBJWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/OBJWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OBJWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s
 .PHONY : IO/writer/OBJWriter.cc.s
 
 IO/writer/OFFWriter.o: IO/writer/OFFWriter.cc.o
@@ -479,8 +492,8 @@ IO/writer/OFFWriter.o: IO/writer/OFFWriter.cc.o
 
 # target to build an object file
 IO/writer/OFFWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
 .PHONY : IO/writer/OFFWriter.cc.o
 
 IO/writer/OFFWriter.i: IO/writer/OFFWriter.cc.i
@@ -488,8 +501,8 @@ IO/writer/OFFWriter.i: IO/writer/OFFWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/OFFWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i
 .PHONY : IO/writer/OFFWriter.cc.i
 
 IO/writer/OFFWriter.s: IO/writer/OFFWriter.cc.s
@@ -497,8 +510,8 @@ IO/writer/OFFWriter.s: IO/writer/OFFWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/OFFWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OFFWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s
 .PHONY : IO/writer/OFFWriter.cc.s
 
 IO/writer/OMWriter.o: IO/writer/OMWriter.cc.o
@@ -506,8 +519,8 @@ IO/writer/OMWriter.o: IO/writer/OMWriter.cc.o
 
 # target to build an object file
 IO/writer/OMWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
 .PHONY : IO/writer/OMWriter.cc.o
 
 IO/writer/OMWriter.i: IO/writer/OMWriter.cc.i
@@ -515,8 +528,8 @@ IO/writer/OMWriter.i: IO/writer/OMWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/OMWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i
 .PHONY : IO/writer/OMWriter.cc.i
 
 IO/writer/OMWriter.s: IO/writer/OMWriter.cc.s
@@ -524,8 +537,8 @@ IO/writer/OMWriter.s: IO/writer/OMWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/OMWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/OMWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s
 .PHONY : IO/writer/OMWriter.cc.s
 
 IO/writer/PLYWriter.o: IO/writer/PLYWriter.cc.o
@@ -533,8 +546,8 @@ IO/writer/PLYWriter.o: IO/writer/PLYWriter.cc.o
 
 # target to build an object file
 IO/writer/PLYWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
 .PHONY : IO/writer/PLYWriter.cc.o
 
 IO/writer/PLYWriter.i: IO/writer/PLYWriter.cc.i
@@ -542,8 +555,8 @@ IO/writer/PLYWriter.i: IO/writer/PLYWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/PLYWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i
 .PHONY : IO/writer/PLYWriter.cc.i
 
 IO/writer/PLYWriter.s: IO/writer/PLYWriter.cc.s
@@ -551,8 +564,8 @@ IO/writer/PLYWriter.s: IO/writer/PLYWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/PLYWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/PLYWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s
 .PHONY : IO/writer/PLYWriter.cc.s
 
 IO/writer/STLWriter.o: IO/writer/STLWriter.cc.o
@@ -560,8 +573,8 @@ IO/writer/STLWriter.o: IO/writer/STLWriter.cc.o
 
 # target to build an object file
 IO/writer/STLWriter.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
 .PHONY : IO/writer/STLWriter.cc.o
 
 IO/writer/STLWriter.i: IO/writer/STLWriter.cc.i
@@ -569,8 +582,8 @@ IO/writer/STLWriter.i: IO/writer/STLWriter.cc.i
 
 # target to preprocess a source file
 IO/writer/STLWriter.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i
 .PHONY : IO/writer/STLWriter.cc.i
 
 IO/writer/STLWriter.s: IO/writer/STLWriter.cc.s
@@ -578,8 +591,8 @@ IO/writer/STLWriter.s: IO/writer/STLWriter.cc.s
 
 # target to generate assembly for a file
 IO/writer/STLWriter.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/IO/writer/STLWriter.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s
 .PHONY : IO/writer/STLWriter.cc.s
 
 Mesh/ArrayKernel.o: Mesh/ArrayKernel.cc.o
@@ -587,8 +600,8 @@ Mesh/ArrayKernel.o: Mesh/ArrayKernel.cc.o
 
 # target to build an object file
 Mesh/ArrayKernel.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o
 .PHONY : Mesh/ArrayKernel.cc.o
 
 Mesh/ArrayKernel.i: Mesh/ArrayKernel.cc.i
@@ -596,8 +609,8 @@ Mesh/ArrayKernel.i: Mesh/ArrayKernel.cc.i
 
 # target to preprocess a source file
 Mesh/ArrayKernel.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i
 .PHONY : Mesh/ArrayKernel.cc.i
 
 Mesh/ArrayKernel.s: Mesh/ArrayKernel.cc.s
@@ -605,8 +618,8 @@ Mesh/ArrayKernel.s: Mesh/ArrayKernel.cc.s
 
 # target to generate assembly for a file
 Mesh/ArrayKernel.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/ArrayKernel.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s
 .PHONY : Mesh/ArrayKernel.cc.s
 
 Mesh/BaseKernel.o: Mesh/BaseKernel.cc.o
@@ -614,8 +627,8 @@ Mesh/BaseKernel.o: Mesh/BaseKernel.cc.o
 
 # target to build an object file
 Mesh/BaseKernel.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o
 .PHONY : Mesh/BaseKernel.cc.o
 
 Mesh/BaseKernel.i: Mesh/BaseKernel.cc.i
@@ -623,8 +636,8 @@ Mesh/BaseKernel.i: Mesh/BaseKernel.cc.i
 
 # target to preprocess a source file
 Mesh/BaseKernel.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i
 .PHONY : Mesh/BaseKernel.cc.i
 
 Mesh/BaseKernel.s: Mesh/BaseKernel.cc.s
@@ -632,8 +645,8 @@ Mesh/BaseKernel.s: Mesh/BaseKernel.cc.s
 
 # target to generate assembly for a file
 Mesh/BaseKernel.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/BaseKernel.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s
 .PHONY : Mesh/BaseKernel.cc.s
 
 Mesh/PolyConnectivity.o: Mesh/PolyConnectivity.cc.o
@@ -641,8 +654,8 @@ Mesh/PolyConnectivity.o: Mesh/PolyConnectivity.cc.o
 
 # target to build an object file
 Mesh/PolyConnectivity.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o
 .PHONY : Mesh/PolyConnectivity.cc.o
 
 Mesh/PolyConnectivity.i: Mesh/PolyConnectivity.cc.i
@@ -650,8 +663,8 @@ Mesh/PolyConnectivity.i: Mesh/PolyConnectivity.cc.i
 
 # target to preprocess a source file
 Mesh/PolyConnectivity.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i
 .PHONY : Mesh/PolyConnectivity.cc.i
 
 Mesh/PolyConnectivity.s: Mesh/PolyConnectivity.cc.s
@@ -659,8 +672,8 @@ Mesh/PolyConnectivity.s: Mesh/PolyConnectivity.cc.s
 
 # target to generate assembly for a file
 Mesh/PolyConnectivity.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/PolyConnectivity.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s
 .PHONY : Mesh/PolyConnectivity.cc.s
 
 Mesh/TriConnectivity.o: Mesh/TriConnectivity.cc.o
@@ -668,8 +681,8 @@ Mesh/TriConnectivity.o: Mesh/TriConnectivity.cc.o
 
 # target to build an object file
 Mesh/TriConnectivity.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
 .PHONY : Mesh/TriConnectivity.cc.o
 
 Mesh/TriConnectivity.i: Mesh/TriConnectivity.cc.i
@@ -677,8 +690,8 @@ Mesh/TriConnectivity.i: Mesh/TriConnectivity.cc.i
 
 # target to preprocess a source file
 Mesh/TriConnectivity.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i
 .PHONY : Mesh/TriConnectivity.cc.i
 
 Mesh/TriConnectivity.s: Mesh/TriConnectivity.cc.s
@@ -686,8 +699,8 @@ Mesh/TriConnectivity.s: Mesh/TriConnectivity.cc.s
 
 # target to generate assembly for a file
 Mesh/TriConnectivity.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Mesh/TriConnectivity.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s
 .PHONY : Mesh/TriConnectivity.cc.s
 
 System/omstream.o: System/omstream.cc.o
@@ -695,8 +708,8 @@ System/omstream.o: System/omstream.cc.o
 
 # target to build an object file
 System/omstream.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o
 .PHONY : System/omstream.cc.o
 
 System/omstream.i: System/omstream.cc.i
@@ -704,8 +717,8 @@ System/omstream.i: System/omstream.cc.i
 
 # target to preprocess a source file
 System/omstream.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i
 .PHONY : System/omstream.cc.i
 
 System/omstream.s: System/omstream.cc.s
@@ -713,8 +726,8 @@ System/omstream.s: System/omstream.cc.s
 
 # target to generate assembly for a file
 System/omstream.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/System/omstream.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s
 .PHONY : System/omstream.cc.s
 
 Utils/BaseProperty.o: Utils/BaseProperty.cc.o
@@ -722,8 +735,8 @@ Utils/BaseProperty.o: Utils/BaseProperty.cc.o
 
 # target to build an object file
 Utils/BaseProperty.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
 .PHONY : Utils/BaseProperty.cc.o
 
 Utils/BaseProperty.i: Utils/BaseProperty.cc.i
@@ -731,8 +744,8 @@ Utils/BaseProperty.i: Utils/BaseProperty.cc.i
 
 # target to preprocess a source file
 Utils/BaseProperty.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i
 .PHONY : Utils/BaseProperty.cc.i
 
 Utils/BaseProperty.s: Utils/BaseProperty.cc.s
@@ -740,8 +753,8 @@ Utils/BaseProperty.s: Utils/BaseProperty.cc.s
 
 # target to generate assembly for a file
 Utils/BaseProperty.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s
 .PHONY : Utils/BaseProperty.cc.s
 
 Utils/Endian.o: Utils/Endian.cc.o
@@ -749,8 +762,8 @@ Utils/Endian.o: Utils/Endian.cc.o
 
 # target to build an object file
 Utils/Endian.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o
 .PHONY : Utils/Endian.cc.o
 
 Utils/Endian.i: Utils/Endian.cc.i
@@ -758,8 +771,8 @@ Utils/Endian.i: Utils/Endian.cc.i
 
 # target to preprocess a source file
 Utils/Endian.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i
 .PHONY : Utils/Endian.cc.i
 
 Utils/Endian.s: Utils/Endian.cc.s
@@ -767,8 +780,8 @@ Utils/Endian.s: Utils/Endian.cc.s
 
 # target to generate assembly for a file
 Utils/Endian.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s
 .PHONY : Utils/Endian.cc.s
 
 Utils/RandomNumberGenerator.o: Utils/RandomNumberGenerator.cc.o
@@ -776,8 +789,8 @@ Utils/RandomNumberGenerator.o: Utils/RandomNumberGenerator.cc.o
 
 # target to build an object file
 Utils/RandomNumberGenerator.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.o
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o
 .PHONY : Utils/RandomNumberGenerator.cc.o
 
 Utils/RandomNumberGenerator.i: Utils/RandomNumberGenerator.cc.i
@@ -785,8 +798,8 @@ Utils/RandomNumberGenerator.i: Utils/RandomNumberGenerator.cc.i
 
 # target to preprocess a source file
 Utils/RandomNumberGenerator.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i
 .PHONY : Utils/RandomNumberGenerator.cc.i
 
 Utils/RandomNumberGenerator.s: Utils/RandomNumberGenerator.cc.s
@@ -794,8 +807,8 @@ Utils/RandomNumberGenerator.s: Utils/RandomNumberGenerator.cc.s
 
 # target to generate assembly for a file
 Utils/RandomNumberGenerator.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s
 .PHONY : Utils/RandomNumberGenerator.cc.s
 
 # Help Target
@@ -811,6 +824,7 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... IO/BinaryHelper.o"
@@ -893,6 +907,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

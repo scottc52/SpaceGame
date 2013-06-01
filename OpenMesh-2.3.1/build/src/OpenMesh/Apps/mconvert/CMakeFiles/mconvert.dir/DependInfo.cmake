@@ -4,24 +4,20 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc" "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o"
+  "/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/mconvert/mconvert.cc" "/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir/mconvert.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 SET(CMAKE_TARGET_DEFINITIONS
-  "INCLUDE_TEMPLATES"
-  "INCLUDE_TEMPLATES"
-  "INCLUDE_TEMPLATES"
-  "INCLUDE_TEMPLATES"
-  "INCLUDE_TEMPLATES"
+  "ARCH_DARWIN"
   "INCLUDE_TEMPLATES"
   )
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/DependInfo.cmake"
-  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/DependInfo.cmake"
+  "/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/DependInfo.cmake"
+  "/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/DependInfo.cmake"
   )
 
 # The include file search paths:
