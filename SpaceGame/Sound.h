@@ -9,9 +9,13 @@ class Sound {
 public:
 	Sound(char* filename);
 	~Sound();
+
+	void Play();
+
 	static int InitializeSounds();
 	static void UninitializeSounds();
 private:
+	int channel;
 	Mix_Chunk *chunk;
 };
 

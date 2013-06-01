@@ -8,10 +8,21 @@
 
 Sound::Sound(char* filename) {
 	chunk = Mix_LoadWAV(filename);
+	channel = -1;
+	if (!chunk) {
+		printf("Sound error: could not load filename %s\n", filename);
+	}
 }
 
 Sound::~Sound() {
 	Mix_FreeChunk(chunk);
+}
+
+void Sound::Play() {
+	channel = Mix_PlayChannel(-1, chunk, 0);
+	if (channel == -1) {
+		printf("Couldn't play sound; no channel available or something\n");
+	}
 }
 
 int Sound::InitializeSounds() {
