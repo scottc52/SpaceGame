@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameDoor.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
     <ClCompile Include="shader_utils.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TaskQueue.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
@@ -123,6 +125,7 @@
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
     <ClInclude Include="shader_utils.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="TaskQueue.h" />
     <ClInclude Include="TextIOHelpers.h" />
     <ClInclude Include="UI.h" />

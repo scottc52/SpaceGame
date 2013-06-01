@@ -58,7 +58,7 @@ public:
 	
 	static void Initialize(TaskQueue *tq, GameState *gs);//{}
 
-	static void GlutSync(int dt);//{Render::requestFrame();}
+	static void GlutSync(int dt);
 };
 
 #endif

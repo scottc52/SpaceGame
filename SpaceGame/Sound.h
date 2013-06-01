@@ -12,7 +12,7 @@ public:
 	static int InitializeSounds();
 	static void UninitializeSounds();
 private:
-	Mix_Chunk *chunk;
+	//Mix_Chunk *chunk;
 };
 
 #endif
