@@ -866,7 +866,7 @@ OpenMesh/Core/System/OpenMeshDLLMacros.hh
 getopt.h
 -
 
-/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc
+/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc
 iostream
 -
 OpenMesh/Core/IO/MeshIO.hh

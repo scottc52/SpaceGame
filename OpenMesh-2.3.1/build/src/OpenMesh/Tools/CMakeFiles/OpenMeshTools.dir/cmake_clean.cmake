@@ -1,15 +1,15 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o"
   "CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.o"
   "CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.o"
+  "CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o"
+  "CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o"
-  "CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.o"
-  "../../../Build/lib/OpenMesh/libOpenMeshToolsd.pdb"
-  "../../../Build/lib/OpenMesh/libOpenMeshToolsd.so"
-  "../../../Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3"
+  "libOpenMeshToolsd.pdb"
+  "libOpenMeshToolsd.dylib"
+  "libOpenMeshToolsd.2.3.dylib"
 )
 
 # Per-language clean rules from dependency scanning.

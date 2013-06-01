@@ -69,6 +69,12 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> 8eb9fee6836df23ae97dcc02db86757e5b210d2b
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mesh.h">

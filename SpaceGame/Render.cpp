@@ -434,17 +434,12 @@ void drawFrame(){
 			glEnable(GL_RESCALE_NORMAL);
 		}
 		glScalef(1.0f, 1.0, 1.0f);
-		drawTestPrism();
-		glBegin(GL_TRIANGLES);
-	
-		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
-
-		glVertex3f(10.0f, 0, 0);
-
+		//drawTestPrism();
+		glBegin(GL_QUADS);
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
-			for(int v = 0; v< 3; v++){
+			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				if(false){ // should there be a setting for using face or vertex normals?
 					if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
@@ -511,7 +506,7 @@ void drawGlow(){
 		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
-		glBegin(GL_TRIANGLES);
+		glBegin(GL_QUADS);
 		if(true){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
@@ -521,7 +516,7 @@ void drawGlow(){
 		for (MyMesh::FaceIter it = mesh->faces_begin(); it != mesh->faces_end(); ++it) {
 			//assuming triangular meshes
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
-			for(int v = 0; v< 3; v++){
+			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				if(useTexture){
 					Vec2f texCoord; //TODO

@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameDoor.cpp" />

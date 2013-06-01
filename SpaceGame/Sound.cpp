@@ -1,6 +1,4 @@
 #include "Sound.h"
-#include "SDL_mixer.h"
-#include "SDL.h"
 #include <string>
 
 #define SOUND_STEREO 2
