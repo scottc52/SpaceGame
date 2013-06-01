@@ -92,4 +92,4 @@ src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivi
  ../src/OpenMesh/Apps/Subdivider/commandlineSubdivider/../../../../OpenMesh/Tools/Utils/NumLimitsT.hh
  ../src/OpenMesh/Apps/Subdivider/commandlineSubdivider/../../../../OpenMesh/Tools/Utils/Timer.hh
  ../src/OpenMesh/Apps/Subdivider/commandlineSubdivider/../../../../OpenMesh/Tools/Utils/getopt.h
- /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Subdivider/subdivider.cc
+ /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Subdivider/subdivider.cc

@@ -26,19 +26,22 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build
 
 # Include any dependencies generated for this target.
 include src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/depend.make
@@ -51,17 +54,17 @@ include src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/flags.make
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/flags.make
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o: ../src/OpenMesh/Apps/Dualizer/dualizer.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Dualizer.dir/dualizer.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Dualizer.dir/dualizer.cc.o -c /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Dualizer.dir/dualizer.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc > CMakeFiles/Dualizer.dir/dualizer.cc.i
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc > CMakeFiles/Dualizer.dir/dualizer.cc.i
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Dualizer.dir/dualizer.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc -o CMakeFiles/Dualizer.dir/dualizer.cc.s
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc -o CMakeFiles/Dualizer.dir/dualizer.cc.s
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o.requires:
 .PHONY : src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o.requires
@@ -79,27 +82,28 @@ Dualizer_OBJECTS = \
 # External object files for target Dualizer
 Dualizer_EXTERNAL_OBJECTS =
 
-Build/bin/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o
-Build/bin/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/build.make
-Build/bin/Dualizer: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
-Build/bin/Dualizer: Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3
-Build/bin/Dualizer: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
-Build/bin/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../../../../Build/bin/Dualizer"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Dualizer.dir/link.txt --verbose=$(VERBOSE)
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/build.make
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Tools/libOpenMeshToolsd.2.3.dylib
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
+src/OpenMesh/Apps/Dualizer/Dualizer: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable Dualizer"
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Dualizer.dir/link.txt --verbose=$(VERBOSE)
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E copy_if_different /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer/./Dualizer /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/Build/bin/Dualizer
 
 # Rule to build all files generated by this target.
-src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/build: Build/bin/Dualizer
+src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/build: src/OpenMesh/Apps/Dualizer/Dualizer
 .PHONY : src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/build
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/requires: src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/dualizer.cc.o.requires
 .PHONY : src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/requires
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/clean:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && $(CMAKE_COMMAND) -P CMakeFiles/Dualizer.dir/cmake_clean.cmake
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer && $(CMAKE_COMMAND) -P CMakeFiles/Dualizer.dir/cmake_clean.cmake
 .PHONY : src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/clean
 
 src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/depend:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir/depend
 
