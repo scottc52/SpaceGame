@@ -41,6 +41,8 @@ private:
 	char name[MAX_NAME_CHARS];
 	string meshFile;
 
+	vector<Vec3f> boundingBoxUL;
+	vector<Vec3f> boundingBoxBR;
 	//TEXTURE POINTER txtptr;
 	
 	//Thread Lock (mutex_t ?) object lock;
@@ -53,6 +55,24 @@ private:
 		this->name[len] = '\0';  
 	} 
 public:
+
+	void GameObject::SetBoundingBox(const unsigned int& tier, const Vec3f& ul, const Vec3f& br){
+		boundingBoxUL[tier] = ul;
+		boundingBoxBR[tier] = br;
+	}
+
+	bool GameObject::GetBoundingBoxUL(const unsigned int& tier, Vec3f& passer){
+		if(tier >= boundingBoxUL.size()) return false;
+		passer = boundingBoxUL[tier];
+		return true;
+	}
+
+	bool GameObject::GetBoundingBoxBR(const unsigned int& tier, Vec3f& passer){
+		if(tier >= boundingBoxBR.size()) return false;
+		passer = boundingBoxBR[tier];
+		return true;
+	}
+
 
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")

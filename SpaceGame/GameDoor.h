@@ -4,16 +4,17 @@
  */
 #ifndef _GAMEDOOR_H_
 #define _GAMEDOOR_H_
-#include "GameObject.h"
+#include "GameEventObject.h"
 #include "GameItem.h"
 
-class GameDoor : public GameObject{
+class GameDoor : public GameEventObject{
 private:
 	char* nextRoom;
 	bool isUnlocked;
 	GameItem* requiredItem;
+	void Activate();
 public:
-	//To do: Fill in here.
+	void ActivateIfConditionsMet();
 
 };
 #endif _GAMEDOOR_H_
