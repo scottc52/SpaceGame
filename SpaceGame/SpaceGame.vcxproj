@@ -83,6 +83,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
+    <ClCompile Include="GameDoor.cpp" />
+    <ClCompile Include="GameEventObject.cpp" />
     <ClCompile Include="GamePlayer.cpp" />
     <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -103,6 +105,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameDebug.h" />
     <ClInclude Include="GameDoor.h" />
+    <ClInclude Include="GameEventObject.h" />
     <ClInclude Include="GameItem.h" />
     <ClInclude Include="GameLight.h" />
     <ClInclude Include="GameObject.h" />
@@ -111,6 +114,7 @@
     <ClInclude Include="GamePlayer.h" />
     <ClInclude Include="GameRoom.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameSwitch.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="GameWorldObject.h" />
     <ClInclude Include="LocationDefines.h" />

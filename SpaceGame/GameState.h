@@ -4,12 +4,7 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 
-
-///////////////////////USER COMMAND
-#define USER_COMMAND_LOOK_UP (1)
-#define USER_COMMAND_LOOK_DOWN (3)
-#define USER_COMMAND_LOOK_LEFT (2)
-#define USER_COMMAND_LOOK_RIGHT (4)
+#define USER_COMMAND_LOOK (1)
 #define USER_COMMAND_MOVE_FORWARD (5)
 #define USER_COMMAND_MOVE_BACKWARD (7)
 #define USER_COMMAND_STRAFE_LEFT (6)
@@ -93,7 +88,7 @@ public:
 	Camera *GetCamera(){return this->cam;} 
 	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
-	void GameState::PerformStateActions();
+	void GameState::PerformStateActions(int input, Vec2f Minput);
 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples

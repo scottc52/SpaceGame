@@ -289,7 +289,7 @@ bool GameState::ReadStateFile(const char *fname){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void GameState::PerformStateActions(){
+void GameState::PerformStateActions(int input, Vec2f Minput=Vec2f(0,0)){
 	//If save, handle save
 	//If change room, handle change room
 
