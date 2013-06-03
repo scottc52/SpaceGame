@@ -5,8 +5,8 @@
 #ifndef _SOUND_H
 #define _SOUND_H
 
-#include "SDL_mixer.h"
 #include "SDL.h"
+#include "SDL_mixer.h"
 
 class Sound {
 public:
@@ -14,6 +14,7 @@ public:
 	~Sound();
 
 	void Play();
+	void Stop();
 
 	static int InitializeSounds();
 	static void UninitializeSounds();

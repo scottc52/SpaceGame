@@ -25,7 +25,7 @@ inline bool writeVector3f(ostream &os, Vector3f pos, bool ifo = false){
 	return true;
 }
 
-inline bool writeVector3f(ostream &os, Vector4f pos, bool ifo = false){
+inline bool writeVector3f(ostream &os, Vec4f pos, bool ifo = false){
 	if(ifo) os << "#Vector4f as Vector3f" << endl <<"#\tx\ty\tz\t" << endl; 
 	os << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
 	return true;
@@ -39,7 +39,7 @@ inline bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 	mesh_name = (mesh_name)? mesh_name : "NULL";  
 	os << name << "\t" << mesh_name << "\t";
 	writeVector3f(os, o->GetPosition());
-	Vector4f rotation = o->GetRotation();
+	Vec4f rotation = o->GetRotation();
 	os<<rotation[0]<<"\t";
 	os<<rotation[1]<<"\t";
 	os<<rotation[2]<<"\t";

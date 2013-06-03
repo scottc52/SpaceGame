@@ -67,7 +67,7 @@ Surface fbo0, fbo1;
 Surface pass0[4];
 Surface pass1[4];
 GLuint vbo_fbo_vertices;
-GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc;
+GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc, uniform_damage_postproc;
 GLuint program_fog, uniform_source_fog, uniform_depth_fog, uniform_z_offset_fog, uniform_z_scale_fog, uniform_z_pow_fog, uniform_min_fog, uniform_max_fog, uniform_color_fog, uniform_z_near_fog, uniform_z_far_fog;
 //5x5 gaussian blur filter (using 3 lookups per pass)
 GLuint program_blur, uniform_source_blur, uniform_offsetx_blur, uniform_offsety_blur, uniform_coefficients_blur;
@@ -253,7 +253,6 @@ void setupCamera(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	
 
 
 	Vector3f pos = cam->getPivotPoint(); //TODO
@@ -279,6 +278,8 @@ void Render::hitEffect(){
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
+	static float lmodel_twoside[] = { GL_TRUE };
+	glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE , lmodel_twoside);
 	//The following two lines can make specular lighting more accurate, but is usually not necessary.
 	//glLightModeli(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
 	//glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
@@ -318,15 +319,15 @@ void setupLighting(){
 
 void bindMaterial(Material &material){
 	GLfloat ambientmat[] = { material.Ka[0], material.Ka[1], material.Ka[2], 1.0-material.Tr };
-	glMaterialfv(GL_FRONT, GL_AMBIENT, ambientmat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambientmat);
 	GLfloat diffusemat[] = { material.Kd[0], material.Kd[1], material.Kd[2], 1.0-material.Tr };
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffusemat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffusemat);
 	GLfloat specularmat[] = { material.Ks[0], material.Ks[1], material.Ks[2], 1.0-material.Tr };
-	glMaterialfv(GL_FRONT, GL_SPECULAR, specularmat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specularmat);
 	GLfloat shinimat[] = {material.Ns};
-	glMaterialfv(GL_FRONT, GL_SHININESS, shinimat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shinimat);
 	GLfloat emmisionmat[] = { material.Ke[0], material.Ke[1], material.Ke[2], 1.0-material.Tr };
-	glMaterialfv(GL_FRONT, GL_EMISSION, emmisionmat);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emmisionmat);
 }
 
 void drawTestPrism(){
@@ -423,8 +424,10 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0, 0, 0.0f); //move cube2 to the left
-		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		Vector3f Position = gwo->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
+		Vec4f Rotation = gwo->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
 		bool non_uniform_scaling = false;
 		if(non_uniform_scaling){
 			//This is here so scaling doesn't screw up normal vectors.
@@ -502,12 +505,14 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0f, 0.0f, 0.0f); //move cube2 to the left
-		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		Vector3f Position = gwo->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
+		Vec4f Rotation = gwo->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
-		if(true){
+		if(false){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
 			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
@@ -684,6 +689,49 @@ void performBlur9(Surface *original, Surface *temporary, int numBuffers){
     }
 }
 
+void drawCrossHair(float w, float h){
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-w/2.0, w/2.0, -h/2.0, h/2.0, -1, 1);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	glDisable(GL_TEXTURE_2D);
+	glUseProgram(0);
+	glEnable( GL_LINE_SMOOTH );
+	glEnable( GL_BLEND );
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glDisable(GL_LIGHTING);
+	glDisable(GL_DEPTH_TEST);
+	
+	//draw circle
+	glColor4f(0.0f, 0.0f, 0.0f, 0.4f);
+	glLineWidth(2.0);
+	glBegin(GL_LINE_LOOP);
+	float radius = 20;
+	for (int i=0; i < 360; i = i+10)
+	{
+		float degInRad = i*PI/180.0;
+		glVertex2f(cos(degInRad)*radius,sin(degInRad)*radius);
+	}
+	glEnd();
+	
+	//draw cross hair
+	glColor4f(0.0f, 0.0f, 0.0f, 0.4f);
+	glLineWidth(2.0);
+	float inRadius = 12;
+	float outRadius = 32;
+	glBegin(GL_LINES);
+		glVertex2f(inRadius, 0.0); glVertex2f(outRadius, 0.0);
+		glVertex2f(-inRadius, 0.0); glVertex2f(-outRadius, 0.0);
+		glVertex2f(0.0, inRadius); glVertex2f(0.0, outRadius);
+		glVertex2f(0.0, -inRadius); glVertex2f(0.0, -outRadius);
+	glEnd();
+
+	glDisable(GL_BLEND);
+}
+
 void Render::myDisplay() {
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
@@ -733,7 +781,7 @@ void Render::myDisplay() {
 	
 	//can do multiple passes
 	//performBlur(pass0, pass1, 4);
-	performBlur9(pass0, pass1, 4);
+	//performBlur9(pass0, pass1, 4);
 	performBlur9(pass0, pass1, 4);
 
 	//draw meshes
@@ -741,7 +789,7 @@ void Render::myDisplay() {
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();
-	//setupLighting();	
+	setupLighting();	
 	drawFrame();
 	glDisable(GL_LIGHTING);
 	drawBullets(false);
@@ -755,7 +803,8 @@ void Render::myDisplay() {
 		glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f);
 		glTexCoord2f(0.0f, 1.0f); glVertex2f(-1.0f, 1.0f);
     glEnd();
-	
+	drawCrossHair(w, h);
+
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
@@ -765,6 +814,8 @@ void Render::myDisplay() {
  
 	glUseProgram(program_postproc);
 	glUniform1f(uniform_hit_time_postproc, (dt>0)? dt : 100000);
+	float damage = 0;
+	glUniform1f(uniform_damage_postproc, min(damage/100.0, 1.0));
 	glEnable(GL_TEXTURE_2D); 
 	glBindTexture(GL_TEXTURE_2D, fbo1.texture);
 	glUniform1i(uniform_source_postproc, /*GL_TEXTURE*/0);
@@ -871,6 +922,14 @@ int loadPostProcessingProgram(){
 		fprintf(stderr, "Could not bind uniform %s\n", "fbo_texture");
 		return 0;
 	}
+
+	//uniform_name = "damage";
+	uniform_damage_postproc = glGetUniformLocation(program_postproc, "damage");
+	if (uniform_damage_postproc == -1) {
+		fprintf(stderr, "Could not bind uniform %s\n", "damage");
+		return 0;
+	}
+
 }
 
 int loadFogProgram(){
@@ -1342,7 +1401,7 @@ void effectsResourcesInitialize(){
         pass0[p].viewport.y = 0;
         pass0[p].viewport.width = w;
         pass0[p].viewport.height = h;
-        createSurface(pass0 + p, GL_FALSE, GL_FALSE, GL_TRUE, GL_FALSE);
+        createSurface(pass0 + p, GL_FALSE, GL_FALSE, GL_TRUE, GL_TRUE);
 
 		pass1[p].width = w;
         pass1[p].height = h;
@@ -1350,7 +1409,7 @@ void effectsResourcesInitialize(){
         pass1[p].viewport.y = 0;
         pass1[p].viewport.width = w;
         pass1[p].viewport.height = h;
-        createSurface(pass1 + p, GL_FALSE, GL_FALSE, GL_TRUE, GL_FALSE);
+        createSurface(pass1 + p, GL_FALSE, GL_FALSE, GL_TRUE, GL_TRUE);
 
         w = w >> 1;
         h = h >> 1;

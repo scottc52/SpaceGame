@@ -96,9 +96,9 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		if (v.size() > 14) // not yet used  
 			string info(v[14]); 		
 		Vector3f pos(x, y, z);
-		Vector4f amb(ra, ga, ba, 1.0f);
-		Vector4f spec(rs, gs, bs, 1.0f);
-		Vector4f diff(rd, gd, bd, 1.0f);
+		Vec4f amb(ra, ga, ba, 1.0f);
+		Vec4f spec(rs, gs, bs, 1.0f);
+		Vec4f diff(rd, gd, bd, 1.0f);
 		GameLight light;
 		light.SetPosition(pos);
 		light.SetName(v[1]);
@@ -122,7 +122,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		float scale = atof(v[10]);
 		GameWorldObject wobj;
 		Vector3f p(x,y,z);
-		Vector4f rot(angle, nX, nY, nZ);
+		Vec4f rot(angle, nX, nY, nZ);
 		wobj.SetPosition(p);
 		wobj.SetScale(scale);
 		wobj.SetRotation(rot);

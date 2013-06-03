@@ -35,7 +35,7 @@ private:
 	Vector3f position;
 
 	//In the form of quaternion data!
-	Vector4f rotation;
+	Vec4f rotation;
 	float scale;
 	bool isModified;
 	char name[MAX_NAME_CHARS];
@@ -116,8 +116,8 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vector3f &newPos){position = newPos;}
-	Vector4f GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Vector4f newRotation){rotation = newRotation;}
+	Vec4f GameObject::GetRotation(){return rotation;}
+	void GameObject::SetRotation(Vec4f newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}

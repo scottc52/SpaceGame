@@ -28,6 +28,7 @@
 #include "TextIOHelpers.h"
 #include "Controller.h"
 #include "UI.h"
+#include "Sound.h"
 
 #define NUM_THREADS ((unsigned int )8)
 
@@ -166,6 +167,15 @@ void RegisterControls(){
 //****************************************************
 // Main function, initialize program here
 //****************************************************
+
+// The following ugliness is necessary to prevent the SDL library
+// from attempting to use its main() function instead of our own.
+// At least, I think that's what's going on. Suffice it to say, it 
+// doesn't compile on VS without this.
+#ifdef _WIN32
+#undef main
+#endif
+
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
 	GameDebugger* debugger = GameDebugger::GetInstance();
@@ -189,19 +199,6 @@ int main(int argc, char *argv[]){
 	strcat(debugName, "debug.room");
 	GameRoom debug;
 	assert(GameRoom::LoadRoom(debugName, debug));
-	cout<<"Room name: "<<debug.GetName()<<endl;
-	GameObject* object = debug.GetWorldObject("monkeyHead");
-	assert(object != NULL);
-	cout<<"Object name: "<<object->GetName()<<endl;
-	cout<<"Object position: "<<object->GetPosition()<<endl;
-	cout<<"Object rotation: "<<object->GetRotation()<<endl;
-	cout<<"Object scale: "<< object->GetScale()<<endl;
-	cout<<"Object meshFile: "<< object->GetMeshFile()<<endl;
-	GameObject* light = debug.GetLight("ceiling");
-	//To do: differentiate at the room level between object types....
-	assert(light != NULL);
-	cout<<"Light name: "<<light->GetName()<<endl;
-
 	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
 	while(wobs != debug.GetRoomWorldObjectsEnd()){
 		//load starting meshes
@@ -248,7 +245,11 @@ int main(int argc, char *argv[]){
 	glutTimerFunc(0, Controller::GlutSync, 0);
 	//glutMotionFunc(mouseMoveCB);
 	//glutMouseFunc(mouseFunc);
+	Sound::InitializeSounds();
+	Sound *s = new Sound("sounds/test.wav");
+	//s->Play();
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
+	Sound::UninitializeSounds();
 	assert(debugger->CloseDebugFile());
 	return 0;
 }
