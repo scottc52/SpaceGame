@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/commandlineDecimater.dir/__/decimater.cc.o"
-  "commandlineDecimater.pdb"
-  "commandlineDecimater"
+  "../../../../../Build/bin/commandlineDecimater.pdb"
+  "../../../../../Build/bin/commandlineDecimater"
 )
 
 # Per-language clean rules from dependency scanning.

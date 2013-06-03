@@ -26,22 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
 
 # Include any dependencies generated for this target.
 include src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/depend.make
@@ -54,17 +51,17 @@ include src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/fl
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/flags.make
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o: ../src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o"
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o -c /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.i"
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc > CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.i
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc > CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.i
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.s"
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc -o CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.s
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc -o CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.s
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o.requires:
 .PHONY : src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o.requires
@@ -82,28 +79,27 @@ mkbalancedpm_OBJECTS = \
 # External object files for target mkbalancedpm
 mkbalancedpm_EXTERNAL_OBJECTS =
 
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/build.make
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Tools/libOpenMeshToolsd.2.3.dylib
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable mkbalancedpm"
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mkbalancedpm.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E copy_if_different /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/./mkbalancedpm /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/Build/bin/mkbalancedpm
+Build/bin/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o
+Build/bin/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/build.make
+Build/bin/mkbalancedpm: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/mkbalancedpm: Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3
+Build/bin/mkbalancedpm: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/mkbalancedpm: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../../../../../Build/bin/mkbalancedpm"
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mkbalancedpm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/build: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm
+src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/build: Build/bin/mkbalancedpm
 .PHONY : src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/build
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/requires: src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/mkbalancedpm.cc.o.requires
 .PHONY : src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/requires
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/clean:
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && $(CMAKE_COMMAND) -P CMakeFiles/mkbalancedpm.dir/cmake_clean.cmake
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm && $(CMAKE_COMMAND) -P CMakeFiles/mkbalancedpm.dir/cmake_clean.cmake
 .PHONY : src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/clean
 
 src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/depend:
-	cd /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm /Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir/depend
 

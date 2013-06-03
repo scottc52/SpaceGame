@@ -102,9 +102,9 @@ OpenMesh/Core/Geometry/VectorT.hh
 OpenMesh/Core/Geometry/Plane3d.hh
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.cc
 Gnuplot.hh
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.hh
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.hh
 stdarg.h
 -
 io.h
@@ -130,7 +130,7 @@ stdlib.h
 string.h
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.hh
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.hh
 OpenMesh/Core/System/config.hh
 -
 stdio.h
@@ -144,7 +144,7 @@ vector
 stdexcept
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.cc
 OpenMesh/Core/System/config.h
 -
 math.h
@@ -156,7 +156,7 @@ cmath
 cstdio
 -
 Timer.hh
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.hh
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.hh
 windows.h
 -
 time.h
@@ -170,7 +170,7 @@ unistd.h
 time.h
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.hh
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.hh
 OpenMesh/Core/System/config.hh
 -
 iostream
@@ -182,7 +182,7 @@ assert.h
 cassert
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/conio.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/conio.cc
 OpenMesh/Core/System/config.hh
 -
 OpenMesh/Tools/Utils/conio.hh
@@ -206,19 +206,19 @@ sys/time.h
 ctype.h
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VFront.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VFront.cc
 OpenMesh/Tools/VDPM/VFront.hh
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchy.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchy.cc
 OpenMesh/Tools/VDPM/VHierarchy.hh
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyNodeIndex.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyNodeIndex.cc
 OpenMesh/Tools/VDPM/VHierarchyNodeIndex.hh
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyWindow.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyWindow.cc
 OpenMesh/Tools/VDPM/VHierarchyWindow.hh
 -
 string.h
@@ -230,7 +230,7 @@ stdlib.h
 string.h
 -
 
-/Users/jordandavidson/SpaceGame/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/ViewingParameters.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/ViewingParameters.cc
 OpenMesh/Tools/VDPM/ViewingParameters.hh
 -
 
