@@ -16,8 +16,7 @@ void Controller::run(){
 	//delta = GameTime::DiffTimeMS(t);
 	//cout<<"it took: " << delta << "ms to process events" << endl; 
 	
-	//state->HandleInput(); 
-
+	state->PerformStateActions(events, dt); 
 	//AI updates
 
 	//animate here

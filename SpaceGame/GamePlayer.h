@@ -27,8 +27,8 @@ public:
 		activeWeapon = NULL;
 		primaryActive = true;
 	}
-	void GamePlayer::ApplyMovementForce(const Vec3f &force, const double& timeIncrement);
-	void GamePlayer::ApplyExternalForce(const Vec3f &force, const Vec3f& position);
+	void GamePlayer::ApplyMovementForce(const Vector3f &force, const double& timeIncrement);
+	void GamePlayer::ApplyExternalForce(const Vector3f &force, const Vector3f& position);
 	void GamePlayer::SetHealth(const int& h){health = h;}
 	int GamePlayer::GetHealth(){return health;}
 	GameItem* GamePlayer::GetPrimaryWeapon(){return PrimaryWeapon;}

@@ -7,14 +7,14 @@
 
 class GameCamera : public GameObject{
 private:
-	Vec3f upVec;
-	Vec3f viewVec;
+	Vector3f upVec;
+	Vector3f viewVec;
 public:
 	GameCamera::GameCamera(){}
 	GameCamera::~GameCamera(){}
-	Vec3f GameCamera::GetUpVector(){return upVec;}
-	void GameCamera::SetUpVector(Vec3f &v){upVec = v;}
-	Vec3f GameCamera::GetViewVector(){return viewVec;}
-	void GameCamera::SetViewVector(Vec3f &v){viewVec = v;}
+	Vector3f GameCamera::GetUpVector(){return upVec;}
+	void GameCamera::SetUpVector(Vector3f &v){upVec = v;}
+	Vector3f GameCamera::GetViewVector(){return viewVec;}
+	void GameCamera::SetViewVector(Vector3f &v){viewVec = v;}
 };
 #endif _GAMECAMERA_H_

@@ -18,10 +18,9 @@
 #ifndef _UI_H
 #define _UI_H
 
-#include "GameState.h"
-
 #ifdef _WIN32
 #include <Windows.h>
+
 //#include <XInput.h>
 #endif //_WIN32
 
@@ -29,7 +28,8 @@
 #include <pthread.h>
 #include <queue>
 #include <vector>
-
+#include <list>
+#include <Eigen/Core>
 /*
 * CLASS: PCInputManager
 * =============================
@@ -87,8 +87,8 @@ public:
 	UIEvent(Specifier &spc):specifier(spc){}   
 	~UIEvent() {}
 	int value; 
-	Vector2f pos; 
-	Vector2f delta;
+	Eigen::Vector2f pos; 
+	Eigen::Vector2f delta;
 };
 
 class PCInputManager {
@@ -98,7 +98,7 @@ public:
 	static void DisableUI();
 	static bool QueueEmpty();
 	static UIEvent *PopEvent();
-	static void AllPending(list<UIEvent *> &buf);
+	static void AllPending(std::list<UIEvent *> &buf);
 	static void FlushQueue();
 
 	//Constructor
@@ -127,7 +127,8 @@ private:
 	//enum MouseState {HOVER, DOWN, DOWN_OUT, UN_CAPTURED};
 
 	//static MouseState mouseState; 
-	static int oldX, oldY; 
+
+	static int oldX, oldY, dragOldX, dragOldY; 
 	static PCInputManager *activeCommandSet;
 
 	static std::queue<UIEvent *> eventQueue;
