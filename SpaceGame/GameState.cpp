@@ -83,7 +83,7 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			if(parsed.size() != 5){
 				GameDebugger::GetInstance()->WriteToDebugFile("Bad rotation input");
 			}else{
-				aobj->SetRotation(Vector4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
+				aobj->SetRotation(Vec4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
 			}
 			break;
 				 }

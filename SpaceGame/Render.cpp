@@ -422,7 +422,7 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		Vec3f Position = gwo->GetPosition();
+		Vector3f Position = gwo->GetPosition();
 		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
 		Vec4f Rotation = gwo->GetRotation();
 		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
@@ -503,7 +503,7 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		Vec3f Position = gwo->GetPosition();
+		Vector3f Position = gwo->GetPosition();
 		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
 		Vec4f Rotation = gwo->GetRotation();
 		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
