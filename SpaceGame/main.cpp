@@ -158,7 +158,7 @@ void RegisterControls(){
 	controls->setKeyCallback(0, 'q', true, USER_COMMAND_SWITCH_WEAPON);
 	controls->setMouseButtonCallback(0, UI_LEFT_BUTTON, true, USER_COMMAND_FIRE_WEAPON); 
 	controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_TOGGLE_ZOOM); 
-	controls->setMouseMoveCallback(0, false, USER_COMMAND_LOOK);
+	controls->setMouseMoveCallback(0, true, USER_COMMAND_LOOK_UP);
 	controls->setActiveCommandSet();
 	PCInputManager::EnableUI();   
 }

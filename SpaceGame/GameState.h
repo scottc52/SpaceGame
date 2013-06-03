@@ -4,7 +4,10 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 
-#define USER_COMMAND_LOOK (1)
+#define USER_COMMAND_LOOK_UP (1)
+#define USER_COMMAND_LOOK_RIGHT (2)
+#define USER_COMMAND_LOOK_DOWN (3)
+#define USER_COMMAND_LOOK_LEFT (4)
 #define USER_COMMAND_MOVE_FORWARD (5)
 #define USER_COMMAND_MOVE_BACKWARD (7)
 #define USER_COMMAND_STRAFE_LEFT (6)
@@ -29,6 +32,7 @@ class PSystems;
 #include "GamePlayer.h"
 #include <list>
 #include "projectile_particles.h"
+#include "UI.h"
 
 typedef class SmokyBullet SmokeyBullet; 
 
@@ -80,15 +84,16 @@ private:
 	GameState(GameState const &stateMachine){}
 	void operator=(GameState const &stateMachine){}
 	GamePlayer player;
+	void GameState::ProcessInput(list<UIEvent *> ev, double dt); 
 public:
 	static GameState* GameState::GetInstance();
 	void SetRoom(GameRoom *gr){this->room = gr;}
 	void SetCamera(Camera *cam){this->cam =  cam;}
 	GameRoom *GetRoom(){return this->room;}
 	Camera *GetCamera(){return this->cam;} 
-	Vec3f GetPlayerPosition(){return Vec3f(0, 0, 0);}
+	Vector3f GetPlayerPosition(){return Vector3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
-	void GameState::PerformStateActions(int input, Vec2f Minput);
+	void GameState::PerformStateActions(list<UIEvent *> ev, double dt);
 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples

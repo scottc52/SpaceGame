@@ -66,13 +66,13 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 
 		if (strcmp(v[1], "player")){ // ie not first-person 
 			cam = new GameCamera(); 
-			Vec3f pos (atof(v[1]), atof(v[2]), atof(v[3])); 
-			Vec3f view (atof(v[4]), atof(v[5]), atof(v[6]));
+			Vector3f pos (atof(v[1]), atof(v[2]), atof(v[3])); 
+			Vector3f view (atof(v[4]), atof(v[5]), atof(v[6]));
 			cam->SetPosition(pos);
 			cam->SetViewVector(view);  
 
 			if (v.size() >= 10){
-				Vec3f up (atof(v[7]), atof(v[8]), atof(v[9]));	
+				Vector3f up (atof(v[7]), atof(v[8]), atof(v[9]));	
 				cam->SetUpVector(up);				
 			}
 		}
@@ -95,10 +95,10 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		float bs = atof(v[13]);
 		if (v.size() > 14) // not yet used  
 			string info(v[14]); 		
-		Vec3f pos(x, y, z);
-		Vec4f amb(ra, ga, ba, 1.0f);
-		Vec4f spec(rs, gs, bs, 1.0f);
-		Vec4f diff(rd, gd, bd, 1.0f);
+		Vector3f pos(x, y, z);
+		Vector4f amb(ra, ga, ba, 1.0f);
+		Vector4f spec(rs, gs, bs, 1.0f);
+		Vector4f diff(rd, gd, bd, 1.0f);
 		GameLight light;
 		light.SetPosition(pos);
 		light.SetName(v[1]);
@@ -121,8 +121,8 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		float nZ = atof(v[9]);
 		float scale = atof(v[10]);
 		GameWorldObject wobj;
-		Vec3f p(x,y,z);
-		Vec4f rot(angle, nX, nY, nZ);
+		Vector3f p(x,y,z);
+		Vector4f rot(angle, nX, nY, nZ);
 		wobj.SetPosition(p);
 		wobj.SetScale(scale);
 		wobj.SetRotation(rot);
@@ -141,7 +141,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		float scale = atof(v[6]);
 
 		GameDoor door;
-		Vec3f p(x,y,z); 			
+		Vector3f p(x,y,z); 			
 		door.SetPosition(p);
 		door.SetScale(scale);
 		door.SetName(v[1]);

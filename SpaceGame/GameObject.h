@@ -32,17 +32,17 @@ class GameObject{
 private:
 	//Pointer to the GameMesh stored elsewhere
 	MyMesh* meshptr;
-	Vec3f position;
+	Vector3f position;
 
 	//In the form of quaternion data!
-	Vec4f rotation;
+	Vector4f rotation;
 	float scale;
 	bool isModified;
 	char name[MAX_NAME_CHARS];
 	string meshFile;
 
-	vector<Vec3f> boundingBoxUL;
-	vector<Vec3f> boundingBoxBR;
+	vector<Vector3f> boundingBoxUL;
+	vector<Vector3f> boundingBoxBR;
 	//TEXTURE POINTER txtptr;
 	
 	//Thread Lock (mutex_t ?) object lock;
@@ -56,18 +56,18 @@ private:
 	} 
 public:
 
-	void GameObject::SetBoundingBox(const unsigned int& tier, const Vec3f& ul, const Vec3f& br){
+	void GameObject::SetBoundingBox(const unsigned int& tier, const Vector3f& ul, const Vector3f& br){
 		boundingBoxUL[tier] = ul;
 		boundingBoxBR[tier] = br;
 	}
 
-	bool GameObject::GetBoundingBoxUL(const unsigned int& tier, Vec3f& passer){
+	bool GameObject::GetBoundingBoxUL(const unsigned int& tier, Vector3f& passer){
 		if(tier >= boundingBoxUL.size()) return false;
 		passer = boundingBoxUL[tier];
 		return true;
 	}
 
-	bool GameObject::GetBoundingBoxBR(const unsigned int& tier, Vec3f& passer){
+	bool GameObject::GetBoundingBoxBR(const unsigned int& tier, Vector3f& passer){
 		if(tier >= boundingBoxBR.size()) return false;
 		passer = boundingBoxBR[tier];
 		return true;
@@ -79,7 +79,7 @@ public:
 	{
 		setName(n);		
 		isModified = false;
-		position = Vec3f(0,0,0);
+		position = Vector3f(0,0,0);
 		scale = 1.f;
 		/*TO DO: Initialize lock*/
 	}
@@ -107,17 +107,17 @@ public:
 	void GameObject::SetMesh(MyMesh* NewMesh){meshptr = NewMesh;}
 
 	//Getters and Setters//////////////////////////////////
-	Vec3f GameObject::GetPosition(){return position;}
-	void GameObject::MovePositon(Vec3f &delta){position += delta;}
+	Vector3f GameObject::GetPosition(){return position;}
+	void GameObject::MovePositon(Vector3f &delta){position += delta;}
 	void GameObject::MovePositon(float x, float y, float z)
 	{
 		position[0] = position[0] + x;
 		position[1] = position[1] + y;
 		position[2] = position[2] + z;
 	}
-	void GameObject::SetPosition(Vec3f &newPos){position = newPos;}
-	Vec4f GameObject::GetRotation(){return rotation;}
-	void GameObject::SetRotation(Vec4f newRotation){rotation = newRotation;}
+	void GameObject::SetPosition(Vector3f &newPos){position = newPos;}
+	Vector4f GameObject::GetRotation(){return rotation;}
+	void GameObject::SetRotation(Vector4f newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}
 	void GameObject::SetScale(float &newScale){scale = newScale;}

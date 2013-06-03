@@ -64,9 +64,9 @@ void ConsoleCreateRoom(){
 					GameWorldObject wobj = GameWorldObject();
 					wobj.SetName(oName);
 					wobj.SetMeshFile(meshName);
-					Vec4f rot(angle, qX, qY, qZ);
+					Vector4f rot(angle, qX, qY, qZ);
 					wobj.SetRotation(rot);
-					Vec3f p(x,y,z);
+					Vector3f p(x,y,z);
 					wobj.SetPosition(p);
 					wobj.SetScale(scale);
 					//To do: Controller adds object into buffer?
@@ -101,9 +101,9 @@ void ConsoleCreateRoom(){
 					//To do: Additional data.
 					GameCamera cam;
 					cam.SetName(name);
-					Vec3f p(x,y,z);
-					Vec3f u(uX, uY, uZ);
-					Vec3f v(vX, vY, vZ); 
+					Vector3f p(x,y,z);
+					Vector3f u(uX, uY, uZ);
+					Vector3f v(vX, vY, vZ); 
 					cam.SetPosition(p);
 					cam.SetUpVector(u);
 					cam.SetViewVector(v);
