@@ -1,9 +1,113 @@
-﻿Build started 6/2/2013 10:45:53 PM.
-     1>Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         SpaceGame.vcxproj -> C:\Users\Owner\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
-     1>Done Building Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+﻿Build started 6/3/2013 3:09:26 AM.
+     1>Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Scott\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Render.cpp
+         Render.cpp
+     1>c:\users\scott\documents\github\spacegame\spacegame\GameState.h(102): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\scott\documents\github\spacegame\spacegame\GameState.h(103): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(41): warning C4305: '=' : truncation from 'double' to 'float'
+     1>Render.cpp(42): warning C4305: '=' : truncation from 'double' to 'float'
+     1>Render.cpp(292): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(296): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(298): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(300): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(321): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(323): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(325): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(329): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(365): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(368): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(369): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(371): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(372): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(374): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(375): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(377): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(378): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(380): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(381): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(547): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(715): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Render.cpp(754): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Render.cpp(806): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Render.cpp(818): warning C4244: 'argument' : conversion from 'const double' to 'GLfloat', possible loss of data
+     1>Render.cpp(868): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(869): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(397) : see reference to function template instantiation 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const' being compiled
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(204) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(189) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\scott\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(186) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 Render.cpp(230) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 C:\Users\Scott\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh/Core/Mesh/TriMeshT.hh(89) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 C:\Users\Scott\Documents\GitHub\SpaceGame\OpenMesh-2.3.1\src\OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh(93) : see reference to class template instantiation 'OpenMesh::TriMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 Render.cpp(118) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Scott\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCore.lib libOpenMeshCored.lib libOpenMeshTools.lib libOpenMeshToolsd.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
+         Release\Camera.obj
+         Release\Controller.obj
+         Release\GameActiveObject.obj
+         Release\GameDebug.obj
+         Release\GameDoor.obj
+         Release\GameEventObject.obj
+         Release\GamePlayer.obj
+         Release\GameRoom.obj
+         Release\GameState.obj
+         Release\main.obj
+         Release\Mesh.obj
+         Release\projectile_particles.obj
+         Release\Render.obj
+         Release\RoomBuilder.obj
+         Release\shader_utils.obj
+         Release\Sound.obj
+         Release\TaskQueue.obj
+         Release\UI.obj
+         "SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib"
+         "SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib"
+         Generating code
+     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(1045): warning C4715: 'loadFogProgram' : not all control paths return a value
+     1>c:\users\scott\documents\github\spacegame\spacegame\render.cpp(933): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
+         Finished generating code
+         SpaceGame.vcxproj -> C:\Users\Scott\Documents\GitHub\SpaceGame\Release\SpaceGame.exe
+     1>Done Building Project "C:\Users\Scott\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.26
+Time Elapsed 00:00:09.64
