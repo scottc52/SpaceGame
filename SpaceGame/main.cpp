@@ -189,19 +189,6 @@ int main(int argc, char *argv[]){
 	strcat(debugName, "debug.room");
 	GameRoom debug;
 	assert(GameRoom::LoadRoom(debugName, debug));
-	cout<<"Room name: "<<debug.GetName()<<endl;
-	GameObject* object = debug.GetWorldObject("monkeyHead");
-	assert(object != NULL);
-	cout<<"Object name: "<<object->GetName()<<endl;
-	cout<<"Object position: "<<object->GetPosition()<<endl;
-	cout<<"Object rotation: "<<object->GetRotation()<<endl;
-	cout<<"Object scale: "<< object->GetScale()<<endl;
-	cout<<"Object meshFile: "<< object->GetMeshFile()<<endl;
-	GameObject* light = debug.GetLight("ceiling");
-	//To do: differentiate at the room level between object types....
-	assert(light != NULL);
-	cout<<"Light name: "<<light->GetName()<<endl;
-
 	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
 	while(wobs != debug.GetRoomWorldObjectsEnd()){
 		//load starting meshes
