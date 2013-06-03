@@ -253,7 +253,6 @@ void setupCamera(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	
 
 
 	Vector3f pos = cam->getPivotPoint(); //TODO
@@ -423,8 +422,10 @@ void drawFrame(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0, 0, 0.0f); //move cube2 to the left
-		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		Vec3f Position = gwo->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
+		Vec4f Rotation = gwo->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
 		bool non_uniform_scaling = false;
 		if(non_uniform_scaling){
 			//This is here so scaling doesn't screw up normal vectors.
@@ -502,12 +503,14 @@ void drawGlow(){
 
 		//set transformations - opengl will apply these in REVERSE order.
 		glPushMatrix();
-		glTranslatef(0.0f, 0.0f, 0.0f); //move cube2 to the left
-		glRotatef(0, 1.0, 0.0, 0.0); // angle in degrees, x, y,z
+		Vec3f Position = gwo->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); //move cube2 to the left
+		Vec4f Rotation = gwo->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]); // angle in degrees, x, y,z
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
-		if(true){
+		if(false){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
 			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
@@ -741,7 +744,7 @@ void Render::myDisplay() {
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();
-	//setupLighting();	
+	setupLighting();	
 	drawFrame();
 	glDisable(GL_LIGHTING);
 	drawBullets(false);
