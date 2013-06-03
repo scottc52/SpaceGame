@@ -11,7 +11,7 @@
 #endif
 
 using namespace std;
-
+using namespace Eigen;
 //initialization of static variables
 
 PCInputManager *PCInputManager::activeCommandSet = NULL;
@@ -32,6 +32,8 @@ void PCInputManager::popState(){
 
 int PCInputManager::oldX = -1; 
 int PCInputManager::oldY = -1; 
+int PCInputManager::dragOldX = -1;
+int PCInputManager::dragOldY = -1;
 //public functions
 
 void PCInputManager::EnableUI() {
@@ -159,7 +161,10 @@ void PCInputManager::SpecialKeyUp(int key, int x, int y) {
 
 void PCInputManager::MouseClick(int button, int state, int x, int y){
 	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::CLICK, button, glutGetModifiers(), (state == GLUT_DOWN));
-	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);	
+	UIEvent *ev = ProcessEvent(s,x,y); if (ev) Enqueue(ev);
+	if (state == GLUT_UP){
+		dragOldY = dragOldX = -1; 
+	}	
 }
 
 void PCInputManager::MouseMotion(int x, int y){
@@ -167,13 +172,13 @@ void PCInputManager::MouseMotion(int x, int y){
 	UIEvent *ev = ProcessEvent(s, x, y);
 	if (!ev)
 		return;
-	if (oldX >= 0 && oldY>=0){
+	if (dragOldX >= 0 && dragOldY>=0){
 		ev->delta = Vector2f(x-oldX, y-oldY);
 	} else {
 		ev->delta = Vector2f(0, 0);
 	}
-	oldX = x; 
-	oldY = y;
+	dragOldX = oldX = x; 
+	dragOldY = oldY = y;
 	Enqueue(ev); 	
 }
 

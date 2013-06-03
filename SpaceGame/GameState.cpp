@@ -67,7 +67,7 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			if(parsed.size() != 4){
 				GameDebugger::GetInstance()->WriteToDebugFile("Bad position input");
 			}else{
-				Vec3f pos(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()));
+				Vector3f pos(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()));
 				aobj->SetPosition(pos);
 			}
 			break;
@@ -83,7 +83,7 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			if(parsed.size() != 5){
 				GameDebugger::GetInstance()->WriteToDebugFile("Bad rotation input");
 			}else{
-				aobj->SetRotation(Vec4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
+				aobj->SetRotation(Vector4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
 			}
 			break;
 				 }
@@ -101,7 +101,7 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			if(parsed.size() != 5){
 				GameDebugger::GetInstance()->WriteToDebugFile("Bad rotation input");
 			}else{
-				aobj->SetRotation(Vec4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
+				aobj->SetRotation(Vector4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
 			}
 			*/
 			break;
@@ -288,13 +288,73 @@ bool GameState::ReadStateFile(const char *fname){
 //  STATE MACIHNE ITERATTION
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
+#define LOOK_SENSITIVITY ((float)1.0f)
+#define MOVE_SENSITIVITY ((float)1.0f)
 
-void GameState::PerformStateActions(int input, Vec2f Minput=Vec2f(0,0)){
+void GameState::ProcessInput(list<UIEvent *> input, double dt){
+	list<UIEvent *>::iterator it = input.begin(); 
+	if (it == input.end())
+		return;
+	Vector2f deltaPos(0,0); 
+	Vector2f deltaView(0,0); 
+	while (it != input.end()){
+		UIEvent *ev = *it; 
+		int action = ev->value;
+		
+		if(action == USER_COMMAND_LOOK_UP || action == USER_COMMAND_LOOK_DOWN || 
+			action == USER_COMMAND_LOOK_RIGHT || action == USER_COMMAND_LOOK_LEFT){
+			deltaView += ev->delta;   
+		} else{
+			switch (action){
+				case (USER_COMMAND_STRAFE_RIGHT): {
+					deltaPos[0] += 1; 
+					break; } 
+				case (USER_COMMAND_STRAFE_LEFT):{
+					deltaPos[0] -= 1; 
+					break;}
+				case (USER_COMMAND_MOVE_FORWARD):{
+					deltaPos[1] += 1;
+					break;}
+				case (USER_COMMAND_MOVE_BACKWARD):{
+					deltaPos[1] -= 1; 
+					break;}
+				case (USER_COMMAND_FIRE_WEAPON):{ break;}
+				case (USER_COMMAND_SWITCH_WEAPON):{ break;}
+				case (USER_COMMAND_TOGGLE_ZOOM):{ break;}
+				case (USER_COMMAND_USE_WEAPON) :{ break;}
+				case (USER_COMMAND_JUMP) :{ break;}
+				case (USER_COMMAND_INVENTORY) :{ break;}
+				case (USER_COMMAND_PAUSE_MENU) :{ break;}
+				case (USER_COMMAND_ACTION_OR_CONFIRM):{ break;}
+			}
+		}
+
+		delete ev; 
+		it++; 
+	}
+	Vector3f nPos = cam->getPivotPoint(); 
+	Vector3f up = cam->getUpVector();
+	Vector3f dir = cam->getDirection(); 
+	Vector3f strafe(dir.cross(up));  
+	
+	nPos += strafe * deltaPos[0];
+	nPos += dir * deltaPos[1];
+	Matrix3f Rphi = AngleAxisf(deltaView[1]/480.0 * 80 / 180.0 * PI, strafe).matrix();
+	up = Rphi*up; 
+	dir = Rphi * dir;    
+	Matrix3f Rtheta = AngleAxisf(deltaView[0]/640.0 * 100 / 180 * PI, up).matrix();
+	dir = Rtheta * dir;
+	cam->setPivotPoint(nPos);
+	//cam->setUpVector(up);
+	cam->setDirection(dir);    
+}
+
+void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//If save, handle save
 	//If change room, handle change room
-
-
+	
 	//Player action
+	ProcessInput(input, dt);
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

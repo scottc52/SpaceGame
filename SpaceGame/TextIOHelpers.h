@@ -19,14 +19,14 @@ inline string pathCat(const char *root, const char *child){
 	return string (root) + string("/") + string(child);  
 }
 
-inline bool writeVec3f(ostream &os, Vec3f pos, bool ifo = false){
-	if(ifo) os <<"#Vec3f" << endl <<"#\tx\ty\tz\t" << endl;  	
+inline bool writeVector3f(ostream &os, Vector3f pos, bool ifo = false){
+	if(ifo) os <<"#Vector3f" << endl <<"#\tx\ty\tz\t" << endl;  	
 	os << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
 	return true;
 }
 
-inline bool writeVec3f(ostream &os, Vec4f pos, bool ifo = false){
-	if(ifo) os << "#Vec4f as Vec3f" << endl <<"#\tx\ty\tz\t" << endl; 
+inline bool writeVector3f(ostream &os, Vector4f pos, bool ifo = false){
+	if(ifo) os << "#Vector4f as Vector3f" << endl <<"#\tx\ty\tz\t" << endl; 
 	os << pos[0] << "\t" << pos[1] << "\t" << pos[2] << "\t";
 	return true;
 }
@@ -38,8 +38,8 @@ inline bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 	const char *mesh_name = o->GetMeshFile();
 	mesh_name = (mesh_name)? mesh_name : "NULL";  
 	os << name << "\t" << mesh_name << "\t";
-	writeVec3f(os, o->GetPosition());
-	Vec4f rotation = o->GetRotation();
+	writeVector3f(os, o->GetPosition());
+	Vector4f rotation = o->GetRotation();
 	os<<rotation[0]<<"\t";
 	os<<rotation[1]<<"\t";
 	os<<rotation[2]<<"\t";
@@ -50,17 +50,17 @@ inline bool writeGameObject(ostream &os, GameObject *o, bool ifo = false){
 
 inline bool writeGameLight(ostream &os, GameLight *l){
 	os << l->GetName() << "\t";
-	writeVec3f(os, l->GetPosition()); 
-	writeVec3f(os, l->GetAmbient());
-	writeVec3f(os, l->GetDiffuse());
-	writeVec3f(os, l->GetSpecular()); 
+	writeVector3f(os, l->GetPosition()); 
+	writeVector3f(os, l->GetAmbient());
+	writeVector3f(os, l->GetDiffuse());
+	writeVector3f(os, l->GetSpecular()); 
 	return true; 
 }
 
 inline bool writeGameCamera(ostream &os, GameCamera *c){
-	writeVec3f(os, c->GetPosition());
-	writeVec3f(os, c->GetViewVector());
-	writeVec3f(os, c->GetUpVector()); 	
+	writeVector3f(os, c->GetPosition());
+	writeVector3f(os, c->GetViewVector());
+	writeVector3f(os, c->GetUpVector()); 	
 	return true; 
 }
 
