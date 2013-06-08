@@ -51,9 +51,9 @@ void Sound::Update(Vector3f playerPosition, Vector3f playerLook, Vector3f player
 		playerToSound = position - playerPosition;
 	}
 	Mix_Volume(channel, ((float) MAX_VOLUME_INT) / playerToSound.norm());
-	Vector3f playerLeft = playerUp.cross3(playerLeft).normalized();
+	Vector3f playerLeft = playerUp.cross(playerLook).normalized();
 	float dot = playerLeft.dot(playerToSound.normalized());
-	Mix_SetPanning(channel, MAX_VOLUME_INT * (1.0f + dot), MAX_VOLUME_INT * (1.0.f - dot));
+	Mix_SetPanning(channel, MAX_VOLUME_INT * (1.0f + dot), MAX_VOLUME_INT * (1.0f - dot));
 	
 }
 

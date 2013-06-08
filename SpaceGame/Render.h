@@ -55,7 +55,10 @@ private:
 	static pthread_mutex_t lock; 
 	static bool drawing; 
 	static bool frameRequested;  
+	static bool pauseToggle;
+	static bool paused; 
 public:
+	static void pause(bool t = true);
 	static int w;
 	static int h;
 	static GameState *gameState;	
@@ -68,6 +71,7 @@ public:
 	static void myKeyboard(unsigned char key, int x, int y);  			
 	static void myReshape(int w, int h);
 	static void myDisplay();
+	static void defaultDisplay();
 	static void myIdle();
 	//Events
 	static void requestFrame(); 
