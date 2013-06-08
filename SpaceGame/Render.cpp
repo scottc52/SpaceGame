@@ -15,8 +15,10 @@ GameState *Render::gameState = NULL;
 pthread_mutex_t Render::lock; 
 bool Render::drawing = false;
 bool Render::frameRequested = false;  
-int Render::h = 0;
-int Render::w = 0;  
+bool Render::pauseToggle = false;
+bool Render::paused = false; 
+int Render::h = 600;
+int Render::w = 800;  
 //****************************************************
 // function prototypes (so they can be called before they are defined)
 //****************************************************
@@ -82,7 +84,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 void Render::myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
 	Render::w= w;
-	Render::h = h;
+	Render::h= h;
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
 	
@@ -735,7 +737,7 @@ void drawCrossHair(float w, float h){
 	glDisable(GL_BLEND);
 }
 
-void Render::myDisplay() {
+void Render::defaultDisplay(){
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	int t = glutGet(GLUT_ELAPSED_TIME);
@@ -828,10 +830,17 @@ void Render::myDisplay() {
 	glVertexAttribPointer(attribute_v_coord_postproc, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	glDisableVertexAttribArray(attribute_v_coord_postproc);
-	
-
 	glFlush();
-	glutSwapBuffers();					// swap buffers (we earlier set double buffer)
+	glutSwapBuffers();
+}
+
+void Render::myDisplay() {
+	if (gameState->paused){
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW); 
+	} else{
+		glutSetCursor(GLUT_CURSOR_NONE); 
+		defaultDisplay(); 
+	}					// swap buffers (we earlier set double buffer)
 	drawing = false; 
 }
 
@@ -849,12 +858,24 @@ void Render::myIdle() {
 
 }
 
+/**
+Event notifications... 
+**/
+
 void Render::requestFrame(){
 	pthread_mutex_lock(&lock);
 	if (frameRequested)
 		cerr<< "warning: frame dropped" << endl;
 	frameRequested = true; 
 	pthread_mutex_unlock(&lock); 
+}
+
+void Render::pause(bool t){
+	pthread_mutex_lock(&lock);
+	if (t != paused){
+		pauseToggle = true; 
+	}
+	pthread_mutex_unlock(&lock);
 }
 
 //****************************************************
@@ -1432,8 +1453,8 @@ void Render::GlutInitialize(){
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 
 	//The size and position of the window
-	glutInitWindowSize(640, 480);
-	glutInitWindowPosition(0, 0);
+	glutInitWindowSize(w, h);
+	glutInitWindowPosition(10, 10);
 	glutCreateWindow("SpaceGame!");
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear to black, fully transparent
@@ -1452,7 +1473,7 @@ void Render::GlutInitialize(){
 
 	//calling reshape before binding callbacks makes inconsistencies from 
 	//reshape operations apparent from the beginning
-	myReshape(640,480);
+	myReshape(w,h);
 	//setup glut callback funtions
 	glutDisplayFunc(myDisplay);				// function to run when its time to draw something
 	glutReshapeFunc(myReshape);				// function to run when the window gets resized

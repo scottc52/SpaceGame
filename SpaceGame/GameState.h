@@ -79,7 +79,7 @@ private:
 	GameRoom* room; 
 	Camera *cam;
 	PSystems *ps;
-	GameState(){ps = new PSystems();}
+	GameState(){ps = new PSystems(); paused=false;}
 	float gravity;
 	GameState(GameState const &stateMachine){}
 	void operator=(GameState const &stateMachine){}
@@ -94,7 +94,7 @@ public:
 	Vector3f GetPlayerPosition(){return Vector3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
 	void GameState::PerformStateActions(list<UIEvent *> ev, double dt);
-
+	bool paused; 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples
 	void FireBullet(){//fire bullet!

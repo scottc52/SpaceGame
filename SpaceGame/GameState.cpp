@@ -13,7 +13,7 @@
 using namespace std;
 
 #define STATE_FILE_DELIM ('$')
-bool paused = false; 
+
 GameState* GameState::m_pinstance = NULL; 
 
 GameState *GameState::GetInstance(){
@@ -328,7 +328,9 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					vel *= 8;
 					Vector4f col = Vector4f(0.5, 0.0, 0.45, 0.5);
 					SmokyBullet *bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
-					ps->GetBullets()->push_back(bullet);
+					if (ps->GetBullets()->size() < 2){ 
+						ps->GetBullets()->push_back(bullet);
+					}
 				}
 				case (USER_COMMAND_SWITCH_WEAPON):{ break;}
 				case (USER_COMMAND_TOGGLE_ZOOM):{ break;}
@@ -339,11 +341,9 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					if (paused){
 						paused = false; 
 						PCInputManager::setMouseLock(true);
-						glutSetCursor(GLUT_CURSOR_NONE); 
 					}else {
-						paused = false; 
-						PCInputManager::setMouseLock(false);
-						glutSetCursor(GLUT_CURSOR_LEFT_ARROW); 
+						paused = true; 
+						PCInputManager::setMouseLock(false); 
 					}
 					break;
 				}
