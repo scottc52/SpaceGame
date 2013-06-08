@@ -1,10 +1,5 @@
 #include "UI.h"
-
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <gl/freeglut.h>
-#endif
+#include "Render.h"
 
 #ifdef _WIN32
 #pragma comment(lib, "pthreadVCE2.lib")
@@ -29,12 +24,16 @@ void PCInputManager::popState(){
 		stateStack.push_back(ActionMap());
 }
 
-
+bool PCInputManager::mouseLocked = false; 
 int PCInputManager::oldX = -1; 
 int PCInputManager::oldY = -1; 
 int PCInputManager::dragOldX = -1;
 int PCInputManager::dragOldY = -1;
 //public functions
+
+void PCInputManager::setMouseLock(bool t){
+	mouseLocked = t; 
+}
 
 void PCInputManager::EnableUI() {
 	glutKeyboardFunc(Keyboard);
@@ -57,7 +56,7 @@ void PCInputManager::DisableUI() {
 	glutMouseFunc(NULL);
 	glutPassiveMotionFunc(NULL);
 	glutMotionFunc(NULL);
-	glutMouseWheelFunc(NULL);
+	//glutMouseWheelFunc(NULL);
 
 	pthread_mutex_destroy(&eventQueue_mutex);
 }
@@ -167,6 +166,20 @@ void PCInputManager::MouseClick(int button, int state, int x, int y){
 	}	
 }
 
+#define MOUSE_MARGIN 40
+
+void mouseBlock(int &x, int &y){
+
+	if (x > Render::w - MOUSE_MARGIN ||
+		x < MOUSE_MARGIN ||
+		y > Render::h - MOUSE_MARGIN ||
+		y < MOUSE_MARGIN){
+			x = Render::w / 2;
+			y = Render::h / 2; 
+			glutWarpPointer( x, y );
+	}
+}
+
 void PCInputManager::MouseMotion(int x, int y){
 	UIEvent::Specifier s = UIEvent::Specifier(UIEvent::MOVE, 0, glutGetModifiers(), true);
 	UIEvent *ev = ProcessEvent(s, x, y);
@@ -177,6 +190,9 @@ void PCInputManager::MouseMotion(int x, int y){
 	} else {
 		ev->delta = Vector2f(0, 0);
 	}
+
+	if (mouseLocked)
+		mouseBlock(x,y); 
 	dragOldX = oldX = x; 
 	dragOldY = oldY = y;
 	Enqueue(ev); 	
@@ -192,9 +208,12 @@ void PCInputManager::MousePassiveMotion(int x, int y){
 	} else {
 		ev->delta = Vector2f(0, 0);
 	}
+	if (mouseLocked)
+		mouseBlock(x, y); 
 	oldX = x; 
 	oldY = y; 
 	Enqueue(ev);
+
 }
 
 

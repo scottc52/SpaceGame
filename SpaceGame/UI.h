@@ -89,6 +89,7 @@ public:
 	int value; 
 	Eigen::Vector2f pos; 
 	Eigen::Vector2f delta;
+	
 };
 
 class PCInputManager {
@@ -100,7 +101,8 @@ public:
 	static UIEvent *PopEvent();
 	static void AllPending(std::list<UIEvent *> &buf);
 	static void FlushQueue();
-
+	
+	static void setMouseLock(bool t); 
 	//Constructor
 	PCInputManager();
 
@@ -123,6 +125,7 @@ private:
 	static void MouseClick(int button, int state, int x, int y);
 	static void MousePassiveMotion(int x, int y);
 	static void MouseMotion(int x, int y);
+	static bool mouseLocked;
 	//static void MouseWheel(int wheel, int direction, int x, int y);
 	//enum MouseState {HOVER, DOWN, DOWN_OUT, UN_CAPTURED};
 

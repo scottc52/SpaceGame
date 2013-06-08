@@ -10,11 +10,10 @@
 #include <string>
 #include "GameObjectHeaderList.h"
 #include "LocationDefines.h"
-
 using namespace std;
 
 #define STATE_FILE_DELIM ('$')
-
+bool paused = false; 
 GameState* GameState::m_pinstance = NULL; 
 
 GameState *GameState::GetInstance(){
@@ -296,7 +295,11 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	if (it == input.end())
 		return;
 	Vector2f deltaPos(0,0); 
-	Vector2f deltaView(0,0); 
+	Vector2f deltaView(0,0);
+	Vector3f nPos = cam->getPivotPoint(); 
+	Vector3f up = cam->getUpVector();
+	Vector3f dir = cam->getDirection(); 
+	Vector3f strafe(dir.cross(up)); 
 	while (it != input.end()){
 		UIEvent *ev = *it; 
 		int action = ev->value;
@@ -318,13 +321,32 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 				case (USER_COMMAND_MOVE_BACKWARD):{
 					deltaPos[1] -= 1; 
 					break;}
-				case (USER_COMMAND_FIRE_WEAPON):{ break;}
+				case (USER_COMMAND_FIRE_WEAPON):{ 
+					Vector3f loc(nPos);
+					loc += dir.cross(strafe); //below camera
+					Vector3f vel(dir);
+					vel *= 8;
+					Vector4f col = Vector4f(0.5, 0.0, 0.45, 0.5);
+					SmokyBullet *bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
+					ps->GetBullets()->push_back(bullet);
+				}
 				case (USER_COMMAND_SWITCH_WEAPON):{ break;}
 				case (USER_COMMAND_TOGGLE_ZOOM):{ break;}
 				case (USER_COMMAND_USE_WEAPON) :{ break;}
 				case (USER_COMMAND_JUMP) :{ break;}
 				case (USER_COMMAND_INVENTORY) :{ break;}
-				case (USER_COMMAND_PAUSE_MENU) :{ break;}
+				case (USER_COMMAND_PAUSE_MENU) :{ 
+					if (paused){
+						paused = false; 
+						PCInputManager::setMouseLock(true);
+						glutSetCursor(GLUT_CURSOR_NONE); 
+					}else {
+						paused = false; 
+						PCInputManager::setMouseLock(false);
+						glutSetCursor(GLUT_CURSOR_LEFT_ARROW); 
+					}
+					break;
+				}
 				case (USER_COMMAND_ACTION_OR_CONFIRM):{ break;}
 			}
 		}
@@ -332,10 +354,7 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 		delete ev; 
 		it++; 
 	}
-	Vector3f nPos = cam->getPivotPoint(); 
-	Vector3f up = cam->getUpVector();
-	Vector3f dir = cam->getDirection(); 
-	Vector3f strafe(dir.cross(up));  
+	
 	
 	nPos += strafe * deltaPos[0];
 	nPos += dir * deltaPos[1];

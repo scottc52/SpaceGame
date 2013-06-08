@@ -15,7 +15,8 @@ GameState *Render::gameState = NULL;
 pthread_mutex_t Render::lock; 
 bool Render::drawing = false;
 bool Render::frameRequested = false;  
-
+int Render::h = 0;
+int Render::w = 0;  
 //****************************************************
 // function prototypes (so they can be called before they are defined)
 //****************************************************
@@ -80,6 +81,8 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 //****************************************************
 void Render::myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
+	Render::w= w;
+	Render::h = h;
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
 	
@@ -1456,6 +1459,7 @@ void Render::GlutInitialize(){
 	glutIdleFunc(myIdle);				// function to run when not handling any other task
 	//glutMotionFunc(mouseMoved);
 	//glutMouseFunc(mouse);
-	glutKeyboardFunc(myKeyboard);
+	//glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
+	glutSetCursor(GLUT_CURSOR_NONE);
 }

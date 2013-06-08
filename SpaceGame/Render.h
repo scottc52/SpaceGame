@@ -56,6 +56,8 @@ private:
 	static bool drawing; 
 	static bool frameRequested;  
 public:
+	static int w;
+	static int h;
 	static GameState *gameState;	
 	//initializer	
 	static void GlutInitialize();

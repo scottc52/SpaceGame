@@ -148,7 +148,6 @@ that seems more appropriate.
 
 void RegisterControls(){
 	PCInputManager *controls = new PCInputManager();
-	controls->setKeyCallback(0, '\t', true, USER_COMMAND_PAUSE_MENU);
 	controls->setKeyCallback(0, ((unsigned char )13), true, USER_COMMAND_ACTION_OR_CONFIRM);
 	controls->setKeyCallback(0, 'e', true, USER_COMMAND_USE_WEAPON);
 	controls->setKeyCallback(0, 'a', true, USER_COMMAND_STRAFE_LEFT);
@@ -159,8 +158,10 @@ void RegisterControls(){
 	controls->setKeyCallback(0, 'q', true, USER_COMMAND_SWITCH_WEAPON);
 	controls->setMouseButtonCallback(0, UI_LEFT_BUTTON, true, USER_COMMAND_FIRE_WEAPON); 
 	controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_TOGGLE_ZOOM); 
-	controls->setMouseMoveCallback(0, true, USER_COMMAND_LOOK_UP);
+	controls->setMouseMoveCallback(0, false, USER_COMMAND_LOOK_UP);
+	controls->setKeyCallback(0, (unsigned char)(27) /*esc*/, true, USER_COMMAND_PAUSE_MENU);
 	controls->setActiveCommandSet();
+	PCInputManager::setMouseLock(true);
 	PCInputManager::EnableUI();   
 }
 
