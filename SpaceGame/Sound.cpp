@@ -3,13 +3,29 @@
 
 #define SOUND_STEREO 2
 #define SOUND_BUFFER_SIZE 1024
+#define MAX_VOLUME_INT 128
 
-Sound::Sound(char* filename) {
+Sound::Sound(char* filename, GameObject *object, Vector3f position, float maxVolume) {
 	chunk = Mix_LoadWAV(filename);
+	Mix_VolumeChunk(chunk, maxVolume * MAX_VOLUME_INT);
 	channel = -1;
 	if (!chunk) {
 		printf("Sound error: could not load filename %s\n", filename);
 	}
+	this->object = object;
+	this->position = position;
+}
+
+Sound::Sound(char* filename) {
+	Sound(filename, NULL, Vector3f(0.f, 0.f, 0.f), 1.0f);
+}
+
+Sound::Sound(char* filename, GameObject *object, float maxVolume) {
+	Sound(filename, object, Vector3f(0.f, 0.f, 0.f), maxVolume);
+}
+
+Sound::Sound(char* filename, Vector3f position, float maxVolume) {
+	Sound(filename, NULL, position, maxVolume);
 }
 
 Sound::~Sound() {
@@ -25,6 +41,20 @@ void Sound::Play() {
 	} else {
 		//printf("It should totally be playing the sound right now\n");
 	}
+}
+
+void Sound::Update(Vector3f playerPosition, Vector3f playerLook, Vector3f playerUp) {
+	Vector3f playerToSound;
+	if (object) {
+		playerToSound = object->GetPosition() - playerPosition;
+	} else {
+		playerToSound = position - playerPosition;
+	}
+	Mix_Volume(channel, ((float) MAX_VOLUME_INT) / playerToSound.norm());
+	Vector3f playerLeft = playerUp.cross3(playerLeft).normalized();
+	float dot = playerLeft.dot(playerToSound.normalized());
+	Mix_SetPanning(channel, MAX_VOLUME_INT * (1.0f + dot), MAX_VOLUME_INT * (1.0.f - dot));
+	
 }
 
 void Sound::Stop() {
