@@ -29,8 +29,11 @@
 #include "Controller.h"
 #include "UI.h"
 #include "Sound.h"
+#ifdef __linux__
+//#include "SOIL/SOIL.h"
+#else
 #include "SOIL.h"
-
+#endif
 #define NUM_THREADS ((unsigned int )8)
 
 /*if (key == 'p' || key == 'P') {
@@ -156,7 +159,7 @@ void RegisterControls(){
 	controls->setKeyCallback(0, 's', true, USER_COMMAND_MOVE_BACKWARD);
 	controls->setKeyCallback(0, 'w', true, USER_COMMAND_MOVE_FORWARD);
 	controls->setKeyCallback(0, ' ', true, USER_COMMAND_JUMP);
-	controls->setKeyCallback(0, 'q', true, USER_COMMAND_SWITCH_WEAPON);
+	controls->setKeyCallback(0, 'e', true, USER_COMMAND_SWITCH_WEAPON);
 	controls->setMouseButtonCallback(0, UI_LEFT_BUTTON, true, USER_COMMAND_FIRE_WEAPON); 
 	controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_TOGGLE_ZOOM); 
 	controls->setMouseMoveCallback(0, false, USER_COMMAND_LOOK_UP);

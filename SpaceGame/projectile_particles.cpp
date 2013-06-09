@@ -47,6 +47,7 @@ float distScale = 0.1; // we could pass in field-of-view to calculate this. But 
 		glBegin(GL_POINTS);
 			glVertex3f(location[0], location[1], location[2]);
 		glEnd();
+
 		//cout << "point drawn: \n" << location << "\n";
 	}
 	bool Particle::isDead(){
@@ -234,3 +235,52 @@ bool isParticleDead(Particle p){
 	bool SmokyBullet::isDead(){
 		return (hitT > hitLife && pSystem.isDead()) || (t > deathT);
 	}
+
+//Slug
+
+Slug::Slug(Vector3f &pos1, Vector3f &velocity1,  float r1, float g1, float b1, float a1) : Projectile(){
+	r = r1; 
+	g = g1;
+	b = b1;
+	a = a1;
+	position = pos1;
+	velocity = velocity1;
+	pTimeAlive = 0;
+	pTimeSinceRedraw = 0; 
+}
+
+void Slug::update(int dt){
+	Vector3f delta = velocity * (((double)dt)/1000.0);
+	position += delta; 
+	pTimeAlive += dt;
+	pTimeSinceRedraw += dt;
+}
+
+void Slug::hit(Vector3f loc)
+{
+	return;
+}
+
+void Slug::display(Vector3f cam, bool glow){
+	if (!isDead()){
+		glBegin(GL_LINES);
+		glColor4f(r, g, b, a);
+		glVertex3f(position[0], position[1], position[2]); 
+		Vector3f tmp = position - velocity * ((double)pTimeSinceRedraw)/1000.0; 
+		glVertex3f(tmp[0], tmp[1], tmp[2]);
+		pTimeSinceRedraw = 0;
+		glEnd(); 
+	}
+}
+#define MAX_TIME (4000)
+bool Slug::isDead(){
+	return (pTimeAlive > MAX_TIME); 
+}
+
+int Slug::timeAlive(){
+	return pTimeAlive;
+}
+
+Vector3f &Slug::getPosition(){
+	return position;
+}

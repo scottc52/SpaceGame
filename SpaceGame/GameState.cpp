@@ -299,29 +299,33 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	Vector3f nPos = cam->getPivotPoint(); 
 	Vector3f up = cam->getUpVector();
 	Vector3f dir = cam->getDirection(); 
-	Vector3f strafe(dir.cross(up).normalized()); 
+	Vector3f strafe(dir.cross(up).normalized());  
 	while (it != input.end()){
 		UIEvent *ev = *it; 
 		int action = ev->value;
-		
 		if(action == USER_COMMAND_LOOK_UP || action == USER_COMMAND_LOOK_DOWN || 
 			action == USER_COMMAND_LOOK_RIGHT || action == USER_COMMAND_LOOK_LEFT){
 			deltaView += ev->delta;   
 		} else{
 			switch (action){
 				case (USER_COMMAND_STRAFE_RIGHT): {
+					cout << "mR" << endl; 
 					deltaPos[0] += 1; 
 					break; } 
 				case (USER_COMMAND_STRAFE_LEFT):{
+					cout << "mL" << endl; 
 					deltaPos[0] -= 1; 
 					break;}
 				case (USER_COMMAND_MOVE_FORWARD):{
+					cout << "mF" << endl; 
 					deltaPos[1] += 1;
 					break;}
 				case (USER_COMMAND_MOVE_BACKWARD):{
+					cout << "mB" << endl; 
 					deltaPos[1] -= 1; 
 					break;}
 				case (USER_COMMAND_FIRE_WEAPON):{ 
+					cout << "firing" << endl;
 					Vector3f loc(nPos);
 					loc += dir.cross(strafe); //below camera
 					if (player.GetActiveWeapon()){
@@ -329,15 +333,25 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 						if (p)
 							ps->AddBullet(p);
 					} else {
-						cerr << 'error: no active weapon' << endl;
+						cerr << "error: no active weapon" << endl;
 					}
+					break;
 				}
-				case (USER_COMMAND_SWITCH_WEAPON):{ break;}
-				case (USER_COMMAND_TOGGLE_ZOOM):{ break;}
-				case (USER_COMMAND_USE_WEAPON) :{ break;}
-				case (USER_COMMAND_JUMP) :{ break;}
-				case (USER_COMMAND_INVENTORY) :{ break;}
+				case (USER_COMMAND_SWITCH_WEAPON):{ 
+					cout << "weapons swapped" << endl; 
+					player.SwitchWeapons();
+					break;}
+				case (USER_COMMAND_TOGGLE_ZOOM):{
+cout << "zooming" << endl; 
+				 break;}
+				case (USER_COMMAND_USE_WEAPON) :{
+					cout << "weapon used" << endl;  break;}
+				case (USER_COMMAND_JUMP) :{ 
+					cout << "Jumping" << endl; break;}
+				case (USER_COMMAND_INVENTORY) :{ 
+					cout << "INV accessed" << endl; break;}
 				case (USER_COMMAND_PAUSE_MENU) :{ 
+					cout << "Paused" << endl; 
 					if (paused){
 						paused = false; 
 						PCInputManager::setMouseLock(true);
@@ -347,7 +361,9 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					}
 					break;
 				}
-				case (USER_COMMAND_ACTION_OR_CONFIRM):{ break;}
+				case (USER_COMMAND_ACTION_OR_CONFIRM):{ 
+					cout << "Enter Pressed" << endl;
+					break;}
 			}
 		}
 
@@ -358,10 +374,10 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	
 	nPos += strafe * deltaPos[0];
 	nPos += dir * deltaPos[1];
-	Matrix3f Rphi = AngleAxisf(deltaView[1]/480.0 * 80 / 180.0 * PI, strafe).matrix();
+	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
 	up = Rphi*up; 
 	dir = Rphi * dir;    
-	Matrix3f Rtheta = AngleAxisf(deltaView[0]/640.0 * 100 / 180 * PI, up).matrix();
+	Matrix3f Rtheta = AngleAxisf(deltaView[0]/(double)Render::w * 100.0 / 180.0 * PI * LOOK_SENSITIVITY, up).matrix();
 	dir = Rtheta * dir;
 	cam->setPivotPoint(nPos);
 	//cam->setUpVector(up);

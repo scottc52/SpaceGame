@@ -21,8 +21,8 @@ private:
 	//GameInventory* inventory;
 public:
 	GamePlayer::GamePlayer(){
-		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 0.5f);
-		SecondaryWeapon = NULL;
+		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 1.0f);
+		SecondaryWeapon = new SlugBulletWeapon(25);
 		activeItem = NULL;
 		activeWeapon = PrimaryWeapon;
 		primaryActive = true;

@@ -5,11 +5,11 @@
 
 Controller *Controller::gameController = NULL;
 
+#define STATS 
+#undef STATS
+
 void Controller::run(){
-	double delta = GameTime::DiffTimeMS(ref);		
-	//cout << "Update Frame. dt: " << dt <<endl;
-	//cout << "TaskQueue overhead: " << delta  << endl;
-	//Poll events and update state 
+	double delta = GameTime::DiffTimeMS(ref);		 
  	GameTime::GameTimer t;// = GameTime::GetTime();  
  	list<UIEvent *> events; 
  	PCInputManager::AllPending(events); 
@@ -26,7 +26,7 @@ void Controller::run(){
 	state->UpdateParticleSystems(dt);
 	delta = GameTime::DiffTimeMS(t);
 	int len = state->GetParticleSystems()->GetBullets()->size();  	
-	cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
+	//cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
 	
 	//render here
 	//Render::myDisplay(); 		

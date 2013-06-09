@@ -55,6 +55,23 @@ public:
 	virtual Vector3f &getPosition()=0;  
 };
 
+class Slug : public Projectile{
+private: 
+	Vector3f position;
+	Vector3f velocity; 
+	float r, g, b, a;
+	int pTimeAlive;
+	int pTimeSinceRedraw;  
+public:
+	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
+	void hit(Vector3f loc); 
+	void display(Vector3f cam, bool glow = false);
+	bool isDead();
+	void update(int dt); 
+	int timeAlive();
+	Vector3f &getPosition(); 
+};
+
 class Particle{
 public:
 	Vector3f location;

@@ -403,7 +403,7 @@ void drawFrame(){
 		iter ++;
 		if (!mesh)
 			continue;  
-		cout << "rendering " << gwo->GetName() << endl;
+		//cout << "rendering " << gwo->GetName() << endl;
 		bool useCustomShader = false; //TODO
 		if(useCustomShader){ //check if you should use custom shader
 			GLuint programID = 1; //TODO
@@ -487,7 +487,7 @@ void drawGlow(){
 		iter ++;
 		if (!mesh)
 			continue;  
-		cout << "glowing " << gwo->GetName() << endl;
+		//cout << "glowing " << gwo->GetName() << endl;
 		bool useCustomShader = false; //TODO
 		if(useCustomShader){ //check if you should use custom shader
 			GLuint programID = 1; //TODO
@@ -558,10 +558,10 @@ void drawBullets(bool glow){
 		if(!curBullet->isDead() /*&& (glow || !curBullet->glow)*/){
 			//if(glow && !curBullet->glow){
 				//mask glow
-				glBlendFunc( GL_ZERO, GL_ONE_MINUS_SRC_ALPHA );
+				//glBlendFunc( GL_ZERO, GL_ONE_MINUS_SRC_ALPHA );
 				//glBlendFunc( GL_SRC_ALPHA, GL_SRC_ALPHA_SATURATE );
 			//}else{
-				//glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+				glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 				//glBlendFunc( GL_SRC_ALPHA, GL_ONE );
 			//}
 			curBullet->display(cameraPos, glow);
