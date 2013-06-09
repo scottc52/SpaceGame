@@ -299,7 +299,7 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	Vector3f nPos = cam->getPivotPoint(); 
 	Vector3f up = cam->getUpVector();
 	Vector3f dir = cam->getDirection(); 
-	Vector3f strafe(dir.cross(up)); 
+	Vector3f strafe(dir.cross(up).normalized()); 
 	while (it != input.end()){
 		UIEvent *ev = *it; 
 		int action = ev->value;
@@ -324,12 +324,12 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 				case (USER_COMMAND_FIRE_WEAPON):{ 
 					Vector3f loc(nPos);
 					loc += dir.cross(strafe); //below camera
-					Vector3f vel(dir);
-					vel *= 8;
-					Vector4f col = Vector4f(0.5, 0.0, 0.45, 0.5);
-					SmokyBullet *bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
-					if (ps->GetBullets()->size() < 2){ 
-						ps->GetBullets()->push_back(bullet);
+					if (player.GetActiveWeapon()){
+						Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
+						if (p)
+							ps->AddBullet(p);
+					} else {
+						cerr << 'error: no active weapon' << endl;
 					}
 				}
 				case (USER_COMMAND_SWITCH_WEAPON):{ break;}

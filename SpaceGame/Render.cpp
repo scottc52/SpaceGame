@@ -551,19 +551,19 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	list<SmokyBullet *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();   	
-	list<SmokyBullet *>::iterator it = bullets->begin(); 
+	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();   	
+	list<Projectile *>::iterator it = bullets->begin(); 
 	while(it != bullets->end()){  
-		SmokyBullet *curBullet = *it;
-		if(!curBullet->isDead() && (glow || !curBullet->glow)){
-			if(glow && !curBullet->glow){
+		Projectile *curBullet = *it;
+		if(!curBullet->isDead() /*&& (glow || !curBullet->glow)*/){
+			//if(glow && !curBullet->glow){
 				//mask glow
 				glBlendFunc( GL_ZERO, GL_ONE_MINUS_SRC_ALPHA );
 				//glBlendFunc( GL_SRC_ALPHA, GL_SRC_ALPHA_SATURATE );
-			}else{
+			//}else{
 				//glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-				glBlendFunc( GL_SRC_ALPHA, GL_ONE );
-			}
+				//glBlendFunc( GL_SRC_ALPHA, GL_ONE );
+			//}
 			curBullet->display(cameraPos, glow);
 		}
 		it++;

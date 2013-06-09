@@ -30,4 +30,37 @@ public:
 	int GameItem::GetNumUses(){return numUses;}
 	//to do: Fill in here
 };
+
+#include "GameTime.h"; 
+#include "projectile_particles.h"
+
+class Weapon : public GameObject{
+public:
+	GameTime::GameTimer lastShot;
+	double fireInterval; //ms between shots 
+	Weapon(){lastShot = GameTime::GetTime(); fireInterval=1.0;}
+	virtual ~Weapon(){}
+	Projectile *fire(Vector3f &loc, Vector3f &direction){
+		if(GameTime::DiffTimeMS(lastShot) < fireInterval)
+			return NULL; 
+		lastShot = GameTime::GetTime();
+		return newProjectile(loc, direction);
+	}
+	virtual Projectile *newProjectile(Vector3f &loc, Vector3f &direction) = 0; 
+};
+
+class SmokeyBulletWeapon : public Weapon{
+	private:
+		float r, g, b, a; 
+		float speed;
+	public:
+		SmokeyBulletWeapon(float s1, float r1 = 0.5f, float g1 = 0.5f, float b1 = 0.5f, float a1 = 0.5f)
+		: Weapon(){speed=s1; r = r1; g = g1; b = b1; a = a1;
+		}  
+		Projectile* newProjectile(Vector3f &loc, Vector3f &direction){
+			Vector3f tmp = direction * speed;
+			return new SmokyBullet(loc, tmp, r, g, b, a);
+		}
+};
+
 #endif _GAMEITEM_H_

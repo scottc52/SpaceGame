@@ -1,7 +1,7 @@
 #include "GamePlayer.h"
 
 void GamePlayer::FireWeapon(){
-	GameItem* weapon = this->GetActiveWeapon();
+	Weapon* weapon = this->GetActiveWeapon();
 	//To do: Make weapon fire bullet/Perform action
 }
 

@@ -32,33 +32,37 @@ class PSystems;
 #include "GamePlayer.h"
 #include <list>
 #include "projectile_particles.h"
-#include "UI.h"
-
-typedef class SmokyBullet SmokeyBullet; 
+#include "UI.h" 
 
 
 class PSystems{
-	list<SmokyBullet *> projectiles; // add a super class to generalize if we add more types
+	list<Projectile *> projectiles; // add a super class to generalize if we add more types
 public: 
 	//list<ParticleSystem> statics; 
 	void updateAll(int dt){
-		list<SmokeyBullet *>::iterator it = projectiles.begin();
+		list<Projectile *>::iterator it = projectiles.begin();
 		while(it != projectiles.end()){
-			SmokeyBullet *sb = *it;			
+			Projectile *sb = *it;			
 			if(sb->isDead()){
 				it = projectiles.erase(it);
 				delete (sb);
 			}else{ 			
 				//hitboxing;
-				if(sb->t > 4000 && !sb->hitB){
-					sb->hit(sb->location);
+				if(sb->timeAlive() > 3000){
+					sb->hit(sb->getPosition());
 				} 
 				sb->update(dt);
 				it ++; 
 			}  
 		} 
 	}
-	list<SmokyBullet *> *GetBullets(){return &projectiles;} 
+	void AddBullet(Projectile *p){
+		projectiles.push_back(p); 
+	}
+	unsigned int NumBullets(){
+		return projectiles.size();
+	}
+	list<Projectile *> *GetBullets(){return &projectiles;} 
 };
 
 /*
@@ -97,12 +101,6 @@ public:
 	bool paused; 
 	//Action API --> update state based of event handlers
 	//see main.cpp for examples
-	void FireBullet(){//fire bullet!
-		Vector3f loc = Vector3f(0, -1, 4); //below camera
-		Vector3f vel = Vector3f(0.0, 0.0, -4.8);
-		Vector4f col = Vector4f(0.5, 0.0, 0.45, 0.5);
-		SmokyBullet *bullet = new SmokyBullet(loc, vel, col[0], col[1], col[2], col[3]);
-		ps->GetBullets()->push_back(bullet);}
 	void UpdateParticleSystems(int dt /*ms*/){ps->updateAll(dt);}
 	PSystems *GetParticleSystems(){return ps;} 
 	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);

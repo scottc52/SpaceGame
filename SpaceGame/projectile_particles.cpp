@@ -161,7 +161,7 @@ bool isParticleDead(Particle p){
 
 		//set emittor properties for particlesc++ arr
 			pSystem.rate = 200; // particles per second
-			pSystem.pLife = 1000;
+			pSystem.pLife = 500;
 			pSystem.pSpeed = 0.3;
 			pSystem.pAccel = Vector3f(0.0, 0.0, 0.0);
 			pSystem.pColor[0] = c0;

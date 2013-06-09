@@ -42,6 +42,19 @@
 using namespace std;
 using namespace Eigen;
 
+
+//prjectile interface
+class Projectile{
+public: 
+	virtual ~Projectile(){}
+	virtual void hit(Vector3f loc)=0;
+	virtual void display(Vector3f cam, bool glow) =0;
+	virtual bool isDead() = 0; 
+	virtual void update(int dt) =0; 
+	virtual int timeAlive() =0;
+	virtual Vector3f &getPosition()=0;  
+};
+
 class Particle{
 public:
 	Vector3f location;
@@ -97,7 +110,7 @@ public:
 	bool isDead();
 };
 
-class SmokyBullet{
+class SmokyBullet : public Projectile{
 public:
 	//bullet properties
 	SimpleParticleSystem pSystem;
@@ -124,10 +137,17 @@ public:
 	float mag2;
 	float hitWig;
 
+	int timeAlive(){
+		return t; 
+	}
+
 	SmokyBullet();
 	SmokyBullet(Vector3f loc, Vector3f vel, float c0, float c1, float c2, float c3);
 	void setAccel(Vector3f newAccel);
 	void update(int dt);
+	Vector3f &getPosition(){
+		return location;
+	}
 	//if hit. call hit() first, then update()
 	void hit(Vector3f hitLocation);
 	void display(Vector3f camera, bool drawGlow);

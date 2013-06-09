@@ -12,32 +12,32 @@
 class GamePlayer : GameActiveObject{
 private:
 	int health;
-	GameItem* PrimaryWeapon;
-	GameItem* SecondaryWeapon;
+	Weapon* PrimaryWeapon;
+	Weapon* SecondaryWeapon;
 	GameItem* activeItem;
-	GameItem* activeWeapon;
+	Weapon* activeWeapon;
 	bool primaryActive;
 	//float Max rotation?
 	//GameInventory* inventory;
 public:
 	GamePlayer::GamePlayer(){
-		PrimaryWeapon = NULL;
+		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 0.5f);
 		SecondaryWeapon = NULL;
 		activeItem = NULL;
-		activeWeapon = NULL;
+		activeWeapon = PrimaryWeapon;
 		primaryActive = true;
 	}
 	void GamePlayer::ApplyMovementForce(const Vector3f &force, const double& timeIncrement);
 	void GamePlayer::ApplyExternalForce(const Vector3f &force, const Vector3f& position);
 	void GamePlayer::SetHealth(const int& h){health = h;}
 	int GamePlayer::GetHealth(){return health;}
-	GameItem* GamePlayer::GetPrimaryWeapon(){return PrimaryWeapon;}
-	void GamePlayer::GetPrimaryWeapon(GameItem* w){PrimaryWeapon = w;}
-	GameItem* GamePlayer::GetSecondaryWeapon(){return SecondaryWeapon;}
-	void GamePlayer::SetSecondaryWeapon(GameItem* w){SecondaryWeapon = w;}
+	Weapon* GamePlayer::GetPrimaryWeapon(){return PrimaryWeapon;}
+	void GamePlayer::GetPrimaryWeapon(Weapon* w){PrimaryWeapon = w;}
+	Weapon* GamePlayer::GetSecondaryWeapon(){return SecondaryWeapon;}
+	void GamePlayer::SetSecondaryWeapon(Weapon* w){SecondaryWeapon = w;}
 	GameItem* GamePlayer::GetActiveItem(){return activeItem;}
 	void GamePlayer::SetActiveItem(GameItem* i){activeItem = i;}
-	GameItem* GamePlayer::GetActiveWeapon(){return activeWeapon;}
+	Weapon* GamePlayer::GetActiveWeapon(){return activeWeapon;}
 	void GamePlayer::SwitchWeapons(){
 		if(primaryActive){
 			if(SecondaryWeapon != NULL){
@@ -51,7 +51,7 @@ public:
 			}
 		}
 	}
-	void GamePlayer::FireWeapon();
+	void GamePlayer::FireWeapon(); 
 	void GamePlayer::UseItem();
 };
 
