@@ -33,35 +33,20 @@ class PSystems;
 #include <list>
 #include "projectile_particles.h"
 #include "UI.h" 
+#include "AI.h"
 
 
+
+/*
+Particle Systems manager
+*/
 class PSystems{
-	list<Projectile *> projectiles; // add a super class to generalize if we add more types
+	list<Projectile *> projectiles;
 public: 
 	//list<ParticleSystem> statics; 
-	void updateAll(int dt){
-		list<Projectile *>::iterator it = projectiles.begin();
-		while(it != projectiles.end()){
-			Projectile *sb = *it;			
-			if(sb->isDead()){
-				it = projectiles.erase(it);
-				delete (sb);
-			}else{ 			
-				//hitboxing;
-				if(sb->timeAlive() > 3000){
-					sb->hit(sb->getPosition());
-				} 
-				sb->update(dt);
-				it ++; 
-			}  
-		} 
-	}
-	void AddBullet(Projectile *p){
-		projectiles.push_back(p); 
-	}
-	unsigned int NumBullets(){
-		return projectiles.size();
-	}
+	void updateAll(int dt);
+	void AddBullet(Projectile *p){projectiles.push_back(p); }
+	unsigned int NumBullets(){ return projectiles.size();}
 	list<Projectile *> *GetBullets(){return &projectiles;} 
 };
 
@@ -80,6 +65,7 @@ public:
 class GameState{
 private:
 	static GameState* m_pinstance;
+	list<AI *> actors; 
 	GameRoom* room; 
 	Camera *cam;
 	PSystems *ps;
@@ -93,14 +79,14 @@ public:
 	static GameState* GameState::GetInstance();
 	void SetRoom(GameRoom *gr){this->room = gr;}
 	void SetCamera(Camera *cam){this->cam =  cam;}
+	void AddActor(AI *actor){actors.push_back(actor);} 
+	list<AI *> *GetActors(){return &actors;} 
 	GameRoom *GetRoom(){return this->room;}
 	Camera *GetCamera(){return this->cam;} 
 	Vector3f GetPlayerPosition(){return Vector3f(0, 0, 0);}
 	bool GameState::ReadStateFile(const char *fname);
 	void GameState::PerformStateActions(list<UIEvent *> ev, double dt);
 	bool paused; 
-	//Action API --> update state based of event handlers
-	//see main.cpp for examples
 	void UpdateParticleSystems(int dt /*ms*/){ps->updateAll(dt);}
 	PSystems *GetParticleSystems(){return ps;} 
 	bool GameState::ReadStateFile(const char *fname, GameState* sm, GameRoom &room);

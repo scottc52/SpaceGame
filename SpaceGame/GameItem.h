@@ -67,8 +67,9 @@ class SlugBulletWeapon : public Weapon{
 	private:
 		float r, g, b, a; 
 		float speed;
+		float scatter; 
 	public:
-		SlugBulletWeapon(float s1, float r1 = 0.9f, float g1 = 0.7f, float b1 = 0.4f, float a1 = 0.8f)
+		SlugBulletWeapon(float s1, float scatter = 1.0f,  float r1 = 0.9f, float g1 = 0.7f, float b1 = 0.4f, float a1 = 0.8f)
 		: Weapon(){speed=s1; r = r1; g = g1; b = b1; a = a1;
 		}  
 		Projectile* newProjectile(Vector3f &loc, Vector3f &direction){

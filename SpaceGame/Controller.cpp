@@ -21,13 +21,6 @@ void Controller::run(){
 
 	//animate here
 
-	//update particles
-	t = GameTime::GetTime(); 
-	state->UpdateParticleSystems(dt);
-	delta = GameTime::DiffTimeMS(t);
-	int len = state->GetParticleSystems()->GetBullets()->size();  	
-	//cout<<"it took: " << delta << "ms to update (" << len << ") bullets" << endl; 
-	
 	//render here
 	//Render::myDisplay(); 		
 	Render::requestFrame();

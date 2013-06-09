@@ -283,6 +283,28 @@ bool GameState::ReadStateFile(const char *fname){
 //     WRITE STATE
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////////////////////////////////////////////
+//Particle Systems Manager
+////////////////////////////////////////////////////////////////
+
+void PSystems::updateAll(int dt){
+	list<Projectile *>::iterator it = projectiles.begin();
+	while(it != projectiles.end()){
+		Projectile *sb = *it;			
+		if(sb->isDead()){
+			it = projectiles.erase(it);
+			delete (sb);
+		}else{ 			
+			//hitboxing here!
+			if(sb->timeAlive() > 3000){
+				sb->hit(sb->getPosition());
+			} 
+			sb->update(dt);
+			it ++; 
+		}  
+	} 
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -375,7 +397,7 @@ cout << "zooming" << endl;
 	nPos += strafe * deltaPos[0];
 	nPos += dir * deltaPos[1];
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
-	up = Rphi*up; 
+	//up = Rphi*up; 
 	dir = Rphi * dir;    
 	Matrix3f Rtheta = AngleAxisf(deltaView[0]/(double)Render::w * 100.0 / 180.0 * PI * LOOK_SENSITIVITY, up).matrix();
 	dir = Rtheta * dir;
@@ -390,6 +412,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	
 	//Player action
 	ProcessInput(input, dt);
+	UpdateParticleSystems((int)dt);
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

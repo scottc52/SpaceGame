@@ -30,11 +30,13 @@
 #include "UI.h"
 #include "Sound.h"
 #ifdef __linux__
-//#include "SOIL/SOIL.h"
+#include "SOIL/SOIL.h"
 #else
 #include "SOIL.h"
 #endif
 #define NUM_THREADS ((unsigned int )8)
+#include "AI.h"
+#include "MetaballEnemy.h"
 
 /*if (key == 'p' || key == 'P') {
 		//hit effect
@@ -235,6 +237,8 @@ int main(int argc, char *argv[]){
 	Camera cam(pos, dir, up, radius, n, f, fovy, aspect); 
 	gs->SetRoom(&debug);
 	gs->SetCamera(&cam);
+	Vector3f enemyPos(0.0f, 0.0f, 0.0f);
+	gs->AddActor(new MetaballEnemy(enemyPos, 1, 1.0f));
 	Render::GlutInitialize();
 	Render::gameState = gs;
 	

@@ -473,6 +473,14 @@ void drawFrame(){
 		glPopMatrix(); // you need one of these for every glPushMatrix()
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
+		//render Actors AKA metaball Warriors!
+		list<AI *>::iterator it = Render::gameState->GetActors()->begin();
+		list<AI *>::iterator end = Render::gameState->GetActors()->end();
+		while (it != end){
+			AI *ai = *it; 
+			ai->render();
+			it++;
+		}
 	}
 
 }
