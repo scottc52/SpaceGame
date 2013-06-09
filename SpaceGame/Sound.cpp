@@ -5,7 +5,7 @@
 #define SOUND_BUFFER_SIZE 1024
 #define MAX_VOLUME_INT 128
 
-Sound::Sound(char* filename, GameObject *object, Vector3f position, float maxVolume) {
+void Sound::init(char* filename, GameObject *object, Vector3f position, float maxVolume) {
 	chunk = Mix_LoadWAV(filename);
 	Mix_VolumeChunk(chunk, maxVolume * MAX_VOLUME_INT);
 	channel = -1;
@@ -17,15 +17,15 @@ Sound::Sound(char* filename, GameObject *object, Vector3f position, float maxVol
 }
 
 Sound::Sound(char* filename) {
-	Sound(filename, NULL, Vector3f(0.f, 0.f, 0.f), 1.0f);
+	init(filename, NULL, Vector3f(0.f, 0.f, 0.f), 1.0f);
 }
 
 Sound::Sound(char* filename, GameObject *object, float maxVolume) {
-	Sound(filename, object, Vector3f(0.f, 0.f, 0.f), maxVolume);
+	init(filename, object, Vector3f(0.f, 0.f, 0.f), maxVolume);
 }
 
 Sound::Sound(char* filename, Vector3f position, float maxVolume) {
-	Sound(filename, NULL, position, maxVolume);
+	init(filename, NULL, position, maxVolume);
 }
 
 Sound::~Sound() {
@@ -54,7 +54,10 @@ void Sound::Update(Vector3f playerPosition, Vector3f playerLook, Vector3f player
 	Vector3f playerLeft = playerUp.cross(playerLook).normalized();
 	float dot = playerLeft.dot(playerToSound.normalized());
 	Mix_SetPanning(channel, MAX_VOLUME_INT * (1.0f + dot), MAX_VOLUME_INT * (1.0f - dot));
-	
+}
+
+void Sound::Update(GameCamera *camera) {
+	Update(camera->GetPosition(), camera->GetViewVector(), camera->GetUpVector());
 }
 
 void Sound::Stop() {

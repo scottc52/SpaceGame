@@ -7,6 +7,7 @@
  */
 
 #include "MetaballEnemy.h"
+#include <ctime>
 #include <cstdio>
 // Initializes the Blob Creature object
 MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, int radius)

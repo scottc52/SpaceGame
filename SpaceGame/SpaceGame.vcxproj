@@ -91,6 +91,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MetaballEnemy.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="GameWorldObject.h" />
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MetaballEnemy.h" />
     <ClInclude Include="projectile_particles.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />

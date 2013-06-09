@@ -14,6 +14,7 @@
 #endif
 
 #include "GameObject.h"
+#include "GameCamera.h"
 
 class Sound {
 public:
@@ -28,13 +29,14 @@ public:
 	void Play();
 	// Update sound volume and left/right panning to account for new position.
 	void Update(Vector3f playerPosition, Vector3f playerLook, Vector3f playerUp);
+	void Update(GameCamera *camera);
 	void Stop();
 
 	static int InitializeSounds();
 	static void UninitializeSounds();
 private:
 	// Private constructor to minimize code reuse
-	Sound(char* filename, GameObject *object, Vector3f position, float maxVolume);
+	void init(char* filename, GameObject *object, Vector3f position, float maxVolume);
 
 	int channel;
 	Mix_Chunk *chunk;
