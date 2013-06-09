@@ -52,13 +52,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src;SOIL/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_RELEASE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,14 +68,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_RELEASE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src;SOIL/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

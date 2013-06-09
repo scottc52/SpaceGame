@@ -29,6 +29,7 @@
 #include "Controller.h"
 #include "UI.h"
 #include "Sound.h"
+#include "SOIL.h"
 
 #define NUM_THREADS ((unsigned int )8)
 
