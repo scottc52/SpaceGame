@@ -8,7 +8,9 @@
  */
 
 #include "MetaballEnemy.h"
-
+#include <ctime>
+#include <cstdio>
+#include <cassert>
 // Initializes the Blob Creature object
 MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 {
@@ -94,10 +96,10 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 
 MetaballEnemy::~MetaballEnemy()
 {
-	delete blobs;
-	delete added;
-	delete fieldStrengths;	
-	delete neighbors;
+	delete[] blobs;
+	delete[] added;
+	delete[] fieldStrengths;	
+	delete[] neighbors;
 }
 
 Blob MetaballEnemy::getBlob(int index)
@@ -358,26 +360,23 @@ void MetaballEnemy::render()
 		bool isComputed = false;
 		bool found = false;
 		
-		while (!found)
-		{
+		//while (!found)
+		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x ++){
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
 				found = true;
+				break;
 			}
-			else
+			if (renderCube(blobCubePosition))
 			{
-				if (renderCube(blobCubePosition))
-				{
-					found = true;
-				}
-				else
-				{
-					blobCubePosition.x++;
-				}
+				found = true;
+				break;
 			}
 		}
 		
+		assert(found);
+
 		if (!isComputed)
 		{
 			
@@ -497,7 +496,7 @@ Vertex MetaballEnemy::getNormal(Vertex v)
 	
 	return normalize(normal);
 }
-
+#include <iostream>
 Index MetaballEnemy::getCubePosition(Vertex v)
 {
 	Index position;
@@ -538,7 +537,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						{
 							Index *tempNeighbors = new Index[neighborsSize * NEIGHBORS_INCREASE_FACTOR];
 							memcpy(tempNeighbors, neighbors, neighborsSize * sizeof(neighbors[0]));
-							delete neighbors;
+							delete[] neighbors;
 							neighbors = tempNeighbors;
 							neighborsSize *= NEIGHBORS_INCREASE_FACTOR;
 						}
@@ -688,7 +687,7 @@ bool MetaballEnemy::renderCube(Index index)
 	if (renderTetrahedronIntersections(v4, v5, v6, v8, 4, 5, 6, 8, normals)) rendered = true;
 	if (renderTetrahedronIntersections(v4, v5, v7, v8, 4, 5, 7, 8, normals)) rendered = true;
 	
-	delete normals;
+	delete[] normals;
 	
 	return rendered;
 }

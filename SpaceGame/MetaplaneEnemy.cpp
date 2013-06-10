@@ -140,10 +140,10 @@ MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radiu
 
 MetaplaneEnemy::~MetaplaneEnemy()
 {
-	delete blobs;
-	delete added;
-	delete fieldStrengths;	
-	delete neighbors;
+	delete[] blobs;
+	delete[] added;
+	delete[] fieldStrengths;	
+	delete[] neighbors;
 }
 
 Blob MetaplaneEnemy::getBlob(int index)
@@ -453,22 +453,20 @@ void MetaplaneEnemy::render()
 		bool isComputed = false;
 		bool found = false;
 		
-		while (!found)
+		for(;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x++)
 		{
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
 				found = true;
+				break;
 			}
 			else
 			{
 				if (renderCube(blobCubePosition))
 				{
 					found = true;
-				}
-				else
-				{
-					blobCubePosition.x++;
+					break;
 				}
 			}
 		}
@@ -639,7 +637,7 @@ void MetaplaneEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						{
 							Index *tempNeighbors = new Index[neighborsSize * NEIGHBORS_INCREASE_FACTOR];
 							memcpy(tempNeighbors, neighbors, neighborsSize * sizeof(neighbors[0]));
-							delete neighbors;
+							delete[] neighbors;
 							neighbors = tempNeighbors;
 							neighborsSize *= NEIGHBORS_INCREASE_FACTOR;
 						}
@@ -789,7 +787,7 @@ bool MetaplaneEnemy::renderCube(Index index)
 	if (renderTetrahedronIntersections(v4, v5, v6, v8, 4, 5, 6, 8, normals)) rendered = true;
 	if (renderTetrahedronIntersections(v4, v5, v7, v8, 4, 5, 7, 8, normals)) rendered = true;
 	
-	delete normals;
+	delete[] normals;
 	
 	return rendered;
 }

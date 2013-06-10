@@ -76,6 +76,7 @@ typedef struct Index
 
 typedef struct FieldStrength
 	{
+		FieldStrength(float s = 0, bool c=false): strength(s), computed(c){}
 		float strength;
 		bool computed;
 	} FieldStrength;
