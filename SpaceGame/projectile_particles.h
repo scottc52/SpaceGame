@@ -50,8 +50,8 @@ public:
 	virtual void hit(Vector3f loc)=0;
 	virtual void display(Vector3f cam, bool glow) =0;
 	virtual bool isDead() = 0; 
-	virtual void update(int dt) =0; 
-	virtual int timeAlive() =0;
+	virtual void update(double dt) =0; 
+	virtual double timeAlive() =0;
 	virtual Vector3f &getPosition()=0;  
 };
 
@@ -61,15 +61,15 @@ private:
 	Vector3f position;
 	Vector3f velocity; 
 	float r, g, b, a;
-	int pTimeAlive;
-	int pTimeSinceRedraw;  
+	double pTimeAlive;
+	double pTimeSinceRedraw;  
 public:
 	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
 	void hit(Vector3f loc); 
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();
-	void update(int dt); 
-	int timeAlive();
+	void update(double dt); 
+	double timeAlive();
 	Vector3f &getPosition(); 
 };
 
@@ -89,7 +89,7 @@ public:
 	Particle(int lif, Vector3f loc, Vector3f vel, Vector3f accel);
 	void setLook(float psize, float *pcolor);
 	void setAccel(Vector3f newAccel);
-	void update(int dt);
+	void update(double dt);
 	void display(bool drawingGlowPass, bool particleGlow);
 	bool isDead();
 
@@ -112,7 +112,7 @@ public:
 
 	//emitted particle properties
 	float rate; // particles per second
-	int pLife;
+	double pLife;
 	float pSpeed;
 	Vector3f pAccel;
 	float pColor[4];
@@ -123,7 +123,7 @@ public:
 	Vector3f pVelOffset;
 
 	void setAccel(Vector3f newAccel);
-	void update(int dt);
+	void update(double dt);
 	void display(bool drawingGlowPass, bool particleGlow);
 	bool isDead();
 };
@@ -136,8 +136,8 @@ public:
 	Vector3f velocity;
 	Vector3f acceleration;
 	//time is all in milliseconds
-	int t; //time bullet's been alive; so we can implement killing stray bullets in the future
-	int hitT;//time hit. -1 if not hit yet.
+	double t; //time bullet's been alive; so we can implement killing stray bullets in the future
+	double hitT;//time hit. -1 if not hit yet.
 	bool hitB;
 	int hitLife; //time staying alive after hit
 
@@ -155,14 +155,14 @@ public:
 	float mag2;
 	float hitWig;
 
-	int timeAlive(){
+	double timeAlive(){
 		return t; 
 	}
 
 	SmokyBullet();
 	SmokyBullet(Vector3f loc, Vector3f vel, float c0, float c1, float c2, float c3);
 	void setAccel(Vector3f newAccel);
-	void update(int dt);
+	void update(double dt);
 	Vector3f &getPosition(){
 		return location;
 	}

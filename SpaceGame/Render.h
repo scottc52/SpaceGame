@@ -74,7 +74,7 @@ public:
 	static void defaultDisplay();
 	static void myIdle();
 	//Events
-	static void requestFrame(); 
+	static bool requestFrame(); 
 	static void setHitTime(int t);
 	static void hitEffect();
 };

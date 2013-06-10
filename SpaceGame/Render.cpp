@@ -398,6 +398,7 @@ void drawFrame(){
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
 	//for(int i = 0; i<numObjects;i++){
+	GameTime::GameTimer ref = GameTime::GetTime(); 
 	for(unsigned int w = 0; w <wobs.size(); w++){
 		GameWorldObject *gwo = wobs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
@@ -474,14 +475,19 @@ void drawFrame(){
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 		//render Actors AKA metaball Warriors!
-		list<AI *>::iterator it = Render::gameState->GetActors()->begin();
-		list<AI *>::iterator end = Render::gameState->GetActors()->end();
-		while (it != end){
-			AI *ai = *it; 
-			ai->render();
-			it++;
-		}
+
 	}
+	cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
+	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
+	list<AI *>::iterator end = Render::gameState->GetActors()->end();
+		
+	ref = GameTime::GetTime();	
+	while (it != end){
+		AI *ai = *it; 
+		ai->render();
+		it++;
+	}
+	cerr << "rendering actors took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 
 }
 
@@ -870,12 +876,16 @@ void Render::myIdle() {
 Event notifications... 
 **/
 
-void Render::requestFrame(){
+bool Render::requestFrame(){
+	bool value = true; 
 	pthread_mutex_lock(&lock);
-	if (frameRequested)
+	if (frameRequested){
 		cerr<< "warning: frame dropped" << endl;
+		value = false;
+	}
 	frameRequested = true; 
 	pthread_mutex_unlock(&lock); 
+	return value;
 }
 
 void Render::pause(bool t){

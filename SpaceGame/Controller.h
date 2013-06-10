@@ -48,7 +48,8 @@ private:
 	//RenderHandle *rh;
 	static Controller *gameController;  
 	GameTime::GameTimer ref;
-	int dt;   
+	GameTime::GameTimer lastFrame; 
+	double dt;   
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
 public:
 	/* 
