@@ -98,7 +98,7 @@ MetaballEnemy::~MetaballEnemy()
 	delete blobs;
 	delete added;
 	delete[] fieldStrengths;	
-	delete neighbors;
+	delete[] neighbors;
 }
 
 Blob MetaballEnemy::getBlob(int index)
@@ -528,7 +528,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						{
 							Index *tempNeighbors = new Index[neighborsSize * NEIGHBORS_INCREASE_FACTOR];
 							memcpy(tempNeighbors, neighbors, neighborsSize * sizeof(neighbors[0]));
-							delete neighbors;
+							delete[] neighbors;
 							neighbors = tempNeighbors;
 							neighborsSize *= NEIGHBORS_INCREASE_FACTOR;
 						}
