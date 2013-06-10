@@ -10,7 +10,7 @@ private:
 	Vector3f upVec;
 	Vector3f viewVec;
 public:
-	GameCamera::GameCamera(){}
+	GameCamera::GameCamera(){objType = CAMERA_TYPE;}
 	GameCamera::~GameCamera(){}
 	Vector3f GameCamera::GetUpVector(){return upVec;}
 	void GameCamera::SetUpVector(Vector3f &v){upVec = v;}

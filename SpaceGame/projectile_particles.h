@@ -57,6 +57,7 @@ public:
 
 class Slug : public Projectile{
 private: 
+	vector<Vec3f>boundingBox;
 	Vector3f position;
 	Vector3f velocity; 
 	float r, g, b, a;

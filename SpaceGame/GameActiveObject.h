@@ -15,23 +15,22 @@
 
 class GameActiveObject : public GameObject{
 private:
-	Vector3f com;
-	double totalMass;
 	string state;
-	Vector3f velocity;
 	//Rotation information
 public:
 	GameActiveObject::GameActiveObject(){
-		velocity = Vector3f(0,0,0);
+		//velocity = Vec3f(0,0,0);
 		state = "neutral";
+		objType = ACTIVE_OBJECT_TYPE;
 	}
 
 	void GameActiveObject::SetState(const char* s){state = s;}
 	const char* GameActiveObject::GetState(){return state.c_str();}
-	double GameActiveObject::GetMass(){return totalMass;}
-	void GameActiveObject::GetMass(const double& m){totalMass = m;}
-	Vector3f GameActiveObject::CenterOfMass(){return com;}
+	double GameActiveObject::GetMass(){return mass;}
+	void GameActiveObject::SetMass(const double& m){mass = m;}
+	Vector3f GameActiveObject::CenterOfMass(){Vector3f v(GameObject::CenterOfMass[0], GameObject::CenterOfMass[1], GameObject::CenterOfMass[2]); return v;}
 	void GameActiveObject::CalculateCenterOfMass();
-	void GameActiveObject::IncrementVelocity(Vector3f& deltaV){velocity += deltaV;}
+	void GameActiveObject::IncrementVelocity(Vector3f& deltaV){velocity += Vec3f(deltaV.x(), deltaV.y(), deltaV.z());}
+	void GameActiveObject::IncrementVelocity(Vec3f& deltaV){velocity += deltaV;}
 };
 #endif _GAMEACTIVEOBJECT_H_
