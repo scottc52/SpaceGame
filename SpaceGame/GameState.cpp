@@ -413,6 +413,8 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//Player action
 	ProcessInput(input, dt);
 	UpdateParticleSystems((int)dt);
+	//PerformCollision
+	
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 
