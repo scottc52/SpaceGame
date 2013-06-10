@@ -330,6 +330,7 @@ void PSystems::updateAll(double dt){
 		idx ++;
 		idx %=BRANCH_FACTOR;  
 	} 
+	monitor.Enter('w');
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		TaskQueue::defQueue->enqueue(&jobs[i]); 
 	}
@@ -337,7 +338,7 @@ void PSystems::updateAll(double dt){
 		jobs[i].join(); 
 	}
 
-	monitor.Enter('w');
+	
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
 }
@@ -388,8 +389,11 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					loc += dir.cross(strafe); //below camera
 					if (player.GetActiveWeapon()){
 						Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
-						if (p)
+						if (p){
+							ps->monitor.Enter('w');
 							ps->AddBullet(p);
+							ps->monitor.Exit('w');
+						}
 					} else {
 						cerr << "error: no active weapon" << endl;
 					}
@@ -448,7 +452,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	
 	//Player action
 	ProcessInput(input, dt);
-	UpdateParticleSystems((int)dt);
+	UpdateParticleSystems(dt);
 	//PerformCollision
 	
 	//PerformCollisionDetection(room, &(GameState::player), dt);
