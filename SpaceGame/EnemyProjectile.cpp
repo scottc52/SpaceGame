@@ -1,5 +1,5 @@
 /*
- *  Projectile.cpp
+ *  EnemyProjectile.cpp
  *  Metaballs
  *
  *  Created by Jordan Davidson on 5/27/13.
@@ -11,7 +11,7 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile(Eigen::Vector3f center, Eigen::Vector3f direction, float radius, float speed)
+EnemyProjectile::EnemyProjectile(Eigen::Vector3f center, Eigen::Vector3f direction, float radius, float speed)
 {
 	this->center = center;
 	this->direction = direction;
@@ -23,9 +23,9 @@ Projectile::Projectile(Eigen::Vector3f center, Eigen::Vector3f direction, float 
 	this->active = true;
 }
 
-Projectile::~Projectile() {};
+EnemyProjectile::~EnemyProjectile() {};
 
-void Projectile::move()
+void EnemyProjectile::move()
 {
 	if (active)
 	{
@@ -47,7 +47,7 @@ void Projectile::move()
 	}
 }
 
-Vector3f Projectile::normalize(Vector3f& v)
+Vector3f EnemyProjectile::normalize(Vector3f& v)
 {
 	float result = 1 / (sqrt((v(0) * v(0)) + (v(1) * v(1)) + (v(2) * v(2))));
 	v(0) = v(0) * result;
@@ -57,7 +57,7 @@ Vector3f Projectile::normalize(Vector3f& v)
 	return v;
 }
 
-void Projectile::drawSphere(Vector3f center, float radius)
+void EnemyProjectile::drawSphere(Vector3f center, float radius)
 {
 	float centerMaterialAmbient[] = {0., .5, 0., 1.0};
 	float centerMaterialDiffuse[]  = {0., .5, 0., 1.0};
@@ -75,7 +75,7 @@ void Projectile::drawSphere(Vector3f center, float radius)
 	glPopMatrix();
 }
 
-bool Projectile::collisionDetected(Vector3f v)
+bool EnemyProjectile::collisionDetected(Vector3f v)
 {	
 	if ((v(0) - radius) < -40.f || (v(0) + radius) > 40.f ||
 		(v(1) - radius) < -40.f || (v(1) + radius) > 40.f ||

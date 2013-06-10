@@ -16,7 +16,7 @@ class Monitor{
 	bool writing; 
 	public: 
 	Monitor();
-	void Enter(char mode);
-	void Exit(char mode);     
+	void Enter(char mode = 'w');
+	void Exit(char mode = 'w');     
 };
 

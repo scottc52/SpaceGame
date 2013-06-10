@@ -32,23 +32,23 @@ using namespace Eigen;
 #define STACKS 20
 #define SLICES 20
 
-class Projectile
+class EnemyProjectile : public Projectile
 {	
 public:
-	Projectile(Vector3f center, Vector3f direction, float radius, float speed);
-	~Projectile();
+	EnemyProjectile(Vector3f center, Vector3f direction, float radius, float speed);
+	~EnemyProjectile();
 	
-	Vector3f Projectile::getCenter() { return center; };
-	Vector3f Projectile::getDirection() { return direction; };
-	float Projectile::getRadius() { return radius; };
-	float Projectile::getSpeed() { return speed; };
+	Vector3f EnemyProjectile::getCenter() { return center; };
+	Vector3f EnemyProjectile::getDirection() { return direction; };
+	float EnemyProjectile::getRadius() { return radius; };
+	float EnemyProjectile::getSpeed() { return speed; };
 	
 	void move();
 	bool hasCollided() { return collided; };
 	bool isActive() { return active; };
 	
 private:	
-	Vector3f center; // The center of the Projectile
+	Vector3f center; // The center of the EnemyProjectile
 	Vector3f direction; // The normalized direction of the Projectile
 	float radius; // The radius of the Projectile
 	float speed; // The speed of the Projectile
