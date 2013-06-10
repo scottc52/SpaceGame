@@ -24,7 +24,7 @@ using namespace Eigen;
 #endif
 #include <GL/glu.h>
 #include <GL/gl.h>
-
+#include "projectile_particles.h"
 #ifndef Projectile_h
 #define Projectile_h
 

@@ -9,7 +9,7 @@
 
 /* TEMPORARY PROJECTILE CLASS */
 
-#include "Projectile.h"
+#include "EnemyProjectile.h"
 
 EnemyProjectile::EnemyProjectile(Eigen::Vector3f center, Eigen::Vector3f direction, float radius, float speed)
 {
