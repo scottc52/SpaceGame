@@ -293,22 +293,50 @@ bool pIsDead(Projectile *p){
 	return p->isDead();
 }
 
+#define BRANCH_FACTOR 3
+#include "TaskQueue.h"
+class BulletUpdater : public Task{
+private:
+ vector<Projectile *> toUpdate;
+   
+public:
+double dt; 
+BulletUpdater(){} 
+void AddBullet(Projectile *p){
+	toUpdate.push_back(p);
+}
+virtual void run(){
+	for(int i = 0; i < toUpdate.size(); i++){
+		Projectile *p = toUpdate[i];
+		if(p->isDead()){
+			continue; 
+		}
+		if(p->timeAlive() > 3000){
+			p->hit(p->getPosition()); 
+		}
+		p->update(dt);
+	}
+}
+};
+
 void PSystems::updateAll(double dt){
 	list<Projectile *>::iterator it = projectiles.begin();
+	int idx = 0;
+	BulletUpdater jobs[BRANCH_FACTOR]; 
 	while(it != projectiles.end()){
-		Projectile *sb = *it;			
-		if(sb->isDead()){
-			it ++;
-			continue;
-		}else{ 			
-			//hitboxing here!
-			if(sb->timeAlive() > 3000){
-				sb->hit(sb->getPosition());
-			} 
-			sb->update(dt);
-			it ++; 
-		}  
+		jobs[idx].AddBullet(*it);
+		jobs[idx].dt = dt;
+		it ++; 	
+		idx ++;
+		idx %=BRANCH_FACTOR;  
 	} 
+	for( int i = 0; i < BRANCH_FACTOR; i ++) {
+		TaskQueue::defQueue->enqueue(&jobs[i]); 
+	}
+	for( int i = 0; i < BRANCH_FACTOR; i ++) {
+		jobs[i].join(); 
+	}
+
 	monitor.Enter('w');
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
