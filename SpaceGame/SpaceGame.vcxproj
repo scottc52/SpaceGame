@@ -93,6 +93,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MetaballEnemy.cpp" />
+    <ClCompile Include="MetalineEnemy.cpp" />
+    <ClCompile Include="MetaplaneEnemy.cpp" />
+    <ClCompile Include="Monitor.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
@@ -126,6 +129,9 @@
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MetaballEnemy.h" />
+    <ClInclude Include="MetalineEnemy.h" />
+    <ClInclude Include="MetaplaneEnemy.h" />
+    <ClInclude Include="Monitor.h" />
     <ClInclude Include="projectile_particles.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
