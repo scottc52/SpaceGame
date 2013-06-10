@@ -118,7 +118,7 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	centerShininess = tempCenterShininess;
 }
 
-MetaballEnemy::MetaballEnemy::~MetaballEnemy()
+MetaballEnemy::~MetaballEnemy()
 {
 	delete blobs;
 	delete added;

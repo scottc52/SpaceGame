@@ -2,6 +2,8 @@
 * controller.cpp
 */
 #include "Controller.h"
+#include <pthread.h>
+#include <sched.h>
 
 Controller *Controller::gameController = NULL;
 
@@ -13,7 +15,7 @@ void Controller::run(){
 		double delta = GameTime::DiffTimeMS(ref);		 
  		while (delta < 5.0){ // so we don't kill cpu
  			//cout << "too fast! (in a good way)" << endl;
- 			pthread_helper_sleep(100); 
+ 			pthread_helper_sleep(100);
  			delta = GameTime::DiffTimeMS(ref);  
  		}
  		GameTime::GameTimer nextRef = GameTime::GetTime();
