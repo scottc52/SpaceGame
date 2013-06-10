@@ -1,19 +1,18 @@
 /*
  *  MetaballEnemy.h
+ *  Metaballs
  *
  *  Created by Jordan Davidson on 5/3/13.
  *  Copyright 2013 Stanford University. All rights reserved.
  *
  */
 
-//#include <Carbon/Carbon.h>
-
 #include <stdlib.h>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-//#include "Projectile.h"
+#include "Projectile.h"
 #include "AI.h"
 using namespace std;
 
@@ -26,34 +25,31 @@ using namespace std;
 #ifndef MetaballEnemy_h
 #define MetaballEnemy_h
 
-#define DEFAULT_NUM_BLOBS 10
-#define DEFAULT_RADIUS 10
+#define DEFAULT_NUM_BLOBS 5
+#define DEFAULT_RADIUS 1.f
 #define DEFAULT_BLOB_MASS 1
-//#define DEFAULT_BLOB_RADIUS_SQUARED 4.f
-#define DEFAULT_BLOB_SPEED .1f
-//#define DEFAULT_FIELD_STRENGTH_CUTOFF .01f
-#define DEFAULT_FIELD_STRENGTH_CUTOFF 3.f // Must be positive
-//#define DEFAULT_THRESHOLD .5f
+#define DEFAULT_BLOB_SPEED .01f
+#define DEFAULT_FIELD_STRENGTH_CUTOFF .3f // Must be positive
 #define DEFAULT_THRESHOLD .125f // Keep less than 0.25
 #define DEFAULT_NUM_CUBES_PER_DIMENSION 40
 #define MIN_FIELD_STRENGTH .01f
 #define VERTEX_INTERPOLATION true
-#define MIN_DISTANCE_FROM_CENTER 1.5f
-#define CENTER_SPHERE_RADIUS 1.f
+#define MIN_DISTANCE_FROM_CENTER .15f
+#define CENTER_SPHERE_RADIUS .1f
 #define CENTER_SPHERE_SLICES 25
 #define CENTER_SPHERE_STACKS 25
-#define PROJECTILE_RADIUS .5f
-#define PROJECTILE_SPEED 1.f
+#define PROJECTILE_RADIUS .05f
+#define PROJECTILE_SPEED .1f
 #define VERTICES_IN_CUBE 8
 #define DEFAULT_NEIGHBORS_SIZE 100 // Must be greater than 0
 #define NEIGHBORS_INCREASE_FACTOR 2
 #define DEFAULT_ACTION_STATE 1
-#define CHARACTER_DETECTED_ACTION_STATE 2
+#define PLAYER_DETECTED_ACTION_STATE 2
 #define SOUND_DETECTED_ACTION_STATE 3
-#define DEFAULT_BLOB_CREATURE_SPEED .1f
-#define BLOB_CREATURE_STATIONARY_BOUNDARY 10.f
-#define BLOB_CREATURE_MOVE_BOUNDARY 40.f
-#define MOVING_ENABLED true
+#define DEFAULT_BLOB_CREATURE_SPEED .01f
+#define BLOB_CREATURE_STATIONARY_BOUNDARY 1.f
+#define BLOB_CREATURE_MOVE_BOUNDARY 4.f
+#define MOVING_ENABLED false
 #define FIRE_COUNTER_THRESHOLD 40
 
 typedef struct Vertex
@@ -101,7 +97,7 @@ typedef struct Blob
 class MetaballEnemy : public AI
 {
 public:
-	MetaballEnemy(Eigen::Vector3f center, int numBlobs, int radius);
+	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BLOBS, float radius = DEFAULT_RADIUS);
 	~MetaballEnemy();
 	
 	Blob *MetaballEnemy::getBlobs() { return blobs; };
@@ -116,13 +112,16 @@ public:
 	Vector3f getLocation();
 	Vector3f getDirection();
 	
-	void render();
+	void MetaballEnemy::update()
+	{
+		checkForCollision();
+		checkToMove();
+		checkToChangeOrientation();
+		checkToFire();
+		checkToUpdate();
+	};
 	
-	void checkForCollision();
-	void checkToMove();
-	void checkToChangeOrientation();
-	void checkToFire();
-	void checkToUpdate();
+	void render();
 	
 private:
 	Vertex center; // Center of the Blob Creature
@@ -165,9 +164,15 @@ private:
 	float centerMaterialSpecular[4]; // Specular material property for the center sphere of the Blob Creature
 	float centerShininess; // Shininess material property for the blobs of the Blob Creature
 	
-	//vector<Projectile> projectiles;
+	vector<Projectile> projectiles;
 	
 	int fireCounter;
+	
+	void checkForCollision();
+	void checkToMove();
+	void checkToChangeOrientation();
+	void checkToFire();
+	void checkToUpdate();
 	
 	void moveMetaballEnemy();
 	void updateActionState();

@@ -1,16 +1,16 @@
 /*
- *  MetaballEnemy.cpp
+ *  MetaplaneEnemy.cpp
  *  Metaballs
  *
- *  Created by Jordan Davidson on 5/3/13.
+ *  Created by Jordan Davidson on 6/9/13.
  *  Copyright 2013 Stanford University. All rights reserved.
  *
  */
 
-#include "MetaballEnemy.h"
+#include "MetaplaneEnemy.h"
 
 // Initializes the Blob Creature object
-MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
+MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 {
 	this->numBlobs = numBlobs;
 	this->center.x = center(0);
@@ -39,8 +39,54 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 		tempCenter.z = 0.f;
 		blob.center = this->center;
 		
-		blob.speed = DEFAULT_BLOB_SPEED * this->radius;
+		blob.moveSpeed = DEFAULT_BLOB_MOVE_SPEED * this->radius;
 		blob.direction = generateRandomNormalizedDirection();
+		blob.rotSpeed = DEFAULT_BLOB_ROTATION_SPEED;
+		
+		blob.length = DEFAULT_BLOB_LENGTH * this->radius;
+		
+		Vertex tempRotAxis = generateRandomNormalizedDirection();
+		blob.rotAxis = Vector3f(tempRotAxis.x, tempRotAxis.y, tempRotAxis.z);
+		
+		Vertex tempLine = generateRandomNormalizedDirection();
+		blob.line1 = Vector3f(tempLine.x, tempLine.y, tempLine.z);
+		
+		AngleAxisf aa(blob.rotSpeed, blob.rotAxis);
+		blob.line1 = (aa * blob.line1).normalized();
+		
+		float tempX = (rand() - (RAND_MAX / 2.f)) / RAND_MAX;
+		float tempY = (rand() - (RAND_MAX / 2.f)) / RAND_MAX;
+		float tempZ = (-(blob.line1(0) * tempX) - (blob.line1(1) * tempY)) / blob.line1(2);
+		blob.line2 = Vector3f(tempX, tempY, tempZ).normalized();
+		
+		printf("line1: x: %f, y: %f, z: %f\n", blob.line1(0), blob.line1(1), blob.line1(2));
+		printf("line2: x: %f, y: %f, z: %f\n\n", blob.line2(0), blob.line2(1), blob.line2(2));
+		
+		Vertex first;
+		first.x = blob.center.x + blob.line1(0) * (blob.length / 2);
+		first.y = blob.center.y + blob.line1(1) * (blob.length / 2);
+		first.z = blob.center.z + blob.line1(2) * (blob.length / 2);
+		
+		blob.segmentPoint1 = first;
+		
+		Vertex second;
+		second.x = blob.center.x + blob.line2(0) * (blob.length / 2);
+		second.y = blob.center.y + blob.line2(1) * (blob.length / 2);
+		second.z = blob.center.z + blob.line2(2) * (blob.length / 2);
+		
+		blob.segmentPoint2 = second;
+		
+		blob.segment1.x = -blob.line1(0) * blob.length;
+		blob.segment1.y = -blob.line1(1) * blob.length;
+		blob.segment1.z = -blob.line1(2) * blob.length;
+		
+		blob.segment2.x = -blob.line2(0) * blob.length;
+		blob.segment2.y = -blob.line2(1) * blob.length;
+		blob.segment2.z = -blob.line2(2) * blob.length;
+		
+		blob.segmentDistanceSquared = blob.segment1.x * blob.segment1.x + blob.segment1.y * blob.segment1.y +
+		blob.segment1.z * blob.segment1.z;
+		
 		blob.pastCenter = false;
 		
 		blobs[i] = blob;
@@ -92,7 +138,7 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	centerShininess = tempCenterShininess;
 }
 
-MetaballEnemy::~MetaballEnemy()
+MetaplaneEnemy::~MetaplaneEnemy()
 {
 	delete blobs;
 	delete added;
@@ -100,7 +146,7 @@ MetaballEnemy::~MetaballEnemy()
 	delete neighbors;
 }
 
-Blob MetaballEnemy::getBlob(int index)
+Blob MetaplaneEnemy::getBlob(int index)
 {
 	if (index > 0 && index < numBlobs)
 	{
@@ -114,15 +160,15 @@ Blob MetaballEnemy::getBlob(int index)
 }
 
 // Sets the speed of all blobs in the Blob Creature
-void MetaballEnemy::setAllBlobsSpeed(float newSpeed)
+void MetaplaneEnemy::setAllBlobsSpeed(float newSpeed)
 {
 	for (int i = 0; i < numBlobs; i++)
 	{
-		blobs[i].speed = newSpeed * this->radius;
+		blobs[i].moveSpeed = newSpeed * this->radius;
 	}
 }
 
-void MetaballEnemy::moveMetaballEnemy()
+void MetaplaneEnemy::moveMetaplaneEnemy()
 {
 	updateActionState();
 	
@@ -149,7 +195,7 @@ void MetaballEnemy::moveMetaballEnemy()
 	}
 }
 
-void MetaballEnemy::updateActionState()
+void MetaplaneEnemy::updateActionState()
 {
 	if (false /*playerIsVisible()*/) // CHANGE LATER
 	{
@@ -159,7 +205,7 @@ void MetaballEnemy::updateActionState()
 	}
 }
 
-void MetaballEnemy::moveProjectiles()
+void MetaplaneEnemy::moveProjectiles()
 {
 	int size = projectiles.size();
 	for (int i = 0; i < size; i++)
@@ -179,7 +225,7 @@ void MetaballEnemy::moveProjectiles()
 	}
 }
 
-bool MetaballEnemy::collisionDetected(Vertex v)
+bool MetaplaneEnemy::collisionDetected(Vertex v)
 {	
 	if ((v.x - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
 		(v.x + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
@@ -196,19 +242,19 @@ bool MetaballEnemy::collisionDetected(Vertex v)
 	}
 }
 
-Vector3f MetaballEnemy::getLocation()
+Vector3f MetaplaneEnemy::getLocation()
 {
 	Vector3f location(center.x, center.y, center.z);
 	return location;
 }
 
-Vector3f MetaballEnemy::getDirection()
+Vector3f MetaplaneEnemy::getDirection()
 {
 	Vector3f dir(direction.x, direction.y, direction.z);
 	return dir;
 }
 
-void MetaballEnemy::checkForCollision()
+void MetaplaneEnemy::checkForCollision()
 {
 	if (collisionDetected(this->center))
 	{
@@ -230,17 +276,17 @@ void MetaballEnemy::checkForCollision()
 	}
 }
 
-void MetaballEnemy::checkToMove()
+void MetaplaneEnemy::checkToMove()
 {
-	if (MOVING_ENABLED) moveMetaballEnemy();
+	if (MOVING_ENABLED) moveMetaplaneEnemy();
 }
 
-void MetaballEnemy::checkToChangeOrientation()
+void MetaplaneEnemy::checkToChangeOrientation()
 {
 	
 }
 
-void MetaballEnemy::checkToFire()
+void MetaplaneEnemy::checkToFire()
 {
 	if (fireCounter >= FIRE_COUNTER_THRESHOLD)
 	{
@@ -268,40 +314,52 @@ void MetaballEnemy::checkToFire()
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)
-void MetaballEnemy::checkToUpdate()
-{	
+void MetaplaneEnemy::checkToUpdate()
+{
 	for (int i = 0; i < numBlobs; i++)
 	{
 		Blob curBlob = blobs[i];
 		
 		Vertex direction = curBlob.direction;
 		
-		float nextX = curBlob.center.x + direction.x * curBlob.speed;
-		float nextY = curBlob.center.y + direction.y * curBlob.speed;
-		float nextZ = curBlob.center.z + direction.z * curBlob.speed;
+		float nextX = curBlob.center.x + direction.x * curBlob.moveSpeed;
+		float nextY = curBlob.center.y + direction.y * curBlob.moveSpeed;
+		float nextZ = curBlob.center.z + direction.z * curBlob.moveSpeed;
 		
 		float distance = sqrt(pow(nextX, 2) + pow(nextY, 2) + pow(nextZ, 2));
 		float maxDistance = distance + this->maxBlobRadius;
 		float minDistance = distance - this->maxBlobRadius;
 		
+		if (maxDistance > this->radius)
+		{
+			Vertex tempRotAxis = generateRandomNormalizedDirection();
+			curBlob.rotAxis = Vector3f(tempRotAxis.x, tempRotAxis.y, tempRotAxis.z);
+		}
+		
 		while (maxDistance > this->radius)
 		{
 			direction = generateRandomNormalizedDirection();
 			
-			nextX = curBlob.center.x + direction.x * curBlob.speed;
-			nextY = curBlob.center.y + direction.y * curBlob.speed;
-			nextZ = curBlob.center.z + direction.z * curBlob.speed;
+			nextX = curBlob.center.x + direction.x * curBlob.moveSpeed;
+			nextY = curBlob.center.y + direction.y * curBlob.moveSpeed;
+			nextZ = curBlob.center.z + direction.z * curBlob.moveSpeed;
 			
 			maxDistance = sqrt(pow(nextX, 2) + pow(nextY, 2) + pow(nextZ, 2)) + this->maxBlobRadius;
+		}
+		
+		if (curBlob.pastCenter && (minDistance < (MIN_DISTANCE_FROM_CENTER * this->radius)))
+		{
+			Vertex tempRotAxis = generateRandomNormalizedDirection();
+			curBlob.rotAxis = Vector3f(tempRotAxis.x, tempRotAxis.y, tempRotAxis.z);
 		}
 		
 		while (curBlob.pastCenter && (minDistance < (MIN_DISTANCE_FROM_CENTER * this->radius)))
 		{
 			direction = generateRandomNormalizedDirection();
 			
-			nextX = curBlob.center.x + direction.x * curBlob.speed;
-			nextY = curBlob.center.y + direction.y * curBlob.speed;
-			nextZ = curBlob.center.z + direction.z * curBlob.speed;
+			nextX = curBlob.center.x + direction.x * curBlob.moveSpeed;
+			nextY = curBlob.center.y + direction.y * curBlob.moveSpeed;
+			nextZ = curBlob.center.z + direction.z * curBlob.moveSpeed;
 			
 			minDistance = sqrt(pow(nextX, 2) + pow(nextY, 2) + pow(nextZ, 2)) - this->maxBlobRadius;
 		}
@@ -316,11 +374,48 @@ void MetaballEnemy::checkToUpdate()
 		curBlob.center.y = nextY;
 		curBlob.center.z = nextZ;
 		
+		AngleAxisf aa(curBlob.rotSpeed, curBlob.rotAxis);
+		curBlob.line1 = (aa * curBlob.line1).normalized();
+		curBlob.line2 = (aa * curBlob.line2).normalized();
+		
+		Vertex first;
+		first.x = curBlob.center.x + curBlob.line1(0) * (curBlob.length / 2);
+		first.y = curBlob.center.y + curBlob.line1(1) * (curBlob.length / 2);
+		first.z = curBlob.center.z + curBlob.line1(2) * (curBlob.length / 2);
+		
+		curBlob.segmentPoint1 = first;
+		
+		Vertex second;
+		second.x = curBlob.center.x + curBlob.line2(0) * (curBlob.length / 2);
+		second.y = curBlob.center.y + curBlob.line2(1) * (curBlob.length / 2);
+		second.z = curBlob.center.z + curBlob.line2(2) * (curBlob.length / 2);
+		
+		curBlob.segmentPoint2 = second;
+		
+		Vertex third;
+		third.x = first.x + second.x - curBlob.center.x;
+		third.y = first.y + second.y - curBlob.center.y;
+		third.z = first.z + second.z - curBlob.center.z;
+		
+		curBlob.segmentPoint3 = third;
+		
+		curBlob.segment1.x = -curBlob.line1(0) * curBlob.length;
+		curBlob.segment1.y = -curBlob.line1(1) * curBlob.length;
+		curBlob.segment1.z = -curBlob.line1(2) * curBlob.length;
+		
+		curBlob.segment2.x = -curBlob.line2(0) * curBlob.length;
+		curBlob.segment2.y = -curBlob.line2(1) * curBlob.length;
+		curBlob.segment2.z = -curBlob.line2(2) * curBlob.length;
+		
+		curBlob.segmentDistanceSquared = curBlob.segment1.x * curBlob.segment1.x +
+										 curBlob.segment1.y * curBlob.segment1.y +
+										 curBlob.segment1.z * curBlob.segment1.z;
+		
 		blobs[i] = curBlob;
 	}
 }
 
-void MetaballEnemy::render()
+void MetaplaneEnemy::render()
 {	
 	glColor4f(0.5, 0.5, 0.5, 1.0);
 	
@@ -352,7 +447,7 @@ void MetaballEnemy::render()
 	
 	for (int i = 0; i < numBlobs; i++) {
 		Blob curBlob = blobs[i];
-	
+		
 		Index blobCubePosition = getCubePosition(curBlob.center);
 		
 		bool isComputed = false;
@@ -398,7 +493,7 @@ void MetaballEnemy::render()
 	glEnd();
 }
 
-Vertex MetaballEnemy::normalize(Vertex& vertex)
+Vertex MetaplaneEnemy::normalize(Vertex& vertex)
 {
 	float result = 1 / (sqrt((vertex.x * vertex.x) + (vertex.y * vertex.y) + (vertex.z * vertex.z)));
 	vertex.x = vertex.x * result;
@@ -409,7 +504,7 @@ Vertex MetaballEnemy::normalize(Vertex& vertex)
 }
 
 
-Vertex MetaballEnemy::generateRandomNormalizedDirection()
+Vertex MetaplaneEnemy::generateRandomNormalizedDirection()
 {
 	Vertex tempDirection;
 	tempDirection.x = (rand() - (RAND_MAX / 2.f));
@@ -420,56 +515,54 @@ Vertex MetaballEnemy::generateRandomNormalizedDirection()
 }
 
 //NOTE: Assumes all blobs have the same "mass" (field strengths are equal at the same distance from the center)
-float MetaballEnemy::getMaxBlobRadius()
+float MetaplaneEnemy::getMaxBlobRadius()
 {
 	
 	return sqrt((fieldStrengthConstantSquared -
 				 sqrt(fieldStrengthConstantSquaredSquared -
-				 4 * fieldStrengthConstantSquaredSquared * (0.25 - DEFAULT_THRESHOLD / numBlobs))) /
-				(2 * fieldStrengthConstantSquaredSquared));
+					  4 * fieldStrengthConstantSquaredSquared * (0.25 - DEFAULT_THRESHOLD / numBlobs))) /
+				(2 * fieldStrengthConstantSquaredSquared)) + (DEFAULT_BLOB_LENGTH / 2);
 }
 
-float MetaballEnemy::calculateFieldStrength(VertexWithFieldStrength v)
+float MetaplaneEnemy::calculateFieldStrength(VertexWithFieldStrength v)
 {
 	float fieldStrength = 0;
 	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Vertex center = blobs[i].center;
+		Vertex closest = getClosestPoint(v, blobs[i]);
 		
-		float distanceSquared = (center.x - v.x) * (center.x - v.x) +
-								(center.y - v.y) * (center.y - v.y) +
-								(center.z - v.z) * (center.z - v.z);
+		float distanceSquared = (closest.x - v.x) * (closest.x - v.x) +
+		(closest.y - v.y) * (closest.y - v.y) +
+		(closest.z - v.z) * (closest.z - v.z);
 		
-		
-
 		if (distanceSquared < fieldStrengthDistanceSquaredThreshold)
 		{
 			fieldStrength += (fieldStrengthConstantSquaredSquared * distanceSquared * distanceSquared) -
-							 (fieldStrengthConstantSquared * distanceSquared) + 0.25f;
+			(fieldStrengthConstantSquared * distanceSquared) + 0.25f;
 		}
 	}
 	
 	return fieldStrength;
 }
 
-float MetaballEnemy::getFieldStrength(int x, int y, int z)
+float MetaplaneEnemy::getFieldStrength(int x, int y, int z)
 {
 	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].strength;
 }
 
-void MetaballEnemy::setFieldStrength(float strength, int x, int y, int z)
+void MetaplaneEnemy::setFieldStrength(float strength, int x, int y, int z)
 {
 	fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].strength = strength;
 	fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed = true;
 }
 
-bool MetaballEnemy::fieldStrengthWasComputed(int x, int y, int z)
+bool MetaplaneEnemy::fieldStrengthWasComputed(int x, int y, int z)
 {
 	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed;
 }
 
-Vertex MetaballEnemy::getNormal(Vertex v)
+Vertex MetaplaneEnemy::getNormal(Vertex v)
 {
 	Vertex normal;
 	normal.x = 0.f;
@@ -478,16 +571,24 @@ Vertex MetaballEnemy::getNormal(Vertex v)
 	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		float xDif = blobs[i].center.x - v.x;
-		float yDif = blobs[i].center.y - v.y;
-		float zDif = blobs[i].center.z - v.z;
+		/*float xDif = blobs[i].center.x - v.x;
+		 float yDif = blobs[i].center.y - v.y;
+		 float zDif = blobs[i].center.z - v.z;*/
+		
+		Blob curBlob = blobs[i];
+		
+		Vertex closest = getClosestPoint(v, blobs[i]);
+		
+		float xDif = closest.x - v.x;
+		float yDif = closest.y - v.y;
+		float zDif = closest.z - v.z;
 		
 		float distanceSquared = (xDif * xDif) + (yDif * yDif) + (zDif * zDif);
 		
 		if ((fieldStrengthConstantSquared * distanceSquared) < 0.5f)
 		{
 			float result = 4 * fieldStrengthConstantSquared *
-						 (fieldStrengthConstantSquared * distanceSquared - 0.5f);
+			(fieldStrengthConstantSquared * distanceSquared - 0.5f);
 			
 			normal.x += xDif * result;
 			normal.y += yDif * result;
@@ -498,7 +599,7 @@ Vertex MetaballEnemy::getNormal(Vertex v)
 	return normalize(normal);
 }
 
-Index MetaballEnemy::getCubePosition(Vertex v)
+Index MetaplaneEnemy::getCubePosition(Vertex v)
 {
 	Index position;
 	
@@ -509,12 +610,12 @@ Index MetaballEnemy::getCubePosition(Vertex v)
 	return position;
 }
 
-bool MetaballEnemy::wasAdded(Index curPosition)
+bool MetaplaneEnemy::wasAdded(Index curPosition)
 {
 	return added[curPosition.x * addedSize2D + curPosition.y * DEFAULT_NUM_CUBES_PER_DIMENSION + curPosition.z];
 }
 
-void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
+void MetaplaneEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 {
 	for (int i = -1; i <= 1; i++)
 	{
@@ -545,7 +646,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						neighbors[endNeighborIndex] = neighborPosition;
 						endNeighborIndex++;
 						added[neighborPosition.x * addedSize2D +
-						neighborPosition.y * DEFAULT_NUM_CUBES_PER_DIMENSION + neighborPosition.z] = true;
+							  neighborPosition.y * DEFAULT_NUM_CUBES_PER_DIMENSION + neighborPosition.z] = true;
 					}
 				}
 			}
@@ -553,7 +654,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 	}
 }
 
-bool MetaballEnemy::renderCube(Index index)
+bool MetaplaneEnemy::renderCube(Index index)
 {	
 	int x = index.x;
 	int y = index.y;
@@ -693,10 +794,10 @@ bool MetaballEnemy::renderCube(Index index)
 	return rendered;
 }
 
-bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, VertexWithFieldStrength v2,
-												  VertexWithFieldStrength v3, VertexWithFieldStrength v4,
-												  int v1Index, int v2Index, int v3Index, int v4Index,
-												  Normal *normals)
+bool MetaplaneEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, VertexWithFieldStrength v2,
+												   VertexWithFieldStrength v3, VertexWithFieldStrength v4,
+												   int v1Index, int v2Index, int v3Index, int v4Index,
+												   Normal *normals)
 {	
 	int numInsideField = 0;
 	
@@ -815,11 +916,11 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vOutside1Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vOutside2Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside2.strength);
+				(vInside1.strength - vOutside2.strength);
 				vOutside3Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside3.strength);
+				(vInside1.strength - vOutside3.strength);
 			}
 			
 			renderV1.x = (vOutside1.x - vInside1.x) * vOutside1Ratio + vInside1.x;
@@ -865,8 +966,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);
@@ -881,7 +982,7 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			glVertex3f(renderV3.x + center.x, renderV3.y + center.y, renderV3.z + center.z);
 			
 			return true;
-
+			
 			break;
 			
 		case 2:
@@ -956,13 +1057,13 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vOutside11Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-									(vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vOutside12Ratio = (vInside2.strength - DEFAULT_THRESHOLD) /
-									(vInside2.strength - vOutside1.strength);
+				(vInside2.strength - vOutside1.strength);
 				vOutside21Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-									(vInside1.strength - vOutside2.strength);
+				(vInside1.strength - vOutside2.strength);
 				vOutside22Ratio = (vInside2.strength - DEFAULT_THRESHOLD) /
-									(vInside2.strength - vOutside2.strength);
+				(vInside2.strength - vOutside2.strength);
 			}
 			
 			renderV1.x = (vOutside1.x - vInside1.x) * vOutside11Ratio + vInside1.x;
@@ -1008,8 +1109,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);
@@ -1112,11 +1213,11 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vInside1Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vInside2Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside2.strength - vOutside1.strength);
+				(vInside2.strength - vOutside1.strength);
 				vInside3Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside3.strength - vOutside1.strength);
+				(vInside3.strength - vOutside1.strength);
 			}
 			
 			renderV1.x = (vInside1.x - vOutside1.x) * vInside1Ratio + vOutside1.x;
@@ -1162,8 +1263,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);
@@ -1185,12 +1286,12 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 	return false;
 }
 
-Vertex MetaballEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
+Vertex MetaplaneEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
 {
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].normal;
 }
 
-void MetaballEnemy::setNormal(Normal *normals, Vertex normal, int vIndex1, int vIndex2)
+void MetaplaneEnemy::setNormal(Normal *normals, Vertex normal, int vIndex1, int vIndex2)
 {
 	normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].normal = normal;
 	normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].computed = true;
@@ -1198,7 +1299,60 @@ void MetaballEnemy::setNormal(Normal *normals, Vertex normal, int vIndex1, int v
 	normals[(vIndex2 - 1) * VERTICES_IN_CUBE + (vIndex1 - 1)].computed = true;
 }
 
-bool MetaballEnemy::normalWasComputed(Normal *normals, int vIndex1, int vIndex2)
+bool MetaplaneEnemy::normalWasComputed(Normal *normals, int vIndex1, int vIndex2)
 {
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].computed;
+}
+
+Vertex MetaplaneEnemy::getClosestPoint(Vertex v, Blob b)
+{
+	
+	Vertex first;
+	first.x = v.x - b.segmentPoint1.x;
+	first.y = v.y - b.segmentPoint1.y;
+	first.z = v.z - b.segmentPoint1.z;
+	
+	float t1 = (first.x * b.segment1.x + first.y * b.segment1.y + first.z * b.segment1.z) /
+	b.segmentDistanceSquared;
+	
+	if (t1 < 0.0f)
+	{
+		t1 = 0.0f;
+	} else if (t1 > 1.0f)
+	{
+		t1 = 1.0f;
+	}
+	
+	Vertex second;
+	second.x = v.x - b.segmentPoint2.x;
+	second.y = v.y - b.segmentPoint2.y;
+	second.z = v.z - b.segmentPoint2.z;
+	
+	float t2 = (second.x * b.segment2.x + second.y * b.segment2.y + second.z * b.segment2.z) /
+	b.segmentDistanceSquared;
+	
+	if (t2 < 0.0f)
+	{
+		t2 = 0.0f;
+	} else if (t2 > 1.0f)
+	{
+		t2 = 1.0f;
+	}
+	
+	Vertex closest;
+	closest.x = b.segmentPoint3.x + b.segment1.x * t1 + b.segment2.x * t2;
+	closest.y = b.segmentPoint3.y + b.segment1.y * t1 + b.segment2.y * t2;
+	closest.z = b.segmentPoint3.z + b.segment1.z * t1 + b.segment2.z * t2;
+	
+	return closest;
+}
+
+Vertex MetaplaneEnemy::getClosestPoint(VertexWithFieldStrength v, Blob b)
+{
+	Vertex temp;
+	temp.x = v.x;
+	temp.y = v.y;
+	temp.z = v.z;
+	
+	return getClosestPoint(temp, b);
 }
