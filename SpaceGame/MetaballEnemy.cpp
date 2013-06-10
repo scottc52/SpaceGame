@@ -8,10 +8,33 @@
  */
 
 #include "MetaballEnemy.h"
-#include <ctime>
-#include <cstdio>
-#include <cassert>
-// Initializes the Blob Creature object
+
+const float DEFAULT_BLOB_MASS = 1.f;
+const float DEFAULT_BLOB_SPEED = .01f;
+const float DEFAULT_FIELD_STRENGTH_CUTOFF = .3f; // Must be positive
+const float DEFAULT_THRESHOLD = .125f; // Keep less than 0.25
+const int DEFAULT_NUM_CUBES_PER_DIMENSION = 40;
+const float MIN_FIELD_STRENGTH = .01f;
+const bool VERTEX_INTERPOLATION = true;
+const float MIN_DISTANCE_FROM_CENTER = .15f;
+const float CENTER_SPHERE_RADIUS = .1f;
+const int CENTER_SPHERE_SLICES = 25;
+const int CENTER_SPHERE_STACKS = 25;
+const float PROJECTILE_RADIUS = .05f;
+const float PROJECTILE_SPEED = .1f;
+const int VERTICES_IN_CUBE = 8;
+const int DEFAULT_NEIGHBORS_SIZE = 100; // Must be greater than 0
+const int NEIGHBORS_INCREASE_FACTOR = 2;
+const int DEFAULT_ACTION_STATE = 1;
+const int PLAYER_DETECTED_ACTION_STATE = 2;
+const int SOUND_DETECTED_ACTION_STATE = 3;
+const float DEFAULT_BLOB_CREATURE_SPEED = .01f;
+const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
+const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
+const bool MOVING_ENABLED = false;
+const int FIRE_COUNTER_THRESHOLD = 40;
+
+// Initializes the BallBlob Creature object
 MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 {
 	this->numBlobs = numBlobs;
@@ -29,11 +52,11 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	srand(time(NULL)); //Initializes random number generator
 	
-	this->blobs = new Blob[numBlobs];
+	this->blobs = new BallBlob[numBlobs];
 	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob blob;
+		BallBlob blob;
 		
 		Vertex tempCenter;
 		tempCenter.x = 0.f;
@@ -94,28 +117,33 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	centerShininess = tempCenterShininess;
 }
 
-MetaballEnemy::~MetaballEnemy()
+MetaballEnemy::MetaballEnemy::~MetaballEnemy()
 {
-	delete[] blobs;
-	delete[] added;
-	delete[] fieldStrengths;	
-	delete[] neighbors;
+	delete blobs;
+	delete added;
+	delete fieldStrengths;	
+	delete neighbors;
 }
 
-Blob MetaballEnemy::getBlob(int index)
+MetaballEnemy::BallBlob MetaballEnemy::getBlob(int index)
 {
 	if (index > 0 && index < numBlobs)
 	{
 		return blobs[index];
 	}
 	
-	printf("Error: Blob index out of bounds.");
+	printf("Error: BallBlob index out of bounds.");
 	
-	Blob blob;
+	BallBlob blob;
 	return blob;
 }
 
-// Sets the speed of all blobs in the Blob Creature
+Vector3f MetaballEnemy::getCenter()
+{
+	return Vector3f(center.x, center.y, center.z);
+}
+
+// Sets the speed of all blobs in the BallBlob Creature
 void MetaballEnemy::setAllBlobsSpeed(float newSpeed)
 {
 	for (int i = 0; i < numBlobs; i++)
@@ -274,7 +302,7 @@ void MetaballEnemy::checkToUpdate()
 {	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob curBlob = blobs[i];
+		BallBlob curBlob = blobs[i];
 		
 		Vertex direction = curBlob.direction;
 		
@@ -353,30 +381,31 @@ void MetaballEnemy::render()
 	memset(fieldStrengths, 0, strengthSize3D * sizeof(fieldStrengths[0]));
 	
 	for (int i = 0; i < numBlobs; i++) {
-		Blob curBlob = blobs[i];
+		BallBlob curBlob = blobs[i];
 	
 		Index blobCubePosition = getCubePosition(curBlob.center);
 		
 		bool isComputed = false;
 		bool found = false;
 		
-		//while (!found)
-		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x ++){
+		for(;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x++)
+		{
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
 				found = true;
 				break;
 			}
-			if (renderCube(blobCubePosition))
+			else
 			{
-				found = true;
-				break;
+				if (renderCube(blobCubePosition))
+				{
+					found = true;
+					break;
+				}
 			}
 		}
 		
-		assert(found);
-
 		if (!isComputed)
 		{
 			
@@ -397,7 +426,7 @@ void MetaballEnemy::render()
 	glEnd();
 }
 
-Vertex MetaballEnemy::normalize(Vertex& vertex)
+MetaballEnemy::Vertex MetaballEnemy::normalize(Vertex& vertex)
 {
 	float result = 1 / (sqrt((vertex.x * vertex.x) + (vertex.y * vertex.y) + (vertex.z * vertex.z)));
 	vertex.x = vertex.x * result;
@@ -408,7 +437,7 @@ Vertex MetaballEnemy::normalize(Vertex& vertex)
 }
 
 
-Vertex MetaballEnemy::generateRandomNormalizedDirection()
+MetaballEnemy::Vertex MetaballEnemy::generateRandomNormalizedDirection()
 {
 	Vertex tempDirection;
 	tempDirection.x = (rand() - (RAND_MAX / 2.f));
@@ -468,7 +497,7 @@ bool MetaballEnemy::fieldStrengthWasComputed(int x, int y, int z)
 	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed;
 }
 
-Vertex MetaballEnemy::getNormal(Vertex v)
+MetaballEnemy::Vertex MetaballEnemy::getNormal(Vertex v)
 {
 	Vertex normal;
 	normal.x = 0.f;
@@ -496,8 +525,8 @@ Vertex MetaballEnemy::getNormal(Vertex v)
 	
 	return normalize(normal);
 }
-#include <iostream>
-Index MetaballEnemy::getCubePosition(Vertex v)
+
+MetaballEnemy::Index MetaballEnemy::getCubePosition(Vertex v)
 {
 	Index position;
 	
@@ -1184,7 +1213,7 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 	return false;
 }
 
-Vertex MetaballEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
+MetaballEnemy::Vertex MetaballEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
 {
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].normal;
 }

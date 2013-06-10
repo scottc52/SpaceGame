@@ -9,7 +9,34 @@
 
 #include "MetalineEnemy.h"
 
-// Initializes the Blob Creature object
+const float DEFAULT_BLOB_MASS = 1;
+const float DEFAULT_BLOB_MOVE_SPEED = .05f;
+const float DEFAULT_BLOB_ROTATION_SPEED = .5f; // Angle in radians
+const float DEFAULT_BLOB_LENGTH = .5f;
+const float DEFAULT_FIELD_STRENGTH_CUTOFF = .2f; // Must be positive
+const float DEFAULT_THRESHOLD = .125f; // Keep less than 0.25
+const int DEFAULT_NUM_CUBES_PER_DIMENSION = 30;
+const float MIN_FIELD_STRENGTH = .01f;
+const bool VERTEX_INTERPOLATION = true;
+const float MIN_DISTANCE_FROM_CENTER = -.15f;
+const float CENTER_SPHERE_RADIUS = .1f;
+const int CENTER_SPHERE_SLICES = 25;
+const int CENTER_SPHERE_STACKS = 25;
+const float PROJECTILE_RADIUS = .05f;
+const float PROJECTILE_SPEED = .1f;
+const int VERTICES_IN_CUBE = 8;
+const int DEFAULT_NEIGHBORS_SIZE = 100; // Must be greater than 0
+const int NEIGHBORS_INCREASE_FACTOR = 2;
+const int DEFAULT_ACTION_STATE = 1;
+const int PLAYER_DETECTED_ACTION_STATE = 2;
+const int SOUND_DETECTED_ACTION_STATE = 3;
+const float DEFAULT_BLOB_CREATURE_SPEED = .01f;
+const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
+const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
+const bool MOVING_ENABLED = false;
+const int FIRE_COUNTER_THRESHOLD = 40;
+
+// Initializes the LineBlob Creature object
 MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 {
 	this->numBlobs = numBlobs;
@@ -27,11 +54,11 @@ MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	srand(time(NULL)); //Initializes random number generator
 	
-	this->blobs = new Blob[numBlobs];
+	this->blobs = new LineBlob[numBlobs];
 	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob blob;
+		LineBlob blob;
 		
 		Vertex tempCenter;
 		tempCenter.x = 0.f;
@@ -127,20 +154,25 @@ MetalineEnemy::~MetalineEnemy()
 	delete[] neighbors;
 }
 
-Blob MetalineEnemy::getBlob(int index)
+MetalineEnemy::LineBlob MetalineEnemy::getBlob(int index)
 {
 	if (index > 0 && index < numBlobs)
 	{
 		return blobs[index];
 	}
 	
-	printf("Error: Blob index out of bounds.");
+	printf("Error: LineBlob index out of bounds.");
 	
-	Blob blob;
+	LineBlob blob;
 	return blob;
 }
 
-// Sets the speed of all blobs in the Blob Creature
+Vector3f MetalineEnemy::getCenter()
+{
+	return Vector3f(center.x, center.y, center.z);
+}
+
+// Sets the speed of all blobs in the LineBlob Creature
 void MetalineEnemy::setAllBlobsSpeed(float newSpeed)
 {
 	for (int i = 0; i < numBlobs; i++)
@@ -299,7 +331,7 @@ void MetalineEnemy::checkToUpdate()
 {
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob curBlob = blobs[i];
+		LineBlob curBlob = blobs[i];
 		
 		Vertex direction = curBlob.direction;
 		
@@ -408,14 +440,14 @@ void MetalineEnemy::render()
 	memset(fieldStrengths, 0, strengthSize3D * sizeof(fieldStrengths[0]));
 	
 	for (int i = 0; i < numBlobs; i++) {
-		Blob curBlob = blobs[i];
+		LineBlob curBlob = blobs[i];
 		
 		Index blobCubePosition = getCubePosition(curBlob.center);
 		
 		bool isComputed = false;
 		bool found = false;
 		
-		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x++)
+		for(;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x++)
 		{
 			if (wasAdded(blobCubePosition))
 			{
@@ -453,7 +485,7 @@ void MetalineEnemy::render()
 	glEnd();
 }
 
-Vertex MetalineEnemy::normalize(Vertex& vertex)
+MetalineEnemy::Vertex MetalineEnemy::normalize(Vertex& vertex)
 {
 	float result = 1 / (sqrt((vertex.x * vertex.x) + (vertex.y * vertex.y) + (vertex.z * vertex.z)));
 	vertex.x = vertex.x * result;
@@ -464,7 +496,7 @@ Vertex MetalineEnemy::normalize(Vertex& vertex)
 }
 
 
-Vertex MetalineEnemy::generateRandomNormalizedDirection()
+MetalineEnemy::Vertex MetalineEnemy::generateRandomNormalizedDirection()
 {
 	Vertex tempDirection;
 	tempDirection.x = (rand() - (RAND_MAX / 2.f));
@@ -522,7 +554,7 @@ bool MetalineEnemy::fieldStrengthWasComputed(int x, int y, int z)
 	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed;
 }
 
-Vertex MetalineEnemy::getNormal(Vertex v)
+MetalineEnemy::Vertex MetalineEnemy::getNormal(Vertex v)
 {
 	Vertex normal;
 	normal.x = 0.f;
@@ -535,7 +567,7 @@ Vertex MetalineEnemy::getNormal(Vertex v)
 		float yDif = blobs[i].center.y - v.y;
 		float zDif = blobs[i].center.z - v.z;*/
 		
-		Blob curBlob = blobs[i];
+		LineBlob curLineBlob = blobs[i];
 		
 		Vertex closest = getClosestPoint(v, blobs[i]);
 		
@@ -559,7 +591,7 @@ Vertex MetalineEnemy::getNormal(Vertex v)
 	return normalize(normal);
 }
 
-Index MetalineEnemy::getCubePosition(Vertex v)
+MetalineEnemy::Index MetalineEnemy::getCubePosition(Vertex v)
 {
 	Index position;
 	
@@ -1246,7 +1278,7 @@ bool MetalineEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 	return false;
 }
 
-Vertex MetalineEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
+MetalineEnemy::Vertex MetalineEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
 {
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].normal;
 }
@@ -1264,7 +1296,7 @@ bool MetalineEnemy::normalWasComputed(Normal *normals, int vIndex1, int vIndex2)
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].computed;
 }
 
-Vertex MetalineEnemy::getClosestPoint(Vertex v, Blob b)
+MetalineEnemy::Vertex MetalineEnemy::getClosestPoint(Vertex v, LineBlob b)
 {
 	
 	Vertex first;
@@ -1291,7 +1323,7 @@ Vertex MetalineEnemy::getClosestPoint(Vertex v, Blob b)
 	return closest;
 }
 
-Vertex MetalineEnemy::getClosestPoint(VertexWithFieldStrength v, Blob b)
+MetalineEnemy::Vertex MetalineEnemy::getClosestPoint(VertexWithFieldStrength v, LineBlob b)
 {
 	Vertex temp;
 	temp.x = v.x;

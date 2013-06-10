@@ -9,7 +9,34 @@
 
 #include "MetaplaneEnemy.h"
 
-// Initializes the Blob Creature object
+const float DEFAULT_BLOB_MASS = 1;
+const float DEFAULT_BLOB_MOVE_SPEED = .1f;
+const float DEFAULT_BLOB_ROTATION_SPEED = .5f; // Angle in radians
+const float DEFAULT_BLOB_LENGTH = .5f;
+const float DEFAULT_FIELD_STRENGTH_CUTOFF = .15f; // Must be positive
+const float DEFAULT_THRESHOLD = .125f; // Keep less than 0.25
+const int DEFAULT_NUM_CUBES_PER_DIMENSION = 30;
+const float MIN_FIELD_STRENGTH = .01f;
+const bool VERTEX_INTERPOLATION = true;
+const float MIN_DISTANCE_FROM_CENTER = -.15f;
+const float CENTER_SPHERE_RADIUS = .1f;
+const int CENTER_SPHERE_SLICES = 25;
+const int CENTER_SPHERE_STACKS = 25;
+const float PROJECTILE_RADIUS = .05f;
+const float PROJECTILE_SPEED = 1.f;
+const int VERTICES_IN_CUBE = 8;
+const int DEFAULT_NEIGHBORS_SIZE = 100; // Must be greater than 0
+const int NEIGHBORS_INCREASE_FACTOR = 2;
+const int DEFAULT_ACTION_STATE = 1;
+const int PLAYER_DETECTED_ACTION_STATE = 2;
+const int SOUND_DETECTED_ACTION_STATE = 3;
+const float DEFAULT_BLOB_CREATURE_SPEED = .01f;
+const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
+const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
+const bool MOVING_ENABLED = false;
+const int FIRE_COUNTER_THRESHOLD = 40;
+
+// Initializes the PlaneBlob Creature object
 MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 {
 	this->numBlobs = numBlobs;
@@ -27,11 +54,11 @@ MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radiu
 	
 	srand(time(NULL)); //Initializes random number generator
 	
-	this->blobs = new Blob[numBlobs];
+	this->blobs = new PlaneBlob[numBlobs];
 	
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob blob;
+		PlaneBlob blob;
 		
 		Vertex tempCenter;
 		tempCenter.x = 0.f;
@@ -140,26 +167,31 @@ MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radiu
 
 MetaplaneEnemy::~MetaplaneEnemy()
 {
-	delete[] blobs;
-	delete[] added;
-	delete[] fieldStrengths;	
-	delete[] neighbors;
+	delete blobs;
+	delete added;
+	delete fieldStrengths;	
+	delete neighbors;
 }
 
-Blob MetaplaneEnemy::getBlob(int index)
+MetaplaneEnemy::PlaneBlob MetaplaneEnemy::getBlob(int index)
 {
 	if (index > 0 && index < numBlobs)
 	{
 		return blobs[index];
 	}
 	
-	printf("Error: Blob index out of bounds.");
+	printf("Error: PlaneBlob index out of bounds.");
 	
-	Blob blob;
+	PlaneBlob blob;
 	return blob;
 }
 
-// Sets the speed of all blobs in the Blob Creature
+Vector3f MetaplaneEnemy::getCenter()
+{
+	return Vector3f(center.x, center.y, center.z);
+}
+
+// Sets the speed of all blobs in the PlaneBlob Creature
 void MetaplaneEnemy::setAllBlobsSpeed(float newSpeed)
 {
 	for (int i = 0; i < numBlobs; i++)
@@ -318,7 +350,7 @@ void MetaplaneEnemy::checkToUpdate()
 {
 	for (int i = 0; i < numBlobs; i++)
 	{
-		Blob curBlob = blobs[i];
+		PlaneBlob curBlob = blobs[i];
 		
 		Vertex direction = curBlob.direction;
 		
@@ -446,27 +478,29 @@ void MetaplaneEnemy::render()
 	memset(fieldStrengths, 0, strengthSize3D * sizeof(fieldStrengths[0]));
 	
 	for (int i = 0; i < numBlobs; i++) {
-		Blob curBlob = blobs[i];
+		PlaneBlob curBlob = blobs[i];
 		
 		Index blobCubePosition = getCubePosition(curBlob.center);
 		
 		bool isComputed = false;
 		bool found = false;
 		
-		for(;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x++)
+		while (!found)
 		{
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
 				found = true;
-				break;
 			}
 			else
 			{
 				if (renderCube(blobCubePosition))
 				{
 					found = true;
-					break;
+				}
+				else
+				{
+					blobCubePosition.x++;
 				}
 			}
 		}
@@ -491,7 +525,7 @@ void MetaplaneEnemy::render()
 	glEnd();
 }
 
-Vertex MetaplaneEnemy::normalize(Vertex& vertex)
+MetaplaneEnemy::Vertex MetaplaneEnemy::normalize(Vertex& vertex)
 {
 	float result = 1 / (sqrt((vertex.x * vertex.x) + (vertex.y * vertex.y) + (vertex.z * vertex.z)));
 	vertex.x = vertex.x * result;
@@ -502,7 +536,7 @@ Vertex MetaplaneEnemy::normalize(Vertex& vertex)
 }
 
 
-Vertex MetaplaneEnemy::generateRandomNormalizedDirection()
+MetaplaneEnemy::Vertex MetaplaneEnemy::generateRandomNormalizedDirection()
 {
 	Vertex tempDirection;
 	tempDirection.x = (rand() - (RAND_MAX / 2.f));
@@ -560,7 +594,7 @@ bool MetaplaneEnemy::fieldStrengthWasComputed(int x, int y, int z)
 	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed;
 }
 
-Vertex MetaplaneEnemy::getNormal(Vertex v)
+MetaplaneEnemy::Vertex MetaplaneEnemy::getNormal(Vertex v)
 {
 	Vertex normal;
 	normal.x = 0.f;
@@ -573,7 +607,7 @@ Vertex MetaplaneEnemy::getNormal(Vertex v)
 		 float yDif = blobs[i].center.y - v.y;
 		 float zDif = blobs[i].center.z - v.z;*/
 		
-		Blob curBlob = blobs[i];
+		PlaneBlob curPlaneBlob = blobs[i];
 		
 		Vertex closest = getClosestPoint(v, blobs[i]);
 		
@@ -597,7 +631,7 @@ Vertex MetaplaneEnemy::getNormal(Vertex v)
 	return normalize(normal);
 }
 
-Index MetaplaneEnemy::getCubePosition(Vertex v)
+MetaplaneEnemy::Index MetaplaneEnemy::getCubePosition(Vertex v)
 {
 	Index position;
 	
@@ -637,7 +671,7 @@ void MetaplaneEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						{
 							Index *tempNeighbors = new Index[neighborsSize * NEIGHBORS_INCREASE_FACTOR];
 							memcpy(tempNeighbors, neighbors, neighborsSize * sizeof(neighbors[0]));
-							delete[] neighbors;
+							delete neighbors;
 							neighbors = tempNeighbors;
 							neighborsSize *= NEIGHBORS_INCREASE_FACTOR;
 						}
@@ -787,7 +821,7 @@ bool MetaplaneEnemy::renderCube(Index index)
 	if (renderTetrahedronIntersections(v4, v5, v6, v8, 4, 5, 6, 8, normals)) rendered = true;
 	if (renderTetrahedronIntersections(v4, v5, v7, v8, 4, 5, 7, 8, normals)) rendered = true;
 	
-	delete[] normals;
+	delete normals;
 	
 	return rendered;
 }
@@ -1284,7 +1318,7 @@ bool MetaplaneEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, 
 	return false;
 }
 
-Vertex MetaplaneEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
+MetaplaneEnemy::Vertex MetaplaneEnemy::getNormal(Normal *normals, int vIndex1, int vIndex2)
 {
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].normal;
 }
@@ -1302,7 +1336,7 @@ bool MetaplaneEnemy::normalWasComputed(Normal *normals, int vIndex1, int vIndex2
 	return normals[(vIndex1 - 1) * VERTICES_IN_CUBE + (vIndex2 - 1)].computed;
 }
 
-Vertex MetaplaneEnemy::getClosestPoint(Vertex v, Blob b)
+MetaplaneEnemy::Vertex MetaplaneEnemy::getClosestPoint(Vertex v, PlaneBlob b)
 {
 	
 	Vertex first;
@@ -1345,7 +1379,7 @@ Vertex MetaplaneEnemy::getClosestPoint(Vertex v, Blob b)
 	return closest;
 }
 
-Vertex MetaplaneEnemy::getClosestPoint(VertexWithFieldStrength v, Blob b)
+MetaplaneEnemy::Vertex MetaplaneEnemy::getClosestPoint(VertexWithFieldStrength v, PlaneBlob b)
 {
 	Vertex temp;
 	temp.x = v.x;

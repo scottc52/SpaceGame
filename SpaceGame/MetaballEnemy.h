@@ -25,93 +25,24 @@ using namespace std;
 #ifndef MetaballEnemy_h
 #define MetaballEnemy_h
 
-#define DEFAULT_NUM_BLOBS 5
-#define DEFAULT_RADIUS 1.f
-#define DEFAULT_BLOB_MASS 1
-#define DEFAULT_BLOB_SPEED .01f
-#define DEFAULT_FIELD_STRENGTH_CUTOFF .3f // Must be positive
-#define DEFAULT_THRESHOLD .125f // Keep less than 0.25
-#define DEFAULT_NUM_CUBES_PER_DIMENSION 40
-#define MIN_FIELD_STRENGTH .01f
-#define VERTEX_INTERPOLATION true
-#define MIN_DISTANCE_FROM_CENTER .15f
-#define CENTER_SPHERE_RADIUS .1f
-#define CENTER_SPHERE_SLICES 25
-#define CENTER_SPHERE_STACKS 25
-#define PROJECTILE_RADIUS .05f
-#define PROJECTILE_SPEED .1f
-#define VERTICES_IN_CUBE 8
-#define DEFAULT_NEIGHBORS_SIZE 100 // Must be greater than 0
-#define NEIGHBORS_INCREASE_FACTOR 2
-#define DEFAULT_ACTION_STATE 1
-#define PLAYER_DETECTED_ACTION_STATE 2
-#define SOUND_DETECTED_ACTION_STATE 3
-#define DEFAULT_BLOB_CREATURE_SPEED .01f
-#define BLOB_CREATURE_STATIONARY_BOUNDARY 1.f
-#define BLOB_CREATURE_MOVE_BOUNDARY 4.f
-#define MOVING_ENABLED false
-#define FIRE_COUNTER_THRESHOLD 40
-
-typedef struct Vertex
-	{
-		float x;
-		float y;
-		float z;
-	} Vertex;
-
-typedef struct VertexWithFieldStrength
-	{
-		float x;
-		float y;
-		float z;
-		float strength;
-	} VertexWithFieldStrength;
-
-typedef struct Index
-	{
-		int x;
-		int y;
-		int z;
-	} Index;
-
-typedef struct FieldStrength
-	{
-		FieldStrength(float s = 0, bool c=false): strength(s), computed(c){}
-		float strength;
-		bool computed;
-	} FieldStrength;
-
-typedef struct Normal
-	{
-		Vertex normal;
-		bool computed;
-	} Normal;
-
-typedef struct Blob
-	{
-		Vertex center;
-		float speed;
-		Vertex direction;
-		bool pastCenter;
-	} Blob;
+const int DEFAULT_NUM_BALL_BLOBS = 5;
+const float DEFAULT_BALL_RADIUS = 1.f;
 
 class MetaballEnemy : public AI
 {
 public:
-	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BLOBS, float radius = DEFAULT_RADIUS);
+	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BALL_BLOBS, float radius = DEFAULT_BALL_RADIUS);
 	~MetaballEnemy();
 	
-	Blob *MetaballEnemy::getBlobs() { return blobs; };
-	Blob MetaballEnemy::getBlob(int index);
 	int MetaballEnemy::getNumBlobs() { return numBlobs; };
-	Vertex MetaballEnemy::getCenter() { return center; };
+	Eigen::Vector3f MetaballEnemy::getCenter();
 	float MetaballEnemy::getRadius() { return radius; };
 	int MetaballEnemy::getBlobSpeed(int index) { return this->blobs[index].speed; };
 	void MetaballEnemy::setBlobSpeed(int index, float newSpeed) { this->blobs[index].speed = newSpeed; };
 	void setAllBlobsSpeed(float newSpeed);
 	
-	Vector3f getLocation();
-	Vector3f getDirection();
+	Eigen::Vector3f getLocation();
+	Eigen::Vector3f getDirection();
 	
 	void MetaballEnemy::update()
 	{
@@ -125,8 +56,50 @@ public:
 	void render();
 	
 private:
+	typedef struct Vertex
+		{
+			float x;
+			float y;
+			float z;
+		} Vertex;
+	
+	typedef struct VertexWithFieldStrength
+		{
+			float x;
+			float y;
+			float z;
+			float strength;
+		} VertexWithFieldStrength;
+	
+	typedef struct Index
+		{
+			int x;
+			int y;
+			int z;
+		} Index;
+	
+	typedef struct FieldStrength
+		{
+			float strength;
+			bool computed;
+		} FieldStrength;
+	
+	typedef struct Normal
+		{
+			Vertex normal;
+			bool computed;
+		} Normal;
+	
+	typedef struct BallBlob
+		{
+			Vertex center;
+			float speed;
+			Vertex direction;
+			bool pastCenter;
+		} BallBlob;
+	
 	Vertex center; // Center of the Blob Creature
-	Blob *blobs; // The blobs in the Blob Creature
+	BallBlob *blobs; // The blobs in the Blob Creature
 	int numBlobs; // The number of blobs in the Blob Creature
 	float radius; // The farthest distance the outer edge of a blob can get from the center of the Blob Creature
 	float maxBlobRadius; // The farthest distance the outer edge of a blob can get from its center
@@ -175,27 +148,29 @@ private:
 	void checkToFire();
 	void checkToUpdate();
 	
+	MetaballEnemy::BallBlob *MetaballEnemy::getBlobs() { return blobs; };
+	MetaballEnemy::BallBlob MetaballEnemy::getBlob(int index);
 	void moveMetaballEnemy();
 	void updateActionState();
 	void moveToDestination();
 	void moveProjectiles();
 	bool collisionDetected(Vertex destination);
-	Vertex normalize(Vertex& vertex);
-	Vertex generateRandomNormalizedDirection();
+	MetaballEnemy::Vertex normalize(Vertex& vertex);
+	MetaballEnemy::Vertex generateRandomNormalizedDirection();
 	float getMaxBlobRadius();
 	float calculateFieldStrength(VertexWithFieldStrength v);
 	float getFieldStrength(int x, int y, int z);
 	bool fieldStrengthWasComputed(int x, int y, int z);
 	void setFieldStrength(float strength, int x, int y, int z);
-	Vertex getNormal(Vertex v);
-	Index getCubePosition(Vertex v);
+	MetaballEnemy::Vertex getNormal(Vertex v);
+	MetaballEnemy::Index getCubePosition(Vertex v);
 	bool wasAdded(Index curPosition);
 	void addNeighbors(Index curPosition, int& endNeighborIndex);
 	bool renderCube(Index index);
 	bool renderTetrahedronIntersections(VertexWithFieldStrength v1, VertexWithFieldStrength v2,
 										VertexWithFieldStrength v3, VertexWithFieldStrength v4,
 										int v1Index, int v2Index, int v3Index, int v4Index, Normal *normals);
-	Vertex getNormal(Normal *normals, int vIndex1, int vIndex2);
+	MetaballEnemy::Vertex getNormal(Normal *normals, int vIndex1, int vIndex2);
 	bool normalWasComputed(Normal *normals, int vIndex1, int vIndex2);
 	void setNormal(Normal *normals, Vertex normal, int vIndex1, int vIndex2);
 };
