@@ -13,7 +13,7 @@ void Controller::run(){
 		double delta = GameTime::DiffTimeMS(ref);		 
  		while (delta < 5.0){ // so we don't kill cpu
  			//cout << "too fast! (in a good way)" << endl;
- 			pthread_yield(); 
+ 			pthread_helper_sleep(100); 
  			delta = GameTime::DiffTimeMS(ref);  
  		}
  		GameTime::GameTimer nextRef = GameTime::GetTime();
