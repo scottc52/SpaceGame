@@ -21,7 +21,7 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, int radius)
 	
 	this->increment = this->radius * 2 / DEFAULT_NUM_CUBES_PER_DIMENSION;
 	
-	float fieldStrengthConstant = 0.707 / DEFAULT_FIELD_STRENGTH_CUTOFF;
+	float fieldStrengthConstant = 0.707; // / DEFAULT_FIELD_STRENGTH_CUTOFF;
 	this->fieldStrengthConstantSquared = fieldStrengthConstant * fieldStrengthConstant;
 	this->fieldStrengthConstantSquaredSquared = fieldStrengthConstantSquared * fieldStrengthConstantSquared;
 	this->fieldStrengthDistanceSquaredThreshold = 0.5f / fieldStrengthConstantSquared;
@@ -98,7 +98,7 @@ MetaballEnemy::~MetaballEnemy()
 	delete blobs;
 	delete added;
 	delete[] fieldStrengths;	
-	delete neighbors;
+	delete[] neighbors;
 }
 
 Blob MetaballEnemy::getBlob(int index)
@@ -347,9 +347,7 @@ void MetaballEnemy::render()
 		bool found = false;
 		
 		//while (!found)
-		for (;blobCubePosition.z < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.z ++){
-		for (;blobCubePosition.y < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.y ++){
-		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.x ++){
+		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION; blobCubePosition.x ++){
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
@@ -359,8 +357,9 @@ void MetaballEnemy::render()
 			if (renderCube(blobCubePosition))
 			{
 				found = true;
+				break;
 			}
-		}if (found) break;} if (found) break;}
+		}
 		
 		assert(found);
 
@@ -426,7 +425,7 @@ float MetaballEnemy::calculateFieldStrength(VertexWithFieldStrength v)
 		float distanceSquared = (center.x - v.x) * (center.x - v.x) +
 								(center.y - v.y) * (center.y - v.y) +
 								(center.z - v.z) * (center.z - v.z);
-		
+		distanceSquared /= radius * radius; 		
 		
 
 		if (distanceSquared < fieldStrengthDistanceSquaredThreshold)
@@ -529,7 +528,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						{
 							Index *tempNeighbors = new Index[neighborsSize * NEIGHBORS_INCREASE_FACTOR];
 							memcpy(tempNeighbors, neighbors, neighborsSize * sizeof(neighbors[0]));
-							delete neighbors;
+							delete[] neighbors;
 							neighbors = tempNeighbors;
 							neighborsSize *= NEIGHBORS_INCREASE_FACTOR;
 						}

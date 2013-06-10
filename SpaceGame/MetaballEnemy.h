@@ -34,8 +34,8 @@ using namespace std;
 //#define DEFAULT_FIELD_STRENGTH_CUTOFF .01f
 #define DEFAULT_FIELD_STRENGTH_CUTOFF 3.f // Must be positive
 //#define DEFAULT_THRESHOLD .5f
-#define DEFAULT_THRESHOLD .249f // Keep less than 0.25
-#define DEFAULT_NUM_CUBES_PER_DIMENSION 400
+#define DEFAULT_THRESHOLD .125f // Keep less than 0.25
+#define DEFAULT_NUM_CUBES_PER_DIMENSION 40
 #define MIN_FIELD_STRENGTH .01f
 #define VERTEX_INTERPOLATION true
 #define MIN_DISTANCE_FROM_CENTER 1.5f
