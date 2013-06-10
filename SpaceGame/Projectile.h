@@ -15,11 +15,15 @@
 #include <stdlib.h>
 using namespace Eigen;
 
+
+#include <GL/glew.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
 #endif
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 #ifndef Projectile_h
 #define Projectile_h

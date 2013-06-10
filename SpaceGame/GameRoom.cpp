@@ -25,10 +25,10 @@ using namespace std;
 #define DELIM " \r\t\n\f" 
 
 
-Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
+/*Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
 Vec3f ConvertToOM3Vector(Vector3f& v){return Vec3f(v.x(), v.y(), v.z());}
 Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
-Vec4f ConvertToOM4Vector(Vector4f& v){return Vec4f(v.w(), v.x(), v.y(), v.z());}
+Vec4f ConvertToOM4Vector(Vector4f& v){return Vec4f(v.w(), v.x(), v.y(), v.z());}*/
 
 char *newCString(const char *c){
 	int len = strlen(c);
@@ -250,11 +250,12 @@ GameRoom::~GameRoom()
 
 void GameRoom::AddWorldObject(GameWorldObject& newWObject)
 {
-	this->wobjects[(string)newWObject.GetName()] = newWObject;
+	string key(newWObject.GetName());
+	(this->wobjects)[key] = newWObject;
 }
 
 void GameRoom::AddLight(GameLight& l){
-	this->lights[l.GetName()]=l;
+	(this->lights)[l.GetName()]=l;
 }
 
 GameWorldObject *GameRoom::GetWorldObject(const char *wobjectName)

@@ -218,7 +218,7 @@ void MetalineEnemy::updateActionState()
 	}
 }
 
-void MetalineEnemy::moveProjectiles()
+/*void MetalineEnemy::moveProjectiles()
 {
 	int size = projectiles.size();
 	for (int i = 0; i < size; i++)
@@ -236,7 +236,7 @@ void MetalineEnemy::moveProjectiles()
 			projectiles[i] = curProjectile;
 		}
 	}
-}
+}*/
 
 bool MetalineEnemy::collisionDetected(Vertex v)
 {	
@@ -312,10 +312,10 @@ void MetalineEnemy::checkToFire()
 		Vector3f projectileDirection = playerPos - projectileCenter;
 		projectileDirection.normalize();
 		
-		Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
+		/*Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
 								 PROJECTILE_SPEED);
 		projectiles.push_back(newProjectile);
-		
+		*/
 		fireCounter = 0;
 	}
 	else if (fireCounter < FIRE_COUNTER_THRESHOLD)
@@ -323,7 +323,7 @@ void MetalineEnemy::checkToFire()
 		fireCounter++;
 	}
 	
-	moveProjectiles();
+	//moveProjectiles();
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)

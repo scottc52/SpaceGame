@@ -19,7 +19,7 @@ using namespace Eigen;
 #include <gl/freeglut.h>
 #else
 #ifdef __linux__
-#include <gl/glew.h> 
+#include <GL/glew.h> 
 #include <GL/glut.h>
 #include <GL/glu.h>
 #include <GL/gl.h>

@@ -237,7 +237,7 @@ void MetaplaneEnemy::updateActionState()
 	}
 }
 
-void MetaplaneEnemy::moveProjectiles()
+/*void MetaplaneEnemy::moveProjectiles()
 {
 	int size = projectiles.size();
 	for (int i = 0; i < size; i++)
@@ -255,7 +255,7 @@ void MetaplaneEnemy::moveProjectiles()
 			projectiles[i] = curProjectile;
 		}
 	}
-}
+}*/
 
 bool MetaplaneEnemy::collisionDetected(Vertex v)
 {	
@@ -331,9 +331,9 @@ void MetaplaneEnemy::checkToFire()
 		Vector3f projectileDirection = playerPos - projectileCenter;
 		projectileDirection.normalize();
 		
-		Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
+		/*Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
 								 PROJECTILE_SPEED);
-		projectiles.push_back(newProjectile);
+		projectiles.push_back(newProjectile);*/
 		
 		fireCounter = 0;
 	}
@@ -342,7 +342,7 @@ void MetaplaneEnemy::checkToFire()
 		fireCounter++;
 	}
 	
-	moveProjectiles();
+	//moveProjectiles();
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)

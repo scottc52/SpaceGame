@@ -12,10 +12,11 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "Projectile.h"
+#include "projectile_particles.h"
 #include "AI.h"
 using namespace std;
 
+#include <GL/glew.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -138,7 +139,7 @@ private:
 	float centerMaterialSpecular[4]; // Specular material property for the center sphere of the Blob Creature
 	float centerShininess; // Shininess material property for the blobs of the Blob Creature
 	
-	vector<Projectile> projectiles;
+	//vector<Projectile> projectiles;
 	
 	int fireCounter;
 	
@@ -153,7 +154,7 @@ private:
 	void moveMetaballEnemy();
 	void updateActionState();
 	void moveToDestination();
-	void moveProjectiles();
+	//void moveProjectiles();
 	bool collisionDetected(Vertex destination);
 	MetaballEnemy::Vertex normalize(Vertex& vertex);
 	MetaballEnemy::Vertex generateRandomNormalizedDirection();

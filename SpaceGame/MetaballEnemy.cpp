@@ -8,7 +8,8 @@
  */
 
 #include "MetaballEnemy.h"
-
+#include <cstdio>
+#include <iostream>
 const float DEFAULT_BLOB_MASS = 1.f;
 const float DEFAULT_BLOB_SPEED = .01f;
 const float DEFAULT_FIELD_STRENGTH_CUTOFF = .3f; // Must be positive
@@ -189,7 +190,7 @@ void MetaballEnemy::updateActionState()
 	}
 }
 
-void MetaballEnemy::moveProjectiles()
+/*void MetaballEnemy::moveProjectiles()
 {
 	int size = projectiles.size();
 	for (int i = 0; i < size; i++)
@@ -207,7 +208,7 @@ void MetaballEnemy::moveProjectiles()
 			projectiles[i] = curProjectile;
 		}
 	}
-}
+}*/
 
 bool MetaballEnemy::collisionDetected(Vertex v)
 {	
@@ -283,9 +284,9 @@ void MetaballEnemy::checkToFire()
 		Vector3f projectileDirection = playerPos - projectileCenter;
 		projectileDirection.normalize();
 		
-		Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
-								 PROJECTILE_SPEED);
-		projectiles.push_back(newProjectile);
+		//Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
+								// PROJECTILE_SPEED);
+		//projectiles.push_back(newProjectile);
 		
 		fireCounter = 0;
 	}
@@ -294,7 +295,7 @@ void MetaballEnemy::checkToFire()
 		fireCounter++;
 	}
 	
-	moveProjectiles();
+	//moveProjectiles();
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)

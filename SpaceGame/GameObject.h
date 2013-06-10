@@ -41,10 +41,10 @@ using namespace Eigen;
 
 
 
-struct CollisionData{
+typedef struct CollisionData{
 	Vec3f pointOfContact;
 	Vec3f contactNormal;
-};
+} CollisionData;
 
 
 //Abstract class GameObject
@@ -137,7 +137,7 @@ public:
 		position[2] = position[2] + z;
 	}
 	void GameObject::SetPosition(Vector3f &newPos){position = newPos;}
-	Vec4f GameObject::GetRotation(){return rotation;}
+	Vec4f &GameObject::GetRotation(){return rotation;}
 	void GameObject::SetRotation(Vec4f newRotation){rotation = newRotation;}
 	//void GameObject::RotateByQuaternion(Quaternionf &deltaQ){rotation = rotation + deltaQ;}
 	float GameObject::GetScale(){return scale;}

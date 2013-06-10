@@ -7,17 +7,18 @@
  *
  */
 
-#include <Carbon/Carbon.h>
+//#include <Carbon/Carbon.h>
 
 #include <stdlib.h>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "Projectile.h"
+#include "projectile_particles.h"
 #include "AI.h"
 using namespace std;
-
+#include <cstdio>
+#include <iostream>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -151,7 +152,7 @@ class MetaplaneEnemy : public AI
 		float centerMaterialSpecular[4]; // Specular material property for the center sphere of the PlaneBlob Creature
 		float centerShininess; // Shininess material property for the blobs of the PlaneBlob Creature
 		
-		vector<Projectile> projectiles;
+		//vector<Projectile> projectiles;
 		
 		int fireCounter;
 		
@@ -166,7 +167,7 @@ class MetaplaneEnemy : public AI
 		void moveMetaplaneEnemy();
 		void updateActionState();
 		void moveToDestination();
-		void moveProjectiles();
+		//void moveProjectiles();
 		bool collisionDetected(Vertex destination);
 		MetaplaneEnemy::Vertex normalize(Vertex& vertex);
 		MetaplaneEnemy::Vertex generateRandomNormalizedDirection();

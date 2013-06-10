@@ -7,15 +7,17 @@
  *
  */
 
-#include <Carbon/Carbon.h>
+//#include <Carbon/Carbon.h>
 
 #include <stdlib.h>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "Projectile.h"
+#include "projectile_particles.h"
 #include "AI.h"
+#include <cstdio>
+#include <iostream>
 using namespace std;
 
 #ifdef __APPLE__
@@ -147,7 +149,7 @@ class MetalineEnemy : public AI
 		float centerMaterialSpecular[4]; // Specular material property for the center sphere of the LineBallBlob Creature
 		float centerShininess; // Shininess material property for the blobs of the LineBallBlob Creature
 		
-		vector<Projectile> projectiles;
+		//vector<Projectile> projectiles;
 		
 		int fireCounter;
 		
@@ -162,7 +164,7 @@ class MetalineEnemy : public AI
 		void moveMetalineEnemy();
 		void updateActionState();
 		void moveToDestination();
-		void moveProjectiles();
+		//void moveProjectiles();
 		bool collisionDetected(Vertex destination);
 		MetalineEnemy::Vertex normalize(Vertex& vertex);
 		MetalineEnemy::Vertex generateRandomNormalizedDirection();
