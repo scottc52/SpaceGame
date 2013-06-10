@@ -41,10 +41,12 @@ using namespace Eigen;
 
 
 
-typedef struct CollisionData{
+struct CollisionData{
+	CollisionData(){}
+	~CollisionData(){}
 	Vec3f pointOfContact;
 	Vec3f contactNormal;
-} CollisionData;
+};
 
 
 //Abstract class GameObject
@@ -119,7 +121,7 @@ public:
 	}
 
 	//destructor
-	GameObject::~GameObject(){}
+	virtual GameObject::~GameObject(){}
 
 	//Get a POINTER to the current Object's mesh
 	MyMesh* GameObject::GetMesh(){return meshptr;}
