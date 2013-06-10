@@ -395,12 +395,12 @@ void drawFrame(){
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
-	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
 	//for(int i = 0; i<numObjects;i++){
-	while(iter != end){
-		GameWorldObject *gwo = &(iter->second); 
+	for(unsigned int w = 0; w <wobs.size(); w++){
+		GameWorldObject *gwo = wobs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
-		iter ++;
 		if (!mesh)
 			continue;  
 		//cout << "rendering " << gwo->GetName() << endl;
@@ -487,12 +487,12 @@ void drawFrame(){
 
 void drawGlow(){
 	GameRoom *gr = Render::gameState->GetRoom(); 	
-	map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
 	//for(int i = 0; i<numObjects;i++){
-	while(iter != end){
-		GameWorldObject *gwo = &(iter->second); 
+	for(unsigned int w = 0; w < wobs.size(); w++){
+		GameWorldObject *gwo = wobs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
-		iter ++;
 		if (!mesh)
 			continue;  
 		//cout << "glowing " << gwo->GetName() << endl;

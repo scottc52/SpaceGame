@@ -9,7 +9,7 @@
 class GameWorldObject : public GameObject
 {
 public:
-	GameWorldObject::GameWorldObject(){}
+	GameWorldObject::GameWorldObject(){objType = WORLD_OBJECT_TYPE;}
 
 };
 #endif

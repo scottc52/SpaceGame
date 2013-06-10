@@ -1,15 +1,15 @@
 
 /*Author: Austin Hulse
- * Space Game
- */
- ////////////////////////////////////////////////////////////////////////////////
- // GAME OBJECT CLASS
- ////////////////////////////////////////////////////////////////////////////////
+* Space Game
+*/
+////////////////////////////////////////////////////////////////////////////////
+// GAME OBJECT CLASS
+////////////////////////////////////////////////////////////////////////////////
 
 /* This class is the basic class for objects in the game.  Subclasses of this 
- * class include: ActiveObject, Camera, Character, Player, etc.
- *
- */
+* class include: ActiveObject, Camera, Character, Player, etc.
+*
+*/
 #ifndef _GAMEOBJECT_H_
 #define _GAMEOBJECT_H_
 #ifdef _WIN32
@@ -27,6 +27,26 @@ using namespace Eigen;
 
 #define MAX_NAME_CHARS 40
 
+/////////////////////////////////////////////////////////
+// TYPEDEFINES
+//////////////////////////////////////////////////////
+
+#define PLAYER_TYPE (0)
+#define CAMERA_TYPE (1)
+#define ACTIVE_OBJECT_TYPE (2)
+#define WORLD_OBJECT_TYPE (3)
+#define ITEM_TYPE (4)
+#define DOOR_TYPE (5)
+#define LIGHT_TYPE (6)
+
+
+
+struct CollisionData{
+	Vec3f pointOfContact;
+	Vec3f contactNormal;
+};
+
+
 //Abstract class GameObject
 class GameObject{
 private:
@@ -41,13 +61,9 @@ private:
 	char name[MAX_NAME_CHARS];
 	string meshFile;
 
-	vector<Vector3f> boundingBoxUL;
-	vector<Vector3f> boundingBoxBR;
-	//TEXTURE POINTER txtptr;
-	
 	//Thread Lock (mutex_t ?) object lock;
 	//Sound link sound??  Play sound indirectly?
-	
+
 	void setName(const char *c){
 		int len = strlen(c);
 		len = (len < MAX_NAME_CHARS-1)? len : MAX_NAME_CHARS-1; 
@@ -55,24 +71,26 @@ private:
 		this->name[len] = '\0';  
 	} 
 public:
+	vector<Vec3f> boundingBox;
+	vector<Vec3f> meshBox;
+	map<GameObject*, CollisionData> tier2CollisionData;
+	map<GameObject*, CollisionData> tier1CollisionData;
+	map<GameObject*, CollisionData> tier0CollisionData;
 
-	void GameObject::SetBoundingBox(const unsigned int& tier, const Vector3f& ul, const Vector3f& br){
-		boundingBoxUL[tier] = ul;
-		boundingBoxBR[tier] = br;
+	void ClearCollisionData(){
+		tier1CollisionData.clear();
+		tier2CollisionData.clear();
+		tier0CollisionData.clear();
 	}
 
-	bool GameObject::GetBoundingBoxUL(const unsigned int& tier, Vector3f& passer){
-		if(tier >= boundingBoxUL.size()) return false;
-		passer = boundingBoxUL[tier];
-		return true;
-	}
-
-	bool GameObject::GetBoundingBoxBR(const unsigned int& tier, Vector3f& passer){
-		if(tier >= boundingBoxBR.size()) return false;
-		passer = boundingBoxBR[tier];
-		return true;
-	}
-
+	int objType;
+	Vec3f velocity;
+	Vec3f angularVelocity;
+	Vec3f CenterOfMass;
+	//Moment of Inertia
+	float mass;
+	unsigned int CollisionTierNum;
+	float outSideCollisionScale;
 
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
@@ -81,9 +99,11 @@ public:
 		isModified = false;
 		position = Vector3f(0,0,0);
 		scale = 1.f;
+		CollisionTierNum;
+		outSideCollisionScale = 1.3;
 		/*TO DO: Initialize lock*/
 	}
-	
+
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
@@ -94,9 +114,10 @@ public:
 		meshFile = object->GetMeshFile();
 		rotation = object->GetRotation();
 		meshptr = object->GetMesh();
+		objType = object->objType;
 		/*TO DO: Initialize lock*/
 	}
-	
+
 	//destructor
 	GameObject::~GameObject(){}
 

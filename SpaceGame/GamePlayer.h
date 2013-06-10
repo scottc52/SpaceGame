@@ -9,7 +9,7 @@
 #include "GameActiveObject.h"
 #include "GameItem.h"
 
-class GamePlayer : GameActiveObject{
+class GamePlayer : public GameActiveObject{
 private:
 	int health;
 	Weapon* PrimaryWeapon;
@@ -26,6 +26,7 @@ public:
 		activeItem = NULL;
 		activeWeapon = PrimaryWeapon;
 		primaryActive = true;
+		objType = PLAYER_TYPE;
 	}
 	void GamePlayer::ApplyMovementForce(const Vector3f &force, const double& timeIncrement);
 	void GamePlayer::ApplyExternalForce(const Vector3f &force, const Vector3f& position);
