@@ -465,42 +465,48 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 	////////////////////////////////////////////////////////////////////////////
 
 	vector<GameObject*> Objects = room->GetGameObjects();
-	for(unsigned int a = 0; a<Objects.size(); a++){
-		////////////////////////////////////////////////
-		// Tier 0 collision
-		///////////////////////////////////////////////
+	for(unsigned int a = 0; a<Objects.size()-1; a++){
+		//Spherical test.
 		GameObject* o1 = Objects[a];
-		if(o1->CollisionTierNum<1) continue;
-		vector<Vec3f> aBox = o1->boundingBox;
-		UpdateCoords(aBox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),dt, o1->outSideCollisionScale);
-		vector<Vec3f> oldABox = o1->boundingBox;
-		UpdateCoords(oldABox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),0, o1->outSideCollisionScale);
-		for(unsigned int i = 0; i <oldABox.size(); i++){
-			aBox.push_back(oldABox[i]);
-		}
 		for(unsigned int b = a+1; b<Objects.size(); b++){
 			GameObject* o2 = Objects[b];
-
-			if(o2->CollisionTierNum<1) continue;
-			vector<Vec3f> bBox = o2->boundingBox;
-			UpdateCoords(bBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),dt, o2->outSideCollisionScale);
-			vector<Vec3f> oldBBox = o2->boundingBox;
-			UpdateCoords(oldBBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),0, o2->outSideCollisionScale);
-			for(unsigned int i = 0; i <oldBBox.size(); i++){
-				bBox.push_back(oldBBox[i]);
-			}
-			Simplex P;
-			Vec3f V;
-			V = GJKDistance(aBox, bBox, P);
-			if(P.GetSize() > 3){ //We have a collision.
+			if((o2->GetPosition() - o1->GetPosition()).norm < (o1->radius + o2->radius){
 				if(!AlreadyIn(o1, o2, 0, room)) {
 					room->collisionTier0List[o1].push_back(o2);
 					room->collisionTier0List[o2].push_back(o1);
 				}
+				////////////////////////////////////////////////
+				// Tier 0 collision
+				///////////////////////////////////////////////
+				/*	GameObject* o1 = Objects[a];
+				if(o1->CollisionTierNum<1) continue;
+				vector<Vec3f> aBox = o1->boundingBox;
+				UpdateCoords(aBox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),dt, o1->outSideCollisionScale);
+				vector<Vec3f> oldABox = o1->boundingBox;
+				UpdateCoords(oldABox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),0, o1->outSideCollisionScale);
+				for(unsigned int i = 0; i <oldABox.size(); i++){
+				aBox.push_back(oldABox[i]);
+				}
+				for(unsigned int b = a+1; b<Objects.size(); b++){
+				GameObject* o2 = Objects[b];
+
+				if(o2->CollisionTierNum<1) continue;
+				vector<Vec3f> bBox = o2->boundingBox;
+				UpdateCoords(bBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),dt, o2->outSideCollisionScale);
+				vector<Vec3f> oldBBox = o2->boundingBox;
+				UpdateCoords(oldBBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),0, o2->outSideCollisionScale);
+				for(unsigned int i = 0; i <oldBBox.size(); i++){
+				bBox.push_back(oldBBox[i]);
+				}
+				Simplex P;
+				Vec3f V;
+				V = GJKDistance(aBox, bBox, P);
+				if(P.GetSize() > 3){ //We have a collision.
+				*/
 			}
 		}
 	}
-
+	/*
 	////////////////////////////////////////////////
 	// Tier 1 collision
 	///////////////////////////////////////////////
@@ -539,7 +545,7 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 				}
 			}
 		}
-	}
+	}*/
 	//////////////////////////////////////////////////////////////////////////////
 	//
 	// Mesh Level Detection

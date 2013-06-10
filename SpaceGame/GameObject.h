@@ -72,6 +72,7 @@ private:
 	} 
 public:
 	vector<Vec3f> boundingBox;
+	float radius;
 	vector<Vec3f> meshBox;
 	map<GameObject*, CollisionData> tier2CollisionData;
 	map<GameObject*, CollisionData> tier1CollisionData;
@@ -95,6 +96,7 @@ public:
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
 	{
+		radius = 1.f;
 		setName(n);		
 		isModified = false;
 		position = Vector3f(0,0,0);
