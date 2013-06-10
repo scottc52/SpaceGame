@@ -206,10 +206,11 @@ int main(int argc, char *argv[]){
 	strcat(debugName, "debug.room");
 	GameRoom debug;
 	assert(GameRoom::LoadRoom(debugName, debug));
-	map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
-	while(wobs != debug.GetRoomWorldObjectsEnd()){
+	vector<GameWorldObject*> wobs = debug.GetWorldObjects();
+	//map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
+	for(unsigned int w = 0; w<wobs.size(); w++){
 		//load starting meshes
-		GameWorldObject *gwo = &(wobs->second);
+		GameWorldObject *gwo = wobs[w];
 		cout<<gwo->GetName()<<endl;
 		MyMesh *tmp = new MyMesh();
 		if (gwo->GetMeshFile()){
@@ -220,9 +221,7 @@ int main(int argc, char *argv[]){
 			}else{
 				gwo->SetMesh(tmp);
 			}
-		} 
-		wobs++;
-		
+		} 		
 	}
 
 	cin.ignore(1);
@@ -238,7 +237,7 @@ int main(int argc, char *argv[]){
 	gs->SetRoom(&debug);
 	gs->SetCamera(&cam);
 	Vector3f enemyPos(0.0f, 0.0f, 0.0f);
-	gs->AddActor(new MetaballEnemy(enemyPos, 1, 1.0f));
+	//gs->AddActor(new MetaballEnemy(enemyPos, 1, 1.0f));
 	Render::GlutInitialize();
 	Render::gameState = gs;
 	

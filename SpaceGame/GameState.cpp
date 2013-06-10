@@ -10,6 +10,7 @@
 #include <string>
 #include "GameObjectHeaderList.h"
 #include "LocationDefines.h"
+#include "CollisionDetection.h"
 using namespace std;
 
 #define STATE_FILE_DELIM ('$')
@@ -413,8 +414,12 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//Player action
 	ProcessInput(input, dt);
 	UpdateParticleSystems((int)dt);
+<<<<<<< HEAD
 	//PerformCollision
 	
+=======
+	//PerformCollisionDetection(room, &(GameState::player), dt);
+>>>>>>> local
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

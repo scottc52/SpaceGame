@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />

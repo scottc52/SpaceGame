@@ -21,6 +21,7 @@
     <ClCompile Include="TaskQueue.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="MetaballEnemy.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloom_utils.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="SDL-1.2.15\include\SDL_version.h" />
     <ClInclude Include="SDL-1.2.15\include\SDL_video.h" />
     <ClInclude Include="MetaballEnemy.h" />
+    <ClInclude Include="CollisionDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameDebugOutput.txt" />

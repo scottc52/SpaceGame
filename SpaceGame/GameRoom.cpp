@@ -12,6 +12,9 @@
 #include "LocationDefines.h"
 
 #include "TextIOHelpers.h"
+//map<GameObject*, vector<GameObject*>> collisionTier0List;
+//map<GameObject*, vector<GameObject*>> collisionTier1List;
+//map<GameObject*, vector<GameObject*>> collisionTier2List;
 
 using namespace std; 
 //=========================
@@ -20,6 +23,12 @@ using namespace std;
 
 #define MAX_LINE_LEN 1024
 #define DELIM " \r\t\n\f" 
+
+
+Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
+Vec3f ConvertToOM3Vector(Vector3f& v){return Vec3f(v.x(), v.y(), v.z());}
+Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
+Vec4f ConvertToOM4Vector(Vector4f& v){return Vec4f(v.w(), v.x(), v.y(), v.z());}
 
 char *newCString(const char *c){
 	int len = strlen(c);
@@ -122,10 +131,10 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		float scale = atof(v[10]);
 		GameWorldObject wobj;
 		Vector3f p(x,y,z);
-		Vec4f rot(angle, nX, nY, nZ);
+		Vector4f rot(nX, nY, nZ, angle);
 		wobj.SetPosition(p);
 		wobj.SetScale(scale);
-		wobj.SetRotation(rot);
+		wobj.SetRotation(ConvertToOM4Vector(rot));
 		wobj.SetName(v[1]);
 		wobj.SetMeshFile(newCString(v[2]));
 		r.AddWorldObject(wobj); 
@@ -239,12 +248,12 @@ GameRoom::~GameRoom()
 	*/
 }
 
-void GameRoom::AddWorldObject(GameWorldObject newWObject)
+void GameRoom::AddWorldObject(GameWorldObject& newWObject)
 {
-	this->wobjects[newWObject.GetName()] = newWObject;
+	this->wobjects[(string)newWObject.GetName()] = newWObject;
 }
 
-void GameRoom::AddLight(GameLight l){
+void GameRoom::AddLight(GameLight& l){
 	this->lights[l.GetName()]=l;
 }
 
@@ -266,6 +275,26 @@ void GameRoom::RemoveWorldObject(const char *wobjectName)
 	map<string, GameWorldObject>::iterator it = wobjects.find(wobjectName);
 	if(it != wobjects.end()) wobjects.erase(it);
 }
+
+
+//Adds the given Object to the Room
+void GameRoom::AddPlayer(GamePlayer& newPlayer){
+	this->players[(string)newPlayer.GetName()] = newPlayer;
+}
+
+//Get the Object with the given name in the current Room if one exists
+GamePlayer* GameRoom::GetPlayer(const char *pName){
+	if(players.find((string)pName) == players.end()) return NULL;
+	return &(players[(string)pName]);
+}
+
+//Remove the Object with the given name in the current Room if it exists
+void GameRoom::RemovePlayer(const char *pName){
+	map<string, GamePlayer>::iterator it = players.find(pName);
+	if(it != players.end()) players.erase(it);
+}
+
+
 
 void GameRoom::PrintWorldObjectNames()
 {

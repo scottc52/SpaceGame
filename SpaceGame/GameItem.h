@@ -17,7 +17,7 @@ private:
 	int numUses;
 	int acquired;
 public:
-	GameItem::GameItem(){}
+	GameItem::GameItem(){objType = ITEM_TYPE;}
 	void GameItem::SetAcquired(const int &a){acquired = a;}
 	int GameItem::SetAcquired(){return acquired;}
 	void GameItem::SetNumUses(const int& u){numUses = u;}

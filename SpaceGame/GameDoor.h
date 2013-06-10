@@ -15,6 +15,6 @@ private:
 	void Activate();
 public:
 	void ActivateIfConditionsMet();
-
+	GameDoor::GameDoor(){objType = DOOR_TYPE;}
 };
 #endif _GAMEDOOR_H_

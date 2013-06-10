@@ -20,14 +20,20 @@
 #include "GameItem.h"
 #include "GameDebug.h"
 #include "GameDoor.h"
+#include "GamePlayer.h"
 #include <vector>
 #include <map>
 
 #define OBJECT_NOT_FOUND -1
 
 using namespace std; 
+
+Vector3f ConvertToEigen3Vector(Vec3f& v);
+Vec3f ConvertToOM3Vector(Vector3f& v);
+Vector4f ConvertToEigen4Vector(Vec4f& v);
+Vec4f ConvertToOM4Vector(Vector4f& v);
 class GameRoom{
-	private:
+private:
 	char name[MAX_NAME_CHARS];
 
 	map<string, GameWorldObject> wobjects;
@@ -36,14 +42,27 @@ class GameRoom{
 	map<string, GameDoor> doors;
 	map<string, GameItem> items;
 	map<string, GameActiveObject> aobjects;
+	map<string, GamePlayer> players;
 	//hash_map<string, GameChar*> characters;
 	GameCamera* currentCamera; //null means 1st P 
 	//GamePlayer* player;
 
 public:
+	map<GameObject*, vector<GameObject*>> collisionTier0List;
+	map<GameObject*, vector<GameObject*>> collisionTier1List;
+	map<GameObject*, vector<GameObject*>> collisionTier2List;
+
+	void ClearCollisions(){
+		collisionTier0List.clear();
+		collisionTier1List.clear();
+		collisionTier2List.clear();
+	}
 	//default constructor
 	GameRoom::GameRoom()
 	{
+		/*map<GameObject*, vector<GameObject*>> collisionTier0List;
+		map<GameObject*, vector<GameObject*>> collisionTier1List;
+		map<GameObject*, vector<GameObject*>> collisionTier2List;*/
 		strcpy(name, "");
 		/*TO DO: Initialize lock*/
 	}
@@ -52,6 +71,9 @@ public:
 	GameRoom::GameRoom(const char *name)
 	{
 		strncpy(this->name, name, MAX_NAME_CHARS);
+		//map<GameObject*, vector<GameObject*>> collisionTier0List;
+		//map<GameObject*, vector<GameObject*>> collisionTier1List;
+		//map<GameObject*, vector<GameObject*>> collisionTier2List;
 		/*TO DO: Initialize lock*/
 	}
 
@@ -65,7 +87,7 @@ public:
 	void GameRoom::SetName(const char *newName) {strncpy(name, newName, MAX_NAME_CHARS);}
 
 	//Adds the given Object to the Room
-	void GameRoom::AddWorldObject(GameWorldObject newObject);
+	void GameRoom::AddWorldObject(GameWorldObject& newObject);
 
 	//Get the Object with the given name in the current Room if one exists
 	GameWorldObject* GameRoom::GetWorldObject(const char *wobjectName);
@@ -100,11 +122,21 @@ public:
 		}
 	}
 
+	//Adds the given Object to the Room
+	void GameRoom::AddPlayer(GamePlayer& newPlayer);
+
+	//Get the Object with the given name in the current Room if one exists
+	GamePlayer* GameRoom::GetPlayer(const char *pName);
+
+	//Remove the Object with the given name in the current Room if it exists
+	void GameRoom::RemovePlayer(const char *pName);
+
+
 	//Prints the names of very Object in the Room in sorted order
 	/*void PrintObjectNames();*/
-	
+
 	//Setter / Getter for doors
-	void GameRoom::AddDoor(GameDoor door){doors[door.GetName()] = door;}
+	void GameRoom::AddDoor(GameDoor& door){doors[door.GetName()] = door;}
 	unsigned int NumDoors(){return doors.size();}
 	GameDoor *GetDoor(char* doorName){
 		if(doors.find(doorName) != doors.end()) return &(doors[doorName]);
@@ -135,7 +167,7 @@ public:
 	}	
 
 	//Setter / Getter for lights
-	void GameRoom::AddLight(GameLight l);
+	void GameRoom::AddLight(GameLight& l);
 
 	/* 	Loads a room object from a file in the room format 
 	described in documentation. */ 
@@ -146,28 +178,91 @@ public:
 	static bool WriteRoom(const char *fname, GameRoom &room);
 	static bool GameRoom::WriteRoom(ostream &os, GameRoom &room);
 
-	map<string, GameWorldObject>::iterator GameRoom::GetRoomWorldObjectsIterator(){
-		return wobjects.begin();
+	vector<GameWorldObject*> GameRoom::GetWorldObjects(){
+		vector<GameWorldObject*> v;
+		map<string, GameWorldObject>::iterator it = wobjects.begin();
+		while(it != wobjects.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
 	}
 
-	map<string, GameWorldObject>::iterator GameRoom::GetRoomWorldObjectsEnd(){
-		return wobjects.end();
+	vector<GameActiveObject*> GameRoom::GetActiveObjects(){
+		vector<GameActiveObject*> v;
+		map<string, GameActiveObject>::iterator it = aobjects.begin();
+		while(it != aobjects.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
 	}
 
-	map<string, GameLight>::iterator GameRoom::GetRoomLightsIterator(){
-		return lights.begin();
+	vector<GameLight*> GameRoom::GetRoomLights(){
+		vector<GameLight*> v;
+		map<string, GameLight>::iterator it = lights.begin();
+		while(it != lights.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
 	}
 
-	map<string, GameLight>::iterator GameRoom::GetRoomLightsEnd(){
-		return lights.end();
+	vector<GameItem*> GameRoom::GetItems(){
+		vector<GameItem*> v;
+		map<string, GameItem>::iterator it = items.begin();
+		while(it != items.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
 	}
 
-	map<string, GameCamera>::iterator GameRoom::GetRoomCamerasIterator(){
-		return cameras.begin();
+	vector<GameDoor*> GameRoom::GetDoors(){
+		vector<GameDoor*> v;
+		map<string, GameDoor>::iterator it = doors.begin();
+		while(it != doors.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
 	}
 
-	map<string,GameCamera>::iterator GameRoom::GetRoomCamerasEnd(){
-		return cameras.end();
+	vector<GameCamera*> GameRoom::GetCameras(){
+		vector<GameCamera*> v;
+		map<string, GameCamera>::iterator it = cameras.begin();
+		while(it != cameras.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
+	}
+	vector<GamePlayer*> GameRoom::GetPlayers(){
+		vector<GamePlayer*> v;
+		map<string, GamePlayer>::iterator it = players.begin();
+		while(it != players.end()){
+			v.push_back(&(it->second));
+			it++;
+		}
+		return v;
+	}
+	vector<GameObject*> GameRoom::GetGameObjects(){
+		vector<GameObject*>v;
+		vector<GameWorldObject*> wobs = GetWorldObjects();
+		vector<GameActiveObject*> aobs = GetActiveObjects();
+		vector<GamePlayer*> players = GetPlayers();
+		vector<GameCamera*> cameras = GetCameras();
+		vector<GameDoor*> doors = GetDoors();
+		vector<GameItem*> items = GetItems();
+
+		for(unsigned int i = 0; i<wobs.size();i++)	v.push_back((GameObject*)wobs[i]);
+		for(unsigned int i = 0; i<aobs.size();i++)  v.push_back((GameObject*)aobs[i]);
+		for(unsigned int i = 0; i<players.size();i++)  v.push_back((GameObject*)players[i]);
+		for(unsigned int i = 0; i<cameras.size();i++)  v.push_back((GameObject*)cameras[i]);
+		for(unsigned int i = 0; i<doors.size();i++)  v.push_back((GameObject*)doors[i]);
+		for(unsigned int i = 0; i<items.size();i++)  v.push_back((GameObject*)items[i]);
+
+		return v;
 	}
 
 };
