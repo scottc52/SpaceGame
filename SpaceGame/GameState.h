@@ -34,6 +34,7 @@ class PSystems;
 #include "projectile_particles.h"
 #include "UI.h" 
 #include "AI.h"
+#include "Monitor.h"
 
 
 
@@ -43,8 +44,9 @@ Particle Systems manager
 class PSystems{
 	list<Projectile *> projectiles;
 public: 
-	//list<ParticleSystem> statics; 
-	void updateAll(int dt);
+	//list<ParticleSystem> statics;
+	Monitor monitor;  
+	void updateAll(double dt);
 	void AddBullet(Projectile *p){projectiles.push_back(p); }
 	unsigned int NumBullets(){ return projectiles.size();}
 	list<Projectile *> *GetBullets(){return &projectiles;} 

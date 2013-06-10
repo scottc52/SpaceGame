@@ -289,13 +289,17 @@ bool GameState::ReadStateFile(const char *fname){
 //Particle Systems Manager
 ////////////////////////////////////////////////////////////////
 
-void PSystems::updateAll(int dt){
+bool pIsDead(Projectile *p){
+	return p->isDead();
+}
+
+void PSystems::updateAll(double dt){
 	list<Projectile *>::iterator it = projectiles.begin();
 	while(it != projectiles.end()){
 		Projectile *sb = *it;			
 		if(sb->isDead()){
-			it = projectiles.erase(it);
-			delete (sb);
+			it ++;
+			continue;
 		}else{ 			
 			//hitboxing here!
 			if(sb->timeAlive() > 3000){
@@ -305,6 +309,9 @@ void PSystems::updateAll(int dt){
 			it ++; 
 		}  
 	} 
+	monitor.Enter('w');
+	projectiles.remove_if(pIsDead);
+	monitor.Exit('w');
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
