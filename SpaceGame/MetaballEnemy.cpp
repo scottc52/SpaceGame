@@ -9,6 +9,7 @@
 #include "MetaballEnemy.h"
 #include <ctime>
 #include <cstdio>
+#include <cassert>
 // Initializes the Blob Creature object
 MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, int radius)
 {
@@ -56,9 +57,9 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, int radius)
 	
 	this->added = new bool[addedSize3D];
 	
-	this->strengthSize2D = (DEFAULT_NUM_CUBES_PER_DIMENSION + 1) * (DEFAULT_NUM_CUBES_PER_DIMENSION + 1);
+	this->strengthSize2D = (DEFAULT_NUM_CUBES_PER_DIMENSION + 2) * (DEFAULT_NUM_CUBES_PER_DIMENSION + 2);
 	
-	this->strengthSize3D = strengthSize2D * (DEFAULT_NUM_CUBES_PER_DIMENSION + 1);
+	this->strengthSize3D = strengthSize2D * (DEFAULT_NUM_CUBES_PER_DIMENSION + 2);
 	
 	this->neighborsSize = DEFAULT_NEIGHBORS_SIZE;
 	
@@ -96,7 +97,7 @@ MetaballEnemy::~MetaballEnemy()
 {
 	delete blobs;
 	delete added;
-	delete fieldStrengths;	
+	delete[] fieldStrengths;	
 	delete neighbors;
 }
 
@@ -345,26 +346,24 @@ void MetaballEnemy::render()
 		bool isComputed = false;
 		bool found = false;
 		
-		while (!found)
-		{
+		//while (!found)
+		for (;blobCubePosition.z < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.z ++){
+		for (;blobCubePosition.y < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.y ++){
+		for (;blobCubePosition.x < DEFAULT_NUM_CUBES_PER_DIMENSION+1; blobCubePosition.x ++){
 			if (wasAdded(blobCubePosition))
 			{
 				isComputed = true;
 				found = true;
+				break;
 			}
-			else
+			if (renderCube(blobCubePosition))
 			{
-				if (renderCube(blobCubePosition))
-				{
-					found = true;
-				}
-				else
-				{
-					blobCubePosition.x++;
-				}
+				found = true;
 			}
-		}
+		}if (found) break;} if (found) break;}
 		
+		assert(found);
+
 		if (!isComputed)
 		{
 			
@@ -442,18 +441,24 @@ float MetaballEnemy::calculateFieldStrength(VertexWithFieldStrength v)
 
 float MetaballEnemy::getFieldStrength(int x, int y, int z)
 {
-	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].strength;
+	int idx = x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z;
+	assert(idx < strengthSize3D); 
+	return fieldStrengths[idx].strength;
 }
 
 void MetaballEnemy::setFieldStrength(float strength, int x, int y, int z)
 {
-	fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].strength = strength;
-	fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed = true;
+	int idx = x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z;
+	assert(idx < strengthSize3D);
+	fieldStrengths[idx].strength = strength;
+	fieldStrengths[idx].computed = true;
 }
 
 bool MetaballEnemy::fieldStrengthWasComputed(int x, int y, int z)
 {
-	return fieldStrengths[x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z].computed;
+	int idx = x * strengthSize2D + y * DEFAULT_NUM_CUBES_PER_DIMENSION + z;
+	assert(idx < strengthSize3D);
+	return fieldStrengths[idx].computed;
 }
 
 Vertex MetaballEnemy::getNormal(Vertex v)
@@ -484,7 +489,7 @@ Vertex MetaballEnemy::getNormal(Vertex v)
 	
 	return normalize(normal);
 }
-
+#include <iostream>
 Index MetaballEnemy::getCubePosition(Vertex v)
 {
 	Index position;
@@ -492,7 +497,6 @@ Index MetaballEnemy::getCubePosition(Vertex v)
 	position.x = floor((v.x + radius) * DEFAULT_NUM_CUBES_PER_DIMENSION / (radius * 2));
 	position.y = floor((v.y + radius) * DEFAULT_NUM_CUBES_PER_DIMENSION / (radius * 2));
 	position.z = floor((v.z + radius) * DEFAULT_NUM_CUBES_PER_DIMENSION / (radius * 2));
-	
 	return position;
 }
 
@@ -675,7 +679,7 @@ bool MetaballEnemy::renderCube(Index index)
 	if (renderTetrahedronIntersections(v4, v5, v6, v8, 4, 5, 6, 8, normals)) rendered = true;
 	if (renderTetrahedronIntersections(v4, v5, v7, v8, 4, 5, 7, 8, normals)) rendered = true;
 	
-	delete normals;
+	delete[] normals;
 	
 	return rendered;
 }
