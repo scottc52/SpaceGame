@@ -436,9 +436,13 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	}
 
 	nPos = player.GetPosition();
-	//nPos += strafe * deltaPos[0];
-	//nPos += dir * deltaPos[1];
-	//player.SetPosition(nPos);
+	if (deltaPos[0] != 0 || deltaPos[1] != 0) {
+		// End regular motion, go back to strafing
+		player.velocity = Vec3f(0.f, 0.f, 0.f);
+		nPos += strafe * deltaPos[0];
+		nPos += dir * deltaPos[1];
+		player.SetPosition(nPos);
+	}
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
 	//up = Rphi*up; 
 	dir = Rphi * dir;    
