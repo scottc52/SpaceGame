@@ -18,12 +18,34 @@ bool Render::frameRequested = false;
 bool Render::pauseToggle = false;
 bool Render::paused = false; 
 int Render::h = 600;
-int Render::w = 800;  
+int Render::w = 800;
+GLuint g_colorMapTexture;
+GLuint g_normalMapTexture;
+GLuint g_heightMapTexture;
+float  g_scaleBias[2] = {0.04f, -0.03f};
+bool   g_disableParallax;
+void RenderCube();
+
+struct RoomVertex
+{
+    float pos[3];
+    float texcoord[2];
+    float normal[3];
+    float tangent[4];
+};
+
+RoomVertex RoomCube[24];
+static const float EPSILON = 1e-6f;
+GLuint cube_vertexBuffer;
+
+
+
 //****************************************************
 // function prototypes (so they can be called before they are defined)
 //****************************************************
 void setSimpleFog(float offset, float scale, GLuint texture, GLuint depth);
 void setBloom(GLuint base, Surface *passes);
+void InitializeRoomTextures();
 
 //****************************************************
 // classes
@@ -70,6 +92,7 @@ Surface fbo0, fbo1;
 Surface pass0[4];
 Surface pass1[4];
 GLuint vbo_fbo_vertices;
+GLuint program_parallax;
 GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc, uniform_damage_postproc;
 GLuint program_fog, uniform_source_fog, uniform_depth_fog, uniform_z_offset_fog, uniform_z_scale_fog, uniform_z_pow_fog, uniform_min_fog, uniform_max_fog, uniform_color_fog, uniform_z_near_fog, uniform_z_far_fog;
 //5x5 gaussian blur filter (using 3 lookups per pass)
@@ -78,9 +101,15 @@ GLuint program_blur, uniform_source_blur, uniform_offsetx_blur, uniform_offsety_
 GLuint program_blur9, uniform_source_blur9, uniform_offsetx1_blur9, uniform_offsety1_blur9, uniform_offsetx2_blur9, uniform_offsety2_blur9, uniform_coefficients_blur9;
 GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_source1_bloom, uniform_source2_bloom, uniform_source3_bloom;
 
+
+inline const GLubyte *BUFFER_OFFSET(size_t bytes)
+{ return reinterpret_cast<const GLubyte *>(0) + bytes; }
+
+
 //****************************************************
 // reshape viewport if the window is resized
 //****************************************************
+
 void Render::myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
 	Render::w= w;
@@ -120,121 +149,7 @@ void Render::myReshape(int w, int h) {
 //***************************************************
 // function that does the actual drawing
 //***************************************************
-MyMesh squareMesh(){
-	MyMesh mesh;
 
-	// generate vertices
-
-	MyMesh::VertexHandle vhandle[8];
-
-	vhandle[0] = mesh.add_vertex(MyMesh::Point(-1, -1,  1));
-	vhandle[1] = mesh.add_vertex(MyMesh::Point( 1, -1,  1));
-	vhandle[2] = mesh.add_vertex(MyMesh::Point( 1,  1,  1));
-	vhandle[3] = mesh.add_vertex(MyMesh::Point(-1,  1,  1));
-	vhandle[4] = mesh.add_vertex(MyMesh::Point(-1, -1, -1));
-	vhandle[5] = mesh.add_vertex(MyMesh::Point( 1, -1, -1));
-	vhandle[6] = mesh.add_vertex(MyMesh::Point( 1,  1, -1));
-	vhandle[7] = mesh.add_vertex(MyMesh::Point(-1,  1, -1));
-
-
-	// generate (quadrilateral) faces
-
-	std::vector<MyMesh::VertexHandle>  face_vhandles;
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[0]);
-	face_vhandles.push_back(vhandle[1]);
-	face_vhandles.push_back(vhandle[2]);
-	//face_vhandles.push_back(vhandle[3]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[0]);
-	//face_vhandles.push_back(vhandle[1]);
-	face_vhandles.push_back(vhandle[2]);
-	face_vhandles.push_back(vhandle[3]);
-	mesh.add_face(face_vhandles);
-
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[7]);
-	face_vhandles.push_back(vhandle[6]);
-	face_vhandles.push_back(vhandle[5]);
-	//face_vhandles.push_back(vhandle[4]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[7]);
-	//face_vhandles.push_back(vhandle[6]);
-	face_vhandles.push_back(vhandle[5]);
-	face_vhandles.push_back(vhandle[4]);
-	mesh.add_face(face_vhandles);
-
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[1]);
-	face_vhandles.push_back(vhandle[0]);
-	face_vhandles.push_back(vhandle[4]);
-	//face_vhandles.push_back(vhandle[5]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[1]);
-	//face_vhandles.push_back(vhandle[0]);
-	face_vhandles.push_back(vhandle[4]);
-	face_vhandles.push_back(vhandle[5]);
-	mesh.add_face(face_vhandles);
-
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[2]);
-	face_vhandles.push_back(vhandle[1]);
-	face_vhandles.push_back(vhandle[5]);
-	//face_vhandles.push_back(vhandle[6]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[2]);
-	//face_vhandles.push_back(vhandle[1]);
-	face_vhandles.push_back(vhandle[5]);
-	face_vhandles.push_back(vhandle[6]);
-	mesh.add_face(face_vhandles);
-
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[3]);
-	face_vhandles.push_back(vhandle[2]);
-	face_vhandles.push_back(vhandle[6]);
-	//face_vhandles.push_back(vhandle[7]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[3]);
-	//face_vhandles.push_back(vhandle[2]);
-	face_vhandles.push_back(vhandle[6]);
-	face_vhandles.push_back(vhandle[7]);
-	mesh.add_face(face_vhandles);
-
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[0]);
-	face_vhandles.push_back(vhandle[3]);
-	face_vhandles.push_back(vhandle[7]);
-	//face_vhandles.push_back(vhandle[4]);
-	mesh.add_face(face_vhandles);
-
-	face_vhandles.clear();
-	face_vhandles.push_back(vhandle[0]);
-	//face_vhandles.push_back(vhandle[3]);
-	face_vhandles.push_back(vhandle[7]);
-	face_vhandles.push_back(vhandle[4]);
-	mesh.add_face(face_vhandles);
-
-	 mesh.request_vertex_normals();
-	 mesh.request_face_normals();
-	 mesh.update_normals();
-	return mesh;
-}
 
 //functions that actually does the drawing
 void setupCamera(){
@@ -320,6 +235,7 @@ void setupLighting(){
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
 	}
+
 }
 
 void bindMaterial(Material &material){
@@ -335,62 +251,13 @@ void bindMaterial(Material &material){
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emmisionmat);
 }
 
-void drawTestPrism(){
-	glBegin(GL_TRIANGLES);
-		glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
 
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
-		glVertex3f(10.0f, 0, 0);
-
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(0, 0, 10.0f);
-		glVertex3f(0.0f, 0, 10.0);
-		glVertex3f(0.0f, 10.0f, 0);
-		glVertex3f(-10.0f, 0, 0);
-		glVertex3f(10.0f, 0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
-		glVertex3f(0.0f, 10.0, 0);
-		glVertex3f(0.0f, 10.0, 0);
-		glVertex3f(0.0f, 0, 10.0f);
-		glVertex3f(10.0f, 0, 0);
-	glEnd();
-	glBegin(GL_LINES);
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f); 
-		glVertex3f(10.1f, 0.1, 0.1);
-		glVertex3f(0.1f, 0.0, 10.1f);
-
-		glVertex3f(10.0f, 0.1, 0.1);
-		glVertex3f(0.1, 10.1f, 0.1);
-		
-		glVertex3f(10.0f, 0.1, 0.1);
-		glVertex3f(-10.0f, 0.1, 0.1);
-
-		glVertex3f(0.1, 10.1f, 0.1);
-		glVertex3f(0.1, 0.1, 10.1f);
-
-		glVertex3f(0.1, 10.1f, 0.1);
-		glVertex3f(-10.1f, 0.1, 0.1);
-
-		glVertex3f(0.1, 0.1, 10.1f);
-		glVertex3f(-10.1f, 0.1, 0.1);
-	glEnd();
-
-
-
-}
 
 void drawFrame(){
+    Material material = exampleMaterial();
+    bindMaterial(material);
+
+    RenderCube();
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
@@ -399,7 +266,7 @@ void drawFrame(){
 	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
-	for(unsigned int w = 0; w <wobs.size(); w++){
+	for(unsigned int w = 0; w <1/*wobs.size()*/; w++){
 		GameWorldObject *gwo = wobs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
@@ -415,9 +282,7 @@ void drawFrame(){
 		
 		//set materials and textures
 		//TODO all material properties should be read in from object
-		Material material = exampleMaterial();
-		//bindMaterial(material); 
-
+		
 		bool useTexture = false; //TODO
 		if(useTexture){
 			glEnable(GL_TEXTURE_2D);
@@ -481,7 +346,7 @@ void drawFrame(){
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();
 		
-	//ref = GameTime::GetTime();	
+	ref = GameTime::GetTime();	
 	while (it != end){
 		AI *ai = *it; 
 		ai->render();
@@ -492,6 +357,7 @@ void drawFrame(){
 }
 
 void drawGlow(){
+    //cout << "\nhelllo\n";
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
@@ -532,7 +398,7 @@ void drawGlow(){
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
 		if(false){
-			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
+			glColor4f(0.0f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
 			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
 		}
@@ -754,6 +620,7 @@ void drawCrossHair(float w, float h){
 }
 
 void Render::defaultDisplay(){
+
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	int t = glutGet(GLUT_ELAPSED_TIME);
@@ -765,7 +632,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();	
-	drawGlow();
+	//drawGlow();
 	drawBullets(true);
 
 	
@@ -810,7 +677,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();
-	setupLighting();	
+	setupLighting();
 	drawFrame();
 	glDisable(GL_LIGHTING);
 	drawBullets(false);
@@ -855,7 +722,7 @@ void Render::myDisplay() {
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW); 
 	} else{
 		glutSetCursor(GLUT_CURSOR_NONE); 
-		defaultDisplay(); 
+		defaultDisplay();
 	}					// swap buffers (we earlier set double buffer)
 	drawing = false; 
 }
@@ -882,7 +749,7 @@ bool Render::requestFrame(){
 	bool value = true; 
 	pthread_mutex_lock(&lock);
 	if (frameRequested){
-		//cerr<< "warning: frame dropped" << endl;
+		cerr<< "warning: frame dropped" << endl;
 		value = false;
 	}
 	frameRequested = true; 
@@ -1460,6 +1327,334 @@ void effectsResourcesInitialize(){
     }
 }
 
+void LoadParallaxProgram() {
+    string vertexShader = SHADERS_PARALLAX_VERTEX_FILE;
+	string fragmentShader = SHADERS_PARALLAX_FRAGMENT_FILE;
+	GLuint vs, fs;
+	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0){
+		fprintf(stderr, "failed to create vertex shader");
+		//return 0;
+	}
+	if ((fs = create_shader(fragmentShader.c_str(), GL_FRAGMENT_SHADER)) == 0){
+		fprintf(stderr, "failed to create fragment shader");
+		//return 0;
+	}
+    
+	GLint link_ok, validate_ok;
+    
+	program_parallax = glCreateProgram();
+	GLuint programID = program_parallax;
+	glAttachShader(programID, vs);
+	glAttachShader(programID, fs);
+	glLinkProgram(programID);
+	glGetProgramiv(programID, GL_LINK_STATUS, &link_ok);
+	if (!link_ok) {
+		fprintf(stderr, "glLinkProgram:");
+		//print_shader_log(program_postproc);
+		//return 0;
+	}
+	glValidateProgram(programID);
+	glGetProgramiv(programID, GL_VALIDATE_STATUS, &validate_ok);
+	if (!validate_ok) {
+		fprintf(stderr, "glValidateProgram:");
+		//print_shader_log(program_postproc);
+		cout << "post processing program not valid!";
+	}
+    
+}
+
+void Normalize3dVector(float vec[3]) {
+    float invMag = 1.0f / (vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
+    vec[0] *= invMag;
+    vec[1] *= invMag;
+    vec[2] *= invMag;
+    
+}
+
+void Normalize2dVector(float vec[2]) {
+    float invMag = 1.0f / (vec[0]*vec[0] + vec[1]*vec[1]);
+    vec[0] *= invMag;
+    vec[1] *= invMag;
+}
+
+GLuint LoadTexture(const char *filename, GLint magFilter, GLint minFilter,
+                   GLint wrapS, GLint wrapT)
+{
+    GLuint id = 0;
+    int width, height;
+    unsigned char* image = SOIL_load_image(filename, &width, &height, 0, SOIL_LOAD_RGB );
+    
+    
+    glGenTextures(1, &id);
+    glBindTexture(GL_TEXTURE_2D, id);
+    
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    return id;
+}
+
+void RenderCube() {
+    glUseProgram(program_parallax);
+    GLuint place1 = glGetUniformLocation(program_parallax, "colorMap");
+    glUniform1i(place1, 0);
+    GLuint place2 = glGetUniformLocation(program_parallax, "normalMap");
+    glUniform1i(place2, 1);
+    GLuint place3 = glGetUniformLocation(program_parallax, "heightMap");
+    glUniform1i(place3, 2);
+    GLuint place4 = glGetUniformLocation(program_parallax, "scale");
+    glUniform1f(place4, g_scaleBias[0]);
+    GLuint place5 = glGetUniformLocation(program_parallax, "bias");
+    glUniform1f(place5, g_scaleBias[1]);
+    GLuint place6 = glGetUniformLocation(program_parallax, "enableParallax");
+    glUniform1i(place6, !g_disableParallax);
+    glScalef(40.0, 20.0, 50.0);
+    glTranslatef(0.0, .5, 0.0);
+    glActiveTexture(GL_TEXTURE2);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_heightMapTexture);
+    
+    glActiveTexture(GL_TEXTURE1);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_normalMapTexture);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_colorMapTexture);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, cube_vertexBuffer);
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(0));
+    
+    glClientActiveTexture(GL_TEXTURE0);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(2, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 3));
+    
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glNormalPointer(GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 5));
+    
+    glClientActiveTexture(GL_TEXTURE1);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(4, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 8));
+    
+    glDrawArrays(GL_QUADS, 0, sizeof(RoomCube) / sizeof(RoomCube[0]));
+    
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    glClientActiveTexture(GL_TEXTURE0);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    glUseProgram(0);
+}
+
+
+void CalcTangentVector(const float pos1[3], const float pos2[3],
+                       const float pos3[3], const float texCoord1[2],
+                       const float texCoord2[2], const float texCoord3[2],
+                       const float normal[3], float tangent[4])
+{
+
+    
+    float edge1[3] = {pos2[0] - pos1[0], pos2[1] - pos1[1], pos2[2] - pos1[2]};
+    float edge2[3] = {pos3[0] - pos1[0], pos3[1] - pos1[1], pos3[2] - pos1[2]};
+  
+    Normalize3dVector(edge1);
+    Normalize3dVector(edge2);
+    
+    float texEdge1[2] = {texCoord2[0] - texCoord1[0], texCoord2[1] - texCoord1[1]};
+    float texEdge2[2] = {texCoord3[0] - texCoord1[0], texCoord3[1] - texCoord1[1]};
+    
+    Normalize2dVector(texEdge1);
+    Normalize2dVector(texEdge2);
+    
+    
+    
+    float t[3];
+    float b[3];
+    float n[3] = {normal[0], normal[1], normal[2]};
+    
+    float det = (texEdge1[0] * texEdge2[1]) - (texEdge1[1] * texEdge2[0]);
+    
+    if (fabsf((det - 0.0f) / ((0.0 == 0.0f) ? 1.0f : 0.0f)) < EPSILON)
+    {
+        t[0] = 1.0f;
+        t[1] = 0.0f;
+        t[2] = 0.0f;
+        b[0] = 0.0f;
+        b[1] = 1.0f;
+        b[2] = 0.0f;
+    }
+    else
+    {
+        det = 1.0f / det;
+        
+        t[0] = (texEdge2[1] * edge1[0] - texEdge1[1] * edge2[0]) * det;
+        t[1] = (texEdge2[1] * edge1[1] - texEdge1[1] * edge2[1]) * det;
+        t[2] = (texEdge2[1] * edge1[2] - texEdge1[1] * edge2[2]) * det;
+        
+        b[0] = (-texEdge2[0] * edge1[0] + texEdge1[0] * edge2[0]) * det;
+        b[1] = (-texEdge2[0] * edge1[1] + texEdge1[0] * edge2[1]) * det;
+        b[2] = (-texEdge2[0] * edge1[2] + texEdge1[0] * edge2[2]) * det;
+        
+        Normalize3dVector(t);
+        Normalize3dVector(b);
+    }
+    
+    float bitangent[3];
+    bitangent[0] = (n[1] * t[2]) - (n[2] * t[1]);
+    bitangent[1] = (n[2] * t[0]) - (n[0] * t[2]);
+    bitangent[2] = (n[0] * t[1]) - (n[1] * t[0]);
+    float dot = (bitangent[0] * b[0]) + (bitangent[1] * b[1]) + (bitangent[2] * b[2]);
+    float handedness = (dot < 0.0f) ? -1.0f : 1.0f;
+   // cout << t[0] << "\n";
+    tangent[0] = t[0];
+    tangent[1] = t[1];
+    tangent[2] = t[2];
+    tangent[3] = handedness;
+}
+
+
+void InitializeRoomTextures() {
+    GameRoom *gr = Render::gameState->GetRoom();
+	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
+    int cubeCount = 0;
+    for(unsigned int w = 0; w <wobs.size(); w++){
+		GameWorldObject *gwo = wobs[w];
+		MyMesh *mesh = gwo->GetMesh();
+		if (!mesh)
+			continue;		
+        for (MyMesh::VertexIter v_it=mesh->vertices_begin(); v_it!=mesh->vertices_end(); ++v_it) {
+           // MyMesh::VertexHandle v_handle =  v_it.handle;
+            Vec3f p = mesh->point( v_it.handle());
+            RoomVertex rv;
+
+            rv.pos[0] = p[0];
+            rv.pos[1] = p[1];
+            rv.pos[2] = p[2];
+            //cout << "reading in: " <<  rv.pos[0] << " " <<  rv.pos[1] << " " <<  rv.pos[2] << "\n";
+            RoomCube[cubeCount] = rv;
+            //it2 = mesh->next_halfedge_handle(it2);
+            cubeCount++;
+        }
+    }
+    for (int man = 0; man < 24; man += 4) {
+        int normalPos;
+        float normalValue;
+        if (man==0) {
+            normalPos = 2;
+            normalValue = 1.0f;
+        } else if (man==4) {
+            normalPos = 2;
+            normalValue = -1.0f;
+        } else if (man==8) {
+            normalPos = 1;
+            normalValue = 1.0f;
+        } else if (man==12) {
+            normalPos = 1;
+            normalValue = -1.0f;
+        } else if (man==16) {
+            normalPos = 0;
+            normalValue = 1.0f;
+        } else if (man==20) {
+            normalPos = 0;
+            normalValue = -1.0f;
+        }
+        for (int hum = 0; hum<3; hum++) {
+            if (hum == normalPos) {
+                RoomCube[man].normal[hum] = normalValue;
+                RoomCube[man+1].normal[hum] = normalValue;
+                RoomCube[man+2].normal[hum] = normalValue;
+                RoomCube[man+3].normal[hum] = normalValue;
+            } else {
+                RoomCube[man].normal[hum] = 0.0;
+                RoomCube[man+1].normal[hum] = 0.0;
+                RoomCube[man+2].normal[hum] = 0.0;
+                RoomCube[man+3].normal[hum] = 0.0;
+            }
+        }
+        RoomCube[man].texcoord[0] = 0.0f;
+        RoomCube[man].texcoord[1] = 0.0f;
+        RoomCube[man+1].texcoord[0] = 1.0f;
+        RoomCube[man+1].texcoord[1] = 0.0f;
+        RoomCube[man+2].texcoord[0] = 1.0f;
+        RoomCube[man+2].texcoord[1] = 1.0f;
+        RoomCube[man+3].texcoord[0] = 0.0f;
+        RoomCube[man+3].texcoord[1] = 1.0f;
+    }
+    
+    RoomVertex *pVertex1 = 0;
+    RoomVertex *pVertex2 = 0;
+    RoomVertex *pVertex3 = 0;
+    RoomVertex *pVertex4 = 0;
+    float tangent[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+    
+    for (int i = 0; i < 24; i += 4)
+    {
+        pVertex1 = &RoomCube[i];
+        pVertex2 = &RoomCube[i + 1];
+        pVertex3 = &RoomCube[i + 2];
+        pVertex4 = &RoomCube[i + 3];
+        
+        CalcTangentVector(pVertex1->pos, pVertex2->pos, pVertex4->pos, pVertex1->texcoord, pVertex2->texcoord, pVertex4->texcoord, pVertex1->normal, tangent);
+        pVertex1->tangent[0] = tangent[0];
+        pVertex1->tangent[1] = tangent[1];
+        pVertex1->tangent[2] = tangent[2];
+        pVertex1->tangent[3] = tangent[3];
+        
+        pVertex2->tangent[0] = tangent[0];
+        pVertex2->tangent[1] = tangent[1];
+        pVertex2->tangent[2] = tangent[2];
+        pVertex2->tangent[3] = tangent[3];
+        
+        pVertex3->tangent[0] = tangent[0];
+        pVertex3->tangent[1] = tangent[1];
+        pVertex3->tangent[2] = tangent[2];
+        pVertex3->tangent[3] = tangent[3];
+        
+        pVertex4->tangent[0] = tangent[0];
+        pVertex4->tangent[1] = tangent[1];
+        pVertex4->tangent[2] = tangent[2];
+        pVertex4->tangent[3] = tangent[3];
+    }
+    for (int n=0; n<4; n++) {
+        RoomVertex dummy =  RoomCube[n];
+        cout << "Pos: " << dummy.pos[0] << " " << dummy.pos[1] << " " << dummy.pos[2] << " Tex: "<< dummy.texcoord[0] << " " <<  dummy.texcoord[1] << " Normal: " << dummy.normal[0] << " "<< dummy.normal[1] << " " << dummy.normal[2] << " Tangent: " << dummy.tangent[0] << " " << dummy.tangent[1] << " " << dummy.tangent[2] << " " << dummy.tangent[3] << "\n";
+    }
+    
+    
+    
+    // Store the cube's geometry in a Vertex Buffer Object.
+    
+    glGenBuffers(1, &cube_vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, cube_vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(RoomCube), RoomCube, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    g_colorMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_color5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    g_normalMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_normal5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    g_heightMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_height5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    LoadParallaxProgram();
+}
 
 void Render::GlutInitialize(){
 	cout<<"Start SpaceGame!\n";
@@ -1486,10 +1681,10 @@ void Render::GlutInitialize(){
 		//Problem: glewInit failed, something is seriously wrong.
 		cout<<"glewInit failed, aborting."<<endl;
 	  }
-
 	//setup resources for post-processing
 	effectsResourcesInitialize();
 	prevT = glutGet(GLUT_ELAPSED_TIME);
+   // InitializeRoomTextures();
 
 	//calling reshape before binding callbacks makes inconsistencies from 
 	//reshape operations apparent from the beginning
@@ -1503,4 +1698,7 @@ void Render::GlutInitialize(){
 	//glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
 	glutSetCursor(GLUT_CURSOR_NONE);
+    InitializeRoomTextures();
+    //InitializeRoomTextures();
+
 }
