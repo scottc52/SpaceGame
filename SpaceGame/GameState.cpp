@@ -338,7 +338,9 @@ void PSystems::updateAll(double dt){
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		jobs[i].join(); 
 	}
-	projectiles.remove_if(pIsDead);
+
+	projectiles.remove_if< bool(*)(Projectile *)>(pIsDead);
+	t->update(dt);
 	monitor.Exit('w');
 	//cout << "finished" << endl;
 }
@@ -463,6 +465,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//Player action
 	ProcessInput(input, dt);
 	UpdateParticleSystems(dt * 1000.0);
+
 	room->ClearCollisions();
 
 	room->monitor.Enter('w');

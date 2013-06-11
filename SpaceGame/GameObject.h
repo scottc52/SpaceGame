@@ -113,7 +113,7 @@ public:
 	map<GameObject*, CollisionData> tier0CollisionData;
 	bool drawCollision;
 	MyMesh* decimatedMeshPtr;
-
+	bool glowing; 
 	void ClearCollisionData(){
 		tier1CollisionData.clear();
 		tier2CollisionData.clear();
@@ -132,6 +132,7 @@ public:
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
 	{
+		glowing = false; 
 		drawCollision = false;
 		radius = 1.f;
 		setName(n);		
@@ -148,6 +149,7 @@ public:
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		glowing = false;
 		drawCollision = object->drawCollision;
 		objType = object->objType;
 		velocity = object->velocity;

@@ -565,10 +565,10 @@ void drawFrame(){
 void drawGlow(){
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
-	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
+	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
-	for(unsigned int w = 0; w < wobs.size(); w++){
-		GameWorldObject *gwo = wobs[w]; 
+	for(unsigned int w = 0; w < obs.size(); w++){
+		GameWorldObject *gwo = obs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
 			continue;  
@@ -602,7 +602,7 @@ void drawGlow(){
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
-		if(false){
+		if(gwo->glowing){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
 			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
@@ -654,6 +654,7 @@ void drawBullets(bool glow){
 		}
 		it++;
 	}
+	Render::gameState->GetParticleSystems()->t->render(); 
 	Render::gameState->GetParticleSystems()->monitor.Exit('r');
 	glDisable(GL_BLEND);
 	glDepthMask(GL_TRUE);
