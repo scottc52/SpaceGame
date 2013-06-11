@@ -20,8 +20,8 @@ void Sound::init(char* filename, GameObject *object, Vector3f position, float ma
 	this->position = position;
 }
 
-Sound::Sound(char* filename) {
-	init(filename, NULL, Vector3f(0.f, 0.f, 0.f), 1.0f);
+Sound::Sound(char* filename, float maxVolume) {
+	init(filename, NULL, Vector3f(0.f, 0.f, 0.f), maxVolume);
 }
 
 Sound::Sound(char* filename, GameObject *object, float maxVolume) {
