@@ -416,7 +416,9 @@ void drawFrame(){
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
+	cout<< "pre-enter" << endl;
 	gr->monitor.Enter('r');
+	cout << "post-enter" << endl;
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
@@ -501,7 +503,9 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
+	cerr<<"pre-exit"<<endl;
 	gr->monitor.Exit('r');
+	cerr<<"post-exit"<<endl;
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();

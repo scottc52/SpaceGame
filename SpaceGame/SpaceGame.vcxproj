@@ -58,7 +58,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
