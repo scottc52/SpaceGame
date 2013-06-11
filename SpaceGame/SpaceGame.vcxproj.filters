@@ -3,7 +3,9 @@
   <ItemGroup>
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameDoor.cpp" />
@@ -13,6 +15,10 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MetaballEnemy.cpp" />
+    <ClCompile Include="MetalineEnemy.cpp" />
+    <ClCompile Include="MetaplaneEnemy.cpp" />
+    <ClCompile Include="Monitor.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="RoomBuilder.cpp" />
@@ -20,16 +26,14 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TaskQueue.cpp" />
     <ClCompile Include="UI.cpp" />
-    <ClCompile Include="MetaballEnemy.cpp" />
-    <ClCompile Include="CollisionDetection.cpp" />
-    <ClCompile Include="MetalineEnemy.cpp" />
-    <ClCompile Include="MetaplaneEnemy.cpp" />
-    <ClCompile Include="Monitor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameDebug.h" />
@@ -48,16 +52,14 @@
     <ClInclude Include="GameWorldObject.h" />
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MetaballEnemy.h" />
+    <ClInclude Include="MetalineEnemy.h" />
+    <ClInclude Include="MetaplaneEnemy.h" />
+    <ClInclude Include="Monitor.h" />
     <ClInclude Include="projectile_particles.h" />
+    <ClInclude Include="pthread_helpers.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
-    <ClInclude Include="shader_utils.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="TaskQueue.h" />
-    <ClInclude Include="TextIOHelpers.h" />
-    <ClInclude Include="UI.h" />
-    <ClInclude Include="AI.h" />
-    <ClInclude Include="SDL_mixer-1.2.12\include\SDL_mixer.h" />
     <ClInclude Include="SDL-1.2.15\include\begin_code.h" />
     <ClInclude Include="SDL-1.2.15\include\close_code.h" />
     <ClInclude Include="SDL-1.2.15\include\SDL.h" />
@@ -99,44 +101,22 @@
     <ClInclude Include="SDL-1.2.15\include\SDL_types.h" />
     <ClInclude Include="SDL-1.2.15\include\SDL_version.h" />
     <ClInclude Include="SDL-1.2.15\include\SDL_video.h" />
-    <ClInclude Include="MetaballEnemy.h" />
-    <ClInclude Include="CollisionDetection.h" />
-    <ClInclude Include="MetalineEnemy.h" />
-    <ClInclude Include="MetaplaneEnemy.h" />
-    <ClInclude Include="Monitor.h" />
+    <ClInclude Include="SDL_mixer-1.2.12\include\SDL_mixer.h" />
+    <ClInclude Include="shader_utils.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="TaskQueue.h" />
+    <ClInclude Include="TextIOHelpers.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="GameDebugOutput.txt" />
-    <Text Include="SDL_mixer-1.2.12\CHANGES.txt" />
-    <Text Include="SDL_mixer-1.2.12\COPYING.txt" />
-    <Text Include="SDL_mixer-1.2.12\README.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.FLAC.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.mikmod.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.ogg-vorbis.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.smpeg.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.FLAC.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.mikmod.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.ogg-vorbis.txt" />
-    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.smpeg.txt" />
+    <Library Include="SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib" />
+    <Library Include="SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="sounds\test.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SDL_mixer-1.2.12\lib\x64\smpeg.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\libmikmod-2.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\libogg-0.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\libvorbis-0.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\libvorbisfile-3.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\SDL_mixer.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x64\libFLAC-8.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\libFLAC-8.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\libmikmod-2.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\libogg-0.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\libvorbis-0.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\libvorbisfile-3.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\SDL_mixer.dll" />
-    <None Include="SDL_mixer-1.2.12\lib\x86\smpeg.dll" />
+    <None Include="SDL-1.2.15\docs.html" />
     <None Include="SDL-1.2.15\docs\html\audio.html" />
     <None Include="SDL-1.2.15\docs\html\cdrom.html" />
     <None Include="SDL-1.2.15\docs\html\event.html" />
@@ -339,11 +319,34 @@
     <None Include="SDL-1.2.15\docs\html\video.html" />
     <None Include="SDL-1.2.15\docs\html\wm.html" />
     <None Include="SDL-1.2.15\docs\index.html" />
-    <None Include="SDL-1.2.15\docs.html" />
     <None Include="SDL-1.2.15\VisualC.html" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\libFLAC-8.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\libmikmod-2.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\libogg-0.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\libvorbis-0.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\libvorbisfile-3.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\SDL_mixer.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x64\smpeg.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\libFLAC-8.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\libmikmod-2.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\libogg-0.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\libvorbis-0.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\libvorbisfile-3.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\SDL_mixer.dll" />
+    <None Include="SDL_mixer-1.2.12\lib\x86\smpeg.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib" />
-    <Library Include="SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib" />
+    <Text Include="GameDebugOutput.txt" />
+    <Text Include="SDL_mixer-1.2.12\CHANGES.txt" />
+    <Text Include="SDL_mixer-1.2.12\COPYING.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.FLAC.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.mikmod.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.ogg-vorbis.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x64\LICENSE.smpeg.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.FLAC.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.mikmod.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.ogg-vorbis.txt" />
+    <Text Include="SDL_mixer-1.2.12\lib\x86\LICENSE.smpeg.txt" />
+    <Text Include="SDL_mixer-1.2.12\README.txt" />
   </ItemGroup>
 </Project>

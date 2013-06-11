@@ -2,6 +2,7 @@
 #include "projectile_particles.h"
 //particles using std::list (probably faster than vector, since it has a very high turn-over rate?)
 
+using namespace Eigen;
 //global variables
 Vector3f particleCameraPos;
 float distScale = 0.1; // we could pass in field-of-view to calculate this. But probably not worth it.
@@ -129,8 +130,12 @@ bool isParticleDead(Particle p){
 	SmokyBullet::SmokyBullet(){
 		deathT = -1;
 		t = 0;
+		sound = new Sound("sounds/smokybullet.wav");
+		sound->Play();
 	} //default constructor doesn't set anything
 	SmokyBullet::SmokyBullet(Vector3f loc,Vector3f vel, float c0, float c1, float c2, float c3){
+		sound = new Sound("sounds/smokybullet.wav");
+		sound->Play();
 		//emitter has no velocity and acceleration of it's own.
 		//its location is decided by the bullet
 		location = loc;
@@ -179,7 +184,13 @@ bool isParticleDead(Particle p){
 	}
 
 	void SmokyBullet::update(double dt){
-		if(isDead()){ return; }
+		if(isDead()){ 
+			if (sound) {
+				delete sound;
+				sound = NULL;
+			}
+			return; 
+		}
 		t = t+dt;
 		float dts = ((float)dt)/1000; // time passed in seconds
 		location = location + velocity * dts;
@@ -247,9 +258,18 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, fl
 	velocity = velocity1;
 	pTimeAlive = 0;
 	pTimeSinceRedraw = 0; 
+
+	sound = new Sound("sounds/laser.wav");
+	sound->Play();
 }
 
 void Slug::update(double dt){
+	if (isDead()) {
+		if (sound) {
+			delete sound;
+			sound = NULL;
+		}
+	}
 	Vector3f delta = velocity * ((dt)/1000.0);
 	position += delta; 
 	pTimeAlive += dt;
@@ -285,7 +305,8 @@ Vector3f &Slug::getPosition(){
 	return position;
 }
 
-Ball::Ball(Vector3f &position, Vector3f &vel, float radius, int stacks, int slices, float r1, float g1, float b1, float a1) : Projectile()
+Ball::Ball(Vector3f &pos, Vector3f &vel, float radius, int stacks, int slices, float r1, float g1, float b1, float a1)
+	: Projectile()
 {
 	r = r1; 
 	g = g1;
@@ -294,7 +315,7 @@ Ball::Ball(Vector3f &position, Vector3f &vel, float radius, int stacks, int slic
 	this->radius = radius;
 	this->stacks = stacks;
 	this->slices = slices;
-	position = position;
+	position = pos;
 	velocity = vel;
 	pTimeAlive = 0;
 }
@@ -321,5 +342,5 @@ void Ball::display(Vector3f cam, bool glow){
 }
 
 bool Ball::isDead(){
-	return (pTimeAlive > MAX_TIME); 
+	return false;
 }

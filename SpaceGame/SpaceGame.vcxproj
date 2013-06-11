@@ -58,7 +58,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,6 +83,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameDoor.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameDebug.h" />
@@ -133,6 +135,7 @@
     <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
     <ClInclude Include="projectile_particles.h" />
+    <ClInclude Include="pthread_helpers.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
     <ClInclude Include="SDL-1.2.15\include\begin_code.h" />
