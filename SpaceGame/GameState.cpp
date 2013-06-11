@@ -466,9 +466,11 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
 	}
-	//room->monitor.Enter('w');
+	room->monitor.Enter('w');
+
 	PerformCollisionDetection(room, &(GameState::player), dt);
-	//room->monitor.Exit('w');
+	
+	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

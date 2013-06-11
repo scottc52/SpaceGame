@@ -18,14 +18,14 @@ void Controller::run(){
  			delta = GameTime::DiffTimeMS(ref);  
  		}
  		GameTime::GameTimer nextRef = GameTime::GetTime();
- 		GameTime::GameTimer t;// = GameTime::GetTime();  
- 		list<UIEvent *> events; 
+ 		
+		list<UIEvent *> events; 
  		PCInputManager::AllPending(events); 
 	//delta = GameTime::DiffTimeMS(t);
 	//cout<<"it took: " << delta << "ms to process events" << endl; 
 		delta = GameTime::DiffTimeMS(ref);	
 		state->PerformStateActions(events, delta); 
-	
+		
 	//render here
 	//Render::myDisplay(); 
 		double since_frame = GameTime::DiffTimeMS(lastFrame);	
