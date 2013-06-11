@@ -40,6 +40,7 @@ struct JParticle{
 		this->vel = vel;
 		this->pos = pos; 
 		life = l;
+		timeAlive = 0;
 		color[0] = r;
 		color[1] = g;
 		color[2] = b;

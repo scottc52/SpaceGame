@@ -8,8 +8,8 @@
 #ifndef _ANIMATION_H
 #define _ANIMATION_H
 
-#include <Eigen\Core>
-#include <Eigen\Geometry>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
 
 #include <fstream>
 

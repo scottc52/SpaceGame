@@ -541,9 +541,10 @@ void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 
 void drawFrame(){
     Material material = exampleMaterial();
-    bindMaterial(material);
-
-    RenderCube();
+    //bindMaterial(material);
+    glPushMatrix(); 
+    //RenderCube();
+    glPopMatrix();
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
@@ -631,8 +632,10 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
+
 	DrawSkinnedPlayers(gr->GetPlayers());
 	DrawBoundingProjectileBox();
+
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
@@ -929,7 +932,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();	
-	//drawGlow();
+	drawGlow();
 	drawBullets(true);
 
 
@@ -1997,6 +2000,6 @@ void Render::GlutInitialize(){
 	//glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
 	glutSetCursor(GLUT_CURSOR_NONE);
-    InitializeRoomTextures();
+    //InitializeRoomTextures();
 
 }

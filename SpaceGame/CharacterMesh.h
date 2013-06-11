@@ -7,7 +7,7 @@
 #include <exception>
 #include <iostream>
 #include <vector>
-#include <Eigen\Core>
+#include <Eigen/Core>
 
 typedef Eigen::Vector3f Point3f;
 

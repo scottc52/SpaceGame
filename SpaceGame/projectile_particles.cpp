@@ -197,6 +197,7 @@ bool isParticleDead(Particle p){
 			return; 
 		}
 		t = t+dt;
+
 		float dts = ((float)dt)/1000; // time passed in seconds
 		location = location + velocity * dts;
 		velocity = velocity + acceleration *dts;
@@ -209,9 +210,7 @@ bool isParticleDead(Particle p){
 			pSystem.pVelOffset = velocity * 0.0; 
 		}else{
 			if(hitT <= hitLife){
-				if(hitT < 0){
-					hitT = t;
-				}
+				hitT+=dt; 
 				//exploding!
 				float wigScale = hitWig;
 				Vector3f locWiggle = Vector3f(rand(), rand(), rand())/((float)RAND_MAX) - Vector3f(0.5, 0.5, 0.5);
@@ -230,12 +229,15 @@ bool isParticleDead(Particle p){
 
 	//if hit. call hit() first, then update()
 	void SmokyBullet::hit(Vector3f hitLocation){
+		if (hitB) return; 
 		hitB = true;
+		hitted=true;
+		hitT = 0;
 		location = hitLocation;
 		velocity = Vector3f(0.0, 0.0, 0.0);
 		acceleration = Vector3f(0.0, 0.0, 0.0);
 		//change emittor properties
-		pSystem.rate = pSystem.rate * 100;
+		pSystem.rate = pSystem.rate * 10;
 		pSystem.pSpeed = pSystem.pSpeed * 10;
 		pSystem.pSize = pSystem.pSize * 2;
 		//cout << "hit location: \n" << location << "\n";
@@ -286,6 +288,8 @@ void Slug::update(double dt){
 void Slug::hit(Vector3f loc)
 {
 	ttl = timeAlive() + 300; 
+	cout<<"hit" <<endl;
+	hitted = true;
 	return;
 }
 
@@ -337,6 +341,7 @@ void Ball::update(double dt){
 
 void Ball::hit(Vector3f loc)
 {
+	hitted = true;
 	return;
 }
 
