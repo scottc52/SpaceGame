@@ -99,9 +99,9 @@ bool UpdateObject(ifstream &file, GameRoom& r){
 			Set Physics Forces.....
 
 			if(parsed.size() != 5){
-				GameDebugger::GetInstance()->WriteToDebugFile("Bad rotation input");
+			GameDebugger::GetInstance()->WriteToDebugFile("Bad rotation input");
 			}else{
-				aobj->SetRotation(Vector4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
+			aobj->SetRotation(Vector4f(atof(parsed[1].c_str()), atof(parsed[2].c_str()), atof(parsed[3].c_str()), atof(parsed[3].c_str())));
 			}
 			*/
 			break;
@@ -166,7 +166,7 @@ bool UpdateItem(ifstream &file, GameRoom& r){
 		switch(line[0]){
 			///////////////////////Item Property////////////////////////////
 		case 'p':{
-			
+
 			break;
 				 }
 		case 'a':{
@@ -247,10 +247,10 @@ bool GameState::ReadStateFile(const char *fname){
 			break;
 				}
 		case 'P':{
-		//	if(!UpdatePlayer(myfile)){
-		//		GameDebugger::GetInstance()->WriteToDebugFile("Problem in state machine");
-		//		return false;
-		//	}
+			//	if(!UpdatePlayer(myfile)){
+			//		GameDebugger::GetInstance()->WriteToDebugFile("Problem in state machine");
+			//		return false;
+			//	}
 			break;
 				 }
 		case 'I': {
@@ -263,8 +263,8 @@ bool GameState::ReadStateFile(const char *fname){
 		case 'C':{
 			//if(!UpdateCamera(myfile, room)){
 			//	GameDebugger::GetInstance()->WriteToDebugFile("Problem in state machine");
-		//		return false;
-		//	}
+			//		return false;
+			//	}
 			break;
 				 }
 		default:
@@ -297,26 +297,26 @@ bool pIsDead(Projectile *p){
 #include "TaskQueue.h"
 class BulletUpdater : public Task{
 private:
- vector<Projectile *> toUpdate;
-   
+	vector<Projectile *> toUpdate;
+
 public:
-double dt; 
-BulletUpdater(){} 
-void AddBullet(Projectile *p){
-	toUpdate.push_back(p);
-}
-virtual void run(){
-	for(int i = 0; i < toUpdate.size(); i++){
-		Projectile *p = toUpdate[i];
-		if(p->isDead()){
-			continue; 
-		}
-		if(p->timeAlive() > 3000){
-			p->hit(p->getPosition()); 
-		}
-		p->update(dt);
+	double dt; 
+	BulletUpdater(){} 
+	void AddBullet(Projectile *p){
+		toUpdate.push_back(p);
 	}
-}
+	virtual void run(){
+		for(int i = 0; i < toUpdate.size(); i++){
+			Projectile *p = toUpdate[i];
+			if(p->isDead()){
+				continue; 
+			}
+			if(p->timeAlive() > 3000){
+				p->hit(p->getPosition()); 
+			}
+			p->update(dt);
+		}
+	}
 };
 
 void PSystems::updateAll(double dt){
@@ -339,6 +339,7 @@ void PSystems::updateAll(double dt){
 	}
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
+	cout << "finished" << endl;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
@@ -362,76 +363,76 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 		int action = ev->value;
 		if(action == USER_COMMAND_LOOK_UP || action == USER_COMMAND_LOOK_DOWN || 
 			action == USER_COMMAND_LOOK_RIGHT || action == USER_COMMAND_LOOK_LEFT){
-			deltaView += ev->delta;   
+				deltaView += ev->delta;   
 		} else{
 			switch (action){
-				case (USER_COMMAND_STRAFE_RIGHT): {
-					cout << "mR" << endl; 
-					deltaPos[0] += 1; 
-					break; } 
-				case (USER_COMMAND_STRAFE_LEFT):{
-					cout << "mL" << endl; 
-					deltaPos[0] -= 1; 
-					break;}
-				case (USER_COMMAND_MOVE_FORWARD):{
-					cout << "mF" << endl; 
-					deltaPos[1] += 1;
-					break;}
-				case (USER_COMMAND_MOVE_BACKWARD):{
-					cout << "mB" << endl; 
-					deltaPos[1] -= 1; 
-					break;}
-				case (USER_COMMAND_FIRE_WEAPON):{ 
-					cout << "firing" << endl;
-					Vector3f loc(nPos);
-					loc += dir.cross(strafe); //below camera
-					if (player.GetActiveWeapon()){
-						Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
-						if (p){
-							ps->monitor.Enter('w');
-							ps->AddBullet(p);
-							ps->monitor.Exit('w');
-						}
-					} else {
-						cerr << "error: no active weapon" << endl;
+			case (USER_COMMAND_STRAFE_RIGHT): {
+				cout << "mR" << endl; 
+				deltaPos[0] += 1; 
+				break; } 
+			case (USER_COMMAND_STRAFE_LEFT):{
+				cout << "mL" << endl; 
+				deltaPos[0] -= 1; 
+				break;}
+			case (USER_COMMAND_MOVE_FORWARD):{
+				cout << "mF" << endl; 
+				deltaPos[1] += 1;
+				break;}
+			case (USER_COMMAND_MOVE_BACKWARD):{
+				cout << "mB" << endl; 
+				deltaPos[1] -= 1; 
+				break;}
+			case (USER_COMMAND_FIRE_WEAPON):{ 
+				cout << "firing" << endl;
+				Vector3f loc(nPos);
+				loc += dir.cross(strafe); //below camera
+				if (player.GetActiveWeapon()){
+					Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
+					if (p){
+						ps->monitor.Enter('w');
+						ps->AddBullet(p);
+						ps->monitor.Exit('w');
 					}
-					break;
+				} else {
+					cerr << "error: no active weapon" << endl;
 				}
-				case (USER_COMMAND_SWITCH_WEAPON):{ 
-					cout << "weapons swapped" << endl; 
-					player.SwitchWeapons();
-					break;}
-				case (USER_COMMAND_TOGGLE_ZOOM):{
-cout << "zooming" << endl; 
-				 break;}
-				case (USER_COMMAND_USE_WEAPON) :{
-					cout << "weapon used" << endl;  break;}
-				case (USER_COMMAND_JUMP) :{ 
-					cout << "Jumping" << endl; break;}
-				case (USER_COMMAND_INVENTORY) :{ 
-					cout << "INV accessed" << endl; break;}
-				case (USER_COMMAND_PAUSE_MENU) :{ 
-					cout << "Paused" << endl; 
-					if (paused){
-						paused = false; 
-						PCInputManager::setMouseLock(true);
-					}else {
-						paused = true; 
-						PCInputManager::setMouseLock(false); 
-					}
-					break;
+				break;
+											}
+			case (USER_COMMAND_SWITCH_WEAPON):{ 
+				cout << "weapons swapped" << endl; 
+				player.SwitchWeapons();
+				break;}
+			case (USER_COMMAND_TOGGLE_ZOOM):{
+				cout << "zooming" << endl; 
+				break;}
+			case (USER_COMMAND_USE_WEAPON) :{
+				cout << "weapon used" << endl;  break;}
+			case (USER_COMMAND_JUMP) :{ 
+				cout << "Jumping" << endl; break;}
+			case (USER_COMMAND_INVENTORY) :{ 
+				cout << "INV accessed" << endl; break;}
+			case (USER_COMMAND_PAUSE_MENU) :{ 
+				cout << "Paused" << endl; 
+				if (paused){
+					paused = false; 
+					PCInputManager::setMouseLock(true);
+				}else {
+					paused = true; 
+					PCInputManager::setMouseLock(false); 
 				}
-				case (USER_COMMAND_ACTION_OR_CONFIRM):{ 
-					cout << "Enter Pressed" << endl;
-					break;}
+				break;
+											}
+			case (USER_COMMAND_ACTION_OR_CONFIRM):{ 
+				cout << "Enter Pressed" << endl;
+				break;}
 			}
 		}
 
 		delete ev; 
 		it++; 
 	}
-	
-	
+
+
 	nPos += strafe * deltaPos[0];
 	nPos += dir * deltaPos[1];
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
@@ -447,13 +448,27 @@ cout << "zooming" << endl;
 void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//If save, handle save
 	//If change room, handle change room
-	
+
 	//Player action
 	ProcessInput(input, dt);
 	UpdateParticleSystems(dt);
-	//PerformCollision
-	
-	//PerformCollisionDetection(room, &(GameState::player), dt);
+
+	vector<GameObject*>objects = room->GetGameObjects();
+	for(unsigned int o = 0; o<objects.size(); o++){
+		GameObject* obj = objects[o];
+		if(obj->objType == CAMERA_TYPE || obj->objType == DOOR_TYPE || obj->objType == WORLD_OBJECT_TYPE || obj->objType == ITEM_TYPE) 
+			continue;
+		Vector3f newPos = obj->GetPosition() + ConvertToEigen3Vector(obj->velocity*dt);
+		obj->SetPosition(newPos);
+		float newAngle = obj->GetRotation()[0] + obj->angularVelocity[0]*dt;
+		Vec3f axisOfRotation = Vec3f(obj->GetRotation()[1], obj->GetRotation()[2], obj->GetRotation()[3]);
+		axisOfRotation += Vec3f(obj->angularVelocity[1], obj->angularVelocity[2], obj->angularVelocity[3])*dt;
+		axisOfRotation.normalize();
+		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
+	}
+	//room->monitor.Enter('w');
+	PerformCollisionDetection(room, &(GameState::player), dt);
+	//room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

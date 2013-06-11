@@ -22,7 +22,9 @@
 #include "GameDoor.h"
 #include "GamePlayer.h"
 #include <vector>
+#include <pthread.h>
 #include <map>
+#include "Monitor.h"
 
 #define OBJECT_NOT_FOUND -1
 
@@ -53,6 +55,7 @@ private:
 	//GamePlayer* player;
 
 public:
+	Monitor monitor;
 	map<GameObject*, vector<GameObject*> > collisionTier0List;
 	map<GameObject*, vector<GameObject*> > collisionTier1List;
 	map<GameObject*, vector<GameObject*> > collisionTier2List;
@@ -93,6 +96,11 @@ public:
 
 	//Adds the given Object to the Room
 	void GameRoom::AddWorldObject(GameWorldObject& newObject);
+
+	void GameRoom::AddItem(GameItem& item);
+
+	//Adds the given Object to the Room
+	void GameRoom::AddActiveObject(GameActiveObject& newObject);
 
 	//Get the Object with the given name in the current Room if one exists
 	GameWorldObject* GameRoom::GetWorldObject(const char *wobjectName);

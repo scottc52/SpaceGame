@@ -14,7 +14,6 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "projectile_particles.h"
 #include "AI.h"
 using namespace std;
 #include <cstdio>
@@ -47,14 +46,7 @@ class MetaplaneEnemy : public AI
 		Eigen::Vector3f getLocation();
 		Eigen::Vector3f getDirection();
 		
-		void MetaplaneEnemy::update()
-		{
-			checkForCollision();
-			checkToMove();
-			checkToChangeOrientation();
-			checkToFire();
-			checkToUpdate();
-		};
+		void MetaplaneEnemy::update();
 		
 		void render();
 		
@@ -161,6 +153,8 @@ class MetaplaneEnemy : public AI
 		void checkToChangeOrientation();
 		void checkToFire();
 		void checkToUpdate();
+		
+		bool hasCollided;
 		
 		MetaplaneEnemy::PlaneBlob *MetaplaneEnemy::getBlobs() { return blobs; };
 		MetaplaneEnemy::PlaneBlob MetaplaneEnemy::getBlob(int index);

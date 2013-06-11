@@ -88,7 +88,7 @@ public:
 
 	int objType;
 	Vec3f velocity;
-	Vec3f angularVelocity;
+	Vec4f angularVelocity;
 	Vec3f CenterOfMass;
 	//Moment of Inertia
 	float mass;
@@ -103,14 +103,16 @@ public:
 		isModified = false;
 		position = Vector3f(0,0,0);
 		scale = 1.f;
-		CollisionTierNum;
+		CollisionTierNum = 2;
 		outSideCollisionScale = 1.3;
+		angularVelocity = Vec4f(1,0,0,0);
 		/*TO DO: Initialize lock*/
 	}
 
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		CollisionTierNum = object->CollisionTierNum;
 		setName(object->GetName());  		
 		isModified = object->IsModified();
 		position = object->GetPosition();
@@ -119,6 +121,8 @@ public:
 		rotation = object->GetRotation();
 		meshptr = object->GetMesh();
 		objType = object->objType;
+		angularVelocity = object->angularVelocity;
+		velocity = object->velocity;
 		/*TO DO: Initialize lock*/
 	}
 
@@ -156,6 +160,9 @@ public:
 		meshFile.clear();
 		meshFile = meshFileName;
 	}
+	
+	float GameObject::GetMass() { return mass; };
+	float GameObject::SetMass(float newMass) { mass = newMass; };
 
 	/////////////////////////////////////////////////////////////////////////////////
 

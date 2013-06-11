@@ -31,6 +31,7 @@
 #include <time.h>
 #include <math.h>
 #include "Mesh.h"
+#include "Sound.h"
 
 #define PI 3.14159265358979323846
 
@@ -63,6 +64,7 @@ private:
 	float r, g, b, a;
 	double pTimeAlive;
 	double pTimeSinceRedraw;  
+	Sound *sound;
 public:
 	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
 	void hit(Vector3f loc); 
@@ -71,6 +73,26 @@ public:
 	void update(double dt); 
 	double timeAlive();
 	Vector3f &getPosition(); 
+};
+
+class Ball : public Projectile{
+private:
+	float radius;
+	int stacks;
+	int slices;
+	Vector3f position;
+	Vector3f velocity;
+	float r, g, b, a;
+	double pTimeAlive;
+public:
+	Ball(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
+		 float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+	void hit(Vector3f loc);
+	void display(Vector3f cam, bool glow = false);
+	bool isDead();
+	void update(double dt); 
+	double timeAlive() { return pTimeAlive; }
+	Vector3f &getPosition() { return position; }
 };
 
 class Particle{
@@ -170,6 +192,8 @@ public:
 	void hit(Vector3f hitLocation);
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
+private:
+	Sound *sound;
 };
  
 #endif

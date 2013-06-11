@@ -2,7 +2,8 @@
 Monitor.h
 simple implementation of read/write locks
 */ 
-
+#ifndef MONITOR
+#define MONITOR
 #include <pthread.h>
 #include <queue> 
 
@@ -22,3 +23,4 @@ class Monitor{
 	void Exit(char mode);     
 };
 
+#endif
