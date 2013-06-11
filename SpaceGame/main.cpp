@@ -21,6 +21,7 @@
 #include "LocationDefines.h"
 #include "Mesh.h"
 #include "GameObjectHeaderList.h"
+#include "CollisionDetection.h"
 #include "Render.h"
 #include "RoomBuilder.h"
 #include "TaskQueue.h"
@@ -206,11 +207,11 @@ int main(int argc, char *argv[]){
 	strcat(debugName, "debug.room");
 	GameRoom debug;
 	assert(GameRoom::LoadRoom(debugName, debug));
-	vector<GameWorldObject*> wobs = debug.GetWorldObjects();
+	vector<GameObject*> obs = debug.GetGameObjects();
 	//map<string, GameWorldObject>::iterator wobs = debug.GetRoomWorldObjectsIterator();
-	for(unsigned int w = 0; w<wobs.size(); w++){
+	for(unsigned int w = 0; w<obs.size(); w++){
 		//load starting meshes
-		GameWorldObject *gwo = wobs[w];
+		GameObject *gwo = obs[w];
 		cout<<gwo->GetName()<<endl;
 		MyMesh *tmp = new MyMesh();
 		if (gwo->GetMeshFile()){
@@ -223,6 +224,8 @@ int main(int argc, char *argv[]){
 			}
 		} 		
 	}
+
+	ComputeBoundingBoxesAndPhysicsConstants(obs);
 
 	cin.ignore(1);
 	///////////////////////////////////////////////////

@@ -78,6 +78,26 @@ GLuint program_blur, uniform_source_blur, uniform_offsetx_blur, uniform_offsety_
 GLuint program_blur9, uniform_source_blur9, uniform_offsetx1_blur9, uniform_offsety1_blur9, uniform_offsetx2_blur9, uniform_offsety2_blur9, uniform_coefficients_blur9;
 GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_source1_bloom, uniform_source2_bloom, uniform_source3_bloom;
 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// COLLISION DETECTION INFO
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+void DrawBoundingBox(GameObject* o){
+	for(unsigned int i = 0; i< o->boundingBox.size()-1; i++){
+		glColor3f(0,0,1);
+		if(o->tier1CollisionData.size() > 0) glColor3f(1,0,0);
+		glBegin(GL_LINES);
+		glVertex3f(o->boundingBox[i][0], o->boundingBox[i][1], o->boundingBox[i][2]);
+		glVertex3f(o->boundingBox[i+1][0],o->boundingBox[i+1][1],o->boundingBox[i+1][2]); 
+		glEnd();
+	}
+}
+
+
 //****************************************************
 // reshape viewport if the window is resized
 //****************************************************
@@ -396,11 +416,11 @@ void drawFrame(){
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
-	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
+	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
-	for(unsigned int w = 0; w <wobs.size(); w++){
-		GameWorldObject *gwo = wobs[w]; 
+	for(unsigned int w = 0; w <obs.size(); w++){
+		GameObject *gwo = obs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
 			continue;  
@@ -471,6 +491,9 @@ void drawFrame(){
 			}
 		}
 		glEnd();
+
+		DrawBoundingBox(obs[w]);
+
 		glPopMatrix(); // you need one of these for every glPushMatrix()
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);

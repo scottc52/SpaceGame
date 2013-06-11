@@ -7,6 +7,8 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
+void ComputeBoundingBoxesAndPhysicsConstants(vector<GameObject*>& objects);
+
 void ResolveOverlappingObjects(GameRoom* room, GamePlayer* player, double dt);
 
 void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt);

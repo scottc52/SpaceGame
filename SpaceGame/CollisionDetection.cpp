@@ -9,6 +9,63 @@ int MathSign(const float& v){
 	if( v == 0) return 0;
 	else return v/abs(v);
 }
+
+//////////////////////////////////////////////////////////////////////////
+//
+// BOUNDING BOX COMPUTATION
+//
+/////////////////////////////////////////////////////////////////////////
+void ComputeBoundingBoxesAndPhysicsConstants(vector<GameObject*>& objects){
+	for(unsigned int o = 0; o<objects.size(); o++){
+		MyMesh* meshptr= objects[o]->GetMesh();
+		if(meshptr == NULL) continue;
+		float minX = FLT_MAX;
+		float minY = FLT_MAX;
+		float minZ = FLT_MAX;
+		float maxX = -FLT_MAX;
+		float maxY = -FLT_MAX;
+		float maxZ = -FLT_MAX;
+		for(MyMesh::VertexIter vi = meshptr->vertices_begin(); vi != meshptr->vertices_end(); ++vi){
+			Vec3f pt = meshptr->point(vi.handle());
+			objects[o]->meshBox.push_back(pt);
+			minX = min(minX, pt[0]);
+			maxX = max(maxX, pt[0]);
+			minY = min(minY, pt[1]);
+			maxY = max(maxY, pt[1]);
+			minZ = min(minZ, pt[2]);
+			maxZ = max(maxZ, pt[2]);
+		}
+		Vec3f UR(maxX, maxY, maxZ);
+		Vec3f BL(minX, minY, minZ);
+		objects[o]->boundingBox.push_back(UR);
+		objects[o]->boundingBox.push_back(Vec3f(UR[0], UR[1], BL[2]));
+		objects[o]->boundingBox.push_back(Vec3f(BL[0], UR[1], BL[2]));
+		objects[o]->boundingBox.push_back(Vec3f(BL[0], UR[1], UR[2]));
+		objects[o]->boundingBox.push_back(Vec3f(BL[0], BL[1], UR[2]));
+		objects[o]->boundingBox.push_back(Vec3f(UR[0], BL[1], UR[2]));
+		objects[o]->boundingBox.push_back(Vec3f(UR[0], BL[1], BL[2]));
+		objects[o]->boundingBox.push_back(BL);
+
+		//	ConstructBoxEdges(meshes[m].BoxEdges, UR, BL);
+		float TotalArea = 0;
+		for(MyMesh::VertexIter vit = meshptr->vertices_begin(); vit != meshptr->vertices_end(); ++vit){
+			float numberVertices  = 0;
+			objects[o]->CenterOfMass+= meshptr->point(vit.handle())/meshptr->n_vertices();
+		}
+		float MomentOfInertia = 0;
+		/*	for(MyMesh::VertexIter it = meshes[m].mesh.vertices_begin(); it!= meshes[m].mesh.vertices_end(); ++it){
+		MomentOfInertia += ((Vec3f(meshes[m].mesh.point(it.handle())) - meshes[m].CenterOfMass) * (Vec3f(meshes[m].mesh.point(it.handle())) - meshes[m].CenterOfMass)).sqrnorm();
+		}
+		MomentOfInertia *= meshes[m].mass;
+		meshes[m].momentOfInertia = MomentOfInertia;*/
+	}
+}
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////
 //
 // UPDATE COORDINATES
@@ -458,86 +515,106 @@ bool AlreadyIn(GameObject* a, GameObject* b, unsigned int tierNo, GameRoom* room
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+//
+// RESOLVE CONTACT DATA USING BARYCENTRIC COORDINATES
+//
+////////////////////////////////////////////////////////////////////////////////////////////
+Vec3f ResolveContact(Simplex& P){
+	/////////////////////////////////////////////////
+	// Barycentrics: Use them for A and B.
+	///////////////////////////////////////////////
+	Vec3f contactA, contactB;
+	if(P.GetSize() == 1){
+		contactA = P.atA(0);
+		contactB = P.atB(0);
+	}else if(P.GetSize() == 2){//linear interpo;
+		Vec3f A = P.at(1);
+		Vec3f B = P.at(0);
+		Vec3f AB = B-A;
+		float v = (dot(AB, -A))/(dot(AB, -A)+ dot(-AB, -B));
+		contactA = P.atA(1)*(1-v) + P.atA(0)*v;
+		contactB = P.atB(1)*(1-v) + P.atB(0)*v;
+	}else{//triangle
+		Vec3f A = (P.at(2));
+		Vec3f B = (P.at(1));
+		Vec3f C = (P.at(0));
+		Vec3f N = cross(B-A,C-A);
+		Vec3f Nab = cross(N, B-A);
+		Vec3f Nac = cross(N, C-A);
+		float v = (dot(-A, Nac))/(dot(B-A,Nac));
+		float w = (dot(-A, Nab))/(dot(C-A, Nab));
+		float u = 1 - v - w;
+		contactA = P.atA(2)*u + P.atA(1)*v + P.atA(0)*w;
+		contactB = P.atB(2)*u + P.atB(1)*v + P.atB(0)*w;
+	}
+
+	Vec3f norm = contactB-contactA;
+	norm.normalize();
+
+	return contactA;
+
+	cout<<"Point of ContactA: "<<contactA<<endl;
+	cout<<"Point of ContactB: "<<contactB<<endl;
+	//cout<<"Normal1: "<<norm<<endl;
+	////	cout<<"Normal2: "<<-norm<<endl;
+	////cin.ignore(1);
+	//objA->contactNormal.push_back(norm);
+	//objB->contactNormal.push_back(-norm);
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
 // Detects all collisions of various types with each object.
 void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 	////////////////////////////////////////////////////////////////////////////
 	// SPECIAL DATA FOR MAIN CHARACTER ONLY
 	////////////////////////////////////////////////////////////////////////////
 
+	//////////////////////////////////////////////////
+	//	Tier 0 collision
+	//////////////////////////////////////////////////
 	vector<GameObject*> Objects = room->GetGameObjects();
 	for(unsigned int a = 0; a<Objects.size()-1; a++){
-		//Spherical test.
 		GameObject* o1 = Objects[a];
+		if(o1->CollisionTierNum < 1 )continue;
 		for(unsigned int b = a+1; b<Objects.size(); b++){
 			GameObject* o2 = Objects[b];
-			if((o2->GetPosition() - o1->GetPosition()).norm() < (o1->radius + o2->radius)){
-				if(!AlreadyIn(o1, o2, 0, room)) {
-					room->collisionTier0List[o1].push_back(o2);
-					room->collisionTier0List[o2].push_back(o1);
-				}
-/*linux frienly version
-		if(o1->CollisionTierNum<1) continue;
-		vector<Vec3f> aBox = o1->boundingBox;
-		Vec3f A = ConvertToOM3Vector(o1->GetPosition()); 
-		Vec4f B = Vec4f(1,0,0,0); 
-		UpdateCoords(aBox, A, o1->velocity, o1->GetRotation(), B ,dt, o1->outSideCollisionScale);
-		vector<Vec3f> oldABox = o1->boundingBox;
-		A = ConvertToOM3Vector(o1->GetPosition()); 
-		UpdateCoords(oldABox, A, o1->velocity, o1->GetRotation(), B,0, o1->outSideCollisionScale);
-		for(unsigned int i = 0; i <oldABox.size(); i++){
-			aBox.push_back(oldABox[i]);
-		}
-		for(unsigned int b = a+1; b<Objects.size(); b++){
-			GameObject* o2 = Objects[b];
-
-			if(o2->CollisionTierNum<1) continue;
-			vector<Vec3f> bBox = o2->boundingBox;
-			A = ConvertToOM3Vector(o2->GetPosition());
-			B = Vec4f(0,0,0,1);
-			UpdateCoords(bBox, A, (o2->velocity), (o2->GetRotation()), B,dt, o2->outSideCollisionScale);
-			vector<Vec3f> oldBBox = o2->boundingBox;
-			A = ConvertToOM3Vector(o2->GetPosition());
-			UpdateCoords(oldBBox, A, (o2->velocity), (o2->GetRotation()), B,0, o2->outSideCollisionScale);
-			for(unsigned int i = 0; i <oldBBox.size(); i++){
-				bBox.push_back(oldBBox[i]);
-			}
-			Simplex P;
-			Vec3f V;
-			V = GJKDistance(aBox, bBox, P);
-			if(P.GetSize() > 3){ //We have a collision
-*/
-				////////////////////////////////////////////////
-				// Tier 0 collision
-				///////////////////////////////////////////////
-				/*	GameObject* o1 = Objects[a];
-				if(o1->CollisionTierNum<1) continue;
-				vector<Vec3f> aBox = o1->boundingBox;
-				UpdateCoords(aBox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),dt, o1->outSideCollisionScale);
-				vector<Vec3f> oldABox = o1->boundingBox;
-				UpdateCoords(oldABox, ConvertToOM3Vector(o1->GetPosition()), o1->velocity, o1->GetRotation(), Vec4f(1,0,0,0),0, o1->outSideCollisionScale);
-				for(unsigned int i = 0; i <oldABox.size(); i++){
+			vector<Vec3f> aBox = o1->boundingBox;
+			Vec3f A = ConvertToOM3Vector(o1->GetPosition()); 
+			Vec4f B = Vec4f(1,0,0,0); 
+			UpdateCoords(aBox, A, o1->velocity, o1->GetRotation(), B ,dt, o1->outSideCollisionScale);
+			vector<Vec3f> oldABox = o1->boundingBox;
+			A = ConvertToOM3Vector(o1->GetPosition()); 
+			UpdateCoords(oldABox, A, o1->velocity, o1->GetRotation(), B,0, o1->outSideCollisionScale);
+			for(unsigned int i = 0; i <oldABox.size(); i++){
 				aBox.push_back(oldABox[i]);
-				}
-				for(unsigned int b = a+1; b<Objects.size(); b++){
+			}
+			for(unsigned int b = a+1; b<Objects.size(); b++){
 				GameObject* o2 = Objects[b];
-
 				if(o2->CollisionTierNum<1) continue;
 				vector<Vec3f> bBox = o2->boundingBox;
-				UpdateCoords(bBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),dt, o2->outSideCollisionScale);
+				A = ConvertToOM3Vector(o2->GetPosition());
+				B = Vec4f(0,0,0,1);
+				UpdateCoords(bBox, A, (o2->velocity), (o2->GetRotation()), B,dt, o2->outSideCollisionScale);
 				vector<Vec3f> oldBBox = o2->boundingBox;
-				UpdateCoords(oldBBox, ConvertToOM3Vector(o2->GetPosition()), (o2->velocity), (o2->GetRotation()), Vec4f(0,0,0,1),0, o2->outSideCollisionScale);
+				A = ConvertToOM3Vector(o2->GetPosition());
+				UpdateCoords(oldBBox, A, (o2->velocity), (o2->GetRotation()), B,0, o2->outSideCollisionScale);
 				for(unsigned int i = 0; i <oldBBox.size(); i++){
-				bBox.push_back(oldBBox[i]);
+					bBox.push_back(oldBBox[i]);
 				}
 				Simplex P;
 				Vec3f V;
 				V = GJKDistance(aBox, bBox, P);
-				if(P.GetSize() > 3){ //We have a collision.
-				*/
+				if(P.GetSize() > 3){ //We have a collision
+					if(!AlreadyIn(o1, o2, 0, room)){
+						Vec3f contact = ResolveContact(P);
+						room->collisionTier0List[o1].push_back(o2);
+						room->collisionTier0List[o2].push_back(o1);
+					}
+				}
 			}
 		}
 	}
-	/*
 	////////////////////////////////////////////////
 	// Tier 1 collision
 	///////////////////////////////////////////////
@@ -577,11 +654,11 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 				if(!AlreadyIn(o1, o2, 1, room)) {
 					room->collisionTier1List[o1].push_back(o2);
 					room->collisionTier1List[o2].push_back(o1);
-					GameDebugger::GetInstance()->WriteDebugMessageToConsole("Hit was successful!", 533);
+					GameDebugger::GetInstance()->WriteToDebugFile("Hit was successful!", 533);
 				}
 			}
 		}
-	}*/
+	}
 	//////////////////////////////////////////////////////////////////////////////
 	//
 	// Mesh Level Detection

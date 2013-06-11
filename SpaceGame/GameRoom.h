@@ -94,6 +94,11 @@ public:
 	//Adds the given Object to the Room
 	void GameRoom::AddWorldObject(GameWorldObject& newObject);
 
+	void GameRoom::AddItem(GameItem& item);
+
+	//Adds the given Object to the Room
+	void GameRoom::AddActiveObject(GameActiveObject& newObject);
+
 	//Get the Object with the given name in the current Room if one exists
 	GameWorldObject* GameRoom::GetWorldObject(const char *wobjectName);
 
