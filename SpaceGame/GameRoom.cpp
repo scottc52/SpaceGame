@@ -158,7 +158,7 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		r.AddDoor(door);
 		break;
 			 } 
-	case 'A':{
+	case 'M':{
 		GAME_DEBUG_ASSERT(v.size() >= 11);
 		float x= atof(v[2]);
 		float y= atof(v[3]);
@@ -179,13 +179,52 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		r.AddPlayer(player); 
 		break;
 			 }
+			 //Active Object
+	case 'A':{
+		GAME_DEBUG_ASSERT(v.size() >= 11);
+		float x= atof(v[3]);
+		float y= atof(v[4]);
+		float z= atof(v[5]);
+		float angle = atof(v[6]);
+		float nX = atof(v[7]);
+		float nY = atof(v[8]);
+		float nZ = atof(v[9]);
+		float scale = atof(v[10]);
+		GameActiveObject aobj;
+		Vector3f p(x,y,z);
+		Vector4f rot(nX, nY, nZ, angle);
+		aobj.SetPosition(p);
+		aobj.SetScale(scale);
+		aobj.SetRotation(ConvertToOM4Vector(rot));
+		aobj.SetName(v[1]);
+		aobj.SetMeshFile(newCString(v[2]));
+		if(v.size() > 11){
+			GAME_DEBUG_ASSERT(v.size() >=14);
+			float vx = atof(v[11]);
+			float vy = atof(v[12]);
+			float vz = atof(v[13]);
+			aobj.velocity = Vec3f(vx, vy, vz);
+		}
+		if(v.size() >= 14){
+			GAME_DEBUG_ASSERT(v.size() >=18);
+			float avw = atof(v[14]);
+			float avx = atof(v[15]);
+			float avy = atof(v[16]);
+			float avz = atof(v[17]);
+			aobj.angularVelocity = Vec4f(avw, avx, avy, avz);
+		}
+		if(v.size() >=19){
+			aobj.mass = atof(v[18]);
+		}
+		r.AddActiveObject(aobj); 
+		break; 
+			 }
 	case '\0': 
 	default: 
 		GameDebugger::GetInstance()->WriteDebugMessageToConsole("parseRoomFile: unexpected line type");
 		break; 	
 	}
 }
-
 bool GameRoom::LoadRoom(const char *fname, GameRoom& room){
 	std::ifstream myfile (fname, std::ifstream::in);
 	if (!myfile.good()){
@@ -268,6 +307,18 @@ GameRoom::~GameRoom()
 	//To do: make this a list deletion as well...
 	*/
 }
+void GameRoom::AddActiveObject(GameActiveObject& newWObject)
+{
+	string key(newWObject.GetName());
+	(this->aobjects)[key] = newWObject;
+}
+
+void GameRoom::AddItem(GameItem& newWObject)
+{
+	string key(newWObject.GetName());
+	(this->items)[key] = newWObject;
+}
+
 
 void GameRoom::AddWorldObject(GameWorldObject& newWObject)
 {

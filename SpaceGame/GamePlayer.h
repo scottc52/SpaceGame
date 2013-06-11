@@ -30,15 +30,17 @@ public:
 	skel("../SpaceGame/animations/character.skel"), 
 	skin("../SpaceGame/animations/character.skin"), 
 	aim_clip("../SpaceGame/animations/aim.anim", &skel), 
-	charMesh("../SpaceGame/animations/character.obj") {
+	charMesh("../SpaceGame/animations/character.obj"),
+	currentPose(aim_clip.keyframes[0]) {
 		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 1.0f);
 		SecondaryWeapon = new SlugBulletWeapon(25);
 		activeItem = NULL;
 		activeWeapon = PrimaryWeapon;
 		primaryActive = true;
 		objType = PLAYER_TYPE;
-
-
+		boundingBox.push_back(Vec3f(1, 1, -1));
+		boundingBox.push_back(Vec3f(-1, -1, 1));
+		currentPose.skel = &skel;
 	}
 	void GamePlayer::ApplyMovementForce(const Vector3f &force, const double& timeIncrement);
 	void GamePlayer::ApplyExternalForce(const Vector3f &force, const Vector3f& position);

@@ -8,6 +8,10 @@
  */
 
 #include "MetalineEnemy.h"
+#include "projectile_particles.h"
+#include "GameState.h"
+#include <cstdio>
+#include <iostream>
 
 const float DEFAULT_BLOB_MASS = 1;
 const float DEFAULT_BLOB_MOVE_SPEED = .05f;
@@ -125,6 +129,8 @@ MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	this->fireCounter = 0;
 	
+	this->hasCollided = false;
+	
 	float tempBlobMaterialAmbient[] = {0.2, 0.2, 0.6, 1.0};
 	float tempBlobMaterialDiffuse[]  = {0.2, 0.2, 0.6, 1.0};
 	float tempBlobMaterialSpecular[] = {0.8, 0.8, 0.8, 1.0};
@@ -187,25 +193,30 @@ void MetalineEnemy::moveMetalineEnemy()
 	
 	if (actionState == DEFAULT_ACTION_STATE)
 	{
-		this->center.x = this->center.x + (this->direction.x * this->speed);
-		this->center.y = this->center.y + (this->direction.y * this->speed);
-		this->center.z = this->center.z + (this->direction.z * this->speed);
+		
 	}
 	else if (actionState == PLAYER_DETECTED_ACTION_STATE)
 	{
-		//Vector3f playerPos = getPlayerPosition();
-		Vector3f playerPos = Vector3f(0, 0, 0); // CHANGE LATER
-		Vertex newDirection;
-		newDirection.x = playerPos(0) - this->center.x;
-		newDirection.y = playerPos(1) - this->center.y;
-		newDirection.z = playerPos(2) - this->center.z;
-		normalize(newDirection);
-		this->direction = newDirection;
+		if (!hasCollided)
+		{
+			GameState *gs = GameState::GetInstance();
+			Vector3f playerPos = gs->GetPlayerPosition();
+			Vertex newDirection;
+			newDirection.x = playerPos(0) - this->center.x;
+			newDirection.y = playerPos(1) - this->center.y;
+			newDirection.z = playerPos(2) - this->center.z;
+			normalize(newDirection);
+			this->direction = newDirection;
+		}
 	}
 	else if (actionState == SOUND_DETECTED_ACTION_STATE)
 	{
 		//Move Toward Sound TODO
 	}
+	
+	this->center.x = this->center.x + (this->direction.x * this->speed);
+	this->center.y = this->center.y + (this->direction.y * this->speed);
+	this->center.z = this->center.z + (this->direction.z * this->speed);
 }
 
 void MetalineEnemy::updateActionState()
@@ -217,26 +228,6 @@ void MetalineEnemy::updateActionState()
 		this->actionState = DEFAULT_ACTION_STATE;
 	}
 }
-
-/*void MetalineEnemy::moveProjectiles()
-{
-	int size = projectiles.size();
-	for (int i = 0; i < size; i++)
-	{
-		Projectile curProjectile = projectiles[i];
-		if (curProjectile.hasCollided())
-		{
-			projectiles.erase(projectiles.begin() + i);
-			i--;
-			size--;
-		}
-		else
-		{
-			curProjectile.move();
-			projectiles[i] = curProjectile;
-		}
-	}
-}*/
 
 bool MetalineEnemy::collisionDetected(Vertex v)
 {	
@@ -267,10 +258,21 @@ Vector3f MetalineEnemy::getDirection()
 	return dir;
 }
 
+void MetalineEnemy::update()
+{
+	checkForCollision();
+	checkToMove();
+	checkToChangeOrientation();
+	checkToFire();
+	checkToUpdate();
+};
+
 void MetalineEnemy::checkForCollision()
 {
 	if (collisionDetected(this->center))
 	{
+		hasCollided = true;
+		
 		this->direction = generateRandomNormalizedDirection();
 		
 		Vertex nextCenter;
@@ -280,12 +282,17 @@ void MetalineEnemy::checkForCollision()
 		
 		while (collisionDetected(nextCenter))
 		{
+			
 			this->direction = generateRandomNormalizedDirection();
 			
 			nextCenter.x = this->center.x + this->direction.x * this->speed;
 			nextCenter.y = this->center.y + this->direction.y * this->speed;
 			nextCenter.z = this->center.z + this->direction.z * this->speed;
 		}
+	}
+	else
+	{
+		hasCollided = false;
 	}
 }
 
@@ -303,27 +310,21 @@ void MetalineEnemy::checkToFire()
 {
 	if (fireCounter >= FIRE_COUNTER_THRESHOLD)
 	{
-		//Vector3f playerPos = getPlayerPosition();
-		Vector3f playerPos = Vector3f(0, 0, 0); // CHANGE LATER
-		Vector3f projectileCenter;
-		projectileCenter(0) = this->center.x;
-		projectileCenter(1) = this->center.y;
-		projectileCenter(2) = this->center.z;
-		Vector3f projectileDirection = playerPos - projectileCenter;
-		projectileDirection.normalize();
+		GameState *gs = GameState::GetInstance();
+		Vector3f playerPos = gs->GetPlayerPosition();
+		Vector3f pCenter(this->center.x, this->center.y, this->center.z);
+		Vector3f projectileDirection = (playerPos - pCenter).normalized();
+		Vector3f velocity(projectileDirection(0) * PROJECTILE_SPEED, projectileDirection(1) * PROJECTILE_SPEED,
+						  projectileDirection(2) * PROJECTILE_SPEED);
+		Projectile *p = new Ball(pCenter, velocity, PROJECTILE_RADIUS);
+		gs->GetParticleSystems()->AddBullet(p);
 		
-		/*Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
-								 PROJECTILE_SPEED);
-		projectiles.push_back(newProjectile);
-		*/
 		fireCounter = 0;
 	}
 	else if (fireCounter < FIRE_COUNTER_THRESHOLD)
 	{
 		fireCounter++;
 	}
-	
-	//moveProjectiles();
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)

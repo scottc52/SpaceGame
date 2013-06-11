@@ -256,7 +256,7 @@ void AnimationClip::reset() { time = 0.0f; }
 SkeletonPose AnimationClip::interpolatePose(float dt) {
 	//find the two skeletonPoses around this time
 	//return their interpolation
-	time += dt/1000;
+	time += dt;
 	assert(time >= 0.0f);
 	time = (time/length() - floor(time/length()))*length();
 	//if time is greater than length

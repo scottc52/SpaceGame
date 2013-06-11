@@ -30,7 +30,7 @@ public:
 	// Update sound volume and left/right panning to account for new position.
 	void Update(Vector3f playerPosition, Vector3f playerLook, Vector3f playerUp);
 	void Update(GameCamera *camera);
-	void Stop();
+	void Pause();
 
 	static int InitializeSounds();
 	static void UninitializeSounds();
@@ -43,6 +43,19 @@ private:
 	float maxVolume;
 	GameObject *object;
 	Vector3f position;
+};
+
+class Music {
+public:
+	Music(char *filename, float maxVolume=1.0f);
+	~Music();
+	void Play();
+	void Loop();
+	void Pause();
+private:
+	int channel;
+	float maxVolume;
+	Mix_Music *music;
 };
 
 #endif

@@ -12,7 +12,6 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "projectile_particles.h"
 #include "AI.h"
 using namespace std;
 
@@ -35,26 +34,21 @@ public:
 	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BALL_BLOBS, float radius = DEFAULT_BALL_RADIUS);
 	~MetaballEnemy();
 	
-	int MetaballEnemy::getNumBlobs() { return numBlobs; };
+	int MetaballEnemy::getNumBlobs() { return numBlobs; }
 	Eigen::Vector3f MetaballEnemy::getCenter();
-	float MetaballEnemy::getRadius() { return radius; };
-	int MetaballEnemy::getBlobSpeed(int index) { return this->blobs[index].speed; };
-	void MetaballEnemy::setBlobSpeed(int index, float newSpeed) { this->blobs[index].speed = newSpeed; };
+	float MetaballEnemy::getRadius() { return radius; }
+	int MetaballEnemy::getBlobSpeed(int index) { return this->blobs[index].speed; }
+	void MetaballEnemy::setBlobSpeed(int index, float newSpeed) { this->blobs[index].speed = newSpeed; }
 	void setAllBlobsSpeed(float newSpeed);
 	
 	Eigen::Vector3f getLocation();
 	Eigen::Vector3f getDirection();
 	
-	void MetaballEnemy::update()
-	{
-		checkForCollision();
-		checkToMove();
-		checkToChangeOrientation();
-		checkToFire();
-		checkToUpdate();
-	};
+	void update();
 	
 	void render();
+	
+	Vector3f MetaballEnemy::CenterOfMass() {Vector3f v(center.x, center.y, center.z); return v;}
 	
 private:
 	typedef struct Vertex
@@ -148,6 +142,8 @@ private:
 	void checkToChangeOrientation();
 	void checkToFire();
 	void checkToUpdate();
+	
+	bool hasCollided;
 	
 	MetaballEnemy::BallBlob *MetaballEnemy::getBlobs() { return blobs; };
 	MetaballEnemy::BallBlob MetaballEnemy::getBlob(int index);
