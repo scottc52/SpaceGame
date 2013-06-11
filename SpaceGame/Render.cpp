@@ -595,8 +595,8 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();
-	Render::gameState->GetParticleSystems()->monitor.Enter('r');   	
+	Render::gameState->GetParticleSystems()->monitor.Enter('r');
+	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();  	
 	list<Projectile *>::iterator it = bullets->begin(); 
 	while(it != bullets->end()){  
 		Projectile *curBullet = *it;

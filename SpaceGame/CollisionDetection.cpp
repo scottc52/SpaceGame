@@ -627,7 +627,6 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 	///////////////////////////////////////////////
 	map<GameObject*, vector<GameObject*> >::iterator it = room->collisionTier0List.begin();
 	while(it!=room->collisionTier0List.end()){
-		cin.ignore(1);
 		GameObject* o1 = it->first;
 		if(o1->CollisionTierNum<2) continue;
 		vector<Vec3f> aBox = o1->boundingBox;
