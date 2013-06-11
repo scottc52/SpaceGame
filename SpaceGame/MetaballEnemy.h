@@ -13,15 +13,17 @@
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
 #include "AI.h"
+#include "GameState.h"
 using namespace std;
 
 #ifndef MetaballEnemy_h
 #define MetaballEnemy_h
 
+
 const int DEFAULT_NUM_BALL_BLOBS = 5;
 const float DEFAULT_BALL_RADIUS = 1.f;
 
-class MetaballEnemy //: public AI
+class MetaballEnemy : public AI
 {
 public:
 	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BALL_BLOBS, float radius = DEFAULT_BALL_RADIUS);

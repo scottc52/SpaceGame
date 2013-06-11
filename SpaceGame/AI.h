@@ -30,6 +30,8 @@ using namespace Eigen;
 #ifndef AI_H
 #define AI_H
 
+#include "GameState.h"
+
 const int DEFAULT_AI_HEALTH = 100;
 
 class AI : public GameActiveObject

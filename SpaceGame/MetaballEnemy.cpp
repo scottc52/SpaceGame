@@ -283,6 +283,14 @@ bool MetaballEnemy::intersect(Vector3f &pos){
 	return ((pos - getLocation()).norm() < this->radius); 
 }
 
+void MetaballEnemy::hit(Projectile *p){
+	return;
+}
+
+void MetaballEnemy::act(GameState *gs, double dt){
+	return;
+}
+
 bool MetaballEnemy::collisionDetected()
 {	
 	if (tier0CollisionData.size() > 0 || tier1CollisionData.size() > 0 || tier2CollisionData.size() > 0)

@@ -497,11 +497,14 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		AI *actor = *ait; 
 		while(pit != ps->GetBullets()->end()){
 			Projectile *proj = *pit;
-			if (actor->intersect(proj->GetPosition())){
+			if (actor->intersect(proj->getPosition())){
 				proj->hit(proj->getPosition());
-				actor->hit(proj);  
+				actor->hit(proj); 
+
 			}  
+			pit++; 
 		}
+		ait++;
 	}
 	room->monitor.Exit('w');
 	//AI Calls

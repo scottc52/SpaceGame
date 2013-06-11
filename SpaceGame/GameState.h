@@ -56,6 +56,8 @@ class PSystems;
 #include "Monitor.h"
 #include "Torch.h"
 
+class AI; 
+
 /*
 Particle Systems manager
 */

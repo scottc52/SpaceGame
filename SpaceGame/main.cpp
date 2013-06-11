@@ -241,8 +241,8 @@ int main(int argc, char *argv[]){
 	gs->SetCamera(&cam);
 	Vector3f enemyPos(0.0f, 3.0f, 10.0f);
 	gs->AddActor(new MetaballEnemy(enemyPos, 2, 2.0f));
-	Render::GlutInitialize();
 	Render::gameState = gs;
+	Render::GlutInitialize();
 	
 	RegisterControls(); 
 	Controller::Initialize(taskManager, gs); 	

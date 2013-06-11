@@ -107,7 +107,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 
 inline const GLubyte *BUFFER_OFFSET(size_t bytes)
 { return reinterpret_cast<const GLubyte *>(0) + bytes; }
-=======
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,7 +219,6 @@ void Render::myReshape(int w, int h) {
 // function that does the actual drawing
 //***************************************************
 
-=======
 MyMesh squareMesh(){
 	MyMesh mesh;
 
@@ -438,8 +437,6 @@ void bindMaterial(Material &material){
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emmisionmat);
 }
 
-
-=======
 void drawTestPrism(){
 	glBegin(GL_TRIANGLES);
 	glColor4f(0.20f, 0.20f,  1.0f, 1.0f);
@@ -509,10 +506,6 @@ void drawFrame(){
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
-
-	for(unsigned int w = 0; w <1/*wobs.size()*/; w++){
-		GameWorldObject *gwo = wobs[w]; 
-
 	for(unsigned int w = 0; w <obs.size(); w++){
 		GameObject *gwo = obs[w]; 
 
@@ -649,9 +642,6 @@ void drawGlow(){
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
-
-		if(false){
-			glColor4f(0.0f, 1.0f, 1.0f, 1.0f); //TODO obviously
 
 		if(gwo->glowing){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
