@@ -23,7 +23,26 @@
 
 //forward declare; 
 class GameState;
-class PSystems; 
+class PSystems;
+
+#ifdef _WIN32
+#include <gl/glew.h>
+#include "gl/GL.h"
+#include <GL/glu.h>
+#include <gl/freeglut.h>
+#else
+#ifdef __linux__
+#include <gl/glew.h>
+#include <GL/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+#else*/
+#include <GL/glew.h>
+#include <GLUT/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+#endif
+#endif
 
 #include "GameRoom.h"
 #include "GameObject.h"

@@ -3,6 +3,14 @@
 #ROOM Details 
 N	debug_room
 # OBJECTS
+#W localroomname mesh_file_name x y z angle aX aY aZ scale
+W testWall1 sampleWall.obj 0 0 0 0 0 0 2.0
+W testWall2 sampleWall1.obj 0 0 0 0 0 0 2.0
+W testWall3 sampleWall2.obj 0 0 0 0 0 0 2.0
+W testWall4 sampleWall3.obj 0 0 0 0 0 0 2.0
+W testWall5 sampleWall4.obj 0 0 0 0 0 0 2.0
+W testWall6 sampleWall5.obj 0 0 0 0 0 0 2.0
+
 # W	 localroomname	mesh_file_name	x	y	z angle aX aY aZ scale
 #W roomMesh testroom.obj 0 0 0 0 0 0 0 1.0
 #W testWall1 TestRoom1.obj 0 0 -3 0 0 0 1 1.0

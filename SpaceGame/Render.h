@@ -18,6 +18,8 @@
 #else
 #include <GL/glew.h>
 #include <GLUT/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 #endif
 #endif
 #include <fstream>

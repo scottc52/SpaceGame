@@ -2,10 +2,10 @@
 # www.blender.org
 mtllib ../Materials/SampleWall.mtl
 o Cube
-v -1.0 -1.0 1.0
+v -1.0 -1.0 -1.0
+v 1.0 -1.0 -1.0
 v 1.0 -1.0 1.0
-v 1.0 1.0 1.0
-v -1.0 1.0 1.0
+v -1.0 -1.0 1.0
 
 usemtl Material
 s off
