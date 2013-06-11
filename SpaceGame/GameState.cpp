@@ -470,14 +470,11 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//Player action
 	ProcessInput(input, dt);
-<<<<<<< HEAD
 	AnimatePlayers(dt);
-	UpdateParticleSystems(dt);
-=======
+
 	UpdateParticleSystems(dt * 1000.0);
 
 	room->ClearCollisions();
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 
 	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();

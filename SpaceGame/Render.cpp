@@ -489,7 +489,6 @@ void drawTestPrism(){
 	glEnd();
 }
 
-<<<<<<< HEAD
 void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	glEnable(GL_NORMALIZE);
 	for(size_t i = 0; i < players.size(); ++i) {
@@ -538,8 +537,7 @@ void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	}
 	glDisable(GL_NORMALIZE);
 }
-=======
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
+
 
 void drawFrame(){
     Material material = exampleMaterial();
@@ -633,11 +631,8 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
-<<<<<<< HEAD
 	DrawSkinnedPlayers(gr->GetPlayers());
-=======
 	DrawBoundingProjectileBox();
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
@@ -663,7 +658,7 @@ void drawGlow(){
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	for(unsigned int w = 0; w < obs.size(); w++){
-		GameWorldObject *gwo = obs[w]; 
+		GameWorldObject *gwo = (GameWorldObject *)obs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
 			continue;  

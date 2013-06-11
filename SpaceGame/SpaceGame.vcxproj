@@ -97,8 +97,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MetaballEnemy.cpp" />
-    <ClCompile Include="MetalineEnemy.cpp" />
-    <ClCompile Include="MetaplaneEnemy.cpp" />
     <ClCompile Include="Monitor.cpp" />
     <ClCompile Include="projectile_particles.cpp" />
     <ClCompile Include="Render.cpp" />
@@ -106,6 +104,7 @@
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TaskQueue.cpp" />
+    <ClCompile Include="Torch.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -136,8 +135,6 @@
     <ClInclude Include="LocationDefines.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MetaballEnemy.h" />
-    <ClInclude Include="MetalineEnemy.h" />
-    <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
     <ClInclude Include="projectile_particles.h" />
     <ClInclude Include="pthread_helpers.h" />
@@ -189,6 +186,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="TaskQueue.h" />
     <ClInclude Include="TextIOHelpers.h" />
+    <ClInclude Include="Torch.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>

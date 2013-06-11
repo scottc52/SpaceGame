@@ -1,8 +1,4 @@
 -----------------------------------------------------
 Wrote to file @ line: 32
-<<<<<<< HEAD
-*Found at: Tue Jun 11 08:23:08 2013
-=======
-*Found at: Tue Jun 11 08:10:33 2013
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
+*Found at: Tue Jun 11 09:58:07 2013
 
