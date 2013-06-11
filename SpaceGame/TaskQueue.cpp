@@ -6,6 +6,8 @@
 
 using namespace std;
 
+TaskQueue *TaskQueue::defQueue = NULL; 
+
 void Task::join(){
 	pthread_mutex_lock(&lock);
 		
@@ -107,6 +109,7 @@ TaskQueue::TaskQueue(unsigned int numWorkers1): numWorkers(numWorkers1){
 	task_no = 1;
 	pthread_create(&controller, NULL, TaskQueue::supervisorLoop, this);
 	pthread_mutex_unlock(&mutex); 
+	defQueue = this;
 }
 
 int TaskQueue::enqueue(Task *t){ 

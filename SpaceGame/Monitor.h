@@ -14,9 +14,11 @@ class Monitor{
 	unsigned int num_readers;
 	unsigned int num_writers;
 	bool writing; 
+	void readerEnter();
+	void writerEnter(); 
 	public: 
 	Monitor();
-	void Enter(char mode = 'w');
-	void Exit(char mode = 'w');     
+	void Enter(char mode);
+	void Exit(char mode);     
 };
 
