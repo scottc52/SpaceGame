@@ -25,7 +25,7 @@ void Controller::run(){
 	//cout<<"it took: " << delta << "ms to process events" << endl; 
 		delta = GameTime::DiffTimeMS(ref);	
 		state->PerformStateActions(events, delta); 
-		cin.ignore(1);  
+		
 	//render here
 	//Render::myDisplay(); 
 		double since_frame = GameTime::DiffTimeMS(lastFrame);	
