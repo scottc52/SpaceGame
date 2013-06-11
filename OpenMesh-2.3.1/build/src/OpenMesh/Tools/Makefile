@@ -30,27 +30,30 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	"/Applications/CMake 2.8-11.app/Contents/bin/ccmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -60,19 +63,19 @@ edit_cache/fast: edit_cache
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
@@ -82,7 +85,7 @@ install/local/fast: install/local
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
@@ -98,10 +101,20 @@ list_install_components:
 list_install_components/fast: list_install_components
 .PHONY : list_install_components/fast
 
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackSourceConfig.cmake /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -111,7 +124,7 @@ package_source/fast: package_source
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -120,14 +133,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/progress.marks
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/progress.marks
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/clean
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/clean
 .PHONY : clean
 
 # The main clean target
@@ -136,22 +149,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/preinstall
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/preinstall
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/rule:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/rule
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/rule
 .PHONY : src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/rule
 
 # Convenience name for target.
@@ -160,12 +173,12 @@ OpenMeshTools: src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/rule
 
 # fast build rule for target.
 OpenMeshTools/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build
 .PHONY : OpenMeshTools/fast
 
 # Convenience name for target.
 src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/rule:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/rule
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/rule
 .PHONY : src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/rule
 
 # Convenience name for target.
@@ -174,7 +187,7 @@ OpenMeshToolsStatic: src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/rule
 
 # fast build rule for target.
 OpenMeshToolsStatic/fast:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build
 .PHONY : OpenMeshToolsStatic/fast
 
 Utils/Gnuplot.o: Utils/Gnuplot.cc.o
@@ -182,8 +195,8 @@ Utils/Gnuplot.o: Utils/Gnuplot.cc.o
 
 # target to build an object file
 Utils/Gnuplot.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.o
 .PHONY : Utils/Gnuplot.cc.o
 
 Utils/Gnuplot.i: Utils/Gnuplot.cc.i
@@ -191,8 +204,8 @@ Utils/Gnuplot.i: Utils/Gnuplot.cc.i
 
 # target to preprocess a source file
 Utils/Gnuplot.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.i
 .PHONY : Utils/Gnuplot.cc.i
 
 Utils/Gnuplot.s: Utils/Gnuplot.cc.s
@@ -200,8 +213,8 @@ Utils/Gnuplot.s: Utils/Gnuplot.cc.s
 
 # target to generate assembly for a file
 Utils/Gnuplot.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Gnuplot.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Gnuplot.cc.s
 .PHONY : Utils/Gnuplot.cc.s
 
 Utils/Timer.o: Utils/Timer.cc.o
@@ -209,8 +222,8 @@ Utils/Timer.o: Utils/Timer.cc.o
 
 # target to build an object file
 Utils/Timer.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.o
 .PHONY : Utils/Timer.cc.o
 
 Utils/Timer.i: Utils/Timer.cc.i
@@ -218,8 +231,8 @@ Utils/Timer.i: Utils/Timer.cc.i
 
 # target to preprocess a source file
 Utils/Timer.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.i
 .PHONY : Utils/Timer.cc.i
 
 Utils/Timer.s: Utils/Timer.cc.s
@@ -227,8 +240,8 @@ Utils/Timer.s: Utils/Timer.cc.s
 
 # target to generate assembly for a file
 Utils/Timer.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/Timer.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/Timer.cc.s
 .PHONY : Utils/Timer.cc.s
 
 Utils/conio.o: Utils/conio.cc.o
@@ -236,8 +249,8 @@ Utils/conio.o: Utils/conio.cc.o
 
 # target to build an object file
 Utils/conio.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.o
 .PHONY : Utils/conio.cc.o
 
 Utils/conio.i: Utils/conio.cc.i
@@ -245,8 +258,8 @@ Utils/conio.i: Utils/conio.cc.i
 
 # target to preprocess a source file
 Utils/conio.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.i
 .PHONY : Utils/conio.cc.i
 
 Utils/conio.s: Utils/conio.cc.s
@@ -254,8 +267,8 @@ Utils/conio.s: Utils/conio.cc.s
 
 # target to generate assembly for a file
 Utils/conio.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/Utils/conio.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/Utils/conio.cc.s
 .PHONY : Utils/conio.cc.s
 
 VDPM/VFront.o: VDPM/VFront.cc.o
@@ -263,8 +276,8 @@ VDPM/VFront.o: VDPM/VFront.cc.o
 
 # target to build an object file
 VDPM/VFront.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.o
 .PHONY : VDPM/VFront.cc.o
 
 VDPM/VFront.i: VDPM/VFront.cc.i
@@ -272,8 +285,8 @@ VDPM/VFront.i: VDPM/VFront.cc.i
 
 # target to preprocess a source file
 VDPM/VFront.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.i
 .PHONY : VDPM/VFront.cc.i
 
 VDPM/VFront.s: VDPM/VFront.cc.s
@@ -281,8 +294,8 @@ VDPM/VFront.s: VDPM/VFront.cc.s
 
 # target to generate assembly for a file
 VDPM/VFront.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VFront.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VFront.cc.s
 .PHONY : VDPM/VFront.cc.s
 
 VDPM/VHierarchy.o: VDPM/VHierarchy.cc.o
@@ -290,8 +303,8 @@ VDPM/VHierarchy.o: VDPM/VHierarchy.cc.o
 
 # target to build an object file
 VDPM/VHierarchy.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.o
 .PHONY : VDPM/VHierarchy.cc.o
 
 VDPM/VHierarchy.i: VDPM/VHierarchy.cc.i
@@ -299,8 +312,8 @@ VDPM/VHierarchy.i: VDPM/VHierarchy.cc.i
 
 # target to preprocess a source file
 VDPM/VHierarchy.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.i
 .PHONY : VDPM/VHierarchy.cc.i
 
 VDPM/VHierarchy.s: VDPM/VHierarchy.cc.s
@@ -308,8 +321,8 @@ VDPM/VHierarchy.s: VDPM/VHierarchy.cc.s
 
 # target to generate assembly for a file
 VDPM/VHierarchy.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchy.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchy.cc.s
 .PHONY : VDPM/VHierarchy.cc.s
 
 VDPM/VHierarchyNodeIndex.o: VDPM/VHierarchyNodeIndex.cc.o
@@ -317,8 +330,8 @@ VDPM/VHierarchyNodeIndex.o: VDPM/VHierarchyNodeIndex.cc.o
 
 # target to build an object file
 VDPM/VHierarchyNodeIndex.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.o
 .PHONY : VDPM/VHierarchyNodeIndex.cc.o
 
 VDPM/VHierarchyNodeIndex.i: VDPM/VHierarchyNodeIndex.cc.i
@@ -326,8 +339,8 @@ VDPM/VHierarchyNodeIndex.i: VDPM/VHierarchyNodeIndex.cc.i
 
 # target to preprocess a source file
 VDPM/VHierarchyNodeIndex.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.i
 .PHONY : VDPM/VHierarchyNodeIndex.cc.i
 
 VDPM/VHierarchyNodeIndex.s: VDPM/VHierarchyNodeIndex.cc.s
@@ -335,8 +348,8 @@ VDPM/VHierarchyNodeIndex.s: VDPM/VHierarchyNodeIndex.cc.s
 
 # target to generate assembly for a file
 VDPM/VHierarchyNodeIndex.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyNodeIndex.cc.s
 .PHONY : VDPM/VHierarchyNodeIndex.cc.s
 
 VDPM/VHierarchyWindow.o: VDPM/VHierarchyWindow.cc.o
@@ -344,8 +357,8 @@ VDPM/VHierarchyWindow.o: VDPM/VHierarchyWindow.cc.o
 
 # target to build an object file
 VDPM/VHierarchyWindow.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.o
 .PHONY : VDPM/VHierarchyWindow.cc.o
 
 VDPM/VHierarchyWindow.i: VDPM/VHierarchyWindow.cc.i
@@ -353,8 +366,8 @@ VDPM/VHierarchyWindow.i: VDPM/VHierarchyWindow.cc.i
 
 # target to preprocess a source file
 VDPM/VHierarchyWindow.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.i
 .PHONY : VDPM/VHierarchyWindow.cc.i
 
 VDPM/VHierarchyWindow.s: VDPM/VHierarchyWindow.cc.s
@@ -362,8 +375,8 @@ VDPM/VHierarchyWindow.s: VDPM/VHierarchyWindow.cc.s
 
 # target to generate assembly for a file
 VDPM/VHierarchyWindow.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/VHierarchyWindow.cc.s
 .PHONY : VDPM/VHierarchyWindow.cc.s
 
 VDPM/ViewingParameters.o: VDPM/ViewingParameters.cc.o
@@ -371,8 +384,8 @@ VDPM/ViewingParameters.o: VDPM/ViewingParameters.cc.o
 
 # target to build an object file
 VDPM/ViewingParameters.cc.o:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.o
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.o
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.o
 .PHONY : VDPM/ViewingParameters.cc.o
 
 VDPM/ViewingParameters.i: VDPM/ViewingParameters.cc.i
@@ -380,8 +393,8 @@ VDPM/ViewingParameters.i: VDPM/ViewingParameters.cc.i
 
 # target to preprocess a source file
 VDPM/ViewingParameters.cc.i:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.i
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.i
 .PHONY : VDPM/ViewingParameters.cc.i
 
 VDPM/ViewingParameters.s: VDPM/ViewingParameters.cc.s
@@ -389,8 +402,8 @@ VDPM/ViewingParameters.s: VDPM/ViewingParameters.cc.s
 
 # target to generate assembly for a file
 VDPM/ViewingParameters.cc.s:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.s
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/build.make src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir/VDPM/ViewingParameters.cc.s
 .PHONY : VDPM/ViewingParameters.cc.s
 
 # Help Target
@@ -406,6 +419,7 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... Utils/Gnuplot.o"
@@ -443,6 +457,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
