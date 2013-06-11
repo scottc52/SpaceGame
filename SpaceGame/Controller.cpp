@@ -9,7 +9,7 @@ Controller *Controller::gameController = NULL;
 
 #define STATS 
 #undef STATS
-
+double avg = 30; 
 void Controller::run(){
 	while (1){
 		double delta = GameTime::DiffTimeMS(ref);		 
@@ -28,11 +28,18 @@ void Controller::run(){
 		state->PerformStateActions(events, delta); 
 	
 	//render here
-	//Render::myDisplay(); 		
-		if (GameTime::DiffTimeMS(lastFrame) > MSPF -1){
-			if(Render::requestFrame())
+	//Render::myDisplay(); 
+		double since_frame = GameTime::DiffTimeMS(lastFrame);	
+		if ( since_frame > MSPF -1){
+			if(Render::requestFrame()){
 				lastFrame = GameTime::GetTime();
+				double weight = 1.0 / 30.0;
+				double afr = 1.0/(since_frame / 1000); 
+				avg = (1-weight) * avg + afr * weight;
+				cout << "FPS: " << afr << "EXP AVG FPS: " << avg << endl;  
+			}
 		}
+
 		double frame_time = GameTime::DiffTimeMS(ref);
 		if( ((double)(rand() % 10000)) / 1000.0 < 0.01)
 			cerr << "updates took" << (frame_time - 5.0) << endl; 

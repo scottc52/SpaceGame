@@ -477,17 +477,17 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
-	cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
+	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();
 		
-	ref = GameTime::GetTime();	
+	//ref = GameTime::GetTime();	
 	while (it != end){
 		AI *ai = *it; 
 		ai->render();
 		it++;
 	}
-	cerr << "rendering actors took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
+	//cerr << "rendering actors took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 
 }
 
@@ -882,7 +882,7 @@ bool Render::requestFrame(){
 	bool value = true; 
 	pthread_mutex_lock(&lock);
 	if (frameRequested){
-		cerr<< "warning: frame dropped" << endl;
+		//cerr<< "warning: frame dropped" << endl;
 		value = false;
 	}
 	frameRequested = true; 

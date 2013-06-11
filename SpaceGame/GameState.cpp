@@ -293,7 +293,7 @@ bool pIsDead(Projectile *p){
 	return p->isDead();
 }
 
-#define BRANCH_FACTOR 3
+#define BRANCH_FACTOR 2
 #include "TaskQueue.h"
 class BulletUpdater : public Task{
 private:
