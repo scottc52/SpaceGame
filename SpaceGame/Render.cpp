@@ -89,8 +89,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 void DrawBoundingBox(GameObject* o){
 	for(unsigned int i = 0; i< o->boundingBox.size()-1; i++){
 		glColor3f(0,0,1);
-		if(o->tier1CollisionData.size() > 0)
-			glColor3f(1,0,0);
+		if(o->tier1CollisionData.size() > 0) glColor3f(1,0,0);
 		glBegin(GL_LINES);
 		glVertex3f(o->boundingBox[i][0], o->boundingBox[i][1], o->boundingBox[i][2]);
 		glVertex3f(o->boundingBox[i+1][0],o->boundingBox[i+1][1],o->boundingBox[i+1][2]); 
@@ -418,7 +417,7 @@ void drawFrame(){
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	cout<< "pre-enter" << endl;
-	gr->monitor.Enter('w');
+	gr->monitor.Enter('r');
 	cout << "post-enter" << endl;
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
@@ -504,9 +503,7 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
-	cerr<<"pre-exit"<<endl;
-	gr->monitor.Exit('w');
-	cerr<<"post-exit"<<endl;
+	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();

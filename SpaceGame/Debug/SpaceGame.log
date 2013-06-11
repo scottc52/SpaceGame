@@ -1,9 +1,51 @@
-﻿Build started 6/10/2013 8:53:53 PM.
+﻿Build started 6/10/2013 10:16:49 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /ZI /nologo /W3 /WX- /Od /Oy- /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CollisionDetection.cpp
+         CollisionDetection.cpp
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(6): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(10): warning C4244: 'return' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(53): warning C4244: 'argument' : conversion from 'unsigned int' to 'const float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(82): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(459): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(592): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(607): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(646): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(664): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib libSOIL.a glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCored.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
+         Debug\Camera.obj
+         Debug\CollisionDetection.obj
+         Debug\Controller.obj
+         Debug\EnemyProjectile.obj
+         Debug\GameActiveObject.obj
+         Debug\GameDebug.obj
+         Debug\GameDoor.obj
+         Debug\GameEventObject.obj
+         Debug\GamePlayer.obj
+         Debug\GameRoom.obj
+         Debug\GameState.obj
+         Debug\main.obj
+         Debug\Mesh.obj
+         Debug\MetaballEnemy.obj
+         Debug\MetalineEnemy.obj
+         Debug\MetaplaneEnemy.obj
+         Debug\Monitor.obj
+         Debug\projectile_particles.obj
+         Debug\Render.obj
+         Debug\RoomBuilder.obj
+         Debug\shader_utils.obj
+         Debug\Sound.obj
+         Debug\TaskQueue.obj
+         Debug\UI.obj
+         "SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib"
+         "SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib"
          SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
      1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.07
+Time Elapsed 00:00:06.13
