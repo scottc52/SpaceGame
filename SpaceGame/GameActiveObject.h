@@ -12,7 +12,6 @@
 #define GAMESTATE_LOCKED ("locked")
 #define GAMESTATE_UNLOCKED ("unlocked")
 
-
 class GameActiveObject : public GameObject{
 private:
 	string state;
