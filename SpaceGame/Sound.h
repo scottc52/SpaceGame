@@ -18,7 +18,7 @@
 
 class Sound {
 public:
-	Sound(char* filename, float maxVolume=1.0f);
+	Sound(char* filename);
 	// Sounds are either attached to objects (e.g. roars from monsters) or positions
 	// (e.g. the sound of a collision). So there are separate constructors for these 
 	// two cases.

@@ -257,10 +257,10 @@ int main(int argc, char *argv[]){
 	//glutMotionFunc(mouseMoveCB);
 	//glutMouseFunc(mouseFunc);
 	Sound::InitializeSounds();
-	Music *m = new Music("sounds/run2.ogg", 0.3f);
-	m->Play();
-	Sound *backgroundSound = new Sound("sounds/metallic_roar.wav", 0.1f);
-	backgroundSound->Play();
+	Music *m = new Music("sounds/run2.ogg", 0.2f);
+	//m->Play();
+	Sound *s = new Sound("sounds/laser.wav");
+	//s->Play();
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	Sound::UninitializeSounds();
 	assert(debugger->CloseDebugFile());

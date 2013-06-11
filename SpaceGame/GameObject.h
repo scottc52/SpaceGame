@@ -106,12 +106,14 @@ public:
 		CollisionTierNum = 2;
 		outSideCollisionScale = 1.3;
 		angularVelocity = Vec4f(1,0,0,0);
+		velocity = Vec3f(0,0,0);
 		/*TO DO: Initialize lock*/
 	}
 
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		velocity = object->velocity;
 		CollisionTierNum = object->CollisionTierNum;
 		setName(object->GetName());  		
 		isModified = object->IsModified();
@@ -122,7 +124,6 @@ public:
 		meshptr = object->GetMesh();
 		objType = object->objType;
 		angularVelocity = object->angularVelocity;
-		velocity = object->velocity;
 		/*TO DO: Initialize lock*/
 	}
 

@@ -72,35 +72,36 @@ void ComputeBoundingBoxesAndPhysicsConstants(vector<GameObject*>& objects){
 //
 /////////////////////////////////////////////////////////////////////////
 
-void GetTransformedPoint(Vec3f& pt, Vec3f position, Vec3f velocity, Vec4f& rotation, Vec4f& wvelocity, float dt, float scale = 1.f, float inter = 1.0){
+void GetTransformedPoint(Vec3f& pt, Vec3f position, Vec3f velocity, Vec4f rotation, Vec4f wvelocity, float dt, float scale = 1.f, float inter = 1.0){
 	float angle = rotation[0];
 	angle += wvelocity[0]*dt*inter;
-	Vector3f newPos = ConvertToEigen3Vector(position + velocity*dt*inter);
+	Vector3f newPos = Vector3f(position[0] + velocity[0]*dt*inter, position[1] + velocity[1]*dt*inter, position[2] + velocity[2]*dt*inter);
 	Vector3f axis(rotation[1], rotation[2], rotation[3]);
 	axis.normalize();
-	Translation3f move =Translation3f(newPos);
+	Translation3f move =Translation3f(newPos.x(), newPos.y(), newPos.z());
 	angle = angle*2*M_PI/360;
 	AngleAxisf turn = AngleAxisf(angle, axis);
-	Vector3f p = ConvertToEigen3Vector(pt);
+	Vector3f p = Vector3f(pt[0], pt[1], pt[2]);
 	p = p*scale;
 	p = turn*p;
 	p = move*p;
-	pt = ConvertToOM3Vector(p);
+	pt = Vec3f(p.x(), p.y(), p.z());
 }
 
-void UpdateCoords(vector<Vec3f>& v, Vec3f position, Vec3f velocity, Vec4f& rotation, Vec4f& wvelocity, float dt, float scale = 1.f, float inter = 1.f){
+void UpdateCoords(vector<Vec3f>& v, Vec3f position, Vec3f velocity, Vec4f rotation, Vec4f wvelocity, float dt, float scale = 1.f, float inter = 1.f){
 	float angle = rotation[0];
 	angle += wvelocity[0]*dt*inter;
-	Vector3f newPos = ConvertToEigen3Vector(position + velocity*dt*inter);
+	Vector3f newPos = Vector3f(position[0] + velocity[0]*dt*inter, position[1] + velocity[1]*dt*inter, position[2] + velocity[2]*dt*inter);
 	Vector3f axis(rotation[1], rotation[2], rotation[3]);
 	axis.normalize();
-	Translation3f move =Translation3f(newPos);
+	Translation3f move =Translation3f(newPos.x(), newPos.y(), newPos.z());
 	angle = angle*2*M_PI/360;
 	AngleAxisf turn = AngleAxisf(angle, axis);
 	for(unsigned int boxV = 0; boxV < v.size(); boxV++){
-		Vector3f p = ConvertToEigen3Vector(v[boxV]);
+		Vector3f p = Vector3f(v[boxV][0], v[boxV][1], v[boxV][2]);
 		p = scale* p;
-		if(axis.norm() > 0)p = turn* p;
+		if(axis.norm() > 0)
+			p = turn* p;
 		p = move* p;
 		v[boxV] = Vec3f(p.x(), p.y(), p.z());
 	}
@@ -512,6 +513,7 @@ bool AlreadyIn(GameObject* a, GameObject* b, unsigned int tierNo, GameRoom* room
 			if(v[i] == b) return true;
 		}
 	}
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -569,7 +571,7 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 	////////////////////////////////////////////////////////////////////////////
 	// SPECIAL DATA FOR MAIN CHARACTER ONLY
 	////////////////////////////////////////////////////////////////////////////
-
+	dt/=1000;
 	//////////////////////////////////////////////////
 	//	Tier 0 collision
 	//////////////////////////////////////////////////
@@ -579,13 +581,17 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 		if(o1->CollisionTierNum < 1 )continue;
 		for(unsigned int b = a+1; b<Objects.size(); b++){
 			GameObject* o2 = Objects[b];
+			if(o1->objType == WORLD_OBJECT_TYPE && o2->objType == WORLD_OBJECT_TYPE)
+				continue;
 			vector<Vec3f> aBox = o1->boundingBox;
-			Vec3f A = ConvertToOM3Vector(o1->GetPosition()); 
-			Vec4f B = o1->GetRotation(); 
-			UpdateCoords(aBox, A, o1->velocity, o1->GetRotation(), B ,dt, o1->outSideCollisionScale);
+			Vector3f pos = o1->GetPosition();
+			Vec3f position = Vec3f(pos.x(), pos.y(), pos.z()); 
+			Vec4f rotation = o1->GetRotation(); 
+			Vec3f vel = o1->velocity;
+			Vec4f wvel = o1->angularVelocity;
+			UpdateCoords(aBox, position, vel, rotation, wvel ,dt, o1->outSideCollisionScale);
 			vector<Vec3f> oldABox = o1->boundingBox;
-			A = ConvertToOM3Vector(o1->GetPosition()); 
-			UpdateCoords(oldABox, A, o1->velocity, o1->GetRotation(), B,0, o1->outSideCollisionScale);
+			UpdateCoords(oldABox, position, vel, rotation, wvel,0, o1->outSideCollisionScale);
 			for(unsigned int i = 0; i <oldABox.size(); i++){
 				aBox.push_back(oldABox[i]);
 			}
@@ -593,19 +599,21 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 				GameObject* o2 = Objects[b];
 				if(o2->CollisionTierNum<1) continue;
 				vector<Vec3f> bBox = o2->boundingBox;
-				A = ConvertToOM3Vector(o2->GetPosition());
-				B = Vec4f(0,0,0,1);
-				UpdateCoords(bBox, A, (o2->velocity), (o2->GetRotation()), B,dt, o2->outSideCollisionScale);
+				pos= o2->GetPosition();
+				position = Vec3f(pos.x(), pos.y(), pos.z());
+				vel = o2->velocity;
+				rotation = o2->GetRotation();
+				wvel = o2->angularVelocity;
+				UpdateCoords(bBox, position, vel, rotation, wvel,dt, o2->outSideCollisionScale);
 				vector<Vec3f> oldBBox = o2->boundingBox;
-				A = ConvertToOM3Vector(o2->GetPosition());
-				UpdateCoords(oldBBox, A, (o2->velocity), (o2->GetRotation()), B,0, o2->outSideCollisionScale);
+				UpdateCoords(oldBBox, position, vel, rotation, wvel,0, o2->outSideCollisionScale);
 				for(unsigned int i = 0; i <oldBBox.size(); i++){
 					bBox.push_back(oldBBox[i]);
 				}
 				Simplex P;
 				Vec3f V;
 				V = GJKDistance(aBox, bBox, P);
-				if(P.GetSize() > 3){ //We have a collision
+				if(P.GetSize() > 3 || V.norm() < tolerance){ //We have a collision
 					if(!AlreadyIn(o1, o2, 0, room)){
 						Vec3f contact = ResolveContact(P);
 						room->collisionTier0List[o1].push_back(o2);
@@ -630,12 +638,14 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 		GameObject* o1 = it->first;
 		if(o1->CollisionTierNum<2) continue;
 		vector<Vec3f> aBox = o1->boundingBox;
-		Vec3f A = ConvertToOM3Vector(o1->GetPosition());
-		Vec4f B = o1->GetRotation();
-		UpdateCoords(aBox, A,(o1->velocity), (o1->GetRotation()), B,dt);
+		Vector3f pos = o1->GetPosition();
+		Vec3f position(pos.x(), pos.y(), pos.z());
+		Vec4f rotation = o1->GetRotation();
+		Vec3f vel = o1->velocity;
+		Vec4f wvel = o1->angularVelocity;
+		UpdateCoords(aBox,position, vel, rotation, wvel ,dt);
 		vector<Vec3f> oldABox = o1->boundingBox;
-		A = ConvertToOM3Vector(o1->GetPosition());
-		UpdateCoords(oldABox, A, (o1->velocity), (o1->GetRotation()), B,0);
+		UpdateCoords(aBox,position, vel, rotation, wvel ,0);
 		vector<GameObject*> Bs = it->second;
 		it++;
 		for(unsigned int i = 0; i <Bs.size(); i++){
@@ -646,11 +656,14 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 
 			if(o2->CollisionTierNum<2) continue;
 			vector<Vec3f> bBox = o2->boundingBox;
-			A = ConvertToOM3Vector(o2->GetPosition());
-			UpdateCoords(bBox, A, (o2->velocity),(o2->GetRotation()), B,dt);
+			pos = o2->GetPosition();
+			position = Vec3f(pos.x(), pos.y(), pos.z());
+			vel = o2->velocity;
+			wvel = o2->angularVelocity;
+			rotation = o2->GetRotation();
+			UpdateCoords(bBox, position, vel, rotation, wvel ,dt);
 			vector<Vec3f> oldBBox = o2->boundingBox;
-			A = ConvertToOM3Vector(o2->GetPosition());
-			UpdateCoords(oldBBox, A, (o2->velocity), (o2->GetRotation()), B,0);
+			UpdateCoords(oldBBox,position, vel, rotation, wvel ,0);
 			for(unsigned int i = 0; i <oldBBox.size(); i++){
 				bBox.push_back(oldBBox[i]);
 			}
@@ -659,6 +672,7 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 			V = GJKDistance(aBox, bBox, P);
 			if(P.GetSize() > 3 || V.norm() < tolerance){ //We have a collision.
 				if(!AlreadyIn(o1, o2, 1, room)) {
+					if(o1->objType == ACTIVE_OBJECT_TYPE && o2->objType == ACTIVE_OBJECT_TYPE) cin.ignore(1);
 					Vec3f contact = ResolveContact(P);
 					room->collisionTier1List[o1].push_back(o2);
 					room->collisionTier1List[o2].push_back(o1);

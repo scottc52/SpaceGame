@@ -448,7 +448,10 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 
 void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//If save, handle save
+
 	//If change room, handle change room
+
+	dt/=1000;
 
 	//Player action
 	ProcessInput(input, dt);

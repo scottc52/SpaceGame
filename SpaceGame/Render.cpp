@@ -89,8 +89,7 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 void DrawBoundingBox(GameObject* o){
 	for(unsigned int i = 0; i< o->boundingBox.size()-1; i++){
 		glColor3f(0,0,1);
-		if(o->tier1CollisionData.size() > 0)
-			glColor3f(1,0,0);
+		if(o->tier1CollisionData.size() > 0) glColor3f(1,0,0);
 		glBegin(GL_LINES);
 		glVertex3f(o->boundingBox[i][0], o->boundingBox[i][1], o->boundingBox[i][2]);
 		glVertex3f(o->boundingBox[i+1][0],o->boundingBox[i+1][1],o->boundingBox[i+1][2]); 
@@ -407,9 +406,6 @@ void drawTestPrism(){
 	glVertex3f(0.1, 0.1, 10.1f);
 	glVertex3f(-10.1f, 0.1, 0.1);
 	glEnd();
-
-
-
 }
 
 void drawFrame(){
@@ -419,7 +415,7 @@ void drawFrame(){
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	cout<< "pre-enter" << endl;
-	gr->monitor.Enter('w');
+	gr->monitor.Enter('r');
 	cout << "post-enter" << endl;
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
@@ -475,16 +471,13 @@ void drawFrame(){
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
-				if(false){ // should there be a setting for using face or vertex normals?
-					if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
+				
+				if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
 					Vec3f avg =mesh->normal(v_handle);
 					glNormal3f(avg[0], avg[1], avg[2]);
-					}
-				}else{
-					if(mesh->has_face_normals()){
+				}else if (mesh->has_face_normals()){
 						Vec3f avg =mesh->normal(it.handle());
 						glNormal3f(avg[0], avg[1], avg[2]);
-					}
 				}
 				if(useTexture){
 					Vec2f texCoord; //TODO
@@ -505,9 +498,7 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
-	cerr<<"pre-exit"<<endl;
-	gr->monitor.Exit('w');
-	cerr<<"post-exit"<<endl;
+	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();
