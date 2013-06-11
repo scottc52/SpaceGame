@@ -1,0 +1,8 @@
+With the exception of the music, all of the sounds for this project are 
+modified from files found on freesound.org. Their sources are, as follows:
+
+laser.wav               http://www.freesound.org/people/m_O_m/sounds/92892/
+metallic_roar.wav       http://www.freesound.org/people/klangfabrik/sounds/183633/
+smokybullet.wav         http://www.freesound.org/people/211redman112/sounds/145795/
+smokybullet_2.wav       http://www.freesound.org/people/Speedenza/sounds/168119/
+test.wav                http://www.freesound.org/people/Lemoncreme/sounds/185347/
