@@ -285,7 +285,7 @@ Vector3f &Slug::getPosition(){
 	return position;
 }
 
-Ball(Vector3f &position, Vector3f &vel, float radius, int stacks, int slices, float r1, float g1, float b1, float a1) : Projectile()
+Ball::Ball(Vector3f &position, Vector3f &vel, float radius, int stacks, int slices, float r1, float g1, float b1, float a1) : Projectile()
 {
 	r = r1; 
 	g = g1;
@@ -294,12 +294,12 @@ Ball(Vector3f &position, Vector3f &vel, float radius, int stacks, int slices, fl
 	this->radius = radius;
 	this->stacks = stacks;
 	this->slices = slices;
-	position = pos1;
-	velocity = velocity1;
+	position = position;
+	velocity = vel;
 	pTimeAlive = 0;
 }
 
-void Ball::update(int dt){
+void Ball::update(double dt){
 	Vector3f delta = velocity * (((double)dt)/1000.0);
 	position += delta; 
 	pTimeAlive += dt;
@@ -318,4 +318,8 @@ void Ball::display(Vector3f cam, bool glow){
 		glutSolidSphere(radius, slices, stacks);
 		glPopMatrix();
 	}
+}
+
+bool Ball::isDead(){
+	return (pTimeAlive > MAX_TIME); 
 }

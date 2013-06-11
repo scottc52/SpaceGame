@@ -15,13 +15,6 @@
 #include "AI.h"
 using namespace std;
 
-#include <GL/glew.h>
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
-
 #ifndef MetaballEnemy_h
 #define MetaballEnemy_h
 
@@ -42,7 +35,6 @@ public:
 	void setAllBlobsSpeed(float newSpeed);
 	
 	Eigen::Vector3f getLocation();
-	Eigen::Vector3f getDirection();
 	
 	void update();
 	
@@ -121,7 +113,6 @@ private:
 												// influence the field strength (Saves computation)
 	
 	int actionState; //Corresponds to the Blob Creature's current "action state"
-	Vertex direction; //Directio in which the Blob Creature is currently moving
 	
 	float blobMaterialAmbient[4]; // Ambient material property for the blobs of the Blob Creature
 	float blobMaterialDiffuse[4]; // Diffuse material property for the blobs of the Blob Creature
@@ -136,6 +127,7 @@ private:
 	//vector<Projectile> projectiles;
 	
 	int fireCounter;
+	bool hasCollided;
 	
 	void checkForCollision();
 	void checkToMove();
@@ -143,7 +135,7 @@ private:
 	void checkToFire();
 	void checkToUpdate();
 	
-	bool hasCollided;
+	bool isPlayerVisible();
 	
 	MetaballEnemy::BallBlob *MetaballEnemy::getBlobs() { return blobs; };
 	MetaballEnemy::BallBlob MetaballEnemy::getBlob(int index);

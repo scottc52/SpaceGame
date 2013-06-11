@@ -26,19 +26,22 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build
 
 # Include any dependencies generated for this target.
 include src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/depend.make
@@ -51,17 +54,17 @@ include src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o: ../src/OpenMesh/Core/IO/BinaryHelper.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/BinaryHelper.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o.requires
@@ -74,17 +77,17 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o.provide
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o: ../src/OpenMesh/Core/IO/IOManager.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/IOManager.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o.requires
@@ -97,17 +100,17 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o.provides.b
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o: ../src/OpenMesh/Core/IO/OMFormat.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/OMFormat.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o.requires
@@ -118,111 +121,19 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o.provides: s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o: ../src/OpenMesh/Core/IO/reader/PLYReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o: ../src/OpenMesh/Core/IO/reader/OBJReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o: ../src/OpenMesh/Core/IO/reader/STLReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o: ../src/OpenMesh/Core/IO/reader/OFFReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
-
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o: ../src/OpenMesh/Core/IO/reader/BaseReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/BaseReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o.requires
@@ -233,19 +144,65 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o.pr
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o
 
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o: ../src/OpenMesh/Core/IO/reader/OBJReader.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OBJReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o: ../src/OpenMesh/Core/IO/reader/OFFReader.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OFFReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
+
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o: ../src/OpenMesh/Core/IO/reader/OMReader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/OMReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o.requires
@@ -256,65 +213,65 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o.prov
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o: ../src/OpenMesh/Core/IO/writer/STLWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_10)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o: ../src/OpenMesh/Core/IO/reader/PLYReader.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.i
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/PLYReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.s
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o: ../src/OpenMesh/Core/IO/writer/PLYWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_11)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o: ../src/OpenMesh/Core/IO/reader/STLReader.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_9)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.i
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/reader/STLReader.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.s
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o: ../src/OpenMesh/Core/IO/writer/BaseWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/BaseWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o.requires
@@ -325,65 +282,19 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o.pr
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o: ../src/OpenMesh/Core/IO/writer/OMWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_13)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o: ../src/OpenMesh/Core/IO/writer/OFFWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_14)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
-
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o: ../src/OpenMesh/Core/IO/writer/OBJWriter.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OBJWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o.requires
@@ -394,42 +305,111 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o.pro
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o: ../src/OpenMesh/Core/Mesh/TriConnectivity.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_16)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o: ../src/OpenMesh/Core/IO/writer/OFFWriter.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_12)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.i
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OFFWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.s
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o: ../src/OpenMesh/Core/IO/writer/OMWriter.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/OMWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o: ../src/OpenMesh/Core/IO/writer/PLYWriter.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_14)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/PLYWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o: ../src/OpenMesh/Core/IO/writer/STLWriter.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_15)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc > CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/IO/writer/STLWriter.cc -o CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o: ../src/OpenMesh/Core/Mesh/ArrayKernel.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/ArrayKernel.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o.requires
@@ -442,17 +422,17 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o.provid
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o: ../src/OpenMesh/Core/Mesh/BaseKernel.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/BaseKernel.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o.requires
@@ -465,17 +445,17 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o.provide
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o: ../src/OpenMesh/Core/Mesh/PolyConnectivity.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_19)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/PolyConnectivity.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o.requires
@@ -486,19 +466,42 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o.p
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o
 
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o: ../src/OpenMesh/Core/Mesh/TriConnectivity.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_19)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc > CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Mesh/TriConnectivity.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
+
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o: ../src/OpenMesh/Core/System/omstream.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_20)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_20)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc > CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc > CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc -o CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/System/omstream.cc -o CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o.requires
@@ -509,19 +512,42 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o.provide
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o
 
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o: ../src/OpenMesh/Core/Utils/BaseProperty.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_21)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s"
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires:
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
+	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides.build
+.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides
+
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
+
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o: ../src/OpenMesh/Core/Utils/Endian.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_21)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_22)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/Endian.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o.requires
@@ -534,17 +560,17 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o.provides.b
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o: ../src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_22)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_23)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.i
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/RandomNumberGenerator.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.s
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o.requires:
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o.requires
@@ -555,54 +581,31 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o
 
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/flags.make
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o: ../src/OpenMesh/Core/Utils/BaseProperty.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_23)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc > CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.i
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core/Utils/BaseProperty.cc -o CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.s
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires:
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
-	$(MAKE) -f src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides.build
-.PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides
-
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.provides.build: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
-
 # Object files for target OpenMeshCoreStatic
 OpenMeshCoreStatic_OBJECTS = \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o" \
+"CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o" \
 "CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o" \
-"CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o"
+"CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o"
 
 # External object files for target OpenMeshCoreStatic
 OpenMeshCoreStatic_EXTERNAL_OBJECTS =
@@ -610,32 +613,32 @@ OpenMeshCoreStatic_EXTERNAL_OBJECTS =
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o
+src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o
-src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build.make
 src/OpenMesh/Core/libOpenMeshCoreStaticd.a: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX static library libOpenMeshCoreStaticd.a"
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -P CMakeFiles/OpenMeshCoreStatic.dir/cmake_clean_target.cmake
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OpenMeshCoreStatic.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && /usr/bin/cmake -E copy_if_different /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/./libOpenMeshCoreStaticd.a /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshCored.a
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -P CMakeFiles/OpenMeshCoreStatic.dir/cmake_clean_target.cmake
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OpenMeshCoreStatic.dir/link.txt --verbose=$(VERBOSE)
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E copy_if_different /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/./libOpenMeshCoreStaticd.a /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshCored.a
 
 # Rule to build all files generated by this target.
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build: src/OpenMesh/Core/libOpenMeshCoreStaticd.a
@@ -644,33 +647,33 @@ src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/build: src/OpenMesh/Core/lib
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/BinaryHelper.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/IOManager.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/OMFormat.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/BaseReader.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OBJReader.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OFFReader.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/OMReader.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/PLYReader.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/reader/STLReader.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/BaseWriter.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OBJWriter.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OFFWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/OMWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/PLYWriter.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/IO/writer/STLWriter.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/ArrayKernel.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/BaseKernel.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/PolyConnectivity.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Mesh/TriConnectivity.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/System/omstream.cc.o.requires
+src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/Endian.cc.o.requires
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/RandomNumberGenerator.cc.o.requires
-src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires: src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/Utils/BaseProperty.cc.o.requires
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/requires
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/clean:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -P CMakeFiles/OpenMeshCoreStatic.dir/cmake_clean.cmake
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core && $(CMAKE_COMMAND) -P CMakeFiles/OpenMeshCoreStatic.dir/cmake_clean.cmake
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/clean
 
 src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/depend:
-	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Core /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir/depend
 

@@ -124,8 +124,30 @@ MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	this->neighbors = new Index[neighborsSize];
 	
-	this->direction = generateRandomNormalizedDirection();
 	this->speed = DEFAULT_BLOB_CREATURE_SPEED * this->radius;
+	Vertex direction = generateRandomNormalizedDirection();
+	this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
+	this->angularVelocity = Vec3f();
+	
+	vector<Vec3f> tempBoundingBox;
+	Vec3f v(-this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	
+	this->boundingBox = tempBoundingBox;
 	
 	this->fireCounter = 0;
 	
@@ -206,7 +228,8 @@ void MetalineEnemy::moveMetalineEnemy()
 			newDirection.y = playerPos(1) - this->center.y;
 			newDirection.z = playerPos(2) - this->center.z;
 			normalize(newDirection);
-			this->direction = newDirection;
+			this->velocity = Vec3f(newDirection.x * this->speed, newDirection.y * this->speed,
+								   newDirection.z * this->speed);
 		}
 	}
 	else if (actionState == SOUND_DETECTED_ACTION_STATE)
@@ -214,19 +237,24 @@ void MetalineEnemy::moveMetalineEnemy()
 		//Move Toward Sound TODO
 	}
 	
-	this->center.x = this->center.x + (this->direction.x * this->speed);
-	this->center.y = this->center.y + (this->direction.y * this->speed);
-	this->center.z = this->center.z + (this->direction.z * this->speed);
+	this->center.x = this->center.x + (this->velocity)[0];
+	this->center.y = this->center.y + (this->velocity)[1];
+	this->center.z = this->center.z + (this->velocity)[2];
 }
 
 void MetalineEnemy::updateActionState()
 {
-	if (false /*playerIsVisible()*/) // CHANGE LATER
+	if (isPlayerVisible()) // CHANGE LATER
 	{
 		this->actionState = PLAYER_DETECTED_ACTION_STATE;
 	} else {
 		this->actionState = DEFAULT_ACTION_STATE;
 	}
+}
+
+bool MetalineEnemy::isPlayerVisible()
+{
+	return true;
 }
 
 bool MetalineEnemy::collisionDetected(Vertex v)
@@ -252,12 +280,6 @@ Vector3f MetalineEnemy::getLocation()
 	return location;
 }
 
-Vector3f MetalineEnemy::getDirection()
-{
-	Vector3f dir(direction.x, direction.y, direction.z);
-	return dir;
-}
-
 void MetalineEnemy::update()
 {
 	checkForCollision();
@@ -273,21 +295,24 @@ void MetalineEnemy::checkForCollision()
 	{
 		hasCollided = true;
 		
-		this->direction = generateRandomNormalizedDirection();
+		Vertex direction = generateRandomNormalizedDirection();
+		this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
 		
 		Vertex nextCenter;
-		nextCenter.x = this->center.x + this->direction.x * this->speed;
-		nextCenter.y = this->center.y + this->direction.y * this->speed;
-		nextCenter.z = this->center.z + this->direction.z * this->speed;
+		nextCenter.x = this->center.x + (this->velocity)[0];
+		nextCenter.y = this->center.y + (this->velocity)[1];
+		nextCenter.z = this->center.z + (this->velocity)[2];
 		
 		while (collisionDetected(nextCenter))
 		{
 			
-			this->direction = generateRandomNormalizedDirection();
+			Vertex direction = generateRandomNormalizedDirection();
+			this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed,
+								   direction.z * this->speed);
 			
-			nextCenter.x = this->center.x + this->direction.x * this->speed;
-			nextCenter.y = this->center.y + this->direction.y * this->speed;
-			nextCenter.z = this->center.z + this->direction.z * this->speed;
+			nextCenter.x = this->center.x + (this->velocity)[0];
+			nextCenter.y = this->center.y + (this->velocity)[1];
+			nextCenter.z = this->center.z + (this->velocity)[2];
 		}
 	}
 	else

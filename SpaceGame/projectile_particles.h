@@ -13,6 +13,7 @@
 #include <GL/glu.h>
 #include <GL/gl.h>
 #else
+#include <GL/glew.h>
 #include <GLUT/glut.h>
 #endif
 #endif
@@ -81,15 +82,15 @@ private:
 	Vector3f position;
 	Vector3f velocity;
 	float r, g, b, a;
-	int pTimeAlive;
+	double pTimeAlive;
 public:
 	Ball(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
 		 float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
 	void hit(Vector3f loc);
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();
-	void update(int dt); 
-	int timeAlive() { return pTimeAlive; }
+	void update(double dt); 
+	double timeAlive() { return pTimeAlive; }
 	Vector3f &Ball::getPosition() { return position; }
 };
 
