@@ -1,78 +1,9 @@
-﻿Build started 6/10/2013 7:54:33 PM.
+﻿Build started 6/10/2013 8:53:53 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib libSOIL.a glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCore.lib libOpenMeshCored.lib libOpenMeshTools.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
-         Debug\Camera.obj
-         Debug\CollisionDetection.obj
-         Debug\Controller.obj
-         Debug\GameActiveObject.obj
-         Debug\GameDebug.obj
-         Debug\GameDoor.obj
-         Debug\GameEventObject.obj
-         Debug\GamePlayer.obj
-         Debug\GameRoom.obj
-         Debug\GameState.obj
-         Debug\main.obj
-         Debug\Mesh.obj
-         Debug\MetaballEnemy.obj
-         Debug\MetalineEnemy.obj
-         Debug\MetaplaneEnemy.obj
-         Debug\Monitor.obj
-         Debug\projectile_particles.obj
-         Debug\Render.obj
-         Debug\RoomBuilder.obj
-         Debug\shader_utils.obj
-         Debug\Sound.obj
-         Debug\TaskQueue.obj
-         Debug\UI.obj
-         "SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib"
-         "SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib"
-     1>libOpenMeshCore.lib(OBJReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OBJReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OFFReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OFFReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PLYReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PLYReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(STLReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(STLReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OBJWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OBJWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OFFWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OFFWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(STLWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(STLWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PLYWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PLYWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(omstream.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(omstream.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseProperty.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseProperty.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(ArrayKernel.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(ArrayKernel.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(IOManager.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(IOManager.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(TriConnectivity.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(TriConnectivity.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseReader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseReader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BinaryHelper.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BinaryHelper.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMFormat.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(OMFormat.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(Endian.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(Endian.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseWriter.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(BaseWriter.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PolyConnectivity.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in bloom_utils.obj
-     1>libOpenMeshCore.lib(PolyConnectivity.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MD_DynamicRelease' doesn't match value 'MDd_DynamicDebug' in bloom_utils.obj
-     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-     1>C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe : fatal error LNK1319: 42 mismatches detected
-     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)) -- FAILED.
+         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.43
+Time Elapsed 00:00:00.07

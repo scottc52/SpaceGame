@@ -100,7 +100,7 @@ void UpdateCoords(vector<Vec3f>& v, Vec3f position, Vec3f velocity, Vec4f& rotat
 	for(unsigned int boxV = 0; boxV < v.size(); boxV++){
 		Vector3f p = ConvertToEigen3Vector(v[boxV]);
 		p = scale* p;
-		p = turn* p;
+		if(axis.norm() > 0)p = turn* p;
 		p = move* p;
 		v[boxV] = Vec3f(p.x(), p.y(), p.z());
 	}
@@ -581,7 +581,7 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 			GameObject* o2 = Objects[b];
 			vector<Vec3f> aBox = o1->boundingBox;
 			Vec3f A = ConvertToOM3Vector(o1->GetPosition()); 
-			Vec4f B = Vec4f(1,0,0,0); 
+			Vec4f B = o1->GetRotation(); 
 			UpdateCoords(aBox, A, o1->velocity, o1->GetRotation(), B ,dt, o1->outSideCollisionScale);
 			vector<Vec3f> oldABox = o1->boundingBox;
 			A = ConvertToOM3Vector(o1->GetPosition()); 
@@ -610,6 +610,13 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 						Vec3f contact = ResolveContact(P);
 						room->collisionTier0List[o1].push_back(o2);
 						room->collisionTier0List[o2].push_back(o1);
+						CollisionData o1D, o2D;
+						o1D.pointOfContact = contact;
+						o2D.pointOfContact = contact;
+						o1D.contactNormal = V.normalized();
+						o2D.contactNormal = -V.normalized();
+						o1->tier0CollisionData[o2] = o1D;
+						o2->tier0CollisionData[o1] = o2D;
 					}
 				}
 			}
@@ -620,11 +627,12 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 	///////////////////////////////////////////////
 	map<GameObject*, vector<GameObject*> >::iterator it = room->collisionTier0List.begin();
 	while(it!=room->collisionTier0List.end()){
+		cin.ignore(1);
 		GameObject* o1 = it->first;
 		if(o1->CollisionTierNum<2) continue;
 		vector<Vec3f> aBox = o1->boundingBox;
 		Vec3f A = ConvertToOM3Vector(o1->GetPosition());
-		Vec4f B = Vec4f(0,0,0,1);
+		Vec4f B = o1->GetRotation();
 		UpdateCoords(aBox, A,(o1->velocity), (o1->GetRotation()), B,dt);
 		vector<Vec3f> oldABox = o1->boundingBox;
 		A = ConvertToOM3Vector(o1->GetPosition());
@@ -650,11 +658,18 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 			Simplex P;
 			Vec3f V;
 			V = GJKDistance(aBox, bBox, P);
-			if(P.GetSize() > 3){ //We have a collision.
+			if(P.GetSize() > 3 || V.norm() < tolerance){ //We have a collision.
 				if(!AlreadyIn(o1, o2, 1, room)) {
+					Vec3f contact = ResolveContact(P);
 					room->collisionTier1List[o1].push_back(o2);
 					room->collisionTier1List[o2].push_back(o1);
-					GameDebugger::GetInstance()->WriteToDebugFile("Hit was successful!", 533);
+					CollisionData o1D, o2D;
+					o1D.pointOfContact = contact;
+					o2D.pointOfContact = contact;
+					o1D.contactNormal = V.normalized();
+					o2D.contactNormal = -V.normalized();
+					o1->tier1CollisionData[o2] = o1D;
+					o2->tier1CollisionData[o1] = o2D;
 				}
 			}
 		}
