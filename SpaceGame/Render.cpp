@@ -411,12 +411,15 @@ void drawTestPrism(){
 }
 
 void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
+	glEnable(GL_NORMALIZE);
 	for(size_t i = 0; i < players.size(); ++i) {
+		players[i]->monitor.Enter('w');
 		SkeletonPose *pose = &players[i]->currentPose;
 		pose->skel = &players[i]->skel;
 		MatrixPalette matPal = pose->buildMatrixPalette();
 		//players[i]->aim_clip.keyframes[0].skel = &players[i]->skel;
 		//MatrixPalette matPal = players[i]->aim_clip.keyframes[0].buildMatrixPalette();
+		players[i]->monitor.Exit('w');
 		glPushMatrix();
 		Vector3f Position = ((GameObject *)players[i])->GetPosition();
 		glTranslatef(Position[0], Position[1], Position[2]); 
@@ -453,6 +456,7 @@ void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 		glEnd();
 		glPopMatrix();
 	}
+	glDisable(GL_NORMALIZE);
 }
 
 void drawFrame(){

@@ -10,6 +10,7 @@
 #include "GameItem.h"
 #include "Animation.h"
 #include "CharacterMesh.h"
+#include "Monitor.h"
 
 #include <vector>
 
@@ -70,13 +71,17 @@ public:
 	void GamePlayer::UseItem();
 
 	void GamePlayer::Animate(double dt){
+		monitor.Enter('w');
+		aim_clip.setSkeleton(&skel);
 		currentPose = aim_clip.interpolatePose((float)dt);
+		monitor.Exit('w');
 	}
 
 	Skeleton skel;
 	Skin skin;
 	AnimationClip aim_clip;
 	SkeletonPose currentPose;
+	Monitor monitor;
 	CharacterMesh charMesh;
 };
 

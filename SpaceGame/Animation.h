@@ -127,6 +127,7 @@ public:
 
 	float length() const;
 	void reset();
+	void setSkeleton(Skeleton *skel);
 	SkeletonPose interpolatePose(float dt);
 
 	//function that takes two clips with the time they should overlap and the 

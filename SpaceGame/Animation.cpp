@@ -253,6 +253,11 @@ float AnimationClip::length() const {
 
 void AnimationClip::reset() { time = 0.0f; }
 
+void AnimationClip::setSkeleton(Skeleton *skel) {
+	for(int i = 0; i < nPoses; ++i)
+		keyframes[i].skel = skel;
+}
+
 SkeletonPose AnimationClip::interpolatePose(float dt) {
 	//find the two skeletonPoses around this time
 	//return their interpolation
