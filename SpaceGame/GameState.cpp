@@ -340,7 +340,7 @@ void PSystems::updateAll(double dt){
 	}
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
-	cout << "finished" << endl;
+	//cout << "finished" << endl;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
@@ -409,7 +409,9 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 			case (USER_COMMAND_USE_WEAPON) :{
 				cout << "weapon used" << endl;  break;}
 			case (USER_COMMAND_JUMP) :{ 
-				cout << "Jumping" << endl; break;}
+				Vector3f lookDirection = cam->getDirection();
+				player.velocity = Vec3f(lookDirection[0], lookDirection[1], lookDirection[2]);
+				break;}
 			case (USER_COMMAND_INVENTORY) :{ 
 				cout << "INV accessed" << endl; break;}
 			case (USER_COMMAND_PAUSE_MENU) :{ 
@@ -433,9 +435,10 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 		it++; 
 	}
 
-
-	nPos += strafe * deltaPos[0];
-	nPos += dir * deltaPos[1];
+	nPos = player.GetPosition();
+	//nPos += strafe * deltaPos[0];
+	//nPos += dir * deltaPos[1];
+	//player.SetPosition(nPos);
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
 	//up = Rphi*up; 
 	dir = Rphi * dir;    
@@ -460,12 +463,17 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();
+	objects.push_back(&player);
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
+		//if (&player == obj) {printf("Yes, player is included\n");}
 		if(obj->objType == CAMERA_TYPE || obj->objType == DOOR_TYPE || obj->objType == WORLD_OBJECT_TYPE || obj->objType == ITEM_TYPE) 
 			continue;
 		Vector3f newPos = obj->GetPosition() + ConvertToEigen3Vector(obj->velocity*dt);
 		obj->SetPosition(newPos);
+		if (&player == obj) {
+			cam->setPivotPoint(newPos);
+		}
 		float newAngle = obj->GetRotation()[0] + obj->angularVelocity[0]*dt;
 		Vec3f axisOfRotation = Vec3f(obj->GetRotation()[1], obj->GetRotation()[2], obj->GetRotation()[3]);
 		axisOfRotation += Vec3f(obj->angularVelocity[1], obj->angularVelocity[2], obj->angularVelocity[3])*dt;

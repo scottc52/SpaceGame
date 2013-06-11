@@ -35,13 +35,14 @@ void Controller::run(){
 				double afr = 1.0/(since_frame / 1000.0);
 				double effw = (since_frame / (double) MSPF) * WEIGHT;  
 				avg = (1-effw) * avg + afr * effw ;
-				cout << "FPS: " << afr << "5-Sec AVG: " << avg << endl;  
+				//cout << "FPS: " << afr << "5-Sec AVG: " << avg << endl;  
 			}
 		}
 
 		double frame_time = GameTime::DiffTimeMS(ref);
-		if( ((double)(rand() % 10000)) / 1000.0 < 0.01)
-			cerr << "updates took" << (frame_time - 5.0) << endl; 
+		if( ((double)(rand() % 10000)) / 1000.0 < 0.01) {
+			//cerr << "updates took" << (frame_time - 5.0) << endl; 
+		}
 	
 		//cout << "it took (but not really): " << frame_time << endl; 
 		//if (DroppedFrames){
