@@ -26,7 +26,7 @@ float distScale = 0.1; // we could pass in field-of-view to calculate this. But 
 		acceleration = newAccel;
 	}
 	void Particle::update(double dt){
-		float dts = ((float)dt)/1000;
+		float dts = ((float)dt)/1000.0;
 		location = location + velocity * dts;
 		velocity = velocity + acceleration *dts;
 		life = life - dt;
@@ -247,6 +247,7 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1,  float r1, float g1, float b1, f
 	velocity = velocity1;
 	pTimeAlive = 0;
 	pTimeSinceRedraw = 0; 
+	ttl = -1; 
 }
 
 void Slug::update(double dt){
@@ -258,6 +259,7 @@ void Slug::update(double dt){
 
 void Slug::hit(Vector3f loc)
 {
+	ttl = timeAlive + 300; 
 	return;
 }
 
@@ -274,7 +276,7 @@ void Slug::display(Vector3f cam, bool glow){
 }
 #define MAX_TIME (4000)
 bool Slug::isDead(){
-	return (pTimeAlive > MAX_TIME); 
+	return (pTimeAlive > MAX_TIME || (ttl > 0 && pTimeAlive > ttl)); 
 }
 
 double Slug::timeAlive(){

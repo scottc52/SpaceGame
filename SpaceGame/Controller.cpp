@@ -8,7 +8,7 @@
 Controller *Controller::gameController = NULL;
 
 double avg = FPS; 
-#define WEIGHT (1.0/(5.0 * (double)FPS))
+#define WEIGHT ((double)(1.0/(5.0 * (double)FPS)))
 void Controller::run(){
 	while (1){
 		double delta = GameTime::DiffTimeMS(ref);		 
@@ -32,9 +32,10 @@ void Controller::run(){
 		if ( since_frame > MSPF - 2){
 			if(Render::requestFrame()){
 				lastFrame = GameTime::GetTime();
-				double afr = 1.0/(since_frame / 1000.0); 
-				avg = (1-WEIGHT) * avg + afr * WEIGHT;
-				cout << "FPS: " << afr << "EXP AVG FPS: " << avg << endl;  
+				double afr = 1.0/(since_frame / 1000.0);
+				double effw = (since_frame / (double) MSPF) * WEIGHT;  
+				avg = (1-effw) * avg + afr * effw ;
+				cout << "FPS: " << afr << "5-Sec AVG: " << avg << endl;  
 			}
 		}
 
