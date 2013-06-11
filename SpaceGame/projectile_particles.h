@@ -73,6 +73,26 @@ public:
 	Vector3f &getPosition(); 
 };
 
+class Ball : public Projectile{
+private:
+	float radius;
+	int stacks;
+	int slices;
+	Vector3f position;
+	Vector3f velocity;
+	float r, g, b, a;
+	int pTimeAlive;
+public:
+	Ball(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
+		 float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+	void hit(Vector3f loc);
+	void display(Vector3f cam, bool glow = false);
+	bool isDead();
+	void update(int dt); 
+	int timeAlive() { return pTimeAlive; }
+	Vector3f &Ball::getPosition() { return position; }
+};
+
 class Particle{
 public:
 	Vector3f location;
