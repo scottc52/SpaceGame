@@ -20,8 +20,8 @@ void Sound::init(char* filename, GameObject *object, Vector3f position, float ma
 	this->position = position;
 }
 
-Sound::Sound(char* filename) {
-	init(filename, NULL, Vector3f(0.f, 0.f, 0.f), 1.0f);
+Sound::Sound(char* filename, float maxVolume) {
+	init(filename, NULL, Vector3f(0.f, 0.f, 0.f), maxVolume);
 }
 
 Sound::Sound(char* filename, GameObject *object, float maxVolume) {
@@ -44,6 +44,13 @@ void Sound::Play() {
 		printf("Couldn't play sound; no channel available or something\n");
 	} else {
 		//printf("It should totally be playing the sound right now\n");
+	}
+}
+
+void Sound::Loop() {
+	channel = Mix_PlayChannel(-1, chunk, -1);
+	if (channel == -1) {
+		printf("Couldn't play sound; no channel available or something\n");
 	}
 }
 

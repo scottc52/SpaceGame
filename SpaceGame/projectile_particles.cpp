@@ -131,14 +131,14 @@ bool isParticleDead(Particle p){
 		deathT = -1;
 		t = 0;
 		#ifndef __linux__
-		sound = new Sound("sounds/laser.wav");
+		sound = new Sound("sounds/smokybullet_2.wav");
 		sound->Play();
 		#endif
 		
 	} //default constructor doesn't set anything
 	SmokyBullet::SmokyBullet(Vector3f loc,Vector3f vel, float c0, float c1, float c2, float c3){
 		#ifndef __linux__
-		sound = new Sound("sounds/laser.wav");
+		sound = new Sound("sounds/smokybullet_2.wav");
 		sound->Play();
 		#endif
 		//emitter has no velocity and acceleration of it's own.
@@ -264,9 +264,10 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, fl
 	pTimeAlive = 0;
 	pTimeSinceRedraw = 0; 
 	ttl = -1;
-
+	#ifndef __linux__
 	sound = new Sound("sounds/laser.wav");
 	sound->Play();
+	#endif
 }
 
 void Slug::update(double dt){

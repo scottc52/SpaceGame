@@ -451,13 +451,18 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//If change room, handle change room
 
-	dt/=1000;
+	dt/=1000.0;
 
 	//Player action
 	ProcessInput(input, dt);
-	UpdateParticleSystems(dt);
+	UpdateParticleSystems(dt * 1000.0);
 
+<<<<<<< HEAD
+	room->ClearCollisions();
+
+=======
 	room->monitor.Enter('w');
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
 	vector<GameObject*>objects = room->GetGameObjects();
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
@@ -470,10 +475,10 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		axisOfRotation += Vec3f(obj->angularVelocity[1], obj->angularVelocity[2], obj->angularVelocity[3])*dt;
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
+		obj->ClearCollisionData();
 	}
 	
 	PerformCollisionDetection(room, &(GameState::player), dt);
-	
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces

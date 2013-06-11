@@ -8,6 +8,7 @@
 #include "bloom_utils.h"
 #include "projectile_particles.h"
 #include "GameObjectHeaderList.h"
+#include "CollisionDetection.h"
 
 //Allocate Statics
 GameState *Render::gameState = NULL;
@@ -87,14 +88,35 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 void DrawBoundingBox(GameObject* o){
-	for(unsigned int i = 0; i< o->boundingBox.size()-1; i++){
+	glDisable(GL_LIGHTING);
+	vector<Vec3f> bBox = o->boundingBox;
+	Vector3f pos = o->GetPosition();
+	Vec3f p(pos.x(), pos.y(), pos.z());
+	Vec3f v = o->velocity;
+	Vec4f rot = o->GetRotation();
+	Vec4f wv = o->angularVelocity;
+	UpdateCoords(bBox, p, v, rot, wv, 0, o->outSideCollisionScale);
+	for(unsigned int i = 0; i< bBox.size()-1; i++){
 		glColor3f(0,0,1);
-		if(o->tier1CollisionData.size() > 0) glColor3f(1,0,0);
-		glBegin(GL_LINES);
-		glVertex3f(o->boundingBox[i][0], o->boundingBox[i][1], o->boundingBox[i][2]);
-		glVertex3f(o->boundingBox[i+1][0],o->boundingBox[i+1][1],o->boundingBox[i+1][2]); 
+		if(o->drawCollision)
+			glColor3f(1,0,0);
+		glBegin(GL_LINE_LOOP);
+		glVertex3f(bBox[i][0], bBox[i][1], bBox[i][2]);
+		glVertex3f(bBox[i+1][0],bBox[i+1][1],bBox[i+1][2]); 
 		glEnd();
 	}
+	vector<Vec3f> meshB = o->meshBox;
+	UpdateCoords(meshB, p, v, rot, wv, 0);
+	for(unsigned int i = 0; i< meshB.size()-1; i++){
+		if(o->drawCollision) glColor3f(1,0,0);
+		else glColor3f(0,0,1);
+		glBegin(GL_LINE_LOOP);
+		glVertex3f(meshB[i][0], meshB[i][1], meshB[i][2]);
+		glVertex3f(meshB[i+1][0], meshB[i+1][1], meshB[i+1][2]);
+		glEnd();
+	}
+	o->drawCollision = false;
+	glEnable(GL_LIGHTING);
 }
 
 
@@ -303,7 +325,7 @@ void Render::hitEffect(){
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
-	glShadeModel(GL_SMOOTH);
+	//glShadeModel(GL_SMOOTH);
 	static float lmodel_twoside[] = { GL_TRUE };
 	glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE , lmodel_twoside);
 	//The following two lines can make specular lighting more accurate, but is usually not necessary.
@@ -472,7 +494,7 @@ void drawFrame(){
 			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
 				
-				if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
+				if(false && mesh->has_vertex_normals()){
 					Vec3f avg =mesh->normal(v_handle);
 					glNormal3f(avg[0], avg[1], avg[2]);
 				}else if (mesh->has_face_normals()){
@@ -490,9 +512,8 @@ void drawFrame(){
 		}
 		glEnd();
 
-		DrawBoundingBox(obs[w]);
-
 		glPopMatrix(); // you need one of these for every glPushMatrix()
+		DrawBoundingBox(obs[w]);
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 		//render Actors AKA metaball Warriors!

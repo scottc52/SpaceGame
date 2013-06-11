@@ -62,7 +62,6 @@ private:
 	bool isModified;
 	char name[MAX_NAME_CHARS];
 	string meshFile;
-
 	//Thread Lock (mutex_t ?) object lock;
 	//Sound link sound??  Play sound indirectly?
 
@@ -79,6 +78,8 @@ public:
 	map<GameObject*, CollisionData> tier2CollisionData;
 	map<GameObject*, CollisionData> tier1CollisionData;
 	map<GameObject*, CollisionData> tier0CollisionData;
+	bool drawCollision;
+	MyMesh* decimatedMeshPtr;
 
 	void ClearCollisionData(){
 		tier1CollisionData.clear();
@@ -98,6 +99,7 @@ public:
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
 	{
+		drawCollision = false;
 		radius = 1.f;
 		setName(n);		
 		isModified = false;
@@ -113,6 +115,8 @@ public:
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		drawCollision = object->drawCollision;
+		objType = object->objType;
 		velocity = object->velocity;
 		CollisionTierNum = object->CollisionTierNum;
 		setName(object->GetName());  		
@@ -161,7 +165,7 @@ public:
 		meshFile.clear();
 		meshFile = meshFileName;
 	}
-	
+
 	float GameObject::GetMass() { return mass; };
 	float GameObject::SetMass(float newMass) { mass = newMass; };
 	
