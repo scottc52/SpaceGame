@@ -84,4 +84,4 @@ src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o
  ../src/OpenMesh/Apps/Smoothing/../../../OpenMesh/Tools/Utils/NumLimitsT.hh
  ../src/OpenMesh/Apps/Smoothing/../../../OpenMesh/Tools/Utils/Timer.hh
  ../src/OpenMesh/Apps/Smoothing/../../../OpenMesh/Tools/Utils/getopt.h
- /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc

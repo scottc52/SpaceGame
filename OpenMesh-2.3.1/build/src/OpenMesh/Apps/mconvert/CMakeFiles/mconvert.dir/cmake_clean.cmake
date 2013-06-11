@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/mconvert.dir/mconvert.cc.o"
-  "mconvert.pdb"
-  "mconvert"
+  "../../../../Build/bin/mconvert.pdb"
+  "../../../../Build/bin/mconvert"
 )
 
 # Per-language clean rules from dependency scanning.

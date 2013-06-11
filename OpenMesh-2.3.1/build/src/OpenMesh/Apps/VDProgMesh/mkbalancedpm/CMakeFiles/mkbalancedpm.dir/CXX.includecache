@@ -946,7 +946,7 @@ OpenMesh/Core/System/OpenMeshDLLMacros.hh
 getopt.h
 -
 
-/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/mkbalancedpm.cc
 iostream
 -
 sstream

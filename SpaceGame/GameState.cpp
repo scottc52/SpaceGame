@@ -456,6 +456,8 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	ProcessInput(input, dt);
 	UpdateParticleSystems(dt);
 
+	room->ClearCollisions();
+
 	vector<GameObject*>objects = room->GetGameObjects();
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
@@ -468,11 +470,11 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		axisOfRotation += Vec3f(obj->angularVelocity[1], obj->angularVelocity[2], obj->angularVelocity[3])*dt;
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
+		obj->ClearCollisionData();
 	}
 	room->monitor.Enter('w');
 
 	PerformCollisionDetection(room, &(GameState::player), dt);
-	
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces

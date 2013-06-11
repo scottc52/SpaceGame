@@ -1,4 +1,4 @@
-# Install script for directory: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools
+# Install script for directory: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,21 +27,22 @@ IF(NOT CMAKE_INSTALL_COMPONENT)
   ENDIF(COMPONENT)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT)
 
+# Install shared libraries without execute permission?
+IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  SET(CMAKE_INSTALL_SO_NO_EXE "1")
+ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/OpenMesh" TYPE SHARED_LIBRARY FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/libOpenMeshToolsd.2.3.dylib"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/libOpenMeshToolsd.dylib"
+    "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3"
+    "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/Build/lib/OpenMesh/libOpenMeshToolsd.so"
     )
   FOREACH(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/OpenMesh/libOpenMeshToolsd.2.3.dylib"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/OpenMesh/libOpenMeshToolsd.dylib"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/OpenMesh/libOpenMeshToolsd.so.2.3"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/OpenMesh/libOpenMeshToolsd.so"
       )
     IF(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
-      EXECUTE_PROCESS(COMMAND "/usr/bin/install_name_tool"
-        -id "/usr/local/lib/OpenMesh/libOpenMeshToolsd.2.3.dylib"
-        -change "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/libOpenMeshCored.2.3.dylib" "/usr/local/lib/OpenMesh/libOpenMeshCored.2.3.dylib"
-        "${file}")
       IF(CMAKE_INSTALL_DO_STRIP)
         EXECUTE_PROCESS(COMMAND "/usr/bin/strip" "${file}")
       ENDIF(CMAKE_INSTALL_DO_STRIP)
@@ -50,139 +51,18 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/OpenMesh" TYPE FILE PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE RENAME "libOpenMeshToolsd.a" FILES "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/./libOpenMeshToolsStaticd.a")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/OpenMesh" TYPE FILE PERMISSIONS OWNER_WRITE OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE RENAME "libOpenMeshToolsd.a" FILES "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/./libOpenMeshToolsStaticd.a")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Decimater" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/BaseDecimaterT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/CollapseInfoT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/DecimaterT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/McDecimaterT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/MixedDecimaterT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModAspectRatioT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModBaseT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModEdgeLengthT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModHausdorffT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModIndependentSetsT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModNormalDeviationT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModNormalFlippingT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModProgMeshT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModQuadricT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModRoundnessT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/BaseDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/DecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/McDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/MixedDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModAspectRatioT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModEdgeLengthT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModHausdorffT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModProgMeshT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModQuadricT.cc"
-    )
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools" TYPE DIRECTORY FILES "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/." FILES_MATCHING REGEX "/[^/]*\\.hh$" REGEX "/CVS$" EXCLUDE REGEX "/\\.svn$" EXCLUDE REGEX "/tmp$" EXCLUDE REGEX "/Templates$" EXCLUDE REGEX "/Debian[^/]*$" EXCLUDE)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Dualizer" TYPE FILE FILES "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Dualizer/meshDualT.hh")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools" TYPE DIRECTORY FILES "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/." FILES_MATCHING REGEX "/[^/]*T\\.cc$" REGEX "/CVS$" EXCLUDE REGEX "/\\.svn$" EXCLUDE REGEX "/tmp$" EXCLUDE REGEX "/Templates$" EXCLUDE REGEX "/Debian[^/]*$" EXCLUDE)
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Kernel_OSG" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/ArrayKernelT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/AttribKernelT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/bindT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/color_cast.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/PropertyKernel.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/PropertyT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/Traits.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/TriMesh_OSGArrayKernelT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Kernel_OSG/VectorAdapter.hh"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Smoother" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Smoother/JacobiLaplaceSmootherT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Smoother/LaplaceSmootherT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Smoother/smooth_mesh.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Smoother/SmootherT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/BaseDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/DecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/McDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/MixedDecimaterT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModAspectRatioT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModEdgeLengthT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModHausdorffT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModProgMeshT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Decimater/ModQuadricT.cc"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Subdivider/Adaptive/Composite" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/CompositeT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/CompositeTraits.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/RuleInterfaceT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/RulesT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/Traits.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/CompositeT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Adaptive/Composite/RulesT.cc"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Subdivider/Uniform" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/CatmullClarkT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/CompositeLoopT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/CompositeSqrt3T.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/LongestEdgeT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/LoopT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/ModifiedButterFlyT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/Sqrt3InterpolatingSubdividerLabsikGreinerT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/Sqrt3T.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/SubdividerT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/CatmullClarkT.cc"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Subdivider/Uniform/Composite" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/Composite/CompositeT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/Composite/CompositeTraits.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Subdivider/Uniform/Composite/CompositeT.cc"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Utils" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Config.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/conio.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/GLConstAsString.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/HeapT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/MeshCheckerT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/NumLimitsT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/StripifierT.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/TestingFramework.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Timer.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/Gnuplot.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/MeshCheckerT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/StripifierT.cc"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/getopt.h"
-    )
-ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-
-IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/VDPM" TYPE FILE FILES
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/MeshTraits.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/StreamingDef.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VFront.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchy.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyNode.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyNodeIndex.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VHierarchyWindow.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/ViewingParameters.hh"
-    "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/VDPM/VFront.cc"
-    )
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/OpenMesh/Tools/Utils" TYPE FILE FILES "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Tools/Utils/getopt.h")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
