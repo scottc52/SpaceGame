@@ -254,7 +254,8 @@ int main(int argc, char *argv[]){
 	//glutMotionFunc(mouseMoveCB);
 	//glutMouseFunc(mouseFunc);
 	Sound::InitializeSounds();
-	Sound *s = new Sound("sounds/test.wav");
+	Music *m = new Music("sounds/run2.ogg", 0.2f);
+	//m->Play();
 	//s->Play();
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	Sound::UninitializeSounds();
