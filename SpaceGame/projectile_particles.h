@@ -18,6 +18,7 @@ class Ball;
 #include <GL/glu.h>
 #include <GL/gl.h>
 #else
+#include <GL/glew.h>
 #include <GLUT/glut.h>
 #endif
 #endif

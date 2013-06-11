@@ -174,6 +174,40 @@ public:
 
 	float GameObject::GetMass() { return mass; };
 	float GameObject::SetMass(float newMass) { mass = newMass; };
+	
+	bool GameObject::IsInBoundingBox(Vec3f v)
+	{
+		int size = boundingBox.size();
+		if (size == 0) return false;
+		
+		float minX = boundingBox[0][0];
+		float maxX = boundingBox[0][0];
+		float minY = boundingBox[0][1];
+		float maxY = boundingBox[0][1];
+		float minZ = boundingBox[0][2];
+		float maxZ = boundingBox[0][2];
+		
+		for (int i = 1; i < size; i++)
+		{
+			if (boundingBox[i][0] < minX) minX = boundingBox[i][0];
+			if (boundingBox[i][0] > maxX) maxX = boundingBox[i][0];
+			
+			if (boundingBox[i][0] < minY) minY = boundingBox[i][1];
+			if (boundingBox[i][0] > maxY) maxY = boundingBox[i][1];
+			
+			if (boundingBox[i][0] < minZ) minZ = boundingBox[i][2];
+			if (boundingBox[i][0] > maxZ) maxZ = boundingBox[i][2];
+		}
+		
+		if (v[0] < minX || v[0] > maxX || v[1] < minY || v[1] > maxY || v[2] < minZ || v[2] > maxZ)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////////////////
 

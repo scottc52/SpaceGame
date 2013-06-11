@@ -18,11 +18,6 @@
 using namespace std;
 #include <cstdio>
 #include <iostream>
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
 
 #ifndef MetaplaneEnemy_h
 #define MetaplaneEnemy_h
@@ -49,6 +44,8 @@ class MetaplaneEnemy : public AI
 		void MetaplaneEnemy::update();
 		
 		void render();
+		
+		Vector3f MetaplaneEnemy::CenterOfMass() {Vector3f v(center.x, center.y, center.z); return v;}
 		
 	private:
 		typedef struct Vertex
@@ -147,6 +144,7 @@ class MetaplaneEnemy : public AI
 		//vector<Projectile> projectiles;
 		
 		int fireCounter;
+		bool hasCollided;
 		
 		void checkForCollision();
 		void checkToMove();
@@ -154,15 +152,14 @@ class MetaplaneEnemy : public AI
 		void checkToFire();
 		void checkToUpdate();
 		
-		bool hasCollided;
+		bool isPlayerVisible();
 		
 		MetaplaneEnemy::PlaneBlob *MetaplaneEnemy::getBlobs() { return blobs; };
 		MetaplaneEnemy::PlaneBlob MetaplaneEnemy::getBlob(int index);
 		void moveMetaplaneEnemy();
 		void updateActionState();
 		void moveToDestination();
-		//void moveProjectiles();
-		bool collisionDetected(Vertex destination);
+		bool collisionDetected();
 		MetaplaneEnemy::Vertex normalize(Vertex& vertex);
 		MetaplaneEnemy::Vertex generateRandomNormalizedDirection();
 		float getMaxBlobRadius();

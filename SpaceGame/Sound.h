@@ -44,6 +44,8 @@ private:
 	float maxVolume;
 	GameObject *object;
 	Vector3f position;
+
+	static map<char *, Mix_Chunk*> *filenamesToChunks;
 };
 
 class Music {
