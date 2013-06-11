@@ -129,8 +129,12 @@ bool isParticleDead(Particle p){
 	SmokyBullet::SmokyBullet(){
 		deathT = -1;
 		t = 0;
+		sound = new Sound("sounds/laser.wav");
+		sound->Play();
 	} //default constructor doesn't set anything
 	SmokyBullet::SmokyBullet(Vector3f loc,Vector3f vel, float c0, float c1, float c2, float c3){
+		sound = new Sound("sounds/laser.wav");
+		sound->Play();
 		//emitter has no velocity and acceleration of it's own.
 		//its location is decided by the bullet
 		location = loc;
@@ -179,7 +183,13 @@ bool isParticleDead(Particle p){
 	}
 
 	void SmokyBullet::update(double dt){
-		if(isDead()){ return; }
+		if(isDead()){ 
+			if (sound) {
+				delete sound;
+				sound = NULL;
+			}
+			return; 
+		}
 		t = t+dt;
 		float dts = ((float)dt)/1000; // time passed in seconds
 		location = location + velocity * dts;
@@ -247,9 +257,18 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1,  float r1, float g1, float b1, f
 	velocity = velocity1;
 	pTimeAlive = 0;
 	pTimeSinceRedraw = 0; 
+
+	sound = new Sound("sounds/laser.wav");
+	sound->Play();
 }
 
 void Slug::update(double dt){
+	if (isDead()) {
+		if (sound) {
+			delete sound;
+			sound = NULL;
+		}
+	}
 	Vector3f delta = velocity * ((dt)/1000.0);
 	position += delta; 
 	pTimeAlive += dt;

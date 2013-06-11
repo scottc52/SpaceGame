@@ -256,6 +256,7 @@ int main(int argc, char *argv[]){
 	Sound::InitializeSounds();
 	Music *m = new Music("sounds/run2.ogg", 0.2f);
 	//m->Play();
+	Sound *s = new Sound("sounds/laser.wav");
 	//s->Play();
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	Sound::UninitializeSounds();
