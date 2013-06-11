@@ -7,14 +7,11 @@
  *
  */
 
-//#include <Carbon/Carbon.h>
-
 #include <stdlib.h>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "projectile_particles.h"
 #include "AI.h"
 #include <cstdio>
 #include <iostream>
@@ -48,14 +45,7 @@ class MetalineEnemy : public AI
 		Eigen::Vector3f getLocation();
 		Eigen::Vector3f getDirection();
 		
-		void MetalineEnemy::update()
-		{
-			checkForCollision();
-			checkToMove();
-			checkToChangeOrientation();
-			checkToFire();
-			checkToUpdate();
-		};
+		void MetalineEnemy::update();
 		
 		void render();
 		
@@ -158,6 +148,8 @@ class MetalineEnemy : public AI
 		void checkToChangeOrientation();
 		void checkToFire();
 		void checkToUpdate();
+		
+		bool hasCollided;
 		
 		MetalineEnemy::LineBlob *MetalineEnemy::getBlobs() { return blobs; };
 		MetalineEnemy::LineBlob MetalineEnemy::getBlob(int index);

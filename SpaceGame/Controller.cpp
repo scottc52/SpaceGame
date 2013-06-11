@@ -7,13 +7,12 @@
 
 Controller *Controller::gameController = NULL;
 
-#define STATS 
-#undef STATS
-double avg = 30; 
+double avg = FPS; 
+#define WEIGHT (1.0/(5.0 * (double)FPS))
 void Controller::run(){
 	while (1){
 		double delta = GameTime::DiffTimeMS(ref);		 
- 		while (delta < 5.0){ // so we don't kill cpu
+ 		while (delta < 4.0){ // so we don't kill cpu
  			//cout << "too fast! (in a good way)" << endl;
  			pthread_helper_sleep(100);
  			delta = GameTime::DiffTimeMS(ref);  
@@ -30,12 +29,11 @@ void Controller::run(){
 	//render here
 	//Render::myDisplay(); 
 		double since_frame = GameTime::DiffTimeMS(lastFrame);	
-		if ( since_frame > MSPF -1){
+		if ( since_frame > MSPF - 2){
 			if(Render::requestFrame()){
 				lastFrame = GameTime::GetTime();
-				double weight = 1.0 / 30.0;
-				double afr = 1.0/(since_frame / 1000); 
-				avg = (1-weight) * avg + afr * weight;
+				double afr = 1.0/(since_frame / 1000.0); 
+				avg = (1-WEIGHT) * avg + afr * WEIGHT;
 				cout << "FPS: " << afr << "EXP AVG FPS: " << avg << endl;  
 			}
 		}
