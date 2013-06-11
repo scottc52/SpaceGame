@@ -320,9 +320,10 @@ public:
 };
 
 void PSystems::updateAll(double dt){
-	list<Projectile *>::iterator it = projectiles.begin();
 	int idx = 0;
 	BulletUpdater jobs[BRANCH_FACTOR]; 
+	monitor.Enter('w');
+	list<Projectile *>::iterator it = projectiles.begin();
 	while(it != projectiles.end()){
 		jobs[idx].AddBullet(*it);
 		jobs[idx].dt = dt;
@@ -330,7 +331,7 @@ void PSystems::updateAll(double dt){
 		idx ++;
 		idx %=BRANCH_FACTOR;  
 	} 
-	monitor.Enter('w');
+	
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		TaskQueue::defQueue->enqueue(&jobs[i]); 
 	}
@@ -390,7 +391,7 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
 					if (p){
 						ps->monitor.Enter('w');
-						ps->AddBullet(p);
+							ps->AddBullet(p);
 						ps->monitor.Exit('w');
 					}
 				} else {
@@ -456,6 +457,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	ProcessInput(input, dt);
 	UpdateParticleSystems(dt);
 
+	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
@@ -469,8 +471,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
 	}
-	room->monitor.Enter('w');
-
+	
 	PerformCollisionDetection(room, &(GameState::player), dt);
 	
 	room->monitor.Exit('w');

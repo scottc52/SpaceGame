@@ -303,6 +303,7 @@ void Render::hitEffect(){
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
+	glShadeModel(GL_SMOOTH);
 	static float lmodel_twoside[] = { GL_TRUE };
 	glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE , lmodel_twoside);
 	//The following two lines can make specular lighting more accurate, but is usually not necessary.
@@ -405,9 +406,6 @@ void drawTestPrism(){
 	glVertex3f(0.1, 0.1, 10.1f);
 	glVertex3f(-10.1f, 0.1, 0.1);
 	glEnd();
-
-
-
 }
 
 void drawFrame(){
@@ -473,16 +471,13 @@ void drawFrame(){
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
-				if(false){ // should there be a setting for using face or vertex normals?
-					if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
+				
+				if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
 					Vec3f avg =mesh->normal(v_handle);
 					glNormal3f(avg[0], avg[1], avg[2]);
-					}
-				}else{
-					if(mesh->has_face_normals()){
+				}else if (mesh->has_face_normals()){
 						Vec3f avg =mesh->normal(it.handle());
 						glNormal3f(avg[0], avg[1], avg[2]);
-					}
 				}
 				if(useTexture){
 					Vec2f texCoord; //TODO
@@ -592,8 +587,8 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();
-	Render::gameState->GetParticleSystems()->monitor.Enter('r');   	
+	Render::gameState->GetParticleSystems()->monitor.Enter('r');
+	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();  	
 	list<Projectile *>::iterator it = bullets->begin(); 
 	while(it != bullets->end()){  
 		Projectile *curBullet = *it;

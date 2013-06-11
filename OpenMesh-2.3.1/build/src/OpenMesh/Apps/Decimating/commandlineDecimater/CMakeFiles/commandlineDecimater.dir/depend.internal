@@ -109,5 +109,5 @@ src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimate
  ../src/OpenMesh/Apps/Decimating/commandlineDecimater/../../../../OpenMesh/Tools/Utils/NumLimitsT.hh
  ../src/OpenMesh/Apps/Decimating/commandlineDecimater/../../../../OpenMesh/Tools/Utils/Timer.hh
  ../src/OpenMesh/Apps/Decimating/commandlineDecimater/../../../../OpenMesh/Tools/Utils/getopt.h
- /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
- /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Decimating/decimater.cc
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
+ /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Decimating/decimater.cc

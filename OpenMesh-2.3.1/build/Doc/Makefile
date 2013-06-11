@@ -30,30 +30,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/ccmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
+	/usr/bin/cmake -i .
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -63,19 +60,19 @@ edit_cache/fast: edit_cache
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
+	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -P cmake_install.cmake
+	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
@@ -85,7 +82,7 @@ install/local/fast: install/local
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
@@ -101,20 +98,10 @@ list_install_components:
 list_install_components/fast: list_install_components
 .PHONY : list_install_components/fast
 
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-.PHONY : package/fast
-
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && "/Applications/CMake 2.8-11.app/Contents/bin/cpack" --config ./CPackSourceConfig.cmake /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -124,7 +111,7 @@ package_source/fast: package_source
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -133,14 +120,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/Doc/CMakeFiles/progress.marks
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/Doc/CMakeFiles/progress.marks
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/clean
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/clean
 .PHONY : clean
 
 # The main clean target
@@ -149,17 +136,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/preinstall
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/preinstall
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(MAKE) -f CMakeFiles/Makefile2 Doc/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -173,7 +160,6 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... package"
 	@echo "... package_source"
 	@echo "... rebuild_cache"
 .PHONY : help
@@ -187,6 +173,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
