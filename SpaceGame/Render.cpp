@@ -463,9 +463,9 @@ void drawFrame(){
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
-	cout<< "pre-enter" << endl;
+	//cout<< "pre-enter" << endl;
 	gr->monitor.Enter('r');
-	cout << "post-enter" << endl;
+	//cout << "post-enter" << endl;
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
