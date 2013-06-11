@@ -10,8 +10,8 @@ N	debug_room
 #W testWall3 TestRoom3.obj 0 0 10 0 1 0 0 1.0
 #W testWall4 TestRoom4.obj 0 0 10 0 1 0 0 1.0
 #W testWall5 TestRoom5.obj 0 0 10 0 1 0 0 1.0
-A sphereA testSphere.obj -2 0 0 0 0 1 0 1.0 0.5 0 0 0 0 0 0 3
-A sphereB testSphere.obj 2 0 0 0 0 1 0 1.0 0.0 0 0 0 0 0 0 3
+A sphereA testSphere.obj -2 0 0 0 0 1 0 1.0 - 0.5 0 0 0 0 0 0 3  
+A sphereB testSphere.obj 2 0 0 0 0 1 0 1.0 g 0.0 0 0 0 0 0 0 3 
 # DOORS (same as objects, but flagged with different line)
 # P	localroomname	mesh_file_name	x	y	z	scale
 #Lights for now, all point lights, may extend later

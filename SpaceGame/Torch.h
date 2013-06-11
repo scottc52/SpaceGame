@@ -10,6 +10,23 @@
 #include <list>
 #include <cmath>
 #include <iostream>
+#ifdef _WIN32
+#include <gl/glew.h>
+#include "gl/GL.h"
+#include <GL/glu.h>
+#include <gl/freeglut.h>
+#else
+#ifdef __linux__
+#include <gl/glew.h> 
+#include <GL/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+#else
+#include <GL/glew.h>
+#include <GLUT/glut.h>
+#endif
+#endif
+
 using namespace Eigen; 
 using namespace std;
 
@@ -19,7 +36,7 @@ struct JParticle{
 	double timeAlive; 
 	double life; 
 	float color[4]; 
-	JParticle(Vector3f &pos, Vector3f &vel, double l, float r=0.9f, float g=0.4f, float b=0.3f, float a=0.5f){
+	JParticle(Vector3f &pos, Vector3f &vel, double l, float r=0.7f, float g=0.4f, float b=0.3f, float a=0.3f){
 		this->vel = vel;
 		this->pos = pos; 
 		life = l;
@@ -33,16 +50,9 @@ struct JParticle{
 		return timeAlive >= life; 
 	}
 
-	void update(double dt){
-		if (isDead()) return;
-		pos+= vel * dt / 1000.0;
-		timeAlive += dt; 
-	} 
+	void update(double dt);
 
-	void render(){
-		//glColor4fv(color);
-		//glVertex3f(pos.x(), pos.y(), pos.z()); 
-	}
+	void render();
 
 };
 
@@ -52,7 +62,7 @@ public:
 	virtual void update(double dt)=0; 
 };
 
-inline bool pIsDead(const JParticle &v){
+inline bool jPIsDead(JParticle &v){
 	return v.isDead();
 } 
 
@@ -66,55 +76,24 @@ public:
 	double width;
 	double height;   
 	double density;
+	double base; 
 	Torch(Vector3f &c, Vector3f &n, Vector3f &u, double w, double h, double d)
 	:StaticEmitter(),center(c),up(u), norm(n), width(w), height(h), density(d) 
 	{
 		strafe = (up.normalized().cross(norm.normalized()));
+		base = 0;
 	} 
-	void render(){
-		list<JParticle>::iterator it = ps.begin();
-		cout<< ps.size() << endl;
-		//glBegin(GL_POINTS)
-		while(it != ps.end()){
-			(*it).render();
-		} 
-		//glEnd(); 
-	}
-	double life(double theta, double u, double v){
-		double l = ((sin (u/5 + theta) + sin(u*v + theta) + cos(v+theta))+3.0) / 6.0;
-		return l;     
-	}
+	
+	void render();
+
+	double life(double theta, double u, double v);
+
 	double color(double theta, double u, double v){
 		double c = sin(theta) + sin(u) + cos(v);
 		return c; 
 	} 
 
-	
-
-	void update(double dt){
-		ps.remove_if(pIsDead);
-		list<JParticle>::iterator it = ps.begin(); 
-		while (it!=ps.end()){
-			(*it).update(dt);
-			it++;
-		}
-		int U = density * width;
-		int V = density * height;
-		double du = width / U;
-		double dv = height / U;
-		Vector3f minU = center - strafe*(width / 2);
-		Vector3f minV = center - norm*(height / 2);
-		Vector3f velocity = up * 2; 
-		double theta = dt / 1000.0;
-		for (int u = 0; u < U; u ++){
-			for (int v = 0; v < V; v++){
-				Vector3f pos( (minU + strafe * du + minV + norm*dv)); 
-				ps.push_back(JParticle(pos, velocity, life(theta, u, v))); 
-			}
-		} 
-		cout<< ps.size() << endl;
-
-	}
+	void update(double dt);
 
 };
 

@@ -135,6 +135,8 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		wobj.SetPosition(p);
 		wobj.SetScale(scale);
 		wobj.SetRotation(ConvertToOM4Vector(rot));
+		if(v.size() >= 12 && !(strcmp(v[11], "g")))
+			wobj.glowing = true;
 		wobj.SetName(v[1]);
 		wobj.SetMeshFile(newCString(v[2]));
 		r.AddWorldObject(wobj); 
@@ -177,24 +179,28 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		aobj.SetRotation(ConvertToOM4Vector(rot));
 		aobj.SetName(v[1]);
 		aobj.SetMeshFile(newCString(v[2]));
-		if(v.size() > 11){
-			GAME_DEBUG_ASSERT(v.size() >=14);
-			float vx = atof(v[11]);
-			float vy = atof(v[12]);
-			float vz = atof(v[13]);
+		if (v.size() > 11 && !(strcmp(v[11], "g"))) {
+			aobj.glowing = true;
+		}
+		if(v.size() > 12){
+			GAME_DEBUG_ASSERT(v.size() >=15);
+			float vx = atof(v[12]);
+			float vy = atof(v[13]);
+			float vz = atof(v[14]);
 			aobj.velocity = Vec3f(vx, vy, vz);
 		}
-		if(v.size() >= 14){
-			GAME_DEBUG_ASSERT(v.size() >=18);
-			float avw = atof(v[14]);
-			float avx = atof(v[15]);
-			float avy = atof(v[16]);
-			float avz = atof(v[17]);
+		if(v.size() >= 15){
+			GAME_DEBUG_ASSERT(v.size() >=19);
+			float avw = atof(v[15]);
+			float avx = atof(v[16]);
+			float avy = atof(v[17]);
+			float avz = atof(v[18]);
 			aobj.angularVelocity = Vec4f(avw, avx, avy, avz);
 		}
-		if(v.size() >=19){
-			aobj.mass = atof(v[18]);
+		if(v.size() >=20){
+			aobj.mass = atof(v[19]);
 		}
+
 		r.AddActiveObject(aobj); 
 		break; 
 			 }
