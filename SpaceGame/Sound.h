@@ -18,7 +18,7 @@
 
 class Sound {
 public:
-	Sound(char* filename);
+	Sound(char* filename, float maxVolume=1.0f);
 	// Sounds are either attached to objects (e.g. roars from monsters) or positions
 	// (e.g. the sound of a collision). So there are separate constructors for these 
 	// two cases.
@@ -27,6 +27,7 @@ public:
 	~Sound();
 
 	void Play();
+	void Loop();
 	// Update sound volume and left/right panning to account for new position.
 	void Update(Vector3f playerPosition, Vector3f playerLook, Vector3f playerUp);
 	void Update(GameCamera *camera);
