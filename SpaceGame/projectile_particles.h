@@ -31,6 +31,7 @@
 #include <time.h>
 #include <math.h>
 #include "Mesh.h"
+#include "Sound.h"
 
 #define PI 3.14159265358979323846
 
@@ -63,6 +64,7 @@ private:
 	float r, g, b, a;
 	double pTimeAlive;
 	double pTimeSinceRedraw;  
+	Sound *sound;
 public:
 	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
 	void hit(Vector3f loc); 
@@ -190,6 +192,8 @@ public:
 	void hit(Vector3f hitLocation);
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
+private:
+	Sound *sound;
 };
  
 #endif

@@ -5,6 +5,10 @@
 #define SOUND_BUFFER_SIZE 1024
 #define MAX_VOLUME_INT 128
 
+// **************
+// REGULAR SOUNDS
+// **************
+
 void Sound::init(char* filename, GameObject *object, Vector3f position, float maxVolume) {
 	chunk = Mix_LoadWAV(filename);
 	Mix_VolumeChunk(chunk, maxVolume * MAX_VOLUME_INT);
@@ -60,7 +64,7 @@ void Sound::Update(GameCamera *camera) {
 	Update(camera->GetPosition(), camera->GetViewVector(), camera->GetUpVector());
 }
 
-void Sound::Stop() {
+void Sound::Pause() {
 	Mix_HaltChannel(channel);
 }
 
@@ -84,3 +88,40 @@ void Sound::UninitializeSounds() {
 	Mix_CloseAudio();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
 }
+
+// *****
+// MUSIC
+// *****
+
+Music::Music(char *filename, float maxVolume) {
+	music = Mix_LoadMUS(filename);
+	if (!music) {
+		printf("Could not open %s as a music file\n", filename);
+	}
+	Mix_VolumeMusic(maxVolume * MAX_VOLUME_INT);
+	channel = -1;
+}
+
+Music::~Music() {
+	Mix_HaltMusic();
+	Mix_FreeMusic(music);
+}
+
+void Music::Play() {
+	channel = Mix_PlayMusic(music, 0);
+	if (channel == -1) {
+		printf("Could not allocate channel for music\n");
+	}
+}
+
+void Music::Loop() {
+	channel = Mix_PlayMusic(music, -1);
+	if (channel == -1) {
+		printf("Could not allocate channel for music\n");
+	}
+}
+
+void Music::Pause() {
+	Mix_HaltMusic();
+}
+

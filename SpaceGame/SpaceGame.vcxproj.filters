@@ -25,6 +25,7 @@
     <ClCompile Include="MetalineEnemy.cpp" />
     <ClCompile Include="MetaplaneEnemy.cpp" />
     <ClCompile Include="Monitor.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloom_utils.h" />
@@ -104,6 +105,10 @@
     <ClInclude Include="MetalineEnemy.h" />
     <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="EnemyProjectile.h" />
+>>>>>>> 431ee55e1abb167baddf525a800dbda34d418f08
     <ClInclude Include="pthread_helpers.h" />
   </ItemGroup>
   <ItemGroup>

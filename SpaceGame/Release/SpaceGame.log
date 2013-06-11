@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 6/10/2013 8:12:38 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -79,11 +80,36 @@
                      Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
                  ]
                  Render.cpp(143) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
+=======
+﻿Build started 6/10/2013 6:17:03 PM.
+     1>Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Owner\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt projectile_particles.cpp
+         projectile_particles.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(7): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(32): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>projectile_particles.cpp(99): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>projectile_particles.cpp(102): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>projectile_particles.cpp(107): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>projectile_particles.cpp(109): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>projectile_particles.cpp(160): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(161): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(163): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(164): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(165): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(170): warning C4305: '=' : truncation from 'double' to 'float'
+     1>projectile_particles.cpp(202): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>projectile_particles.cpp(211): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>projectile_particles.cpp(272): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>projectile_particles.cpp(288): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+>>>>>>> 431ee55e1abb167baddf525a800dbda34d418f08
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCore.lib libOpenMeshCored.lib libOpenMeshTools.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
          Release\Camera.obj
          Release\CollisionDetection.obj
          Release\Controller.obj
+         Release\EnemyProjectile.obj
          Release\GameActiveObject.obj
          Release\GameDebug.obj
          Release\GameDoor.obj
@@ -118,4 +144,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:14.03
+=======
+Time Elapsed 00:00:26.52
+>>>>>>> 431ee55e1abb167baddf525a800dbda34d418f08

@@ -83,6 +83,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
     <ClCompile Include="GameDebug.cpp" />
     <ClCompile Include="GameDoor.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="GameActiveObject.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameDebug.h" />
