@@ -1,5 +1,10 @@
 #ifndef PROJECTILE_PARTICLES_H
 #define PROJECTILE_PARTICLES_H
+//forward declare
+class Projectile; 
+class Slug;
+class SmokyBullet;
+class Ball; 
 
 #ifdef _WIN32
 #include <gl/glew.h>
@@ -48,7 +53,19 @@ using namespace Eigen;
 class Projectile{
 public: 
 	virtual ~Projectile(){}
-	Projectile(): damage(0), mass(1.0){} 
+	bool drawCollision;
+	vector<Vec3f>boundingBox;
+	Projectile(): damage(0), mass(1.0){
+		drawCollision = false;
+		boundingBox.push_back(Vec3f(-0.05, -0.05, -0.05));
+		boundingBox.push_back(Vec3f(0.05, -0.05, -0.05));
+		boundingBox.push_back(Vec3f(-0.05, 0.05, -0.05));
+		boundingBox.push_back(Vec3f(0.05, 0.05, -0.05));
+		boundingBox.push_back(Vec3f(-0.05, -0.05, 0.05));
+		boundingBox.push_back(Vec3f(-0.05, 0.05, 0.05));
+		boundingBox.push_back(Vec3f(0.05, -0.05, 0.05));
+		boundingBox.push_back(Vec3f(-0.05, -0.05, 0.05));
+	} 
 	virtual void hit(Vector3f loc)=0;
 	virtual void display(Vector3f cam, bool glow) =0;
 	virtual bool isDead() = 0; 
@@ -62,7 +79,6 @@ public:
 
 class Slug : public Projectile{
 private: 
-	vector<Vec3f>boundingBox;
 	Vector3f position;
 	Vector3f velocity; 
 	float r, g, b, a;
@@ -92,12 +108,13 @@ private:
 	double pTimeAlive;
 public:
 	Ball(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
-		 float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+		float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
 	void hit(Vector3f loc);
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();
 	void update(double dt); 
 	double timeAlive() { return pTimeAlive; }
+	vector<Vec3f> boundingBox;
 	Vector3f &getPosition() { return position; }
 	Vector3f &getVelocity() {return velocity; }
 };
@@ -203,5 +220,5 @@ public:
 private:
 	Sound *sound;
 };
- 
+
 #endif

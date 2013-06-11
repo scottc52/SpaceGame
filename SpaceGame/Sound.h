@@ -13,7 +13,7 @@
 #include "SDL_mixer.h"
 #endif
 
-#include "GameObject.h"
+class GameObject;
 #include "GameCamera.h"
 
 class Sound {

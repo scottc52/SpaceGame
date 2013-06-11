@@ -9,6 +9,7 @@
 #include "projectile_particles.h"
 #include "GameObjectHeaderList.h"
 #include "CollisionDetection.h"
+#include <list>
 
 //Allocate Statics
 GameState *Render::gameState = NULL;
@@ -95,10 +96,10 @@ void DrawBoundingBox(GameObject* o){
 	Vec3f v = o->velocity;
 	Vec4f rot = o->GetRotation();
 	Vec4f wv = o->angularVelocity;
-	UpdateCoords(bBox, p, v, rot, wv, 0, o->outSideCollisionScale);
+	UpdateCoords(bBox, p, v, rot, wv, 0);
 	for(unsigned int i = 0; i< bBox.size()-1; i++){
 		glColor3f(0,0,1);
-		if(o->drawCollision)
+		if(o->drawCollision || o->projectileCollisionData.size() > 0)
 			glColor3f(1,0,0);
 		glBegin(GL_LINE_LOOP);
 		glVertex3f(bBox[i][0], bBox[i][1], bBox[i][2]);
@@ -117,6 +118,32 @@ void DrawBoundingBox(GameObject* o){
 	}
 	o->drawCollision = false;
 	glEnable(GL_LIGHTING);
+}
+
+void DrawBoundingProjectileBox(){
+	/*glDisable(GL_LIGHTING);
+	PSystems* ps = Render::gameState->GetParticleSystems();
+	list<Projectile*>* projs = ps->GetBullets();
+	for(list<Projectile*>::iterator it = projs->begin(); it != projs->end(); ++it){
+		vector<Vec3f> bBox = (*(*it)).boundingBox;
+		Vector3f pos = (*(*it)).getPosition();
+		Vec3f p(pos.x(), pos.y(), pos.z());
+		Vec4f r(0,0,1,0);
+		Vec4f wv(1,0,0,0);
+		Vector3f vel = (*(*it)).getVelocity();
+		Vec3f v(vel.x(), vel.y(), vel.z());
+		UpdateCoords(bBox, p, v, r, wv, 0,6);
+		for(unsigned int i = 0; i< bBox.size()-1; i++){
+			glColor3f(0,0,1);
+			if((*(*it)).drawCollision)
+				glColor3f(1,0,0);
+			glBegin(GL_LINE_LOOP);
+			glVertex3f(bBox[i][0], bBox[i][1], bBox[i][2]);
+			glVertex3f(bBox[i+1][0],bBox[i+1][1],bBox[i+1][2]); 
+			glEnd();
+		}
+	}
+	glEnable(GL_LIGHTING);*/
 }
 
 
@@ -493,13 +520,13 @@ void drawFrame(){
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
-				
+
 				if(false && mesh->has_vertex_normals()){
 					Vec3f avg =mesh->normal(v_handle);
 					glNormal3f(avg[0], avg[1], avg[2]);
 				}else if (mesh->has_face_normals()){
-						Vec3f avg =mesh->normal(it.handle());
-						glNormal3f(avg[0], avg[1], avg[2]);
+					Vec3f avg =mesh->normal(it.handle());
+					glNormal3f(avg[0], avg[1], avg[2]);
 				}
 				if(useTexture){
 					Vec2f texCoord; //TODO
@@ -519,6 +546,7 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
+	DrawBoundingProjectileBox();
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();

@@ -29,14 +29,14 @@
 #define OBJECT_NOT_FOUND -1
 
 using namespace std; 
-
-/*Vector3f ConvertToEigen3Vector(Vec3f& v);
-Vec3f ConvertToOM3Vector(Vector3f& v);
-Vector4f ConvertToEigen4Vector(Vec4f& v);
-Vec4f ConvertToOM4Vector(Vector4f& v);*/
+/*
+const Vector3f ConvertToEigen3Vector(Vec3f& v);
+const Vec3f ConvertToOM3Vector(const Vector3f v);
+const Vector4f ConvertToEigen4Vector(Vec4f& v);
+const Vec4f ConvertToOM4Vector(Vector4f v);*/
 #define ConvertToEigen3Vector(v) (Vector3f((v)[0], (v)[1], (v)[2]))
 #define ConvertToOM3Vector(v) (Vec3f((v).x(), (v).y(), (v).z()))
-#define ConvertToEigen4Vector(v) (Vector4f((v)[0], (v)[1], (v)[2], (v)[3]))
+#define ConvertToEigen4Vector(v) (Vector4f((v)[1], (v)[2], (v)[3], (v)[0]))
 #define ConvertToOM4Vector(v) (Vec4f((v).w(), (v).x(), (v).y(), (v).z()))
 
 class GameRoom{

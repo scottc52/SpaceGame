@@ -21,11 +21,12 @@
 #include "Mesh.h"
 #include "LocationDefines.h"
 #include <string>
-
 using namespace std;
 using namespace Eigen;
 
 #define MAX_NAME_CHARS 40
+
+class Projectile;
 
 /////////////////////////////////////////////////////////
 // TYPEDEFINES
@@ -78,13 +79,18 @@ public:
 	map<GameObject*, CollisionData> tier2CollisionData;
 	map<GameObject*, CollisionData> tier1CollisionData;
 	map<GameObject*, CollisionData> tier0CollisionData;
+	vector<Projectile*> collidedProjectiles;
+	map<Projectile*, CollisionData> projectileCollisionData;
+
 	bool drawCollision;
-	MyMesh* decimatedMeshPtr;
+	//MyMesh* decimatedMeshPtr;
 
 	void ClearCollisionData(){
 		tier1CollisionData.clear();
 		tier2CollisionData.clear();
 		tier0CollisionData.clear();
+		collidedProjectiles.clear();
+		projectileCollisionData.clear();
 	}
 
 	int objType;

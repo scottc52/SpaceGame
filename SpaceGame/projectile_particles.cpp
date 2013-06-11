@@ -326,6 +326,7 @@ Ball::Ball(Vector3f &pos, Vector3f &vel, float radius, int stacks, int slices, f
 	position = pos;
 	velocity = vel;
 	pTimeAlive = 0;
+	
 }
 
 void Ball::update(double dt){

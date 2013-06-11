@@ -24,12 +24,12 @@ using namespace std;
 #define MAX_LINE_LEN 1024
 #define DELIM " \r\t\n\f" 
 
-
-/*Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
-Vec3f ConvertToOM3Vector(Vector3f& v){return Vec3f(v.x(), v.y(), v.z());}
-Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
-Vec4f ConvertToOM4Vector(Vector4f& v){return Vec4f(v.w(), v.x(), v.y(), v.z());}*/
-
+/*
+const Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
+const Vec3f ConvertToOM3Vector(const Vector3f v){return Vec3f(v.x(), v.y(), v.z());}
+const Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
+const Vec4f ConvertToOM4Vector(const Vector4f v){return Vec4f(v.w(), v.x(), v.y(), v.z());}
+*/
 char *newCString(const char *c){
 	int len = strlen(c);
 	char *n = new char[len + 1];	

@@ -10,6 +10,7 @@
 #include <string>
 #include "GameObjectHeaderList.h"
 #include "LocationDefines.h"
+#include "TaskQueue.h"
 #include "CollisionDetection.h"
 using namespace std;
 
@@ -294,7 +295,6 @@ bool pIsDead(Projectile *p){
 }
 
 #define BRANCH_FACTOR 2
-#include "TaskQueue.h"
 class BulletUpdater : public Task{
 private:
 	vector<Projectile *> toUpdate;
@@ -456,13 +456,9 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//Player action
 	ProcessInput(input, dt);
 	UpdateParticleSystems(dt * 1000.0);
-
-<<<<<<< HEAD
 	room->ClearCollisions();
 
-=======
 	room->monitor.Enter('w');
->>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
 	vector<GameObject*>objects = room->GetGameObjects();
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
@@ -477,8 +473,10 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
 		obj->ClearCollisionData();
 	}
+
+	Camera* c = GameState::GetCamera();
 	
-	PerformCollisionDetection(room, &(GameState::player), dt);
+	PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces
