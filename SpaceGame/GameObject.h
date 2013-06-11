@@ -208,28 +208,30 @@ public:
 	{
 		Vector3f tempPos = GetPosition();
 		Vec3f pos = Vec3f(tempPos[0], tempPos[1], tempPos[2]);
-		UpdateCoords(boundingBox, pos, velocity, rotation, angularVelocity, 0);
 		
-		int size = boundingBox.size();
+		vector<Vec3f> box = boundingBox;
+		UpdateCoords(box, pos, velocity, rotation, angularVelocity, 0, 1, false, 1, 0, 0, 1, 1);
+		
+		int size = box.size();
 		if (size == 0) return false;
 		
-		float minX = boundingBox[0][0];
-		float maxX = boundingBox[0][0];
-		float minY = boundingBox[0][1];
-		float maxY = boundingBox[0][1];
-		float minZ = boundingBox[0][2];
-		float maxZ = boundingBox[0][2];
+		float minX = box[0][0];
+		float maxX = box[0][0];
+		float minY = box[0][1];
+		float maxY = box[0][1];
+		float minZ = box[0][2];
+		float maxZ = box[0][2];
 		
 		for (int i = 1; i < size; i++)
 		{
-			if (boundingBox[i][0] < minX) minX = boundingBox[i][0];
-			if (boundingBox[i][0] > maxX) maxX = boundingBox[i][0];
+			if (box[i][0] < minX) minX = box[i][0];
+			if (box[i][0] > maxX) maxX = box[i][0];
 			
-			if (boundingBox[i][0] < minY) minY = boundingBox[i][1];
-			if (boundingBox[i][0] > maxY) maxY = boundingBox[i][1];
+			if (box[i][0] < minY) minY = box[i][1];
+			if (box[i][0] > maxY) maxY = box[i][1];
 			
-			if (boundingBox[i][0] < minZ) minZ = boundingBox[i][2];
-			if (boundingBox[i][0] > maxZ) maxZ = boundingBox[i][2];
+			if (box[i][0] < minZ) minZ = box[i][2];
+			if (box[i][0] > maxZ) maxZ = box[i][2];
 		}
 		
 		if (v[0] < minX || v[0] > maxX || v[1] < minY || v[1] > maxY || v[2] < minZ || v[2] > maxZ)
