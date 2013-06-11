@@ -21,7 +21,7 @@ using namespace std;
 const int DEFAULT_NUM_BALL_BLOBS = 5;
 const float DEFAULT_BALL_RADIUS = 1.f;
 
-class MetaballEnemy : public AI
+class MetaballEnemy //: public AI
 {
 public:
 	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BALL_BLOBS, float radius = DEFAULT_BALL_RADIUS);
@@ -128,6 +128,11 @@ private:
 	
 	int fireCounter;
 	bool hasCollided;
+
+	//AI Implementations
+	bool intersect(Vector3f &pos); 
+	void hit(Projectile *p);
+	void act(GameState *s, double dt);
 	
 	void checkForCollision();
 	void checkToMove();

@@ -279,6 +279,10 @@ bool MetaballEnemy::isPlayerVisible()
 	return true;
 }
 
+bool MetaballEnemy::intersect(Vector3f &pos){
+	return ((pos - getLocation()).norm() < this->radius); 
+}
+
 bool MetaballEnemy::collisionDetected()
 {	
 	if (tier0CollisionData.size() > 0 || tier1CollisionData.size() > 0 || tier2CollisionData.size() > 0)

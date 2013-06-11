@@ -488,10 +488,21 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
 		obj->ClearCollisionData();
 	}
-
 	Camera* c = GameState::GetCamera();
-	
 	PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
+	list<AI *>::iterator ait = actors.begin();
+	list<Projectile *>::iterator pit;   
+	while (ait != actors.end()){
+		pit = ps->GetBullets()->begin(); 
+		AI *actor = *ait; 
+		while(pit != ps->GetBullets()->end()){
+			Projectile *proj = *pit;
+			if (actor->intersect(proj->GetPosition())){
+				proj->hit(proj->getPosition());
+				actor->hit(proj);  
+			}  
+		}
+	}
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces

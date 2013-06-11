@@ -54,16 +54,15 @@ class AI : public GameActiveObject
 		
 		virtual Vector3f AI::getLocation() = 0;
 		
-		virtual void update() = 0;
+		virtual void act(GameState *s, double dt )=0; 
 		
-		virtual void checkForCollision() = 0;
-		virtual void checkToMove() = 0;
-		virtual void checkToChangeOrientation() = 0;
-		virtual void checkToFire() = 0;
-		virtual void checkToUpdate() = 0;
-		
+		virtual void hit(Projectile *p)=0;
+
+		virtual bool intersect(Vector3f &p)=0;
+
 		virtual void render() = 0;
-		
+	
+
 	protected:
 		int health;
 		bool alive;

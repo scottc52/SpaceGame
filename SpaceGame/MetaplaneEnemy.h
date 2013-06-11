@@ -25,7 +25,7 @@ using namespace std;
 const int DEFAULT_NUM_PLANE_BLOBS = 5;
 const float DEFAULT_PLANE_RADIUS = 1.f;
 
-class MetaplaneEnemy : public AI
+class MetaplaneEnemy // : public AI
 	{
 	public:
 		MetaplaneEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_PLANE_BLOBS, float radius = DEFAULT_PLANE_RADIUS);
