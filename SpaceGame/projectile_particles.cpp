@@ -279,7 +279,7 @@ void Slug::update(double dt){
 
 void Slug::hit(Vector3f loc)
 {
-	ttl = timeAlive + 300; 
+	ttl = timeAlive() + 300; 
 	return;
 }
 

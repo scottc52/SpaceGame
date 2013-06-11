@@ -48,12 +48,14 @@ using namespace Eigen;
 class Projectile{
 public: 
 	virtual ~Projectile(){}
+	virtual Projectile(): damage(0){} 
 	virtual void hit(Vector3f loc)=0;
 	virtual void display(Vector3f cam, bool glow) =0;
 	virtual bool isDead() = 0; 
 	virtual void update(double dt) =0; 
 	virtual double timeAlive() =0;
 	virtual Vector3f &getPosition()=0;  
+	double damage;
 };
 
 class Slug : public Projectile{
@@ -65,6 +67,7 @@ private:
 	double pTimeAlive;
 	double pTimeSinceRedraw;  
 	Sound *sound;
+	double ttl; 
 public:
 	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
 	void hit(Vector3f loc); 
