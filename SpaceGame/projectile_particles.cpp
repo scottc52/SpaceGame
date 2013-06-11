@@ -25,7 +25,7 @@ float distScale = 0.1; // we could pass in field-of-view to calculate this. But 
 	void Particle::setAccel(Vector3f newAccel){
 		acceleration = newAccel;
 	}
-	void Particle::update(int dt){
+	void Particle::update(double dt){
 		float dts = ((float)dt)/1000;
 		location = location + velocity * dts;
 		velocity = velocity + acceleration *dts;
@@ -80,7 +80,7 @@ bool isParticleDead(Particle p){
 	void SimpleParticleSystem::setAccel(Vector3f newAccel){
 		acceleration = newAccel;
 	}
-	void SimpleParticleSystem::update(int dt){
+	void SimpleParticleSystem::update(double dt){
 		float dts = ((float)dt)/1000; // time passed in seconds
 		location = location + velocity * dts;
 		velocity = velocity + acceleration *dts;
@@ -178,7 +178,7 @@ bool isParticleDead(Particle p){
 		acceleration = newAccel;
 	}
 
-	void SmokyBullet::update(int dt){
+	void SmokyBullet::update(double dt){
 		if(isDead()){ return; }
 		t = t+dt;
 		float dts = ((float)dt)/1000; // time passed in seconds
@@ -249,8 +249,8 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, fl
 	pTimeSinceRedraw = 0; 
 }
 
-void Slug::update(int dt){
-	Vector3f delta = velocity * (((double)dt)/1000.0);
+void Slug::update(double dt){
+	Vector3f delta = velocity * ((dt)/1000.0);
 	position += delta; 
 	pTimeAlive += dt;
 	pTimeSinceRedraw += dt;
@@ -277,7 +277,7 @@ bool Slug::isDead(){
 	return (pTimeAlive > MAX_TIME); 
 }
 
-int Slug::timeAlive(){
+double Slug::timeAlive(){
 	return pTimeAlive;
 }
 

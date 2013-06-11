@@ -29,8 +29,9 @@
 #include "UI.h"
 #include <ctime>
 #include "GameTime.h"
+#include "pthread_helpers.h" 
 
-#define FPS (30) 
+#define FPS (60) 
 #define MSPF ((double)(1.0 / ((double) FPS) * 1000.0))  
 
 
@@ -48,7 +49,8 @@ private:
 	//RenderHandle *rh;
 	static Controller *gameController;  
 	GameTime::GameTimer ref;
-	int dt;   
+	GameTime::GameTimer lastFrame; 
+	double dt;   
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
 public:
 	/* 

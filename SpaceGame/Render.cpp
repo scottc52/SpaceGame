@@ -398,6 +398,7 @@ void drawFrame(){
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
 	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
 	//for(int i = 0; i<numObjects;i++){
+	GameTime::GameTimer ref = GameTime::GetTime(); 
 	for(unsigned int w = 0; w <wobs.size(); w++){
 		GameWorldObject *gwo = wobs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
@@ -474,14 +475,19 @@ void drawFrame(){
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 		//render Actors AKA metaball Warriors!
-		list<AI *>::iterator it = Render::gameState->GetActors()->begin();
-		list<AI *>::iterator end = Render::gameState->GetActors()->end();
-		while (it != end){
-			AI *ai = *it; 
-			ai->render();
-			it++;
-		}
+
 	}
+	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
+	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
+	list<AI *>::iterator end = Render::gameState->GetActors()->end();
+		
+	//ref = GameTime::GetTime();	
+	while (it != end){
+		AI *ai = *it; 
+		ai->render();
+		it++;
+	}
+	//cerr << "rendering actors took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 
 }
 
@@ -559,7 +565,8 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();   	
+	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();
+	Render::gameState->GetParticleSystems()->monitor.Enter('r');   	
 	list<Projectile *>::iterator it = bullets->begin(); 
 	while(it != bullets->end()){  
 		Projectile *curBullet = *it;
@@ -576,6 +583,7 @@ void drawBullets(bool glow){
 		}
 		it++;
 	}
+	Render::gameState->GetParticleSystems()->monitor.Exit('r');
 	glDisable(GL_BLEND);
 	glDepthMask(GL_TRUE);
 }
@@ -870,12 +878,16 @@ void Render::myIdle() {
 Event notifications... 
 **/
 
-void Render::requestFrame(){
+bool Render::requestFrame(){
+	bool value = true; 
 	pthread_mutex_lock(&lock);
-	if (frameRequested)
-		cerr<< "warning: frame dropped" << endl;
+	if (frameRequested){
+		//cerr<< "warning: frame dropped" << endl;
+		value = false;
+	}
 	frameRequested = true; 
 	pthread_mutex_unlock(&lock); 
+	return value;
 }
 
 void Render::pause(bool t){

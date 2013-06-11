@@ -22,6 +22,9 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="MetaballEnemy.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="MetalineEnemy.cpp" />
+    <ClCompile Include="MetaplaneEnemy.cpp" />
+    <ClCompile Include="Monitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloom_utils.h" />
@@ -98,6 +101,9 @@
     <ClInclude Include="SDL-1.2.15\include\SDL_video.h" />
     <ClInclude Include="MetaballEnemy.h" />
     <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="MetalineEnemy.h" />
+    <ClInclude Include="MetaplaneEnemy.h" />
+    <ClInclude Include="Monitor.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameDebugOutput.txt" />
