@@ -304,6 +304,7 @@ void Render::hitEffect(){
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
+	glShadeModel(GL_SMOOTH);
 	static float lmodel_twoside[] = { GL_TRUE };
 	glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE , lmodel_twoside);
 	//The following two lines can make specular lighting more accurate, but is usually not necessary.

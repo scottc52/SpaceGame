@@ -130,12 +130,17 @@ bool isParticleDead(Particle p){
 	SmokyBullet::SmokyBullet(){
 		deathT = -1;
 		t = 0;
+		#ifndef __linux__
 		sound = new Sound("sounds/smokybullet.wav");
 		sound->Play();
+		#endif
+		
 	} //default constructor doesn't set anything
 	SmokyBullet::SmokyBullet(Vector3f loc,Vector3f vel, float c0, float c1, float c2, float c3){
+		#ifndef __linux__
 		sound = new Sound("sounds/smokybullet.wav");
 		sound->Play();
+		#endif
 		//emitter has no velocity and acceleration of it's own.
 		//its location is decided by the bullet
 		location = loc;

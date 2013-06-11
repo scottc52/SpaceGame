@@ -199,7 +199,7 @@ public:
 	void hit(Vector3f hitLocation);
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
-	Vector3f &velocity(){ return velocity;} 
+	Vector3f &getVelocity(){ return velocity;} 
 private:
 	Sound *sound;
 };

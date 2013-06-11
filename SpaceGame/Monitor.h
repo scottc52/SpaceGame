@@ -5,7 +5,6 @@ simple implementation of read/write locks
 #ifndef MONITOR
 #define MONITOR
 #include <pthread.h>
-#include <queue> 
 
 class Monitor{
 	private:	 
@@ -15,8 +14,6 @@ class Monitor{
 	unsigned int num_readers;
 	unsigned int num_writers;
 	bool writing; 
-	void readerEnter();
-	void writerEnter(); 
 	public: 
 	Monitor();
 	void Enter(char mode);
