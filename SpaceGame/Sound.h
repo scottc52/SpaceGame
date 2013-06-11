@@ -13,7 +13,7 @@
 #include "SDL_mixer.h"
 #endif
 
-#include "GameObject.h"
+class GameObject;
 #include "GameCamera.h"
 
 class Sound {
@@ -44,6 +44,8 @@ private:
 	float maxVolume;
 	GameObject *object;
 	Vector3f position;
+
+	static map<char *, Mix_Chunk*> *filenamesToChunks;
 };
 
 class Music {

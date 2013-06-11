@@ -22,6 +22,8 @@
 #include "LocationDefines.h"
 #include <string>
 
+#include "CollisionDetection.h"
+
 using namespace std;
 using namespace Eigen;
 
@@ -70,7 +72,38 @@ private:
 		len = (len < MAX_NAME_CHARS-1)? len : MAX_NAME_CHARS-1; 
 		strncpy(this->name, c, len);
 		this->name[len] = '\0';  
-	} 
+	}
+	
+	void GameObject::UpdateCoords(vector<Vec3f>& v, Vec3f position, Vec3f velocity, Vec4f rotation, Vec4f wvelocity, float dt, float scale, bool pers, float inter, float xScale, float yScale, float zFar, float zNear){
+		float angle = rotation[0];
+		angle += wvelocity[0]*dt*inter;
+		Vector3f newPos = Vector3f(position[0] + velocity[0]*dt*inter, position[1] + velocity[1]*dt*inter, position[2] + velocity[2]*dt*inter);
+		Vector3f axis(rotation[1], rotation[2], rotation[3]);
+		axis.normalize();
+		Translation3f move =Translation3f(newPos.x(), newPos.y(), newPos.z());
+		angle = angle*2*M_PI/360;
+		AngleAxisf turn = AngleAxisf(angle, axis);
+		Matrix4f pmat;
+		if(pers){
+			pmat << xScale, 0, 0, 0,
+			0, yScale, 0, 0,
+			0, 0, -(zFar+zNear)/(zFar-zNear), -1,
+			0, 0, -2*zNear*zFar/(zFar-zNear), 0;
+		}else{
+			pmat = Matrix4f::Identity();
+		}
+		for(unsigned int boxV = 0; boxV < v.size(); boxV++){
+			Vector3f p = Vector3f(v[boxV][0], v[boxV][1], v[boxV][2]);
+			/*Vector4f pt(p.x(), p.y(), p.z(), 1);
+			 pt = pmat*pt;
+			 p = Vector3f(pt.x(), pt.y(), pt.z());*/
+			p = scale* p;
+			if(axis.norm() > 0)
+				p = turn* p;
+			p = move* p;
+			v[boxV] = Vec3f(p.x(), p.y(), p.z());
+		}
+	}
 public:
 	vector<Vec3f> boundingBox;
 	float radius;
@@ -171,6 +204,10 @@ public:
 	
 	bool GameObject::IsInBoundingBox(Vec3f v)
 	{
+		Vector3f tempPos = GetPosition();
+		Vec3f pos = Vec3f(tempPos[0], tempPos[1], tempPos[2]);
+		UpdateCoords(boundingBox, pos, velocity, rotation, angularVelocity, 0);
+		
 		int size = boundingBox.size();
 		if (size == 0) return false;
 		
