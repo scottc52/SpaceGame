@@ -207,13 +207,7 @@ public:
 	}
 
 	float GameObject::GetMass() { return mass; };
-
-<<<<<<< HEAD
 	void GameObject::SetMass(float newMass) { mass = newMass; };
-=======
-	//void GameObject::SetMass(float newMass) { mass = newMass; };
-	float GameObject::SetMass(float newMass) { mass = newMass; };
->>>>>>> f3265c6c88cefe441b4b1b8f6226887f034a5896
 	
 	bool GameObject::IsInBoundingBox(Vec3f v)
 	{

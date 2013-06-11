@@ -1,0 +1,54 @@
+﻿Build started 6/11/2013 11:46:46 AM.
+     1>Project "C:\Users\Austin\Documents\GitHub\Physics\Physics\Physics.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>Source.cpp(40): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(55): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(173): warning C4244: 'argument' : conversion from 'unsigned int' to 'const float', possible loss of data
+     1>Source.cpp(179): warning C4244: '*=' : conversion from 'GLdouble' to 'float', possible loss of data
+     1>Source.cpp(212): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>Source.cpp(223): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>Source.cpp(237): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>Source.cpp(241): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(325): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(343): warning C4244: 'return' : conversion from 'const float' to 'int', possible loss of data
+     1>Source.cpp(695): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(738): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Source.cpp(738): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(741): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Source.cpp(741): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(755): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>Source.cpp(756): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Source.cpp(756): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(760): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Source.cpp(760): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(778): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(805): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(807): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(808): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(917): warning C4244: 'initializing' : conversion from 'GLdouble' to 'float', possible loss of data
+     1>Source.cpp(919): warning C4244: 'argument' : conversion from 'GLdouble' to 'const float', possible loss of data
+     1>Source.cpp(926): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Source.cpp(927): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(955): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>Source.cpp(957): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(960): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Source.cpp(1083): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(1084): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(1117): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Source.cpp(1118): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>Source.cpp(1213): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>Source.cpp(1316): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>Source.cpp(1317): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>Source.cpp(1379): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\Physics\Release\Physics.exe" /NOLOGO glew32.lib freeglut.lib glu32.lib libOpenMeshCore.lib libOpenMeshTools.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\Physics\Release\Physics.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\Physics\Release\Physics.lib" /MACHINE:X86 /SAFESEH Release\Source.obj
+         Generating code
+         Finished generating code
+         Physics.vcxproj -> C:\Users\Austin\Documents\GitHub\Physics\Release\Physics.exe
+     1>Done Building Project "C:\Users\Austin\Documents\GitHub\Physics\Physics\Physics.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.39

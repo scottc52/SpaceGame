@@ -10,7 +10,6 @@ W testWall3 sampleWall2.obj 0 0 0 0 0 0 2.0 g
 W testWall4 sampleWall3.obj 0 0 0 0 0 0 2.0 -
 W testWall5 sampleWall4.obj 0 0 0 0 0 0 2.0 -
 W testWall6 sampleWall5.obj 0 0 0 0 0 0 2.0 -
-
 # W	 localroomname	mesh_file_name	x	y	z angle aX aY aZ scale
 #W roomMesh testroom.obj 0 0 0 0 0 0 0 1.0
 #W testWall1 TestRoom1.obj 0 0 -3 0 0 0 1 1.0
@@ -25,13 +24,11 @@ A sphereB testSphere.obj 2 0 0 0 0 1 0 1.0 g 0.0 0 0 0 0 0 0 3
 #Lights for now, all point lights, may extend later
 # L	name x y z ar ag ab dr dg db st sg sb	
 L ceiling 0.0f 30.0f 0.0f 0 0 0 180 180 180 180 180 180
-
 #Camera
 #specify a third person camera or explicitly state first person
 # C 	player
 # C	x	y	z	vx	vy	vz	ux	uy	uz
 C player 0 0 -4 0 0 1 0 1 0	 
-
 #M name x y z angleX angleY angleZ scale mass
 M player 0 0 -5 0 0 1 0 1.0 20
 #C player 0 0 -4 0 0 1 0 1 0	 
