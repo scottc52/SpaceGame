@@ -56,7 +56,7 @@ public:
 	virtual ~Projectile(){}
 	bool drawCollision;
 	vector<Vec3f>boundingBox;
-	Projectile(): damage(0), mass(1.0){
+	Projectile(): damage(0), mass(1.0), hitted(false){
 		drawCollision = false;
 		boundingBox.push_back(Vec3f(-0.05, -0.05, -0.05));
 		boundingBox.push_back(Vec3f(0.05, -0.05, -0.05));
@@ -74,6 +74,7 @@ public:
 	virtual double timeAlive() =0;
 	virtual Vector3f &getPosition()=0; 
 	virtual Vector3f &getVelocity()=0; 
+	bool hitted; 
 	double damage;
 	double mass; 
 };

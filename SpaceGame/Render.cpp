@@ -492,9 +492,10 @@ void drawTestPrism(){
 
 void drawFrame(){
     Material material = exampleMaterial();
-    bindMaterial(material);
-
-    RenderCube();
+    //bindMaterial(material);
+    glPushMatrix(); 
+    //RenderCube();
+    glPopMatrix();
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
@@ -1947,6 +1948,6 @@ void Render::GlutInitialize(){
 	//glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
 	glutSetCursor(GLUT_CURSOR_NONE);
-    InitializeRoomTextures();
+    //InitializeRoomTextures();
 
 }

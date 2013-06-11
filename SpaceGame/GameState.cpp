@@ -340,7 +340,7 @@ void PSystems::updateAll(double dt){
 	}
 
 	projectiles.remove_if< bool(*)(Projectile *)>(pIsDead);
-	t->update(dt);
+	//t->update(dt);
 	monitor.Exit('w');
 	//cout << "finished" << endl;
 }
@@ -490,6 +490,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	}
 	Camera* c = GameState::GetCamera();
 	PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
+	ps->monitor.Enter('w'); 
 	list<AI *>::iterator ait = actors.begin();
 	list<Projectile *>::iterator pit;   
 	while (ait != actors.end()){
@@ -497,15 +498,18 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		AI *actor = *ait; 
 		while(pit != ps->GetBullets()->end()){
 			Projectile *proj = *pit;
+			pit++;
+			if (proj->hitted) continue;
 			if (actor->intersect(proj->getPosition())){
+				cerr<< "hit!" << endl; 
 				proj->hit(proj->getPosition());
 				actor->hit(proj); 
-
 			}  
-			pit++; 
+			 
 		}
 		ait++;
 	}
+	ps->monitor.Exit('w');
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces
