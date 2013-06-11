@@ -337,8 +337,6 @@ void PSystems::updateAll(double dt){
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		jobs[i].join(); 
 	}
-
-	
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
 }
