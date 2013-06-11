@@ -69,6 +69,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_RELEASE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src;SOIL/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -79,8 +80,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CharacterMesh.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="EnemyProjectile.cpp" />
@@ -107,8 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CharacterMesh.h" />
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="EnemyProjectile.h" />

@@ -30,4 +30,11 @@ L ceiling 0.0f 30.0f 0.0f 0 0 0 180 180 180 180 180 180
 #specify a third person camera or explicitly state first person
 # C 	player
 # C	x	y	z	vx	vy	vz	ux	uy	uz
+<<<<<<< HEAD
+C player 0 0 -4 0 0 1 0 1 0	 
+
+#A name x y z angleX angleY angleZ scale mass
+M player 0 0 -5 0 0 1 0 1.0 20
+=======
 #C player 0 0 -4 0 0 1 0 1 0	 
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0

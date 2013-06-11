@@ -489,6 +489,57 @@ void drawTestPrism(){
 	glEnd();
 }
 
+<<<<<<< HEAD
+void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
+	glEnable(GL_NORMALIZE);
+	for(size_t i = 0; i < players.size(); ++i) {
+		players[i]->monitor.Enter('w');
+		SkeletonPose *pose = &players[i]->currentPose;
+		pose->skel = &players[i]->skel;
+		MatrixPalette matPal = pose->buildMatrixPalette();
+		//players[i]->aim_clip.keyframes[0].skel = &players[i]->skel;
+		//MatrixPalette matPal = players[i]->aim_clip.keyframes[0].buildMatrixPalette();
+		players[i]->monitor.Exit('w');
+		glPushMatrix();
+		Vector3f Position = ((GameObject *)players[i])->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); 
+		Vec4f Rotation = ((GameObject *)players[i])->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]);
+		glBegin(GL_TRIANGLES);
+			for(size_t j = 0; j < players[i]->charMesh.faces.size(); ++j) {
+				size_t vertexIndex[3];
+				vertexIndex[0] = players[i]->charMesh.faces[j].v1;
+				vertexIndex[1] = players[i]->charMesh.faces[j].v2;
+				vertexIndex[2] = players[i]->charMesh.faces[j].v3;
+				Point3f p[3];
+				p[0] = players[i]->charMesh.vertices[vertexIndex[0]];
+				p[1] = players[i]->charMesh.vertices[vertexIndex[1]];
+				p[2] = players[i]->charMesh.vertices[vertexIndex[2]];
+				Vector3f normals[3];
+				normals[0] = players[i]->charMesh.normals[players[i]->charMesh.faces[j].n1];
+				normals[1] = players[i]->charMesh.normals[players[i]->charMesh.faces[j].n2];
+				normals[2] = players[i]->charMesh.normals[players[i]->charMesh.faces[j].n3];
+				for(int k = 0; k < 3; ++k) {
+					Vector4f v(p[k][0], p[k][1], p[k][2], 1);
+					Vector4f n(normals[k][0], normals[k][1], normals[k][2], 0);
+					Matrix4f mat = Matrix4f::Zero();
+					for(int l = 0; l < players[i]->skin.jointWeights[vertexIndex[k]].numWeights; ++l) {
+						mat += players[i]->skin.jointWeights[vertexIndex[k]].weight[l] * 
+							   matPal.skinningMats[players[i]->skin.jointWeights[vertexIndex[k]].jointIndex[l]];
+					}
+					v = mat * v;
+					n = mat * n;
+					glNormal3f(n[0], n[1], n[2]);
+					glVertex3f(v[0], v[1], v[2]);
+				}
+			}
+		glEnd();
+		glPopMatrix();
+	}
+	glDisable(GL_NORMALIZE);
+}
+=======
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 
 void drawFrame(){
     Material material = exampleMaterial();
@@ -583,7 +634,11 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
+<<<<<<< HEAD
+	DrawSkinnedPlayers(gr->GetPlayers());
+=======
 	DrawBoundingProjectileBox();
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
@@ -1525,7 +1580,7 @@ void effectsResourcesInitialize(){
 	loadPostProcessingProgram();
 	loadFogProgram();
 	loadBlurProgram();
-	loadBlur9Program();
+	//loadBlur9Program();
 	loadBloomProgram();
 
 	//create frame buffer objects with depth buffers

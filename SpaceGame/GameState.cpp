@@ -455,6 +455,12 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	cam->setDirection(dir);    
 }
 
+void GameState::AnimatePlayers(double dt) {
+	vector<GamePlayer *> players = room->GetPlayers();
+	for(size_t i = 0; i < players.size(); ++i)
+		players[i]->Animate(dt);
+}
+
 void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//If save, handle save
 
@@ -464,9 +470,14 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//Player action
 	ProcessInput(input, dt);
+<<<<<<< HEAD
+	AnimatePlayers(dt);
+	UpdateParticleSystems(dt);
+=======
 	UpdateParticleSystems(dt * 1000.0);
 
 	room->ClearCollisions();
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 
 	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();

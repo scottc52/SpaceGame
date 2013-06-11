@@ -159,6 +159,27 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		door.SetMeshFile(newCString(v[2]));
 		r.AddDoor(door);
 		break;
+			 } 
+	case 'M':{
+		GAME_DEBUG_ASSERT(v.size() >= 11);
+		float x= atof(v[2]);
+		float y= atof(v[3]);
+		float z= atof(v[4]);
+		float angle = atof(v[5]);
+		float nX = atof(v[6]);
+		float nY = atof(v[7]);
+		float nZ = atof(v[8]);
+		float scale = atof(v[9]);
+		GamePlayer player;
+		Vector3f p(x,y,z);
+		Vector4f rot(nX, nY, nZ, angle);
+		player.SetPosition(p);
+		player.SetScale(scale);
+		player.SetMass(atof(v[10]));
+		player.SetRotation(ConvertToOM4Vector(rot));
+		player.SetName(v[1]);
+		r.AddPlayer(player); 
+		break;
 			 }
 			 //Active Object
 	case 'A':{

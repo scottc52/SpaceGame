@@ -104,6 +104,7 @@ private:
 	void operator=(GameState const &stateMachine){}
 	GamePlayer player;
 	void GameState::ProcessInput(list<UIEvent *> ev, double dt); 
+	void GameState::AnimatePlayers(double dt);
 public:
 	static GameState* GameState::GetInstance();
 	void SetRoom(GameRoom *gr){this->room = gr;}
