@@ -39,6 +39,7 @@ const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
 const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
 const bool MOVING_ENABLED = false;
 const int FIRE_COUNTER_THRESHOLD = 40;
+const float NUM_RAY_TRACE_INTERVALS = 50;
 
 // Initializes the PlaneBlob Creature object
 MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radius)
@@ -143,8 +144,30 @@ MetaplaneEnemy::MetaplaneEnemy(Eigen::Vector3f center, int numBlobs, float radiu
 	
 	this->neighbors = new Index[neighborsSize];
 	
-	this->direction = generateRandomNormalizedDirection();
 	this->speed = DEFAULT_BLOB_CREATURE_SPEED * this->radius;
+	Vertex direction = generateRandomNormalizedDirection();
+	this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
+	this->angularVelocity = Vec4f();
+	
+	vector<Vec3f> tempBoundingBox;
+	Vec3f v(-this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	
+	this->boundingBox = tempBoundingBox;
 	
 	this->fireCounter = 0;
 	
@@ -225,7 +248,8 @@ void MetaplaneEnemy::moveMetaplaneEnemy()
 			newDirection.y = playerPos(1) - this->center.y;
 			newDirection.z = playerPos(2) - this->center.z;
 			normalize(newDirection);
-			this->direction = newDirection;
+			this->velocity = Vec3f(newDirection.x * this->speed, newDirection.y * this->speed,
+								   newDirection.z * this->speed);
 		}
 	}
 	else if (actionState == SOUND_DETECTED_ACTION_STATE)
@@ -233,14 +257,14 @@ void MetaplaneEnemy::moveMetaplaneEnemy()
 		//Move Toward Sound TODO
 	}
 	
-	this->center.x = this->center.x + (this->direction.x * this->speed);
-	this->center.y = this->center.y + (this->direction.y * this->speed);
-	this->center.z = this->center.z + (this->direction.z * this->speed);
+	this->center.x = this->center.x + (this->velocity)[0];
+	this->center.y = this->center.y + (this->velocity)[1];
+	this->center.z = this->center.z + (this->velocity)[2];
 }
 
 void MetaplaneEnemy::updateActionState()
 {
-	if (false /*playerIsVisible()*/) // CHANGE LATER
+	if (isPlayerVisible()) // CHANGE LATER
 	{
 		this->actionState = PLAYER_DETECTED_ACTION_STATE;
 	} else {
@@ -248,14 +272,64 @@ void MetaplaneEnemy::updateActionState()
 	}
 }
 
-bool MetaplaneEnemy::collisionDetected(Vertex v)
+bool MetaplaneEnemy::isPlayerVisible()
+{
+	GameState *gs = GameState::GetInstance();
+	GameRoom *gr = gs->GetRoom();
+	vector<GameObject *> gobjs = gr->GetGameObjects();
+	vector<GamePlayer *> players = gr->GetPlayers();
+	int objSize = gobjs.size();
+	int playerSize = players.size();
+	
+	Vector3f playerPos = gs->GetPlayerPosition();
+	
+	Vertex playerDir;
+	playerDir.x = playerPos(0) - this->center.x;
+	playerDir.y = playerPos(1) - this->center.y;
+	playerDir.z = playerPos(2) - this->center.z;
+	
+	float length = (playerDir.x * playerDir.x) + (playerDir.y * playerDir.y) + (playerDir.z * playerDir.z);
+	
+	float xIntervalFraction = playerDir.x / NUM_RAY_TRACE_INTERVALS;
+	float yIntervalFraction = playerDir.y / NUM_RAY_TRACE_INTERVALS;
+	float zIntervalFraction = playerDir.z / NUM_RAY_TRACE_INTERVALS;
+	
+	float radiusSquared = this->radius * this->radius;
+	
+	for (int i = 0; i < NUM_RAY_TRACE_INTERVALS; i++)
+	{
+		Vec3f v = Vec3f(this->center.x + playerDir.x * xIntervalFraction,
+						this->center.y + playerDir.y * yIntervalFraction,
+						this->center.z + playerDir.z * zIntervalFraction);
+		
+		for (int j; j < playerSize; j++)
+		{
+			GamePlayer *player = players[j];
+			
+			if (player->IsInBoundingBox(v))
+			{
+				return true;
+			}
+		}
+		
+		if ((i * length / NUM_RAY_TRACE_INTERVALS) > radiusSquared)
+		{
+			for (int k = 0; k < objSize; k++){
+				GameObject *obj = gobjs[k];
+				if (obj->IsInBoundingBox(v))
+				{
+					return false;
+				}
+			}
+		}
+	}
+	
+	return true;
+}
+
+bool MetaplaneEnemy::collisionDetected()
 {	
-	if ((v.x - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.x + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius))
+	if (tier0CollisionData.size() > 0 || tier1CollisionData.size() > 0 || tier2CollisionData.size() > 0)
 	{
 		return true;
 	}
@@ -271,12 +345,6 @@ Vector3f MetaplaneEnemy::getLocation()
 	return location;
 }
 
-Vector3f MetaplaneEnemy::getDirection()
-{
-	Vector3f dir(direction.x, direction.y, direction.z);
-	return dir;
-}
-
 void MetaplaneEnemy::update()
 {
 	checkForCollision();
@@ -288,25 +356,16 @@ void MetaplaneEnemy::update()
 
 void MetaplaneEnemy::checkForCollision()
 {
-	if (collisionDetected(this->center))
+	if (collisionDetected())
 	{
 		hasCollided = true;
 		
-		this->direction = generateRandomNormalizedDirection();
+		this->center.x -= this->velocity[0];
+		this->center.y -= this->velocity[1];
+		this->center.z -= this->velocity[2];
 		
-		Vertex nextCenter;
-		nextCenter.x = this->center.x + this->direction.x * this->speed;
-		nextCenter.y = this->center.y + this->direction.y * this->speed;
-		nextCenter.z = this->center.z + this->direction.z * this->speed;
-		
-		while (collisionDetected(nextCenter))
-		{
-			this->direction = generateRandomNormalizedDirection();
-			
-			nextCenter.x = this->center.x + this->direction.x * this->speed;
-			nextCenter.y = this->center.y + this->direction.y * this->speed;
-			nextCenter.z = this->center.z + this->direction.z * this->speed;
-		}
+		Vertex direction = generateRandomNormalizedDirection();
+		this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
 	}
 	else
 	{
@@ -440,8 +499,8 @@ void MetaplaneEnemy::checkToUpdate()
 		curBlob.segment2.z = -curBlob.line2(2) * curBlob.length;
 		
 		curBlob.segmentDistanceSquared = curBlob.segment1.x * curBlob.segment1.x +
-										 curBlob.segment1.y * curBlob.segment1.y +
-										 curBlob.segment1.z * curBlob.segment1.z;
+		curBlob.segment1.y * curBlob.segment1.y +
+		curBlob.segment1.z * curBlob.segment1.z;
 		
 		blobs[i] = curBlob;
 	}
@@ -827,9 +886,9 @@ bool MetaplaneEnemy::renderCube(Index index)
 }
 
 bool MetaplaneEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, VertexWithFieldStrength v2,
-												   VertexWithFieldStrength v3, VertexWithFieldStrength v4,
-												   int v1Index, int v2Index, int v3Index, int v4Index,
-												   Normal *normals)
+													VertexWithFieldStrength v3, VertexWithFieldStrength v4,
+													int v1Index, int v2Index, int v3Index, int v4Index,
+													Normal *normals)
 {	
 	int numInsideField = 0;
 	
