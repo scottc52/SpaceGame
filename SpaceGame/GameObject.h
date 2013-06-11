@@ -22,10 +22,13 @@
 #include "LocationDefines.h"
 #include <string>
 
+
 using namespace std;
 using namespace Eigen;
 
 #define MAX_NAME_CHARS 40
+
+class Projectile;
 
 /////////////////////////////////////////////////////////
 // TYPEDEFINES
@@ -62,7 +65,6 @@ private:
 	bool isModified;
 	char name[MAX_NAME_CHARS];
 	string meshFile;
-
 	//Thread Lock (mutex_t ?) object lock;
 	//Sound link sound??  Play sound indirectly?
 
@@ -71,7 +73,38 @@ private:
 		len = (len < MAX_NAME_CHARS-1)? len : MAX_NAME_CHARS-1; 
 		strncpy(this->name, c, len);
 		this->name[len] = '\0';  
-	} 
+	}
+	
+/*	void GameObject::UpdateCoords(vector<Vec3f>& v, Vec3f position, Vec3f velocity, Vec4f rotation, Vec4f wvelocity, float dt, float scale, bool pers, float inter, float xScale, float yScale, float zFar, float zNear){
+		float angle = rotation[0];
+		angle += wvelocity[0]*dt*inter;
+		Vector3f newPos = Vector3f(position[0] + velocity[0]*dt*inter, position[1] + velocity[1]*dt*inter, position[2] + velocity[2]*dt*inter);
+		Vector3f axis(rotation[1], rotation[2], rotation[3]);
+		axis.normalize();
+		Translation3f move =Translation3f(newPos.x(), newPos.y(), newPos.z());
+		angle = angle*2*M_PI/360;
+		AngleAxisf turn = AngleAxisf(angle, axis);
+		Matrix4f pmat;
+		if(pers){
+			pmat << xScale, 0, 0, 0,
+			0, yScale, 0, 0,
+			0, 0, -(zFar+zNear)/(zFar-zNear), -1,
+			0, 0, -2*zNear*zFar/(zFar-zNear), 0;
+		}else{
+			pmat = Matrix4f::Identity();
+		}
+		for(unsigned int boxV = 0; boxV < v.size(); boxV++){
+			Vector3f p = Vector3f(v[boxV][0], v[boxV][1], v[boxV][2]);
+			/*Vector4f pt(p.x(), p.y(), p.z(), 1);
+			 pt = pmat*pt;
+			 p = Vector3f(pt.x(), pt.y(), pt.z());*/
+/*			p = scale* p;
+			if(axis.norm() > 0)
+				p = turn* p;
+			p = move* p;
+			v[boxV] = Vec3f(p.x(), p.y(), p.z());
+		}
+	}*/
 public:
 	vector<Vec3f> boundingBox;
 	float radius;
@@ -79,16 +112,22 @@ public:
 	map<GameObject*, CollisionData> tier2CollisionData;
 	map<GameObject*, CollisionData> tier1CollisionData;
 	map<GameObject*, CollisionData> tier0CollisionData;
-
+	vector<Projectile*> collidedProjectiles;
+	map<Projectile*, CollisionData> projectileCollisionData; 
+	bool drawCollision;
+	MyMesh* decimatedMeshPtr;
+	bool glowing; 
 	void ClearCollisionData(){
 		tier1CollisionData.clear();
 		tier2CollisionData.clear();
 		tier0CollisionData.clear();
+		collidedProjectiles.clear();
+ 		projectileCollisionData.clear(); 
 	}
 
 	int objType;
 	Vec3f velocity;
-	Vec3f angularVelocity;
+	Vec4f angularVelocity;
 	Vec3f CenterOfMass;
 	//Moment of Inertia
 	float mass;
@@ -98,19 +137,28 @@ public:
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
 	{
+		glowing = false; 
+		drawCollision = false;
 		radius = 1.f;
 		setName(n);		
 		isModified = false;
 		position = Vector3f(0,0,0);
 		scale = 1.f;
-		CollisionTierNum;
+		CollisionTierNum = 2;
 		outSideCollisionScale = 1.3;
+		angularVelocity = Vec4f(1,0,0,0);
+		velocity = Vec3f(0,0,0);
 		/*TO DO: Initialize lock*/
 	}
 
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		glowing = false;
+		drawCollision = object->drawCollision;
+		objType = object->objType;
+		velocity = object->velocity;
+		CollisionTierNum = object->CollisionTierNum;
 		setName(object->GetName());  		
 		isModified = object->IsModified();
 		position = object->GetPosition();
@@ -119,6 +167,7 @@ public:
 		rotation = object->GetRotation();
 		meshptr = object->GetMesh();
 		objType = object->objType;
+		angularVelocity = object->angularVelocity;
 		/*TO DO: Initialize lock*/
 	}
 
@@ -155,6 +204,44 @@ public:
 		meshFileName = meshFileName + f;
 		meshFile.clear();
 		meshFile = meshFileName;
+	}
+
+	float GameObject::GetMass() { return mass; };
+	float GameObject::SetMass(float newMass) { mass = newMass; };
+	
+	bool GameObject::IsInBoundingBox(Vec3f v)
+	{
+		
+		int size = boundingBox.size();
+		if (size == 0) return false;
+		
+		float minX = boundingBox[0][0];
+		float maxX = boundingBox[0][0];
+		float minY = boundingBox[0][1];
+		float maxY = boundingBox[0][1];
+		float minZ = boundingBox[0][2];
+		float maxZ = boundingBox[0][2];
+		
+		for (int i = 1; i < size; i++)
+		{
+			if (boundingBox[i][0] < minX) minX = boundingBox[i][0];
+			if (boundingBox[i][0] > maxX) maxX = boundingBox[i][0];
+			
+			if (boundingBox[i][0] < minY) minY = boundingBox[i][1];
+			if (boundingBox[i][0] > maxY) maxY = boundingBox[i][1];
+			
+			if (boundingBox[i][0] < minZ) minZ = boundingBox[i][2];
+			if (boundingBox[i][0] > maxZ) maxZ = boundingBox[i][2];
+		}
+		
+		if (v[0] < minX || v[0] > maxX || v[1] < minY || v[1] > maxY || v[2] < minZ || v[2] > maxZ)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////

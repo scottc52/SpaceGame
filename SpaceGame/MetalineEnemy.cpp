@@ -8,6 +8,10 @@
  */
 
 #include "MetalineEnemy.h"
+#include "projectile_particles.h"
+#include "GameState.h"
+#include <cstdio>
+#include <iostream>
 
 const float DEFAULT_BLOB_MASS = 1;
 const float DEFAULT_BLOB_MOVE_SPEED = .05f;
@@ -35,6 +39,7 @@ const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
 const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
 const bool MOVING_ENABLED = false;
 const int FIRE_COUNTER_THRESHOLD = 40;
+const float NUM_RAY_TRACE_INTERVALS = 50;
 
 // Initializes the LineBlob Creature object
 MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
@@ -93,7 +98,7 @@ MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 		blob.segment.z = -blob.line(2) * blob.length;
 		
 		blob.segmentDistanceSquared = blob.segment.x * blob.segment.x + blob.segment.y * blob.segment.y +
-									  blob.segment.z * blob.segment.z;
+		blob.segment.z * blob.segment.z;
 		
 		blob.pastCenter = false;
 		
@@ -120,10 +125,34 @@ MetalineEnemy::MetalineEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	this->neighbors = new Index[neighborsSize];
 	
-	this->direction = generateRandomNormalizedDirection();
 	this->speed = DEFAULT_BLOB_CREATURE_SPEED * this->radius;
+	Vertex direction = generateRandomNormalizedDirection();
+	this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
+	this->angularVelocity = Vec4f();
+	
+	vector<Vec3f> tempBoundingBox;
+	Vec3f v(-this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	
+	this->boundingBox = tempBoundingBox;
 	
 	this->fireCounter = 0;
+	
+	this->hasCollided = false;
 	
 	float tempBlobMaterialAmbient[] = {0.2, 0.2, 0.6, 1.0};
 	float tempBlobMaterialDiffuse[]  = {0.2, 0.2, 0.6, 1.0};
@@ -187,30 +216,36 @@ void MetalineEnemy::moveMetalineEnemy()
 	
 	if (actionState == DEFAULT_ACTION_STATE)
 	{
-		this->center.x = this->center.x + (this->direction.x * this->speed);
-		this->center.y = this->center.y + (this->direction.y * this->speed);
-		this->center.z = this->center.z + (this->direction.z * this->speed);
+		
 	}
 	else if (actionState == PLAYER_DETECTED_ACTION_STATE)
 	{
-		//Vector3f playerPos = getPlayerPosition();
-		Vector3f playerPos = Vector3f(0, 0, 0); // CHANGE LATER
-		Vertex newDirection;
-		newDirection.x = playerPos(0) - this->center.x;
-		newDirection.y = playerPos(1) - this->center.y;
-		newDirection.z = playerPos(2) - this->center.z;
-		normalize(newDirection);
-		this->direction = newDirection;
+		if (!hasCollided)
+		{
+			GameState *gs = GameState::GetInstance();
+			Vector3f playerPos = gs->GetPlayerPosition();
+			Vertex newDirection;
+			newDirection.x = playerPos(0) - this->center.x;
+			newDirection.y = playerPos(1) - this->center.y;
+			newDirection.z = playerPos(2) - this->center.z;
+			normalize(newDirection);
+			this->velocity = Vec3f(newDirection.x * this->speed, newDirection.y * this->speed,
+								   newDirection.z * this->speed);
+		}
 	}
 	else if (actionState == SOUND_DETECTED_ACTION_STATE)
 	{
 		//Move Toward Sound TODO
 	}
+	
+	this->center.x = this->center.x + (this->velocity)[0];
+	this->center.y = this->center.y + (this->velocity)[1];
+	this->center.z = this->center.z + (this->velocity)[2];
 }
 
 void MetalineEnemy::updateActionState()
 {
-	if (false /*playerIsVisible()*/) // CHANGE LATER
+	if (isPlayerVisible()) // CHANGE LATER
 	{
 		this->actionState = PLAYER_DETECTED_ACTION_STATE;
 	} else {
@@ -218,34 +253,64 @@ void MetalineEnemy::updateActionState()
 	}
 }
 
-/*void MetalineEnemy::moveProjectiles()
+bool MetalineEnemy::isPlayerVisible()
 {
-	int size = projectiles.size();
-	for (int i = 0; i < size; i++)
+	GameState *gs = GameState::GetInstance();
+	GameRoom *gr = gs->GetRoom();
+	vector<GameObject *> gobjs = gr->GetGameObjects();
+	vector<GamePlayer *> players = gr->GetPlayers();
+	int objSize = gobjs.size();
+	int playerSize = players.size();
+	
+	Vector3f playerPos = gs->GetPlayerPosition();
+	
+	Vertex playerDir;
+	playerDir.x = playerPos(0) - this->center.x;
+	playerDir.y = playerPos(1) - this->center.y;
+	playerDir.z = playerPos(2) - this->center.z;
+	
+	float length = (playerDir.x * playerDir.x) + (playerDir.y * playerDir.y) + (playerDir.z * playerDir.z);
+	
+	float xIntervalFraction = playerDir.x / NUM_RAY_TRACE_INTERVALS;
+	float yIntervalFraction = playerDir.y / NUM_RAY_TRACE_INTERVALS;
+	float zIntervalFraction = playerDir.z / NUM_RAY_TRACE_INTERVALS;
+	
+	float radiusSquared = this->radius * this->radius;
+	
+	for (int i = 0; i < NUM_RAY_TRACE_INTERVALS; i++)
 	{
-		Projectile curProjectile = projectiles[i];
-		if (curProjectile.hasCollided())
+		Vec3f v = Vec3f(this->center.x + playerDir.x * xIntervalFraction,
+						this->center.y + playerDir.y * yIntervalFraction,
+						this->center.z + playerDir.z * zIntervalFraction);
+		
+		for (int j; j < playerSize; j++)
 		{
-			projectiles.erase(projectiles.begin() + i);
-			i--;
-			size--;
+			GamePlayer *player = players[j];
+			
+			if (player->IsInBoundingBox(v))
+			{
+				return true;
+			}
 		}
-		else
+		
+		if ((i * length / NUM_RAY_TRACE_INTERVALS) > radiusSquared)
 		{
-			curProjectile.move();
-			projectiles[i] = curProjectile;
+			for (int k = 0; k < objSize; k++){
+				GameObject *obj = gobjs[k];
+				if (obj->IsInBoundingBox(v))
+				{
+					return false;
+				}
+			}
 		}
 	}
-}*/
+	
+	return true;
+}
 
-bool MetalineEnemy::collisionDetected(Vertex v)
+bool MetalineEnemy::collisionDetected()
 {	
-	if ((v.x - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY  * this->radius) ||
-		(v.x + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius))
+	if (tier0CollisionData.size() > 0 || tier1CollisionData.size() > 0 || tier2CollisionData.size() > 0)
 	{
 		return true;
 	}
@@ -261,31 +326,31 @@ Vector3f MetalineEnemy::getLocation()
 	return location;
 }
 
-Vector3f MetalineEnemy::getDirection()
+void MetalineEnemy::update()
 {
-	Vector3f dir(direction.x, direction.y, direction.z);
-	return dir;
-}
+	checkForCollision();
+	checkToMove();
+	checkToChangeOrientation();
+	checkToFire();
+	checkToUpdate();
+};
 
 void MetalineEnemy::checkForCollision()
 {
-	if (collisionDetected(this->center))
+	if (collisionDetected())
 	{
-		this->direction = generateRandomNormalizedDirection();
+		hasCollided = true;
 		
-		Vertex nextCenter;
-		nextCenter.x = this->center.x + this->direction.x * this->speed;
-		nextCenter.y = this->center.y + this->direction.y * this->speed;
-		nextCenter.z = this->center.z + this->direction.z * this->speed;
+		this->center.x -= this->velocity[0];
+		this->center.y -= this->velocity[1];
+		this->center.z -= this->velocity[2];
 		
-		while (collisionDetected(nextCenter))
-		{
-			this->direction = generateRandomNormalizedDirection();
-			
-			nextCenter.x = this->center.x + this->direction.x * this->speed;
-			nextCenter.y = this->center.y + this->direction.y * this->speed;
-			nextCenter.z = this->center.z + this->direction.z * this->speed;
-		}
+		Vertex direction = generateRandomNormalizedDirection();
+		this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
+	}
+	else
+	{
+		hasCollided = false;
 	}
 }
 
@@ -303,27 +368,21 @@ void MetalineEnemy::checkToFire()
 {
 	if (fireCounter >= FIRE_COUNTER_THRESHOLD)
 	{
-		//Vector3f playerPos = getPlayerPosition();
-		Vector3f playerPos = Vector3f(0, 0, 0); // CHANGE LATER
-		Vector3f projectileCenter;
-		projectileCenter(0) = this->center.x;
-		projectileCenter(1) = this->center.y;
-		projectileCenter(2) = this->center.z;
-		Vector3f projectileDirection = playerPos - projectileCenter;
-		projectileDirection.normalize();
+		GameState *gs = GameState::GetInstance();
+		Vector3f playerPos = gs->GetPlayerPosition();
+		Vector3f pCenter(this->center.x, this->center.y, this->center.z);
+		Vector3f projectileDirection = (playerPos - pCenter).normalized();
+		Vector3f velocity(projectileDirection(0) * PROJECTILE_SPEED, projectileDirection(1) * PROJECTILE_SPEED,
+						  projectileDirection(2) * PROJECTILE_SPEED);
+		Projectile *p = new Ball(pCenter, velocity, PROJECTILE_RADIUS);
+		gs->GetParticleSystems()->AddBullet(p);
 		
-		/*Projectile newProjectile(projectileCenter, projectileDirection, PROJECTILE_RADIUS,
-								 PROJECTILE_SPEED);
-		projectiles.push_back(newProjectile);
-		*/
 		fireCounter = 0;
 	}
 	else if (fireCounter < FIRE_COUNTER_THRESHOLD)
 	{
 		fireCounter++;
 	}
-	
-	//moveProjectiles();
 }
 
 // NOTE: Assumes (2 * maxBlobRadius) < (maxRadius - MIN_DISTANCE_FROM_CENTER)
@@ -402,8 +461,8 @@ void MetalineEnemy::checkToUpdate()
 		curBlob.segment.z = -curBlob.line(2) * curBlob.length;
 		
 		curBlob.segmentDistanceSquared = curBlob.segment.x * curBlob.segment.x +
-										 curBlob.segment.y * curBlob.segment.y +
-										 curBlob.segment.z * curBlob.segment.z;
+		curBlob.segment.y * curBlob.segment.y +
+		curBlob.segment.z * curBlob.segment.z;
 		
 		blobs[i] = curBlob;
 	}
@@ -525,8 +584,8 @@ float MetalineEnemy::calculateFieldStrength(VertexWithFieldStrength v)
 		Vertex closest = getClosestPoint(v, blobs[i]);
 		
 		float distanceSquared = (closest.x - v.x) * (closest.x - v.x) +
-								(closest.y - v.y) * (closest.y - v.y) +
-								(closest.z - v.z) * (closest.z - v.z);
+		(closest.y - v.y) * (closest.y - v.y) +
+		(closest.z - v.z) * (closest.z - v.z);
 		
 		if (distanceSquared < fieldStrengthDistanceSquaredThreshold)
 		{
@@ -564,8 +623,8 @@ MetalineEnemy::Vertex MetalineEnemy::getNormal(Vertex v)
 	for (int i = 0; i < numBlobs; i++)
 	{
 		/*float xDif = blobs[i].center.x - v.x;
-		float yDif = blobs[i].center.y - v.y;
-		float zDif = blobs[i].center.z - v.z;*/
+		 float yDif = blobs[i].center.y - v.y;
+		 float zDif = blobs[i].center.z - v.z;*/
 		
 		LineBlob curLineBlob = blobs[i];
 		
@@ -1305,7 +1364,7 @@ MetalineEnemy::Vertex MetalineEnemy::getClosestPoint(Vertex v, LineBlob b)
 	first.z = v.z - b.segmentPoint1.z;
 	
 	float t = (first.x * b.segment.x + first.y * b.segment.y + first.z * b.segment.z) /
-			  b.segmentDistanceSquared;
+	b.segmentDistanceSquared;
 	
 	if (t < 0.0f)
 	{

@@ -7,9 +7,7 @@
  *
  */
 
-#include <Eigen/Core>
-#include <Eigen/Eigenvalues>
-#include <Eigen/Dense>
+#include "GameActiveObject.h"
 using namespace Eigen;
 
 #ifdef _WIN32
@@ -24,6 +22,7 @@ using namespace Eigen;
 #include <GL/glu.h>
 #include <GL/gl.h>
 #else
+#include <GL/glew.h>
 #include <GLUT/glut.h>
 #endif
 #endif
@@ -31,38 +30,44 @@ using namespace Eigen;
 #ifndef AI_H
 #define AI_H
 
-class AI
-{
-public:
-	AI::AI() { speed = 0; alive = true; };
-	AI::~AI() {};
-	
-	float AI::getSpeed() { return speed; };
-	bool AI::isAlive() { return alive; };
-	
-	virtual Vector3f AI::getLocation() = 0;
-	virtual Vector3f AI::getDirection() = 0;
-	
-	void update()
+const int DEFAULT_AI_HEALTH = 100;
+
+class AI : public GameActiveObject
 	{
-		checkForCollision();
-		checkToMove();
-		checkToChangeOrientation();
-		checkToFire();
-		checkToUpdate();
+	public:
+		AI::AI() { health =	DEFAULT_AI_HEALTH; alive = true; }
+		AI::~AI() {};
+		
+		int AI::getHealth() { return health; }
+		int AI::setHealth(int newHealth) { health = newHealth; }
+		int AI::doDamage(int damage)
+		{
+			health -= damage;
+			if (health <= 0) 
+			{
+				health = 0;
+				alive = false;
+			}
+		}
+		bool AI::isAlive() { return alive; }
+		float AI::GetSpeed() { return speed; }
+		
+		virtual Vector3f AI::getLocation() = 0;
+		
+		virtual void update() = 0;
+		
+		virtual void checkForCollision() = 0;
+		virtual void checkToMove() = 0;
+		virtual void checkToChangeOrientation() = 0;
+		virtual void checkToFire() = 0;
+		virtual void checkToUpdate() = 0;
+		
+		virtual void render() = 0;
+		
+	protected:
+		int health;
+		bool alive;
+		float speed;
 	};
-	
-	virtual void checkForCollision() = 0;
-	virtual void checkToMove() = 0;
-	virtual void checkToChangeOrientation() = 0;
-	virtual void checkToFire() = 0;
-	virtual void checkToUpdate() = 0;
-	
-	virtual void render() = 0;
-	
-protected:	
-	float speed;
-	bool alive;
-};
 
 #endif

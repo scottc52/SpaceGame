@@ -12,7 +12,6 @@
 #define GAMESTATE_LOCKED ("locked")
 #define GAMESTATE_UNLOCKED ("unlocked")
 
-
 class GameActiveObject : public GameObject{
 private:
 	string state;
@@ -26,8 +25,6 @@ public:
 
 	void GameActiveObject::SetState(const char* s){state = s;}
 	const char* GameActiveObject::GetState(){return state.c_str();}
-	double GameActiveObject::GetMass(){return mass;}
-	void GameActiveObject::SetMass(const double& m){mass = m;}
 	Vector3f GameActiveObject::CenterOfMass(){Vector3f v(GameObject::CenterOfMass[0], GameObject::CenterOfMass[1], GameObject::CenterOfMass[2]); return v;}
 	void GameActiveObject::CalculateCenterOfMass();
 	void GameActiveObject::IncrementVelocity(Vector3f& deltaV){velocity += Vec3f(deltaV.x(), deltaV.y(), deltaV.z());}

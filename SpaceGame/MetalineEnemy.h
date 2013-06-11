@@ -7,24 +7,15 @@
  *
  */
 
-//#include <Carbon/Carbon.h>
-
 #include <stdlib.h>
 #include <vector>
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "projectile_particles.h"
 #include "AI.h"
 #include <cstdio>
 #include <iostream>
 using namespace std;
-
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
 
 #ifndef MetalineEnemy_h
 #define MetalineEnemy_h
@@ -48,16 +39,11 @@ class MetalineEnemy : public AI
 		Eigen::Vector3f getLocation();
 		Eigen::Vector3f getDirection();
 		
-		void MetalineEnemy::update()
-		{
-			checkForCollision();
-			checkToMove();
-			checkToChangeOrientation();
-			checkToFire();
-			checkToUpdate();
-		};
+		void MetalineEnemy::update();
 		
 		void render();
+		
+		Vector3f MetalineEnemy::CenterOfMass() {Vector3f v(center.x, center.y, center.z); return v;}
 		
 	private:
 		typedef struct Vertex
@@ -152,6 +138,7 @@ class MetalineEnemy : public AI
 		//vector<Projectile> projectiles;
 		
 		int fireCounter;
+		bool hasCollided;
 		
 		void checkForCollision();
 		void checkToMove();
@@ -159,13 +146,14 @@ class MetalineEnemy : public AI
 		void checkToFire();
 		void checkToUpdate();
 		
+		bool isPlayerVisible();
+		
 		MetalineEnemy::LineBlob *MetalineEnemy::getBlobs() { return blobs; };
 		MetalineEnemy::LineBlob MetalineEnemy::getBlob(int index);
 		void moveMetalineEnemy();
 		void updateActionState();
 		void moveToDestination();
-		//void moveProjectiles();
-		bool collisionDetected(Vertex destination);
+		bool collisionDetected();
 		MetalineEnemy::Vertex normalize(Vertex& vertex);
 		MetalineEnemy::Vertex generateRandomNormalizedDirection();
 		float getMaxBlobRadius();

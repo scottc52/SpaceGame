@@ -22,19 +22,21 @@
 #include "GameDoor.h"
 #include "GamePlayer.h"
 #include <vector>
+#include <pthread.h>
 #include <map>
+#include "Monitor.h"
 
 #define OBJECT_NOT_FOUND -1
 
 using namespace std; 
-
-/*Vector3f ConvertToEigen3Vector(Vec3f& v);
-Vec3f ConvertToOM3Vector(Vector3f& v);
-Vector4f ConvertToEigen4Vector(Vec4f& v);
-Vec4f ConvertToOM4Vector(Vector4f& v);*/
+/*
+const Vector3f ConvertToEigen3Vector(Vec3f& v);
+const Vec3f ConvertToOM3Vector(const Vector3f v);
+const Vector4f ConvertToEigen4Vector(Vec4f& v);
+const Vec4f ConvertToOM4Vector(Vector4f v);*/
 #define ConvertToEigen3Vector(v) (Vector3f((v)[0], (v)[1], (v)[2]))
 #define ConvertToOM3Vector(v) (Vec3f((v).x(), (v).y(), (v).z()))
-#define ConvertToEigen4Vector(v) (Vector4f((v)[0], (v)[1], (v)[2], (v)[3]))
+#define ConvertToEigen4Vector(v) (Vector4f((v)[1], (v)[2], (v)[3], (v)[0]))
 #define ConvertToOM4Vector(v) (Vec4f((v).w(), (v).x(), (v).y(), (v).z()))
 
 class GameRoom{
@@ -53,6 +55,7 @@ private:
 	//GamePlayer* player;
 
 public:
+	Monitor monitor;
 	map<GameObject*, vector<GameObject*> > collisionTier0List;
 	map<GameObject*, vector<GameObject*> > collisionTier1List;
 	map<GameObject*, vector<GameObject*> > collisionTier2List;
@@ -93,6 +96,11 @@ public:
 
 	//Adds the given Object to the Room
 	void GameRoom::AddWorldObject(GameWorldObject& newObject);
+
+	void GameRoom::AddItem(GameItem& item);
+
+	//Adds the given Object to the Room
+	void GameRoom::AddActiveObject(GameActiveObject& newObject);
 
 	//Get the Object with the given name in the current Room if one exists
 	GameWorldObject* GameRoom::GetWorldObject(const char *wobjectName);

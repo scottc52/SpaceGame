@@ -54,8 +54,7 @@ class PSystems;
 #include "UI.h" 
 #include "AI.h"
 #include "Monitor.h"
-
-
+#include "Torch.h"
 
 /*
 Particle Systems manager
@@ -69,6 +68,7 @@ public:
 	void AddBullet(Projectile *p){projectiles.push_back(p); }
 	unsigned int NumBullets(){ return projectiles.size();}
 	list<Projectile *> *GetBullets(){return &projectiles;} 
+	Torch *t; 
 };
 
 /*
@@ -90,7 +90,13 @@ private:
 	GameRoom* room; 
 	Camera *cam;
 	PSystems *ps;
-	GameState(){ps = new PSystems(); paused=false;}
+	GameState(){
+		ps = new PSystems(); paused=false; 
+		Vector3f center(0, 0, 0); 
+		Vector3f norm(0, 0, 1); 
+		Vector3f up(0, 1, 0); 
+		ps->t = new Torch(center,  norm, up, 1, 1, 5);   
+	}
 	float gravity;
 	GameState(GameState const &stateMachine){}
 	void operator=(GameState const &stateMachine){}

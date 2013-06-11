@@ -12,16 +12,8 @@
 #include <Eigen/Core>
 #include <Eigen/Eigenvalues>
 #include <Eigen/Dense>
-#include "projectile_particles.h"
 #include "AI.h"
 using namespace std;
-
-#include <GL/glew.h>
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
 
 #ifndef MetaballEnemy_h
 #define MetaballEnemy_h
@@ -35,26 +27,20 @@ public:
 	MetaballEnemy(Eigen::Vector3f center, int numBlobs = DEFAULT_NUM_BALL_BLOBS, float radius = DEFAULT_BALL_RADIUS);
 	~MetaballEnemy();
 	
-	int MetaballEnemy::getNumBlobs() { return numBlobs; };
+	int MetaballEnemy::getNumBlobs() { return numBlobs; }
 	Eigen::Vector3f MetaballEnemy::getCenter();
-	float MetaballEnemy::getRadius() { return radius; };
-	int MetaballEnemy::getBlobSpeed(int index) { return this->blobs[index].speed; };
-	void MetaballEnemy::setBlobSpeed(int index, float newSpeed) { this->blobs[index].speed = newSpeed; };
+	float MetaballEnemy::getRadius() { return radius; }
+	int MetaballEnemy::getBlobSpeed(int index) { return this->blobs[index].speed; }
+	void MetaballEnemy::setBlobSpeed(int index, float newSpeed) { this->blobs[index].speed = newSpeed; }
 	void setAllBlobsSpeed(float newSpeed);
 	
 	Eigen::Vector3f getLocation();
-	Eigen::Vector3f getDirection();
 	
-	void MetaballEnemy::update()
-	{
-		checkForCollision();
-		checkToMove();
-		checkToChangeOrientation();
-		checkToFire();
-		checkToUpdate();
-	};
+	void update();
 	
 	void render();
+	
+	Vector3f MetaballEnemy::CenterOfMass() {Vector3f v(center.x, center.y, center.z); return v;}
 	
 private:
 	typedef struct Vertex
@@ -127,7 +113,6 @@ private:
 												// influence the field strength (Saves computation)
 	
 	int actionState; //Corresponds to the Blob Creature's current "action state"
-	Vertex direction; //Directio in which the Blob Creature is currently moving
 	
 	float blobMaterialAmbient[4]; // Ambient material property for the blobs of the Blob Creature
 	float blobMaterialDiffuse[4]; // Diffuse material property for the blobs of the Blob Creature
@@ -142,6 +127,7 @@ private:
 	//vector<Projectile> projectiles;
 	
 	int fireCounter;
+	bool hasCollided;
 	
 	void checkForCollision();
 	void checkToMove();
@@ -149,13 +135,14 @@ private:
 	void checkToFire();
 	void checkToUpdate();
 	
+	bool isPlayerVisible();
+	
 	MetaballEnemy::BallBlob *MetaballEnemy::getBlobs() { return blobs; };
 	MetaballEnemy::BallBlob MetaballEnemy::getBlob(int index);
 	void moveMetaballEnemy();
 	void updateActionState();
 	void moveToDestination();
-	//void moveProjectiles();
-	bool collisionDetected(Vertex destination);
+	bool collisionDetected();
 	MetaballEnemy::Vertex normalize(Vertex& vertex);
 	MetaballEnemy::Vertex generateRandomNormalizedDirection();
 	float getMaxBlobRadius();
