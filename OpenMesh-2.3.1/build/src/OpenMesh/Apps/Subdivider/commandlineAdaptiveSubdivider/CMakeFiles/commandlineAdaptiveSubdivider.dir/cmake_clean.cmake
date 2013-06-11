@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/commandlineAdaptiveSubdivider.dir/__/adaptive_subdivider.cc.o"
-  "commandlineAdaptiveSubdivider.pdb"
-  "commandlineAdaptiveSubdivider"
+  "../../../../../Build/bin/commandlineAdaptiveSubdivider.pdb"
+  "../../../../../Build/bin/commandlineAdaptiveSubdivider"
 )
 
 # Per-language clean rules from dependency scanning.

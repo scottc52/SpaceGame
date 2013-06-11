@@ -37,6 +37,7 @@ const float BLOB_CREATURE_STATIONARY_BOUNDARY = 1.f;
 const float BLOB_CREATURE_MOVE_BOUNDARY = 4.f;
 const bool MOVING_ENABLED = false;
 const int FIRE_COUNTER_THRESHOLD = 40;
+const float NUM_RAY_TRACE_INTERVALS = 50;
 
 // Initializes the BallBlob Creature object
 MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
@@ -95,8 +96,30 @@ MetaballEnemy::MetaballEnemy(Eigen::Vector3f center, int numBlobs, float radius)
 	
 	this->neighbors = new Index[neighborsSize];
 	
-	this->direction = generateRandomNormalizedDirection();
 	this->speed = DEFAULT_BLOB_CREATURE_SPEED * this->radius;
+	Vertex direction = generateRandomNormalizedDirection();
+	this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
+	this->angularVelocity = Vec4f();
+	
+	vector<Vec3f> tempBoundingBox;
+	Vec3f v(-this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(-this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	v = Vec3f(this->radius, -this->radius, -this->radius);
+	tempBoundingBox.push_back(v);
+	
+	this->boundingBox = tempBoundingBox;
 	
 	this->fireCounter = 0;
 	
@@ -177,7 +200,8 @@ void MetaballEnemy::moveMetaballEnemy()
 			newDirection.y = playerPos(1) - this->center.y;
 			newDirection.z = playerPos(2) - this->center.z;
 			normalize(newDirection);
-			this->direction = newDirection;
+			this->velocity = Vec3f(newDirection.x * this->speed, newDirection.y * this->speed,
+								   newDirection.z * this->speed);
 		}
 	}
 	else if (actionState == SOUND_DETECTED_ACTION_STATE)
@@ -185,14 +209,14 @@ void MetaballEnemy::moveMetaballEnemy()
 		//Move Toward Sound TODO
 	}
 	
-	this->center.x = this->center.x + (this->direction.x * this->speed);
-	this->center.y = this->center.y + (this->direction.y * this->speed);
-	this->center.z = this->center.z + (this->direction.z * this->speed);
+	this->center.x = this->center.x + (this->velocity)[0];
+	this->center.y = this->center.y + (this->velocity)[1];
+	this->center.z = this->center.z + (this->velocity)[2];
 }
 
 void MetaballEnemy::updateActionState()
 {
-	if (false /*playerIsVisible()*/) // CHANGE LATER
+	if (isPlayerVisible()) // CHANGE LATER
 	{
 		this->actionState = PLAYER_DETECTED_ACTION_STATE;
 	} else {
@@ -200,14 +224,76 @@ void MetaballEnemy::updateActionState()
 	}
 }
 
-bool MetaballEnemy::collisionDetected(Vertex v)
+bool MetaballEnemy::isPlayerVisible()
+{
+	GameState *gs = GameState::GetInstance();
+	GameRoom *gr = gs->GetRoom();
+	vector<GameObject *> gobjs = gr->GetGameObjects();
+	vector<GamePlayer *> players = gr->GetPlayers();
+	int objSize = gobjs.size();
+	int playerSize = players.size();
+	
+	Vector3f playerPos = gs->GetPlayerPosition();
+	
+	Vertex playerDir;
+	playerDir.x = playerPos(0) - this->center.x;
+	playerDir.y = playerPos(1) - this->center.y;
+	playerDir.z = playerPos(2) - this->center.z;
+	
+	float length = (playerDir.x * playerDir.x) + (playerDir.y * playerDir.y) + (playerDir.z * playerDir.z);
+	
+	float xIntervalFraction = playerDir.x / NUM_RAY_TRACE_INTERVALS;
+	float yIntervalFraction = playerDir.y / NUM_RAY_TRACE_INTERVALS;
+	float zIntervalFraction = playerDir.z / NUM_RAY_TRACE_INTERVALS;
+	
+	float radiusSquared = this->radius * this->radius;
+	
+	for (int i = 0; i < NUM_RAY_TRACE_INTERVALS; i++)
+	{
+		Vec3f v = Vec3f(this->center.x + playerDir.x * xIntervalFraction,
+						this->center.y + playerDir.y * yIntervalFraction,
+						this->center.z + playerDir.z * zIntervalFraction);
+		
+		for (int j; j < playerSize; j++)
+		{
+			GamePlayer *player = players[j];
+			
+			if (player->IsInBoundingBox(v))
+			{
+				return true;
+			}
+		}
+		
+		if ((i * length / NUM_RAY_TRACE_INTERVALS) > radiusSquared)
+		{
+			for (int k = 0; k < objSize; k++){
+				GameObject *obj = gobjs[k];
+				if (obj->IsInBoundingBox(v))
+				{
+					return false;
+				}
+			}
+		}
+	}
+	
+	return true;
+}
+
+bool MetaballEnemy::intersect(Vector3f &pos){
+	return ((pos - getLocation()).norm() < this->radius); 
+}
+
+void MetaballEnemy::hit(Projectile *p){
+	return;
+}
+
+void MetaballEnemy::act(GameState *gs, double dt){
+	return;
+}
+
+bool MetaballEnemy::collisionDetected()
 {	
-	if ((v.x - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.x + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.y + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z - radius) < (-BLOB_CREATURE_MOVE_BOUNDARY * this->radius) ||
-		(v.z + radius) > (BLOB_CREATURE_MOVE_BOUNDARY * this->radius))
+	if (tier0CollisionData.size() > 0 || tier1CollisionData.size() > 0 || tier2CollisionData.size() > 0)
 	{
 		return true;
 	}
@@ -223,12 +309,6 @@ Vector3f MetaballEnemy::getLocation()
 	return location;
 }
 
-Vector3f MetaballEnemy::getDirection()
-{
-	Vector3f dir(direction.x, direction.y, direction.z);
-	return dir;
-}
-
 void MetaballEnemy::update()
 {
 	checkForCollision();
@@ -240,25 +320,16 @@ void MetaballEnemy::update()
 
 void MetaballEnemy::checkForCollision()
 {
-	if (collisionDetected(this->center))
+	if (collisionDetected())
 	{
 		hasCollided = true;
 		
-		this->direction = generateRandomNormalizedDirection();
+		this->center.x -= this->velocity[0];
+		this->center.y -= this->velocity[1];
+		this->center.z -= this->velocity[2];
 		
-		Vertex nextCenter;
-		nextCenter.x = this->center.x + this->direction.x * this->speed;
-		nextCenter.y = this->center.y + this->direction.y * this->speed;
-		nextCenter.z = this->center.z + this->direction.z * this->speed;
-		
-		while (collisionDetected(nextCenter))
-		{
-			this->direction = generateRandomNormalizedDirection();
-			
-			nextCenter.x = this->center.x + this->direction.x * this->speed;
-			nextCenter.y = this->center.y + this->direction.y * this->speed;
-			nextCenter.z = this->center.z + this->direction.z * this->speed;
-		}
+		Vertex direction = generateRandomNormalizedDirection();
+		this->velocity = Vec3f(direction.x * this->speed, direction.y * this->speed, direction.z * this->speed);
 	}
 	else
 	{
@@ -284,9 +355,9 @@ void MetaballEnemy::checkToFire()
 		Vector3f playerPos = gs->GetPlayerPosition();
 		Vector3f pCenter(this->center.x, this->center.y, this->center.z);
 		Vector3f projectileDirection = (playerPos - pCenter).normalized();
-		Vector3f velocity(projectileDirection(0) * PROJECTILE_SPEED, projectileDirection(1) * PROJECTILE_SPEED,
-						  projectileDirection(2) * PROJECTILE_SPEED);
-		Projectile *p = new Ball(pCenter, velocity, PROJECTILE_RADIUS);
+		Vector3f speed(projectileDirection(0) * PROJECTILE_SPEED, projectileDirection(1) * PROJECTILE_SPEED,
+					   projectileDirection(2) * PROJECTILE_SPEED);
+		Projectile *p = new Ball(pCenter, speed, PROJECTILE_RADIUS);
 		gs->GetParticleSystems()->AddBullet(p);
 		
 		fireCounter = 0;
@@ -382,7 +453,7 @@ void MetaballEnemy::render()
 	
 	for (int i = 0; i < numBlobs; i++) {
 		BallBlob curBlob = blobs[i];
-	
+		
 		Index blobCubePosition = getCubePosition(curBlob.center);
 		
 		bool isComputed = false;
@@ -453,7 +524,7 @@ float MetaballEnemy::getMaxBlobRadius()
 	
 	return sqrt((fieldStrengthConstantSquared -
 				 sqrt(fieldStrengthConstantSquaredSquared -
-				 4 * fieldStrengthConstantSquaredSquared * (0.25 - DEFAULT_THRESHOLD / numBlobs))) /
+					  4 * fieldStrengthConstantSquaredSquared * (0.25 - DEFAULT_THRESHOLD / numBlobs))) /
 				(2 * fieldStrengthConstantSquaredSquared));
 }
 
@@ -466,15 +537,15 @@ float MetaballEnemy::calculateFieldStrength(VertexWithFieldStrength v)
 		Vertex center = blobs[i].center;
 		
 		float distanceSquared = (center.x - v.x) * (center.x - v.x) +
-								(center.y - v.y) * (center.y - v.y) +
-								(center.z - v.z) * (center.z - v.z);
+		(center.y - v.y) * (center.y - v.y) +
+		(center.z - v.z) * (center.z - v.z);
 		
 		
-
+		
 		if (distanceSquared < fieldStrengthDistanceSquaredThreshold)
 		{
 			fieldStrength += (fieldStrengthConstantSquaredSquared * distanceSquared * distanceSquared) -
-							 (fieldStrengthConstantSquared * distanceSquared) + 0.25f;
+			(fieldStrengthConstantSquared * distanceSquared) + 0.25f;
 		}
 	}
 	
@@ -515,7 +586,7 @@ MetaballEnemy::Vertex MetaballEnemy::getNormal(Vertex v)
 		if ((fieldStrengthConstantSquared * distanceSquared) < 0.5f)
 		{
 			float result = 4 * fieldStrengthConstantSquared *
-						 (fieldStrengthConstantSquared * distanceSquared - 0.5f);
+			(fieldStrengthConstantSquared * distanceSquared - 0.5f);
 			
 			normal.x += xDif * result;
 			normal.y += yDif * result;
@@ -573,7 +644,7 @@ void MetaballEnemy::addNeighbors(Index curPosition, int& endNeighborIndex)
 						neighbors[endNeighborIndex] = neighborPosition;
 						endNeighborIndex++;
 						added[neighborPosition.x * addedSize2D +
-						neighborPosition.y * DEFAULT_NUM_CUBES_PER_DIMENSION + neighborPosition.z] = true;
+							  neighborPosition.y * DEFAULT_NUM_CUBES_PER_DIMENSION + neighborPosition.z] = true;
 					}
 				}
 			}
@@ -722,9 +793,9 @@ bool MetaballEnemy::renderCube(Index index)
 }
 
 bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, VertexWithFieldStrength v2,
-												  VertexWithFieldStrength v3, VertexWithFieldStrength v4,
-												  int v1Index, int v2Index, int v3Index, int v4Index,
-												  Normal *normals)
+												   VertexWithFieldStrength v3, VertexWithFieldStrength v4,
+												   int v1Index, int v2Index, int v3Index, int v4Index,
+												   Normal *normals)
 {	
 	int numInsideField = 0;
 	
@@ -843,11 +914,11 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vOutside1Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vOutside2Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside2.strength);
+				(vInside1.strength - vOutside2.strength);
 				vOutside3Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-								 (vInside1.strength - vOutside3.strength);
+				(vInside1.strength - vOutside3.strength);
 			}
 			
 			renderV1.x = (vOutside1.x - vInside1.x) * vOutside1Ratio + vInside1.x;
@@ -893,8 +964,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);
@@ -909,7 +980,7 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			glVertex3f(renderV3.x + center.x, renderV3.y + center.y, renderV3.z + center.z);
 			
 			return true;
-
+			
 			break;
 			
 		case 2:
@@ -984,13 +1055,13 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vOutside11Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-									(vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vOutside12Ratio = (vInside2.strength - DEFAULT_THRESHOLD) /
-									(vInside2.strength - vOutside1.strength);
+				(vInside2.strength - vOutside1.strength);
 				vOutside21Ratio = (vInside1.strength - DEFAULT_THRESHOLD) /
-									(vInside1.strength - vOutside2.strength);
+				(vInside1.strength - vOutside2.strength);
 				vOutside22Ratio = (vInside2.strength - DEFAULT_THRESHOLD) /
-									(vInside2.strength - vOutside2.strength);
+				(vInside2.strength - vOutside2.strength);
 			}
 			
 			renderV1.x = (vOutside1.x - vInside1.x) * vOutside11Ratio + vInside1.x;
@@ -1036,8 +1107,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);
@@ -1140,11 +1211,11 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			if (VERTEX_INTERPOLATION)
 			{
 				vInside1Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside1.strength - vOutside1.strength);
+				(vInside1.strength - vOutside1.strength);
 				vInside2Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside2.strength - vOutside1.strength);
+				(vInside2.strength - vOutside1.strength);
 				vInside3Ratio = (DEFAULT_THRESHOLD - vOutside1.strength) /
-								  (vInside3.strength - vOutside1.strength);
+				(vInside3.strength - vOutside1.strength);
 			}
 			
 			renderV1.x = (vInside1.x - vOutside1.x) * vInside1Ratio + vOutside1.x;
@@ -1190,8 +1261,8 @@ bool MetaballEnemy::renderTetrahedronIntersections(VertexWithFieldStrength v1, V
 			}
 			
 			/*renderN1 = getNormal(renderV1);
-			renderN2 = getNormal(renderV2);
-			renderN3 = getNormal(renderV3);*/
+			 renderN2 = getNormal(renderV2);
+			 renderN3 = getNormal(renderV3);*/
 			
 			glNormal3f(renderN1.x, renderN1.y, renderN1.z);
 			//glNormal3f(renderV1.x - blobCenter.x, renderV1.y - blobCenter.y, renderV1.z - blobCenter.z);

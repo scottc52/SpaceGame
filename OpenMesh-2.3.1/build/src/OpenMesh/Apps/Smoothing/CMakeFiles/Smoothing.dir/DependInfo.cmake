@@ -4,20 +4,24 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc" "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o"
+  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc" "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 SET(CMAKE_TARGET_DEFINITIONS
-  "ARCH_DARWIN"
+  "INCLUDE_TEMPLATES"
+  "INCLUDE_TEMPLATES"
+  "INCLUDE_TEMPLATES"
+  "INCLUDE_TEMPLATES"
+  "INCLUDE_TEMPLATES"
   "INCLUDE_TEMPLATES"
   )
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/DependInfo.cmake"
-  "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/DependInfo.cmake"
+  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir/DependInfo.cmake"
+  "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

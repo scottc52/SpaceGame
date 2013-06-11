@@ -10,6 +10,7 @@
 #include <string>
 #include "GameObjectHeaderList.h"
 #include "LocationDefines.h"
+#include "TaskQueue.h"
 #include "CollisionDetection.h"
 using namespace std;
 
@@ -294,7 +295,6 @@ bool pIsDead(Projectile *p){
 }
 
 #define BRANCH_FACTOR 2
-#include "TaskQueue.h"
 class BulletUpdater : public Task{
 private:
 	vector<Projectile *> toUpdate;
@@ -320,9 +320,10 @@ public:
 };
 
 void PSystems::updateAll(double dt){
-	list<Projectile *>::iterator it = projectiles.begin();
 	int idx = 0;
 	BulletUpdater jobs[BRANCH_FACTOR]; 
+	monitor.Enter('w');
+	list<Projectile *>::iterator it = projectiles.begin();
 	while(it != projectiles.end()){
 		jobs[idx].AddBullet(*it);
 		jobs[idx].dt = dt;
@@ -330,16 +331,18 @@ void PSystems::updateAll(double dt){
 		idx ++;
 		idx %=BRANCH_FACTOR;  
 	} 
-	monitor.Enter('w');
+	
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		TaskQueue::defQueue->enqueue(&jobs[i]); 
 	}
 	for( int i = 0; i < BRANCH_FACTOR; i ++) {
 		jobs[i].join(); 
 	}
-	projectiles.remove_if(pIsDead);
+
+	projectiles.remove_if< bool(*)(Projectile *)>(pIsDead);
+	t->update(dt);
 	monitor.Exit('w');
-	cout << "finished" << endl;
+	//cout << "finished" << endl;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
@@ -390,7 +393,7 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 					Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
 					if (p){
 						ps->monitor.Enter('w');
-						ps->AddBullet(p);
+							ps->AddBullet(p);
 						ps->monitor.Exit('w');
 					}
 				} else {
@@ -408,7 +411,9 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 			case (USER_COMMAND_USE_WEAPON) :{
 				cout << "weapon used" << endl;  break;}
 			case (USER_COMMAND_JUMP) :{ 
-				cout << "Jumping" << endl; break;}
+				Vector3f lookDirection = cam->getDirection();
+				player.velocity = Vec3f(lookDirection[0], lookDirection[1], lookDirection[2]);
+				break;}
 			case (USER_COMMAND_INVENTORY) :{ 
 				cout << "INV accessed" << endl; break;}
 			case (USER_COMMAND_PAUSE_MENU) :{ 
@@ -432,9 +437,14 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 		it++; 
 	}
 
-
-	nPos += strafe * deltaPos[0];
-	nPos += dir * deltaPos[1];
+	nPos = player.GetPosition();
+	if (deltaPos[0] != 0 || deltaPos[1] != 0) {
+		// End regular motion, go back to strafing
+		player.velocity = Vec3f(0.f, 0.f, 0.f);
+		nPos += strafe * deltaPos[0];
+		nPos += dir * deltaPos[1];
+		player.SetPosition(nPos);
+	}
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
 	//up = Rphi*up; 
 	dir = Rphi * dir;    
@@ -456,30 +466,57 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//If change room, handle change room
 
-	dt/=1000;
+	dt/=1000.0;
 
 	//Player action
 	ProcessInput(input, dt);
+<<<<<<< HEAD
 	AnimatePlayers(dt);
 	UpdateParticleSystems(dt);
+=======
+	UpdateParticleSystems(dt * 1000.0);
 
+	room->ClearCollisions();
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
+
+	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();
+	objects.push_back(&player);
 	for(unsigned int o = 0; o<objects.size(); o++){
 		GameObject* obj = objects[o];
+		//if (&player == obj) {printf("Yes, player is included\n");}
 		if(obj->objType == CAMERA_TYPE || obj->objType == DOOR_TYPE || obj->objType == WORLD_OBJECT_TYPE || obj->objType == ITEM_TYPE) 
 			continue;
 		Vector3f newPos = obj->GetPosition() + ConvertToEigen3Vector(obj->velocity*dt);
 		obj->SetPosition(newPos);
+		if (&player == obj) {
+			cam->setPivotPoint(newPos);
+		}
 		float newAngle = obj->GetRotation()[0] + obj->angularVelocity[0]*dt;
 		Vec3f axisOfRotation = Vec3f(obj->GetRotation()[1], obj->GetRotation()[2], obj->GetRotation()[3]);
 		axisOfRotation += Vec3f(obj->angularVelocity[1], obj->angularVelocity[2], obj->angularVelocity[3])*dt;
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
+		obj->ClearCollisionData();
 	}
-	room->monitor.Enter('w');
+	Camera* c = GameState::GetCamera();
+	PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
+	list<AI *>::iterator ait = actors.begin();
+	list<Projectile *>::iterator pit;   
+	while (ait != actors.end()){
+		pit = ps->GetBullets()->begin(); 
+		AI *actor = *ait; 
+		while(pit != ps->GetBullets()->end()){
+			Projectile *proj = *pit;
+			if (actor->intersect(proj->getPosition())){
+				proj->hit(proj->getPosition());
+				actor->hit(proj); 
 
-	PerformCollisionDetection(room, &(GameState::player), dt);
-	
+			}  
+			pit++; 
+		}
+		ait++;
+	}
 	room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces

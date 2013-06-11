@@ -241,8 +241,8 @@ int main(int argc, char *argv[]){
 	gs->SetCamera(&cam);
 	Vector3f enemyPos(0.0f, 3.0f, 10.0f);
 	gs->AddActor(new MetaballEnemy(enemyPos, 2, 2.0f));
-	Render::GlutInitialize();
 	Render::gameState = gs;
+	Render::GlutInitialize();
 	
 	RegisterControls(); 
 	Controller::Initialize(taskManager, gs); 	
@@ -257,10 +257,10 @@ int main(int argc, char *argv[]){
 	//glutMotionFunc(mouseMoveCB);
 	//glutMouseFunc(mouseFunc);
 	Sound::InitializeSounds();
-	Music *m = new Music("sounds/run2.ogg", 0.2f);
-	//m->Play();
-	Sound *s = new Sound("sounds/laser.wav");
-	//s->Play();
+	Music *music = new Music("sounds/run2.ogg", 0.3f);
+	music->Loop();
+	Sound *backgroundNoise = new Sound("sounds/metallic_roar.wav", 0.2f);
+	backgroundNoise->Loop();
 	glutMainLoop(); //this should only be called once, and AT THE END of the initialization routine.
 	Sound::UninitializeSounds();
 	assert(debugger->CloseDebugFile());

@@ -792,7 +792,7 @@ float.h
 OpenMesh/Utils/NumLimitsT.hh
 -
 
-/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
+/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
 iostream
 -
 OpenMesh/Core/IO/MeshIO.hh

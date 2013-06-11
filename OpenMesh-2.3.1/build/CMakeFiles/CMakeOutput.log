@@ -1,4 +1,4 @@
-The system is: Darwin - 9.8.0 - i386
+The system is: Linux - 3.8.0-23-generic - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/cc 
 Build flags: 
@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.11/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.10.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,291 +23,543 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.11/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/2.8.10.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec394626259/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec394626259.dir/build.make CMakeFiles/cmTryCompileExec394626259.dir/build
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec394626259.dir/testCCompiler.c.o
-/usr/bin/cc   -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec394626259.dir/testCCompiler.c.o   -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTryCompileExec394626259
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec394626259.dir/link.txt --verbose=1
-/usr/bin/cc      -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec394626259.dir/testCCompiler.c.o  -o cmTryCompileExec394626259  
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec3374712544/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3374712544.dir/build.make CMakeFiles/cmTryCompileExec3374712544.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3374712544.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3374712544.dir/testCCompiler.c.o   -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec3374712544
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3374712544.dir/link.txt --verbose=1
+/usr/bin/cc         CMakeFiles/cmTryCompileExec3374712544.dir/testCCompiler.c.o  -o cmTryCompileExec3374712544 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec1485510350/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1485510350.dir/build.make CMakeFiles/cmTryCompileExec1485510350.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1485510350.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1485510350.dir/testCCompiler.c.o   -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec1485510350
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1485510350.dir/link.txt --verbose=1
+/usr/bin/cc         CMakeFiles/cmTryCompileExec1485510350.dir/testCCompiler.c.o  -o cmTryCompileExec1485510350 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec2175680252/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2175680252.dir/build.make CMakeFiles/cmTryCompileExec2175680252.dir/build
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc   -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o   -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCCompilerABI.c"
-Linking C executable cmTryCompileExec2175680252
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec2175680252.dir/link.txt --verbose=1
-/usr/bin/cc      -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2175680252   
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec2758885525/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2758885525.dir/build.make CMakeFiles/cmTryCompileExec2758885525.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec2758885525
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2758885525.dir/link.txt --verbose=1
+/usr/bin/cc       -v CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2758885525 -rdynamic  
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec542458994/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec542458994.dir/build.make CMakeFiles/cmTryCompileExec542458994.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec542458994
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec542458994.dir/link.txt --verbose=1
+/usr/bin/cc       -v CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec542458994 -rdynamic  
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
 Using built-in specs.
-Target: i686-apple-darwin9
-Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.7/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.7.3-1ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.7/README.Bugs --enable-languages=c,c++,go,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.7 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.7 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --with-system-zlib --enable-objc-gc --with-cloog --enable-cloog-backend=ppl --disable-cloog-version-check --disable-ppl-version-check --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
-gcc version 4.0.1 (Apple Inc. build 5493)
- /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccKZa954.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o -arch_multiple -final_output cmTryCompileExec2175680252 -lgcc_s.10.5 -lgcc -lSystem
-Using built-in specs.
-Target: i686-apple-darwin9
-Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
-Thread model: posix
-gcc version 4.0.1 (Apple Inc. build 5493)
- /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch x86_64 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccHnR4TI.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o -arch_multiple -final_output cmTryCompileExec2175680252 -lgcc_s.10.5 -lgcc -lSystem
-collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
-/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch i386 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccKZa954.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o -arch_multiple -final_output cmTryCompileExec2175680252 -lgcc_s.10.5 -lgcc -lSystem
-collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
-/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch x86_64 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccHnR4TI.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o -arch_multiple -final_output cmTryCompileExec2175680252 -lgcc_s.10.5 -lgcc -lSystem
-@(#)PROGRAM:ld  PROJECT:ld64-85.2.1
-Library search paths:
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib
-Framework search paths:
-	/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/
-	/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/
-@(#)PROGRAM:ld  PROJECT:ld64-85.2.1
-Library search paths:
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib
-Framework search paths:
-	/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/
-	/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/
-lipo -create -o cmTryCompileExec2175680252 /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccHnR4TI.out /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccKZa954.out 
+gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../:/lib/:/usr/lib/
+<<<<<<< HEAD
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2758885525' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2758885525 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec542458994' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec542458994 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec2175680252/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec2175680252.dir/build.make CMakeFiles/cmTryCompileExec2175680252.dir/build]
-  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building C object CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc   -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o   -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCCompilerABI.c"]
-  ignore line: [Linking C executable cmTryCompileExec2175680252]
-  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec2175680252.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2175680252   ]
+<<<<<<< HEAD
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec2758885525/fast"]
+  ignore line: [make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec2758885525.dir/build.make CMakeFiles/cmTryCompileExec2758885525.dir/build]
+  ignore line: [make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec2758885525]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2758885525.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc       -v CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2758885525 -rdynamic  ]
+=======
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec542458994/fast"]
+  ignore line: [make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec542458994.dir/build.make CMakeFiles/cmTryCompileExec542458994.dir/build]
+  ignore line: [make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-2.8/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec542458994]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec542458994.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc       -v CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec542458994 -rdynamic  ]
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
   ignore line: [Using built-in specs.]
-  ignore line: [Target: i686-apple-darwin9]
-  ignore line: [Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.7/lto-wrapper]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.7.3-1ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.7/README.Bugs --enable-languages=c,c++,go,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.7 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.7 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --with-system-zlib --enable-objc-gc --with-cloog --enable-cloog-backend=ppl --disable-cloog-version-check --disable-ppl-version-check --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.0.1 (Apple Inc. build 5493)]
-  link line: [ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccKZa954.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o -arch_multiple -final_output cmTryCompileExec2175680252 -lgcc_s.10.5 -lgcc -lSystem]
-    arg [/usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [i386] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.5.8] ==> ignore
-    arg [-syslibroot] ==> ignore
-    arg [/Developer/SDKs/MacOSX10.5.sdk] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../:/lib/:/usr/lib/]
+<<<<<<< HEAD
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2758885525' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2758885525 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec542458994' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec542458994 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/collect2] ==> ignore
+    arg [--sysroot=/] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [/var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccKZa954.out] ==> ignore
-    arg [-lcrt1.10.5.o] ==> lib [crt1.10.5.o]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTryCompileExec2175680252.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-arch_multiple] ==> ignore
-    arg [-final_output] ==> ignore
-    arg [cmTryCompileExec2175680252] ==> ignore
-    arg [-lgcc_s.10.5] ==> lib [gcc_s.10.5]
+<<<<<<< HEAD
+    arg [cmTryCompileExec2758885525] ==> ignore
+=======
+    arg [cmTryCompileExec542458994] ==> ignore
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..]
+<<<<<<< HEAD
+    arg [CMakeFiles/cmTryCompileExec2758885525.dir/CMakeCCompilerABI.c.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTryCompileExec542458994.dir/CMakeCCompilerABI.c.o] ==> ignore
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-  Library search paths: [;/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib;/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib;/Developer/SDKs/MacOSX10.5.sdk/usr/lib;/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib]
-  Framework search paths: [;/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/;/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/]
-  remove lib [crt1.10.5.o]
-  remove lib [gcc_s.10.5]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o] ==> ignore
   remove lib [gcc]
-  remove lib [System]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib]
-  collapse framework dir [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/] ==> [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks]
-  collapse framework dir [/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/] ==> [/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks]
-  implicit libs: []
-  implicit dirs: [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib;/usr/lib/gcc/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib]
-  implicit fwks: [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks;/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7] ==> [/usr/lib/gcc/x86_64-linux-gnu/4.7]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib] ==> [/usr/lib]
+  collapse dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse dir [/lib/../lib] ==> [/lib]
+  collapse dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/4.7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
 
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec2824672091/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2824672091.dir/build.make CMakeFiles/cmTryCompileExec2824672091.dir/build
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec2824672091.dir/testCXXCompiler.cxx.o
-/usr/bin/c++    -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec2824672091.dir/testCXXCompiler.cxx.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTryCompileExec2824672091
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec2824672091.dir/link.txt --verbose=1
-/usr/bin/c++       -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2824672091.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec2824672091  
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec2478247050/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2478247050.dir/build.make CMakeFiles/cmTryCompileExec2478247050.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2478247050.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2478247050.dir/testCXXCompiler.cxx.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec2478247050
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2478247050.dir/link.txt --verbose=1
+/usr/bin/c++          CMakeFiles/cmTryCompileExec2478247050.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec2478247050 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec678031343/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec678031343.dir/build.make CMakeFiles/cmTryCompileExec678031343.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec678031343.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec678031343.dir/testCXXCompiler.cxx.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec678031343
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec678031343.dir/link.txt --verbose=1
+/usr/bin/c++          CMakeFiles/cmTryCompileExec678031343.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec678031343 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec3760096494/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3760096494.dir/build.make CMakeFiles/cmTryCompileExec3760096494.dir/build
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++    -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp"
-Linking CXX executable cmTryCompileExec3760096494
-"/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec3760096494.dir/link.txt --verbose=1
-/usr/bin/c++       -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3760096494   
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec2437981402/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2437981402.dir/build.make CMakeFiles/cmTryCompileExec2437981402.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec2437981402
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2437981402.dir/link.txt --verbose=1
+/usr/bin/c++        -v CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec2437981402 -rdynamic  
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec1592306563/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1592306563.dir/build.make CMakeFiles/cmTryCompileExec1592306563.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1592306563
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1592306563.dir/link.txt --verbose=1
+/usr/bin/c++        -v CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1592306563 -rdynamic  
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
 Using built-in specs.
-Target: i686-apple-darwin9
-Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.7/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.7.3-1ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.7/README.Bugs --enable-languages=c,c++,go,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.7 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.7 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --with-system-zlib --enable-objc-gc --with-cloog --enable-cloog-backend=ppl --disable-cloog-version-check --disable-ppl-version-check --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
 Thread model: posix
-gcc version 4.0.1 (Apple Inc. build 5493)
- /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch x86_64 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccAbsyZB.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -arch_multiple -final_output cmTryCompileExec3760096494 -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
-Using built-in specs.
-Target: i686-apple-darwin9
-Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9
-Thread model: posix
-gcc version 4.0.1 (Apple Inc. build 5493)
- /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch i386 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccrSx70H.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -arch_multiple -final_output cmTryCompileExec3760096494 -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
-collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
-/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch x86_64 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccAbsyZB.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -arch_multiple -final_output cmTryCompileExec3760096494 -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
-collect2 version 4.0.1 (Apple Inc. build 5493) (i686 Darwin)
-/usr/libexec/gcc/i686-apple-darwin9/4.0.1/ld -dynamic -arch i386 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccrSx70H.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -arch_multiple -final_output cmTryCompileExec3760096494 -lstdc++ -lgcc_s.10.5 -lgcc -lSystem
-@(#@(#))PROGRAM:ld  PROJECTPROGRAM:ld  PROJECT:ld64-:85.2.1
-ld64Library- 85.2.1search
- Librarypaths :search
- 	paths/:Developer
-/	SDKs/MacOSX10.5.sdk/usr/lib//i686Developer-/appleSDKs-/darwin9MacOSX10.5.sdk//4.0.1usr
-/	lib//Developeri686/-SDKsapple/-MacOSX10.5.sdkdarwin9//usr4.0.1/
-lib
-	/Developer/SDKs	//MacOSX10.5.sdk/Developerusr//SDKslib//MacOSX10.5.sdkgcc//usri686/-libapple
--	darwin9/4.0.1
-	//Developer/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gccSDKs/i686-apple-darwin9/MacOSX10.5.sdk//usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_644.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9
-	/Developer/SDKs//4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usrMacOSX10.5.sdk/lib
-	/usr/lib/gcc/i686-apple/Developer/SDKs-darwin9/4.0.1
-	//MacOSX10.5.sdk/usrDeveloper//lib
-SDKs	//MacOSX10.5.sdkDeveloper//usrSDKs//libMacOSX10.5.sdk/usr/local/lib/
-Frameworkgcc /searchi686 -pathsapple:-
-darwin9	//4.0.1Developer//x86_64SDKs
-/	MacOSX10.5.sdk/Library/Frameworks//Developer/
-	/Developer/SDKs/MacOSX10.5.sdkSDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1
-/	/SystemDeveloper//LibrarySDKs//FrameworksMacOSX10.5.sdk//
-usr/lib/i686-apple-darwin9/4.0.1
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/lib
-	/Developer/SDKs/MacOSX10.5.sdk/usr/local/lib
-Framework search paths:
-	/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/
-	/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/
-lipo -create -o cmTryCompileExec3760096494 /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccAbsyZB.out /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccrSx70H.out 
+gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../:/lib/:/usr/lib/
+<<<<<<< HEAD
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2437981402' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2437981402 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o
+=======
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1592306563' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec1592306563 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec3760096494/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec3760096494.dir/build.make CMakeFiles/cmTryCompileExec3760096494.dir/build]
-  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
-  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++    -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk   -o CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -c "/Applications/CMake 2.8-11.app/Contents/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp"]
-  ignore line: [Linking CXX executable cmTryCompileExec3760096494]
-  ignore line: ["/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E cmake_link_script CMakeFiles/cmTryCompileExec3760096494.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -arch x86_64 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec3760096494   ]
+<<<<<<< HEAD
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec2437981402/fast"]
+  ignore line: [make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec2437981402.dir/build.make CMakeFiles/cmTryCompileExec2437981402.dir/build]
+  ignore line: [make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec2437981402]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2437981402.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++        -v CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec2437981402 -rdynamic  ]
+=======
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec1592306563/fast"]
+  ignore line: [make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec1592306563.dir/build.make CMakeFiles/cmTryCompileExec1592306563.dir/build]
+  ignore line: [make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-2.8/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1592306563]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1592306563.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++        -v CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1592306563 -rdynamic  ]
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
   ignore line: [Using built-in specs.]
-  ignore line: [Target: i686-apple-darwin9]
-  ignore line: [Configured with: /var/tmp/gcc/gcc-5493~1/src/configure --disable-checking -enable-werror --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++ --program-transform-name=/^[cg][^.-]*$/s/$/-4.0/ --with-gxx-include-dir=/include/c++/4.0.0 --with-slibdir=/usr/lib --build=i686-apple-darwin9 --with-arch=apple --with-tune=generic --host=i686-apple-darwin9 --target=i686-apple-darwin9]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.7/lto-wrapper]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.7.3-1ubuntu1' --with-bugurl=file:///usr/share/doc/gcc-4.7/README.Bugs --enable-languages=c,c++,go,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.7 --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.7 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --with-system-zlib --enable-objc-gc --with-cloog --enable-cloog-backend=ppl --disable-cloog-version-check --disable-ppl-version-check --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 4.0.1 (Apple Inc. build 5493)]
-  link line: [ /usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2 -dynamic -arch x86_64 -macosx_version_min 10.5.8 -syslibroot /Developer/SDKs/MacOSX10.5.sdk -weak_reference_mismatches non-weak -o /var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccAbsyZB.out -lcrt1.10.5.o -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64 -L/usr/lib/gcc/i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1 -L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../.. -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o -arch_multiple -final_output cmTryCompileExec3760096494 -lstdc++ -lgcc_s.10.5 -lgcc -lSystem]
-    arg [/usr/libexec/gcc/i686-apple-darwin9/4.0.1/collect2] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.5.8] ==> ignore
-    arg [-syslibroot] ==> ignore
-    arg [/Developer/SDKs/MacOSX10.5.sdk] ==> ignore
-    arg [-weak_reference_mismatches] ==> ignore
-    arg [non-weak] ==> ignore
+  ignore line: [gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.7/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../:/lib/:/usr/lib/]
+<<<<<<< HEAD
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2437981402' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec2437981402 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o]
+=======
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec1592306563' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/4.7/collect2 --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTryCompileExec1592306563 /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/4.7 -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../.. CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o /usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o]
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/collect2] ==> ignore
+    arg [--sysroot=/] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [/var/folders/vM/vMJ9gc+EE64xMZ2kAJBmBE+++TI/-Tmp-//ccAbsyZB.out] ==> ignore
-    arg [-lcrt1.10.5.o] ==> lib [crt1.10.5.o]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64]
-    arg [-L/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1]
-    arg [-L/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..]
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTryCompileExec3760096494.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
-    arg [-arch_multiple] ==> ignore
-    arg [-final_output] ==> ignore
-    arg [cmTryCompileExec3760096494] ==> ignore
+<<<<<<< HEAD
+    arg [cmTryCompileExec2437981402] ==> ignore
+=======
+    arg [cmTryCompileExec1592306563] ==> ignore
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..]
+<<<<<<< HEAD
+    arg [CMakeFiles/cmTryCompileExec2437981402.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+=======
+    arg [CMakeFiles/cmTryCompileExec1592306563.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
     arg [-lstdc++] ==> lib [stdc++]
-    arg [-lgcc_s.10.5] ==> lib [gcc_s.10.5]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
     arg [-lgcc] ==> lib [gcc]
-    arg [-lSystem] ==> lib [System]
-  Framework search paths: [;/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/;/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/]
-  remove lib [crt1.10.5.o]
-  remove lib [gcc_s.10.5]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu/crtn.o] ==> ignore
+  remove lib [gcc_s]
   remove lib [gcc]
-  remove lib [System]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64]
-  collapse library dir [/usr/lib/gcc/i686-apple-darwin9/4.0.1] ==> [/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../../i686-apple-darwin9/4.0.1] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1]
-  collapse library dir [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/gcc/i686-apple-darwin9/4.0.1/../../..] ==> [/Developer/SDKs/MacOSX10.5.sdk/usr/lib]
-  collapse framework dir [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks/] ==> [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks]
-  collapse framework dir [/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/] ==> [/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks]
-  implicit libs: [stdc++]
-  implicit dirs: [/Developer/SDKs/MacOSX10.5.sdk/usr/lib/i686-apple-darwin9/4.0.1;/Developer/SDKs/MacOSX10.5.sdk/usr/lib;/usr/lib/gcc/i686-apple-darwin9/4.0.1/x86_64;/usr/lib/gcc/i686-apple-darwin9/4.0.1]
-  implicit fwks: [/Developer/SDKs/MacOSX10.5.sdk/Library/Frameworks;/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7] ==> [/usr/lib/gcc/x86_64-linux-gnu/4.7]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../../../lib] ==> [/usr/lib]
+  collapse dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse dir [/lib/../lib] ==> [/lib]
+  collapse dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse dir [/usr/lib/gcc/x86_64-linux-gnu/4.7/../../..] ==> [/usr/lib]
+  implicit libs: [stdc++;m;c]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/4.7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+
+
+Determining if the function XOpenDisplay exists in the /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec2124913611/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2124913611.dir/build.make CMakeFiles/cmTryCompileExec2124913611.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2124913611.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec2124913611.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2124913611
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2124913611.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec2124913611.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2124913611 -rdynamic -lX11 -lXext 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec520399855/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec520399855.dir/build.make CMakeFiles/cmTryCompileExec520399855.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec520399855.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec520399855.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec520399855
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec520399855.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec520399855.dir/CheckFunctionExists.c.o  -o cmTryCompileExec520399855 -rdynamic -lX11 -lXext 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec714870068/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec714870068.dir/build.make CMakeFiles/cmTryCompileExec714870068.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec714870068.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec714870068.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec714870068
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec714870068.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec714870068.dir/CheckFunctionExists.c.o  -o cmTryCompileExec714870068 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec4040969517/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4040969517.dir/build.make CMakeFiles/cmTryCompileExec4040969517.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4040969517.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec4040969517.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec4040969517
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4040969517.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec4040969517.dir/CheckFunctionExists.c.o  -o cmTryCompileExec4040969517 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec1063119984/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1063119984.dir/build.make CMakeFiles/cmTryCompileExec1063119984.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1063119984.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec1063119984.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1063119984
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1063119984.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec1063119984.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1063119984 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec1160332089/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1160332089.dir/build.make CMakeFiles/cmTryCompileExec1160332089.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1160332089.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec1160332089.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1160332089
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1160332089.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec1160332089.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1160332089 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec1388876473/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1388876473.dir/build.make CMakeFiles/cmTryCompileExec1388876473.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1388876473.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec1388876473.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1388876473
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1388876473.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec1388876473.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1388876473 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec3807815093/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3807815093.dir/build.make CMakeFiles/cmTryCompileExec3807815093.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3807815093.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec3807815093.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3807815093
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3807815093.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec3807815093.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3807815093 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec3293370365/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3293370365.dir/build.make CMakeFiles/cmTryCompileExec3293370365.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3293370365.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec3293370365.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3293370365
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3293370365.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec3293370365.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3293370365 -rdynamic 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec4155389489/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4155389489.dir/build.make CMakeFiles/cmTryCompileExec4155389489.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4155389489.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec4155389489.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec4155389489
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4155389489.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec4155389489.dir/CheckFunctionExists.c.o  -o cmTryCompileExec4155389489 -rdynamic 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp
+
+<<<<<<< HEAD
+Run Build Command:/usr/bin/make "cmTryCompileExec3415576277/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3415576277.dir/build.make CMakeFiles/cmTryCompileExec3415576277.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3415576277.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec3415576277.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3415576277
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3415576277.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTryCompileExec3415576277.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3415576277 -rdynamic -lICE 
+=======
+Run Build Command:/usr/bin/make "cmTryCompileExec2556740042/fast"
+make[1]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2556740042.dir/build.make CMakeFiles/cmTryCompileExec2556740042.dir/build
+make[2]: Entering directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2556740042.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec2556740042.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2556740042
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2556740042.dir/link.txt --verbose=1
+/usr/bin/cc     -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTryCompileExec2556740042.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2556740042 -rdynamic -lICE 
+>>>>>>> 362c04bc2b39c0e2ce26e050e3d4946113b1532e
+make[2]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles/CMakeTmp'
 
 

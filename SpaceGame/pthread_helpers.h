@@ -5,7 +5,7 @@
 #ifdef __linux__
 #include "unistd.h"
 inline void pthread_helper_sleep(int ms){
-	usleep(ms);
+	usleep(ms*1000);
 }
 #define SLEEP
 #endif

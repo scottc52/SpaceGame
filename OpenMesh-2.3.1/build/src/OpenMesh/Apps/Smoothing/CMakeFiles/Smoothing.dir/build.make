@@ -26,22 +26,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/cmake"
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = "/Applications/CMake 2.8-11.app/Contents/bin/ccmake"
-
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1
+CMAKE_SOURCE_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build
+CMAKE_BINARY_DIR = /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build
 
 # Include any dependencies generated for this target.
 include src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/depend.make
@@ -54,17 +51,17 @@ include src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/flags.make
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/flags.make
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o: ../src/OpenMesh/Apps/Smoothing/smooth.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o"
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Smoothing.dir/smooth.cc.o -c /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Smoothing.dir/smooth.cc.o -c /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Smoothing.dir/smooth.cc.i"
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc > CMakeFiles/Smoothing.dir/smooth.cc.i
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc > CMakeFiles/Smoothing.dir/smooth.cc.i
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Smoothing.dir/smooth.cc.s"
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc -o CMakeFiles/Smoothing.dir/smooth.cc.s
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing/smooth.cc -o CMakeFiles/Smoothing.dir/smooth.cc.s
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o.requires:
 .PHONY : src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o.requires
@@ -82,28 +79,27 @@ Smoothing_OBJECTS = \
 # External object files for target Smoothing
 Smoothing_EXTERNAL_OBJECTS =
 
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/build.make
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Tools/libOpenMeshToolsd.2.3.dylib
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Core/libOpenMeshCored.2.3.dylib
-src/OpenMesh/Apps/Smoothing/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable Smoothing"
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Smoothing.dir/link.txt --verbose=$(VERBOSE)
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && "/Applications/CMake 2.8-11.app/Contents/bin/cmake" -E copy_if_different /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/./Smoothing /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/Build/bin/Smoothing
+Build/bin/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o
+Build/bin/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/build.make
+Build/bin/Smoothing: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/Smoothing: Build/lib/OpenMesh/libOpenMeshToolsd.so.2.3
+Build/bin/Smoothing: Build/lib/OpenMesh/libOpenMeshCored.so.2.3
+Build/bin/Smoothing: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../../../../Build/bin/Smoothing"
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Smoothing.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/build: src/OpenMesh/Apps/Smoothing/Smoothing
+src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/build: Build/bin/Smoothing
 .PHONY : src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/build
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/requires: src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/smooth.cc.o.requires
 .PHONY : src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/requires
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/clean:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && $(CMAKE_COMMAND) -P CMakeFiles/Smoothing.dir/cmake_clean.cmake
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing && $(CMAKE_COMMAND) -P CMakeFiles/Smoothing.dir/cmake_clean.cmake
 .PHONY : src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/clean
 
 src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/depend:
-	cd /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1 /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing /Users/jordandavidson/GitHub/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1 /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/src/OpenMesh/Apps/Smoothing /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing /home/jdtatum/cs248/SpaceGame/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir/depend
 

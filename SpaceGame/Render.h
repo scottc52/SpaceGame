@@ -18,6 +18,8 @@
 #else
 #include <GL/glew.h>
 #include <GLUT/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 #endif
 #endif
 #include <fstream>
@@ -40,11 +42,19 @@
 #include <Eigen/Dense>
 #include <pthread.h>
 
+#ifdef __linux__ 
+#include "SOIL/SOIL.h"
+#else
+#include "SOIL.h"
+#endif
+
 using namespace std;
 using namespace Eigen;
 
 #define SHADERS_POSTHIT_VERTEX_FILE "../SpaceGame/shaders/postHit.v.glsl"
 #define SHADERS_POSTHIT_FRAGMENT_FILE "../SpaceGame/shaders/postHit.f.glsl"
+#define SHADERS_PARALLAX_FRAGMENT_FILE "../SpaceGame/shaders/parallax.f.glsl"
+#define SHADERS_PARALLAX_VERTEX_FILE "../SpaceGame/shaders/parallax.v.glsl"
 #define SHADERS_PASS_VERTEX_FILE "../SpaceGame/shaders/pass.v.glsl"
 #define SHADERS_FOG_FRAGMENT_FILE "../SpaceGame/shaders/fog.f.glsl"
 #define SHADERS_SUM3_FRAGMENT_FILE "../SpaceGame/shaders/sum3.f.glsl"

@@ -24,12 +24,12 @@ using namespace std;
 #define MAX_LINE_LEN 1024
 #define DELIM " \r\t\n\f" 
 
-
-/*Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
-Vec3f ConvertToOM3Vector(Vector3f& v){return Vec3f(v.x(), v.y(), v.z());}
-Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
-Vec4f ConvertToOM4Vector(Vector4f& v){return Vec4f(v.w(), v.x(), v.y(), v.z());}*/
-
+/*
+const Vector3f ConvertToEigen3Vector(Vec3f& v){return Vector3f(v[0], v[1], v[2]);}
+const Vec3f ConvertToOM3Vector(const Vector3f v){return Vec3f(v.x(), v.y(), v.z());}
+const Vector4f ConvertToEigen4Vector(Vec4f& v){return Vector4f(v[1], v[2], v[3], v[0]);}
+const Vec4f ConvertToOM4Vector(const Vector4f v){return Vec4f(v.w(), v.x(), v.y(), v.z());}
+*/
 char *newCString(const char *c){
 	int len = strlen(c);
 	char *n = new char[len + 1];	
@@ -135,6 +135,8 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		wobj.SetPosition(p);
 		wobj.SetScale(scale);
 		wobj.SetRotation(ConvertToOM4Vector(rot));
+		if(v.size() >= 12 && !(strcmp(v[11], "g")))
+			wobj.glowing = true;
 		wobj.SetName(v[1]);
 		wobj.SetMeshFile(newCString(v[2]));
 		r.AddWorldObject(wobj); 
@@ -198,24 +200,28 @@ void parseRoomLine(vector<char *> &v, GameRoom &r){
 		aobj.SetRotation(ConvertToOM4Vector(rot));
 		aobj.SetName(v[1]);
 		aobj.SetMeshFile(newCString(v[2]));
-		if(v.size() > 11){
-			GAME_DEBUG_ASSERT(v.size() >=14);
-			float vx = atof(v[11]);
-			float vy = atof(v[12]);
-			float vz = atof(v[13]);
+		if (v.size() > 11 && !(strcmp(v[11], "g"))) {
+			aobj.glowing = true;
+		}
+		if(v.size() > 12){
+			GAME_DEBUG_ASSERT(v.size() >=15);
+			float vx = atof(v[12]);
+			float vy = atof(v[13]);
+			float vz = atof(v[14]);
 			aobj.velocity = Vec3f(vx, vy, vz);
 		}
-		if(v.size() >= 14){
-			GAME_DEBUG_ASSERT(v.size() >=18);
-			float avw = atof(v[14]);
-			float avx = atof(v[15]);
-			float avy = atof(v[16]);
-			float avz = atof(v[17]);
+		if(v.size() >= 15){
+			GAME_DEBUG_ASSERT(v.size() >=19);
+			float avw = atof(v[15]);
+			float avx = atof(v[16]);
+			float avy = atof(v[17]);
+			float avz = atof(v[18]);
 			aobj.angularVelocity = Vec4f(avw, avx, avy, avz);
 		}
-		if(v.size() >=19){
-			aobj.mass = atof(v[18]);
+		if(v.size() >=20){
+			aobj.mass = atof(v[19]);
 		}
+
 		r.AddActiveObject(aobj); 
 		break; 
 			 }

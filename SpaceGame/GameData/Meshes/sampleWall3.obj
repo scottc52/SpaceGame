@@ -1,0 +1,12 @@
+# Blender v2.65 (sub 0) OBJ File: ''
+# www.blender.org
+mtllib ../Materials/SampleWall.mtl
+o Cube
+v -1.0 -1.0 -1.0
+v 1.0 -1.0 -1.0
+v 1.0 -1.0 1.0
+v -1.0 -1.0 1.0
+
+usemtl Material
+s off
+f 1 2 3 4

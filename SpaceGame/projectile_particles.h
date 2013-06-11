@@ -1,5 +1,10 @@
 #ifndef PROJECTILE_PARTICLES_H
 #define PROJECTILE_PARTICLES_H
+//forward declare
+class Projectile; 
+class Slug;
+class SmokyBullet;
+class Ball; 
 
 #ifdef _WIN32
 #include <gl/glew.h>
@@ -13,6 +18,7 @@
 #include <GL/glu.h>
 #include <GL/gl.h>
 #else
+#include <GL/glew.h>
 #include <GLUT/glut.h>
 #endif
 #endif
@@ -48,23 +54,39 @@ using namespace Eigen;
 class Projectile{
 public: 
 	virtual ~Projectile(){}
+	bool drawCollision;
+	vector<Vec3f>boundingBox;
+	Projectile(): damage(0), mass(1.0){
+		drawCollision = false;
+		boundingBox.push_back(Vec3f(-0.05, -0.05, -0.05));
+		boundingBox.push_back(Vec3f(0.05, -0.05, -0.05));
+		boundingBox.push_back(Vec3f(-0.05, 0.05, -0.05));
+		boundingBox.push_back(Vec3f(0.05, 0.05, -0.05));
+		boundingBox.push_back(Vec3f(-0.05, -0.05, 0.05));
+		boundingBox.push_back(Vec3f(-0.05, 0.05, 0.05));
+		boundingBox.push_back(Vec3f(0.05, -0.05, 0.05));
+		boundingBox.push_back(Vec3f(-0.05, -0.05, 0.05));
+	} 
 	virtual void hit(Vector3f loc)=0;
 	virtual void display(Vector3f cam, bool glow) =0;
 	virtual bool isDead() = 0; 
 	virtual void update(double dt) =0; 
 	virtual double timeAlive() =0;
-	virtual Vector3f &getPosition()=0;  
+	virtual Vector3f &getPosition()=0; 
+	virtual Vector3f &getVelocity()=0; 
+	double damage;
+	double mass; 
 };
 
 class Slug : public Projectile{
 private: 
-	vector<Vec3f>boundingBox;
 	Vector3f position;
 	Vector3f velocity; 
 	float r, g, b, a;
 	double pTimeAlive;
 	double pTimeSinceRedraw;  
 	Sound *sound;
+	double ttl; 
 public:
 	Slug(Vector3f &position, Vector3f &vel, float r1 = 0.9f, float g1 = 0.7f,  float b1 = 0.4f, float a1 = 0.5f);
 	void hit(Vector3f loc); 
@@ -72,7 +94,8 @@ public:
 	bool isDead();
 	void update(double dt); 
 	double timeAlive();
-	Vector3f &getPosition(); 
+	Vector3f &getPosition();
+	Vector3f &getVelocity(){return velocity;}  
 };
 
 class Ball : public Projectile{
@@ -86,13 +109,15 @@ private:
 	double pTimeAlive;
 public:
 	Ball(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
-		 float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+		float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
 	void hit(Vector3f loc);
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();
 	void update(double dt); 
 	double timeAlive() { return pTimeAlive; }
+	vector<Vec3f> boundingBox;
 	Vector3f &getPosition() { return position; }
+	Vector3f &getVelocity() {return velocity; }
 };
 
 class Particle{
@@ -192,8 +217,9 @@ public:
 	void hit(Vector3f hitLocation);
 	void display(Vector3f camera, bool drawGlow);
 	bool isDead();
+	Vector3f &getVelocity(){ return velocity;} 
 private:
 	Sound *sound;
 };
- 
+
 #endif

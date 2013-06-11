@@ -8,6 +8,8 @@
 #include "bloom_utils.h"
 #include "projectile_particles.h"
 #include "GameObjectHeaderList.h"
+#include "CollisionDetection.h"
+#include <list>
 
 //Allocate Statics
 GameState *Render::gameState = NULL;
@@ -18,12 +20,34 @@ bool Render::frameRequested = false;
 bool Render::pauseToggle = false;
 bool Render::paused = false; 
 int Render::h = 600;
-int Render::w = 800;  
+int Render::w = 800;
+GLuint g_colorMapTexture;
+GLuint g_normalMapTexture;
+GLuint g_heightMapTexture;
+float  g_scaleBias[2] = {0.04f, -0.03f};
+bool   g_disableParallax;
+void RenderCube();
+
+struct RoomVertex
+{
+    float pos[3];
+    float texcoord[2];
+    float normal[3];
+    float tangent[4];
+};
+
+RoomVertex RoomCube[24];
+static const float EPSILON = 1e-6f;
+GLuint cube_vertexBuffer;
+
+
+
 //****************************************************
 // function prototypes (so they can be called before they are defined)
 //****************************************************
 void setSimpleFog(float offset, float scale, GLuint texture, GLuint depth);
 void setBloom(GLuint base, Surface *passes);
+void InitializeRoomTextures();
 
 //****************************************************
 // classes
@@ -70,6 +94,7 @@ Surface fbo0, fbo1;
 Surface pass0[4];
 Surface pass1[4];
 GLuint vbo_fbo_vertices;
+GLuint program_parallax;
 GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc, uniform_damage_postproc;
 GLuint program_fog, uniform_source_fog, uniform_depth_fog, uniform_z_offset_fog, uniform_z_scale_fog, uniform_z_pow_fog, uniform_min_fog, uniform_max_fog, uniform_color_fog, uniform_z_near_fog, uniform_z_far_fog;
 //5x5 gaussian blur filter (using 3 lookups per pass)
@@ -80,6 +105,10 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 
 
 
+inline const GLubyte *BUFFER_OFFSET(size_t bytes)
+{ return reinterpret_cast<const GLubyte *>(0) + bytes; }
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -87,20 +116,69 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 void DrawBoundingBox(GameObject* o){
-	for(unsigned int i = 0; i< o->boundingBox.size()-1; i++){
+	glDisable(GL_LIGHTING);
+	vector<Vec3f> bBox = o->boundingBox;
+	Vector3f pos = o->GetPosition();
+	Vec3f p(pos.x(), pos.y(), pos.z());
+	Vec3f v = o->velocity;
+	Vec4f rot = o->GetRotation();
+	Vec4f wv = o->angularVelocity;
+	UpdateCoords(bBox, p, v, rot, wv, 0);
+	for(unsigned int i = 0; i< bBox.size()-1; i++){
 		glColor3f(0,0,1);
-		if(o->tier1CollisionData.size() > 0) glColor3f(1,0,0);
-		glBegin(GL_LINES);
-		glVertex3f(o->boundingBox[i][0], o->boundingBox[i][1], o->boundingBox[i][2]);
-		glVertex3f(o->boundingBox[i+1][0],o->boundingBox[i+1][1],o->boundingBox[i+1][2]); 
+		if(o->drawCollision || o->projectileCollisionData.size() > 0)
+			glColor3f(1,0,0);
+		glBegin(GL_LINE_LOOP);
+		glVertex3f(bBox[i][0], bBox[i][1], bBox[i][2]);
+		glVertex3f(bBox[i+1][0],bBox[i+1][1],bBox[i+1][2]); 
 		glEnd();
 	}
+	vector<Vec3f> meshB = o->meshBox;
+	UpdateCoords(meshB, p, v, rot, wv, 0);
+	for(unsigned int i = 0; i< meshB.size()-1; i++){
+		if(o->drawCollision) glColor3f(1,0,0);
+		else glColor3f(0,0,1);
+		glBegin(GL_LINE_LOOP);
+		glVertex3f(meshB[i][0], meshB[i][1], meshB[i][2]);
+		glVertex3f(meshB[i+1][0], meshB[i+1][1], meshB[i+1][2]);
+		glEnd();
+	}
+	o->drawCollision = false;
+	glEnable(GL_LIGHTING);
 }
+
+void DrawBoundingProjectileBox(){
+	/*glDisable(GL_LIGHTING);
+	PSystems* ps = Render::gameState->GetParticleSystems();
+	list<Projectile*>* projs = ps->GetBullets();
+	for(list<Projectile*>::iterator it = projs->begin(); it != projs->end(); ++it){
+		vector<Vec3f> bBox = (*(*it)).boundingBox;
+		Vector3f pos = (*(*it)).getPosition();
+		Vec3f p(pos.x(), pos.y(), pos.z());
+		Vec4f r(0,0,1,0);
+		Vec4f wv(1,0,0,0);
+		Vector3f vel = (*(*it)).getVelocity();
+		Vec3f v(vel.x(), vel.y(), vel.z());
+		UpdateCoords(bBox, p, v, r, wv, 0,6);
+		for(unsigned int i = 0; i< bBox.size()-1; i++){
+			glColor3f(0,0,1);
+			if((*(*it)).drawCollision)
+				glColor3f(1,0,0);
+			glBegin(GL_LINE_LOOP);
+			glVertex3f(bBox[i][0], bBox[i][1], bBox[i][2]);
+			glVertex3f(bBox[i+1][0],bBox[i+1][1],bBox[i+1][2]); 
+			glEnd();
+		}
+	}
+	glEnable(GL_LIGHTING);*/
+}
+
 
 
 //****************************************************
 // reshape viewport if the window is resized
 //****************************************************
+
 void Render::myReshape(int w, int h) {
 	//glViewport(viewport.w/2,viewport.h/2,viewport.w,viewport.h);// sets the rect angle that will be the window
 	Render::w= w;
@@ -140,6 +218,7 @@ void Render::myReshape(int w, int h) {
 //***************************************************
 // function that does the actual drawing
 //***************************************************
+
 MyMesh squareMesh(){
 	MyMesh mesh;
 
@@ -256,6 +335,7 @@ MyMesh squareMesh(){
 	return mesh;
 }
 
+
 //functions that actually does the drawing
 void setupCamera(){
 	Camera *cam  = Render::gameState->GetCamera();
@@ -303,6 +383,7 @@ void Render::hitEffect(){
 void setupLighting(){
 	//enabling lighting/ shading
 	glEnable(GL_LIGHTING);
+	//glShadeModel(GL_SMOOTH);
 	static float lmodel_twoside[] = { GL_TRUE };
 	glLightModelfv(GL_LIGHT_MODEL_TWO_SIDE , lmodel_twoside);
 	//The following two lines can make specular lighting more accurate, but is usually not necessary.
@@ -340,6 +421,7 @@ void setupLighting(){
 			glLightf(gl_lights[0], GL_SPOT_CUTOFF, 30.0);
 		}
 	}
+
 }
 
 void bindMaterial(Material &material){
@@ -405,11 +487,9 @@ void drawTestPrism(){
 	glVertex3f(0.1, 0.1, 10.1f);
 	glVertex3f(-10.1f, 0.1, 0.1);
 	glEnd();
-
-
-
 }
 
+<<<<<<< HEAD
 void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	glEnable(GL_NORMALIZE);
 	for(size_t i = 0; i < players.size(); ++i) {
@@ -458,21 +538,28 @@ void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	}
 	glDisable(GL_NORMALIZE);
 }
+=======
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 
 void drawFrame(){
+    Material material = exampleMaterial();
+    bindMaterial(material);
+
+    RenderCube();
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
 	//testing.
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
-	cout<< "pre-enter" << endl;
+	//cout<< "pre-enter" << endl;
 	gr->monitor.Enter('r');
-	cout << "post-enter" << endl;
+	//cout << "post-enter" << endl;
 	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
 	GameTime::GameTimer ref = GameTime::GetTime(); 
 	for(unsigned int w = 0; w <obs.size(); w++){
 		GameObject *gwo = obs[w]; 
+
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
 			continue;  
@@ -487,9 +574,7 @@ void drawFrame(){
 
 		//set materials and textures
 		//TODO all material properties should be read in from object
-		Material material = exampleMaterial();
-		//bindMaterial(material); 
-
+		
 		bool useTexture = false; //TODO
 		if(useTexture){
 			glEnable(GL_TEXTURE_2D);
@@ -522,16 +607,13 @@ void drawFrame(){
 			MyMesh::HalfedgeHandle it2 = mesh->halfedge_handle(it.handle());
 			for(int v = 0; v< 4; v++){
 				MyMesh::VertexHandle v_handle = mesh->to_vertex_handle(it2);
-				if(false){ // should there be a setting for using face or vertex normals?
-					if(mesh->has_vertex_normals()){glVertex3f(1.0f, 0, 0);
+
+				if(false && mesh->has_vertex_normals()){
 					Vec3f avg =mesh->normal(v_handle);
 					glNormal3f(avg[0], avg[1], avg[2]);
-					}
-				}else{
-					if(mesh->has_face_normals()){
-						Vec3f avg =mesh->normal(it.handle());
-						glNormal3f(avg[0], avg[1], avg[2]);
-					}
+				}else if (mesh->has_face_normals()){
+					Vec3f avg =mesh->normal(it.handle());
+					glNormal3f(avg[0], avg[1], avg[2]);
 				}
 				if(useTexture){
 					Vec2f texCoord; //TODO
@@ -544,21 +626,27 @@ void drawFrame(){
 		}
 		glEnd();
 
-		DrawBoundingBox(obs[w]);
-
 		glPopMatrix(); // you need one of these for every glPushMatrix()
+		DrawBoundingBox(obs[w]);
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 		//render Actors AKA metaball Warriors!
 
 	}
+<<<<<<< HEAD
 	DrawSkinnedPlayers(gr->GetPlayers());
+=======
+	DrawBoundingProjectileBox();
+>>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();
 
+		
+	ref = GameTime::GetTime();	
 	//ref = GameTime::GetTime();	
+
 	while (it != end){
 		AI *ai = *it; 
 		ai->render();
@@ -569,12 +657,13 @@ void drawFrame(){
 }
 
 void drawGlow(){
+    //cout << "\nhelllo\n";
 	GameRoom *gr = Render::gameState->GetRoom(); 	
 	//map<string, GameWorldObject>::iterator iter = gr->GetRoomWorldObjectsIterator(), end = gr->GetRoomWorldObjectsEnd(); 
-	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
+	vector<GameObject*> obs = gr->GetGameObjects();
 	//for(int i = 0; i<numObjects;i++){
-	for(unsigned int w = 0; w < wobs.size(); w++){
-		GameWorldObject *gwo = wobs[w]; 
+	for(unsigned int w = 0; w < obs.size(); w++){
+		GameWorldObject *gwo = obs[w]; 
 		MyMesh *mesh = gwo->GetMesh();
 		if (!mesh)
 			continue;  
@@ -608,7 +697,8 @@ void drawGlow(){
 		//normal scaling code shouldn't be necessary
 		glScalef(1.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
-		if(false){
+
+		if(gwo->glowing){
 			glColor4f(0.1f, 1.0f, 1.0f, 1.0f); //TODO obviously
 		}else{
 			glColor4f(0.0f, 0.0f, 0.0f, 1.0f); //render with black if not glowing
@@ -642,8 +732,8 @@ void drawBullets(bool glow){
 	glEnable( GL_PROGRAM_POINT_SIZE_EXT );
 	static GLfloat attenuate[3] = { 1.0, 0.01, 0.005 };  //Const, linear, quadratic 
 	glPointParameterfv(GL_POINT_DISTANCE_ATTENUATION, attenuate); 
-	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();
-	Render::gameState->GetParticleSystems()->monitor.Enter('r');   	
+	Render::gameState->GetParticleSystems()->monitor.Enter('r');
+	list<Projectile *> *bullets = Render::gameState->GetParticleSystems()->GetBullets();  	
 	list<Projectile *>::iterator it = bullets->begin(); 
 	while(it != bullets->end()){  
 		Projectile *curBullet = *it;
@@ -660,6 +750,7 @@ void drawBullets(bool glow){
 		}
 		it++;
 	}
+	Render::gameState->GetParticleSystems()->t->render(); 
 	Render::gameState->GetParticleSystems()->monitor.Exit('r');
 	glDisable(GL_BLEND);
 	glDepthMask(GL_TRUE);
@@ -831,6 +922,7 @@ void drawCrossHair(float w, float h){
 }
 
 void Render::defaultDisplay(){
+
 	int w = glutGet(GLUT_WINDOW_WIDTH);
 	int h = glutGet(GLUT_WINDOW_HEIGHT);
 	int t = glutGet(GLUT_ELAPSED_TIME);
@@ -842,7 +934,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();	
-	drawGlow();
+	//drawGlow();
 	drawBullets(true);
 
 
@@ -887,7 +979,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();
-	setupLighting();	
+	setupLighting();
 	drawFrame();
 	glDisable(GL_LIGHTING);
 	drawBullets(false);
@@ -932,7 +1024,7 @@ void Render::myDisplay() {
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW); 
 	} else{
 		glutSetCursor(GLUT_CURSOR_NONE); 
-		defaultDisplay(); 
+		defaultDisplay();
 	}					// swap buffers (we earlier set double buffer)
 	drawing = false; 
 }
@@ -959,7 +1051,7 @@ bool Render::requestFrame(){
 	bool value = true; 
 	pthread_mutex_lock(&lock);
 	if (frameRequested){
-		//cerr<< "warning: frame dropped" << endl;
+		cerr<< "warning: frame dropped" << endl;
 		value = false;
 	}
 	frameRequested = true; 
@@ -1464,7 +1556,7 @@ void setBloom(GLuint base, Surface *passes){
 	glActiveTexture(GL_TEXTURE0); //good to set this so other functions don't screw up.
 }
 
-//****************************************************
+//********************************
 // Initialize GLUT and resources
 //****************************************************
 void effectsResourcesInitialize(){
@@ -1537,6 +1629,334 @@ void effectsResourcesInitialize(){
 	}
 }
 
+void LoadParallaxProgram() {
+    string vertexShader = SHADERS_PARALLAX_VERTEX_FILE;
+	string fragmentShader = SHADERS_PARALLAX_FRAGMENT_FILE;
+	GLuint vs, fs;
+	if ((vs = create_shader(vertexShader.c_str(), GL_VERTEX_SHADER))   == 0){
+		fprintf(stderr, "failed to create vertex shader");
+		//return 0;
+	}
+	if ((fs = create_shader(fragmentShader.c_str(), GL_FRAGMENT_SHADER)) == 0){
+		fprintf(stderr, "failed to create fragment shader");
+		//return 0;
+	}
+    
+	GLint link_ok, validate_ok;
+    
+	program_parallax = glCreateProgram();
+	GLuint programID = program_parallax;
+	glAttachShader(programID, vs);
+	glAttachShader(programID, fs);
+	glLinkProgram(programID);
+	glGetProgramiv(programID, GL_LINK_STATUS, &link_ok);
+	if (!link_ok) {
+		fprintf(stderr, "glLinkProgram:");
+		//print_shader_log(program_postproc);
+		//return 0;
+	}
+	glValidateProgram(programID);
+	glGetProgramiv(programID, GL_VALIDATE_STATUS, &validate_ok);
+	if (!validate_ok) {
+		fprintf(stderr, "glValidateProgram:");
+		//print_shader_log(program_postproc);
+		cout << "post processing program not valid!";
+	}
+    
+}
+
+void Normalize3dVector(float vec[3]) {
+    float invMag = 1.0f / (vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
+    vec[0] *= invMag;
+    vec[1] *= invMag;
+    vec[2] *= invMag;
+    
+}
+
+void Normalize2dVector(float vec[2]) {
+    float invMag = 1.0f / (vec[0]*vec[0] + vec[1]*vec[1]);
+    vec[0] *= invMag;
+    vec[1] *= invMag;
+}
+
+GLuint LoadTexture(const char *filename, GLint magFilter, GLint minFilter,
+                   GLint wrapS, GLint wrapT)
+{
+    GLuint id = 0;
+    int width, height;
+    unsigned char* image = SOIL_load_image(filename, &width, &height, 0, SOIL_LOAD_RGB );
+    
+    
+    glGenTextures(1, &id);
+    glBindTexture(GL_TEXTURE_2D, id);
+    
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    
+    return id;
+}
+
+void RenderCube() {
+    glUseProgram(program_parallax);
+    GLuint place1 = glGetUniformLocation(program_parallax, "colorMap");
+    glUniform1i(place1, 0);
+    GLuint place2 = glGetUniformLocation(program_parallax, "normalMap");
+    glUniform1i(place2, 1);
+    GLuint place3 = glGetUniformLocation(program_parallax, "heightMap");
+    glUniform1i(place3, 2);
+    GLuint place4 = glGetUniformLocation(program_parallax, "scale");
+    glUniform1f(place4, g_scaleBias[0]);
+    GLuint place5 = glGetUniformLocation(program_parallax, "bias");
+    glUniform1f(place5, g_scaleBias[1]);
+    GLuint place6 = glGetUniformLocation(program_parallax, "enableParallax");
+    glUniform1i(place6, !g_disableParallax);
+    glScalef(40.0, 20.0, 50.0);
+    glTranslatef(0.0, .5, 0.0);
+    glActiveTexture(GL_TEXTURE2);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_heightMapTexture);
+    
+    glActiveTexture(GL_TEXTURE1);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_normalMapTexture);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, g_colorMapTexture);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, cube_vertexBuffer);
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(0));
+    
+    glClientActiveTexture(GL_TEXTURE0);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(2, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 3));
+    
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glNormalPointer(GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 5));
+    
+    glClientActiveTexture(GL_TEXTURE1);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(4, GL_FLOAT, sizeof(RoomVertex), BUFFER_OFFSET(sizeof(float) * 8));
+    
+    glDrawArrays(GL_QUADS, 0, sizeof(RoomCube) / sizeof(RoomCube[0]));
+    
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    glClientActiveTexture(GL_TEXTURE0);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    glUseProgram(0);
+}
+
+
+void CalcTangentVector(const float pos1[3], const float pos2[3],
+                       const float pos3[3], const float texCoord1[2],
+                       const float texCoord2[2], const float texCoord3[2],
+                       const float normal[3], float tangent[4])
+{
+
+    
+    float edge1[3] = {pos2[0] - pos1[0], pos2[1] - pos1[1], pos2[2] - pos1[2]};
+    float edge2[3] = {pos3[0] - pos1[0], pos3[1] - pos1[1], pos3[2] - pos1[2]};
+  
+    Normalize3dVector(edge1);
+    Normalize3dVector(edge2);
+    
+    float texEdge1[2] = {texCoord2[0] - texCoord1[0], texCoord2[1] - texCoord1[1]};
+    float texEdge2[2] = {texCoord3[0] - texCoord1[0], texCoord3[1] - texCoord1[1]};
+    
+    Normalize2dVector(texEdge1);
+    Normalize2dVector(texEdge2);
+    
+    
+    
+    float t[3];
+    float b[3];
+    float n[3] = {normal[0], normal[1], normal[2]};
+    
+    float det = (texEdge1[0] * texEdge2[1]) - (texEdge1[1] * texEdge2[0]);
+    
+    if (fabsf((det - 0.0f) / ((0.0 == 0.0f) ? 1.0f : 0.0f)) < EPSILON)
+    {
+        t[0] = 1.0f;
+        t[1] = 0.0f;
+        t[2] = 0.0f;
+        b[0] = 0.0f;
+        b[1] = 1.0f;
+        b[2] = 0.0f;
+    }
+    else
+    {
+        det = 1.0f / det;
+        
+        t[0] = (texEdge2[1] * edge1[0] - texEdge1[1] * edge2[0]) * det;
+        t[1] = (texEdge2[1] * edge1[1] - texEdge1[1] * edge2[1]) * det;
+        t[2] = (texEdge2[1] * edge1[2] - texEdge1[1] * edge2[2]) * det;
+        
+        b[0] = (-texEdge2[0] * edge1[0] + texEdge1[0] * edge2[0]) * det;
+        b[1] = (-texEdge2[0] * edge1[1] + texEdge1[0] * edge2[1]) * det;
+        b[2] = (-texEdge2[0] * edge1[2] + texEdge1[0] * edge2[2]) * det;
+        
+        Normalize3dVector(t);
+        Normalize3dVector(b);
+    }
+    
+    float bitangent[3];
+    bitangent[0] = (n[1] * t[2]) - (n[2] * t[1]);
+    bitangent[1] = (n[2] * t[0]) - (n[0] * t[2]);
+    bitangent[2] = (n[0] * t[1]) - (n[1] * t[0]);
+    float dot = (bitangent[0] * b[0]) + (bitangent[1] * b[1]) + (bitangent[2] * b[2]);
+    float handedness = (dot < 0.0f) ? -1.0f : 1.0f;
+   // cout << t[0] << "\n";
+    tangent[0] = t[0];
+    tangent[1] = t[1];
+    tangent[2] = t[2];
+    tangent[3] = handedness;
+}
+
+
+void InitializeRoomTextures() {
+    GameRoom *gr = Render::gameState->GetRoom();
+	vector<GameWorldObject*> wobs = gr->GetWorldObjects();
+    int cubeCount = 0;
+    for(unsigned int w = 0; w <wobs.size(); w++){
+		GameWorldObject *gwo = wobs[w];
+		MyMesh *mesh = gwo->GetMesh();
+		if (!mesh)
+			continue;		
+        for (MyMesh::VertexIter v_it=mesh->vertices_begin(); v_it!=mesh->vertices_end(); ++v_it) {
+           // MyMesh::VertexHandle v_handle =  v_it.handle;
+            Vec3f p = mesh->point( v_it.handle());
+            RoomVertex rv;
+
+            rv.pos[0] = p[0];
+            rv.pos[1] = p[1];
+            rv.pos[2] = p[2];
+            //cout << "reading in: " <<  rv.pos[0] << " " <<  rv.pos[1] << " " <<  rv.pos[2] << "\n";
+            RoomCube[cubeCount] = rv;
+            //it2 = mesh->next_halfedge_handle(it2);
+            cubeCount++;
+        }
+    }
+    for (int man = 0; man < 24; man += 4) {
+        int normalPos;
+        float normalValue;
+        if (man==0) {
+            normalPos = 2;
+            normalValue = 1.0f;
+        } else if (man==4) {
+            normalPos = 2;
+            normalValue = -1.0f;
+        } else if (man==8) {
+            normalPos = 1;
+            normalValue = 1.0f;
+        } else if (man==12) {
+            normalPos = 1;
+            normalValue = -1.0f;
+        } else if (man==16) {
+            normalPos = 0;
+            normalValue = 1.0f;
+        } else if (man==20) {
+            normalPos = 0;
+            normalValue = -1.0f;
+        }
+        for (int hum = 0; hum<3; hum++) {
+            if (hum == normalPos) {
+                RoomCube[man].normal[hum] = normalValue;
+                RoomCube[man+1].normal[hum] = normalValue;
+                RoomCube[man+2].normal[hum] = normalValue;
+                RoomCube[man+3].normal[hum] = normalValue;
+            } else {
+                RoomCube[man].normal[hum] = 0.0;
+                RoomCube[man+1].normal[hum] = 0.0;
+                RoomCube[man+2].normal[hum] = 0.0;
+                RoomCube[man+3].normal[hum] = 0.0;
+            }
+        }
+        RoomCube[man].texcoord[0] = 0.0f;
+        RoomCube[man].texcoord[1] = 0.0f;
+        RoomCube[man+1].texcoord[0] = 1.0f;
+        RoomCube[man+1].texcoord[1] = 0.0f;
+        RoomCube[man+2].texcoord[0] = 1.0f;
+        RoomCube[man+2].texcoord[1] = 1.0f;
+        RoomCube[man+3].texcoord[0] = 0.0f;
+        RoomCube[man+3].texcoord[1] = 1.0f;
+    }
+    
+    RoomVertex *pVertex1 = 0;
+    RoomVertex *pVertex2 = 0;
+    RoomVertex *pVertex3 = 0;
+    RoomVertex *pVertex4 = 0;
+    float tangent[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+    
+    for (int i = 0; i < 24; i += 4)
+    {
+        pVertex1 = &RoomCube[i];
+        pVertex2 = &RoomCube[i + 1];
+        pVertex3 = &RoomCube[i + 2];
+        pVertex4 = &RoomCube[i + 3];
+        
+        CalcTangentVector(pVertex1->pos, pVertex2->pos, pVertex4->pos, pVertex1->texcoord, pVertex2->texcoord, pVertex4->texcoord, pVertex1->normal, tangent);
+        pVertex1->tangent[0] = tangent[0];
+        pVertex1->tangent[1] = tangent[1];
+        pVertex1->tangent[2] = tangent[2];
+        pVertex1->tangent[3] = tangent[3];
+        
+        pVertex2->tangent[0] = tangent[0];
+        pVertex2->tangent[1] = tangent[1];
+        pVertex2->tangent[2] = tangent[2];
+        pVertex2->tangent[3] = tangent[3];
+        
+        pVertex3->tangent[0] = tangent[0];
+        pVertex3->tangent[1] = tangent[1];
+        pVertex3->tangent[2] = tangent[2];
+        pVertex3->tangent[3] = tangent[3];
+        
+        pVertex4->tangent[0] = tangent[0];
+        pVertex4->tangent[1] = tangent[1];
+        pVertex4->tangent[2] = tangent[2];
+        pVertex4->tangent[3] = tangent[3];
+    }
+    for (int n=0; n<4; n++) {
+        RoomVertex dummy =  RoomCube[n];
+        cout << "Pos: " << dummy.pos[0] << " " << dummy.pos[1] << " " << dummy.pos[2] << " Tex: "<< dummy.texcoord[0] << " " <<  dummy.texcoord[1] << " Normal: " << dummy.normal[0] << " "<< dummy.normal[1] << " " << dummy.normal[2] << " Tangent: " << dummy.tangent[0] << " " << dummy.tangent[1] << " " << dummy.tangent[2] << " " << dummy.tangent[3] << "\n";
+    }
+    
+    
+    
+    // Store the cube's geometry in a Vertex Buffer Object.
+    
+    glGenBuffers(1, &cube_vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, cube_vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(RoomCube), RoomCube, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    g_colorMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_color5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    g_normalMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_normal5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    g_heightMapTexture = LoadTexture("/Users/veasnaso/Desktop/metals/metal_height5.jpg", GL_LINEAR, GL_LINEAR_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT);
+    LoadParallaxProgram();
+}
 
 void Render::GlutInitialize(){
 	cout<<"Start SpaceGame!\n";
@@ -1562,11 +1982,13 @@ void Render::GlutInitialize(){
 	{
 		//Problem: glewInit failed, something is seriously wrong.
 		cout<<"glewInit failed, aborting."<<endl;
-	}
+    }
+	
 
 	//setup resources for post-processing
 	effectsResourcesInitialize();
 	prevT = glutGet(GLUT_ELAPSED_TIME);
+   // InitializeRoomTextures();
 
 	//calling reshape before binding callbacks makes inconsistencies from 
 	//reshape operations apparent from the beginning
@@ -1580,4 +2002,6 @@ void Render::GlutInitialize(){
 	//glutKeyboardFunc(myKeyboard);
 	//glutKeyboardUpFunc(keyboardUp);
 	glutSetCursor(GLUT_CURSOR_NONE);
+    InitializeRoomTextures();
+
 }
