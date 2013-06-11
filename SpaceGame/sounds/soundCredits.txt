@@ -1,6 +1,8 @@
 With the exception of the music, all of the sounds for this project are 
 modified from files found on freesound.org. Their sources are, as follows:
 
+clang.wav               http://www.freesound.org/people/timgormly/sounds/170958/
+impact.wav              http://www.freesound.org/people/haydensayshi123/sounds/138678/
 laser.wav               http://www.freesound.org/people/m_O_m/sounds/92892/
 metallic_roar.wav       http://www.freesound.org/people/klangfabrik/sounds/183633/
 smokybullet.wav         http://www.freesound.org/people/211redman112/sounds/145795/
