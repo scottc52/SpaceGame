@@ -414,12 +414,19 @@ cout << "zooming" << endl;
 	cam->setDirection(dir);    
 }
 
+void GameState::AnimatePlayers(double dt) {
+	vector<GamePlayer *> players = room->GetPlayers();
+	for(size_t i = 0; i < players.size(); ++i)
+		players[i]->Animate(dt);
+}
+
 void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 	//If save, handle save
 	//If change room, handle change room
 	
 	//Player action
 	ProcessInput(input, dt);
+	AnimatePlayers(dt);
 	UpdateParticleSystems((int)dt);
 	//PerformCollision
 	

@@ -58,7 +58,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCore.lib;libOpenMeshCored.lib;libOpenMeshTools.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -69,6 +69,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_USE_MATH_DEFINES;WIN32;_RELEASE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\OpenMesh-2.3.1\src;SOIL/include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -79,8 +80,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="bloom_utils.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CharacterMesh.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="GameActiveObject.cpp" />
@@ -106,8 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="bloom_utils.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CharacterMesh.h" />
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="GameActiveObject.h" />

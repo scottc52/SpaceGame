@@ -390,6 +390,47 @@ void drawTestPrism(){
 
 }
 
+void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
+	for(size_t i = 0; i < players.size(); ++i) {
+		MatrixPalette matPal = players[i]->currentPose.buildMatrixPalette();
+		glPushMatrix();
+		Vector3f Position = ((GameObject *)players[i])->GetPosition();
+		glTranslatef(Position[0], Position[1], Position[2]); 
+		Vec4f Rotation = ((GameObject *)players[i])->GetRotation();
+		glRotatef(Rotation[0], Rotation[1], Rotation[2], Rotation[3]);
+		glBegin(GL_TRIANGLES);
+			for(size_t i = 0; i < players[i]->charMesh.faces.size(); ++i) {
+				size_t vertexIndex[3];
+				vertexIndex[0] = players[i]->charMesh.faces[i].v1;
+				vertexIndex[1] = players[i]->charMesh.faces[i].v2;
+				vertexIndex[2] = players[i]->charMesh.faces[i].v3;
+				Point3f p[3];
+				p[0] = players[i]->charMesh.vertices[vertexIndex[0]];
+				p[1] = players[i]->charMesh.vertices[vertexIndex[1]];
+				p[2] = players[i]->charMesh.vertices[vertexIndex[2]];
+				Vector3f normals[3];
+				normals[0] = players[i]->charMesh.normals[players[i]->charMesh.faces[i].n1];
+				normals[1] = players[i]->charMesh.normals[players[i]->charMesh.faces[i].n2];
+				normals[2] = players[i]->charMesh.normals[players[i]->charMesh.faces[i].n3];
+				for(int j = 0; j < 3; ++j) {
+					Vector4f v(p[j][0], p[j][1], p[j][2], 1);
+					Vector4f n(normals[j][0], normals[j][1], normals[j][2], 0);
+					Matrix4f mat = Matrix4f::Zero();
+					for(int k = 0; k < players[i]->skin.jointWeights[vertexIndex[j]].numWeights; ++k) {
+						mat += players[i]->skin.jointWeights[vertexIndex[j]].weight[k] * 
+							   matPal.skinningMats[players[i]->skin.jointWeights[vertexIndex[j]].jointIndex[k]];
+					}
+					v = mat * v;
+					n = mat * n;
+					glNormal3f(n[0], n[1], n[2]);
+					glVertex3f(v[0], v[1], v[2]);
+				}
+			}
+		glEnd();
+		glPopMatrix();
+	}
+}
+
 void drawFrame(){
 	//Now that we have fbo, we can easily do anti-aliasing through mutil-sampling. 
 	//If necessary, do that instead using polygon_smooth which doesn't work well with depth
@@ -477,6 +518,7 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
+	DrawSkinnedPlayers(gr->GetPlayers());
 	cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
 	list<AI *>::iterator end = Render::gameState->GetActors()->end();
@@ -1410,7 +1452,7 @@ void effectsResourcesInitialize(){
 	loadPostProcessingProgram();
 	loadFogProgram();
 	loadBlurProgram();
-	loadBlur9Program();
+	//loadBlur9Program();
 	loadBloomProgram();
 
 	//create frame buffer objects with depth buffers

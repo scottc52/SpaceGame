@@ -8,6 +8,10 @@
 
 #include "GameActiveObject.h"
 #include "GameItem.h"
+#include "Animation.h"
+#include "CharacterMesh.h"
+
+#include <vector>
 
 class GamePlayer : public GameActiveObject{
 private:
@@ -19,14 +23,22 @@ private:
 	bool primaryActive;
 	//float Max rotation?
 	//GameInventory* inventory;
+
+
 public:
-	GamePlayer::GamePlayer(){
+	GamePlayer::GamePlayer():
+	skel("../SpaceGame/animations/character.skel"), 
+	skin("../SpaceGame/animations/character.skin"), 
+	aim_clip("../SpaceGame/animations/aim.anim", &skel), 
+	charMesh("../SpaceGame/animations/character.obj") {
 		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 1.0f);
 		SecondaryWeapon = new SlugBulletWeapon(25);
 		activeItem = NULL;
 		activeWeapon = PrimaryWeapon;
 		primaryActive = true;
 		objType = PLAYER_TYPE;
+
+
 	}
 	void GamePlayer::ApplyMovementForce(const Vector3f &force, const double& timeIncrement);
 	void GamePlayer::ApplyExternalForce(const Vector3f &force, const Vector3f& position);
@@ -54,6 +66,16 @@ public:
 	}
 	void GamePlayer::FireWeapon(); 
 	void GamePlayer::UseItem();
+
+	void GamePlayer::Animate(double dt){
+		currentPose = aim_clip.interpolatePose((float)dt);
+	}
+
+	Skeleton skel;
+	Skin skin;
+	AnimationClip aim_clip;
+	SkeletonPose currentPose;
+	CharacterMesh charMesh;
 };
 
 #endif _GAME_PLAYER_H

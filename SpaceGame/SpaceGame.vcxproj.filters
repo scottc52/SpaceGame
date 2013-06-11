@@ -25,6 +25,8 @@
     <ClCompile Include="MetalineEnemy.cpp" />
     <ClCompile Include="MetaplaneEnemy.cpp" />
     <ClCompile Include="Monitor.cpp" />
+    <ClCompile Include="CharacterMesh.cpp" />
+    <ClCompile Include="Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloom_utils.h" />
@@ -104,6 +106,8 @@
     <ClInclude Include="MetalineEnemy.h" />
     <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
+    <ClInclude Include="CharacterMesh.h" />
+    <ClInclude Include="Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameDebugOutput.txt" />

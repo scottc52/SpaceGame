@@ -22,3 +22,6 @@ L ceiling 0.0f 30.0f 0.0f 0 0 0 180 180 180 180 180 180
 # C 	player
 # C	x	y	z	vx	vy	vz	ux	uy	uz
 C player 0 0 -4 0 0 1 0 1 0	 
+
+#A name x y z angleX angleY angleZ scale mass
+A player 0 0 1 0 0 1 0 1.0 20
