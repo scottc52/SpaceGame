@@ -1,107 +1,9 @@
-﻿Build started 6/10/2013 6:09:37 PM.
+﻿Build started 6/10/2013 8:12:38 PM.
      1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CollisionDetection.cpp Controller.cpp GameActiveObject.cpp GameDebug.cpp GameDoor.cpp GameEventObject.cpp GamePlayer.cpp GameRoom.cpp GameState.cpp Render.cpp RoomBuilder.cpp Sound.cpp UI.cpp main.cpp
-         CollisionDetection.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>CollisionDetection.cpp(6): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>CollisionDetection.cpp(10): warning C4244: 'return' : conversion from 'const float' to 'int', possible loss of data
-     1>CollisionDetection.cpp(53): warning C4244: 'argument' : conversion from 'unsigned int' to 'const float', possible loss of data
-     1>CollisionDetection.cpp(82): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>CollisionDetection.cpp(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>CollisionDetection.cpp(458): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>CollisionDetection.cpp(585): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>CollisionDetection.cpp(598): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>CollisionDetection.cpp(628): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>CollisionDetection.cpp(643): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Controller.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>Controller.cpp(26): warning C4101: 't' : unreferenced local variable
-         GameActiveObject.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-         GameDebug.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-         GameDoor.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-         GameEventObject.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-         GamePlayer.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>GamePlayer.cpp(16): warning C4244: 'argument' : conversion from 'const double' to 'const float', possible loss of data
-         GameRoom.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>GameRoom.cpp(78): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameRoom.cpp(93): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(94): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(95): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(96): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(97): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(98): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(99): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(100): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(101): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(102): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(103): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(104): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(124): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(125): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(126): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(127): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(128): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(129): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(130): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(131): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(146): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(147): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(148): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(150): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(164): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(165): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(166): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(167): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(168): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(169): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(170): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(171): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(182): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(183): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(184): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(189): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(190): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(191): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(192): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameRoom.cpp(196): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-         GameState.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>GameState.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameState.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameState.cpp(407): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>GameState.cpp(410): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>GameState.cpp(430): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
-     1>GameState.cpp(432): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GameState.cpp(434): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Render.cpp
          Render.cpp
      1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
      1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
      1>Render.cpp(44): warning C4305: '=' : truncation from 'double' to 'float'
      1>Render.cpp(45): warning C4305: '=' : truncation from 'double' to 'float'
@@ -124,13 +26,13 @@
      1>Render.cpp(403): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(405): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
      1>Render.cpp(406): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(589): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
-     1>Render.cpp(759): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>Render.cpp(798): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>Render.cpp(850): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>Render.cpp(862): warning C4244: 'argument' : conversion from 'const double' to 'GLfloat', possible loss of data
-     1>Render.cpp(935): warning C4305: 'argument' : truncation from 'double' to 'const float'
-     1>Render.cpp(936): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(593): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(763): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>Render.cpp(802): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>Render.cpp(854): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Render.cpp(866): warning C4244: 'argument' : conversion from 'const double' to 'GLfloat', possible loss of data
+     1>Render.cpp(939): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>Render.cpp(940): warning C4305: 'argument' : truncation from 'double' to 'const float'
      1>c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
                  c:\users\austin\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\PolyMeshT.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
                  with
@@ -177,25 +79,6 @@
                      Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
                  ]
                  Render.cpp(143) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
-         RoomBuilder.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-         Sound.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>Sound.cpp(10): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>Sound.cpp(53): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>Sound.cpp(56): warning C4244: 'argument' : conversion from 'float' to 'Uint8', possible loss of data
-         UI.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-         main.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameObject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameItem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\GameActiveObject.h(30): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\MetaballEnemy.h(41): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
-     1>main.cpp(238): warning C4305: 'initializing' : truncation from 'double' to 'float'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.exe" /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCore.lib libOpenMeshCored.lib libOpenMeshTools.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Release\SpaceGame.lib" /MACHINE:X86 /SAFESEH Release\bloom_utils.obj
          Release\Camera.obj
@@ -224,8 +107,8 @@
          "SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib"
          "SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib"
          Generating code
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(1112): warning C4715: 'loadFogProgram' : not all control paths return a value
-     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(1000): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
+     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(1116): warning C4715: 'loadFogProgram' : not all control paths return a value
+     1>c:\users\austin\documents\github\spacegame\spacegame\render.cpp(1004): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
      1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(515): warning C4715: 'AlreadyIn' : not all control paths return a value
          Finished generating code
      1>bloom_utils.obj : warning LNK4099: PDB 'vc110.pdb' was not found with 'bloom_utils.obj' or at 'C:\Users\Austin\Documents\GitHub\SpaceGame\Release\vc110.pdb'; linking object as if no debug info
@@ -235,4 +118,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:49.94
+Time Elapsed 00:00:14.03

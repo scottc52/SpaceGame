@@ -133,6 +133,7 @@
     <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
     <ClInclude Include="projectile_particles.h" />
+    <ClInclude Include="pthread_helpers.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
     <ClInclude Include="SDL-1.2.15\include\begin_code.h" />

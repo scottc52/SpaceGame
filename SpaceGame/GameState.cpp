@@ -293,25 +293,53 @@ bool pIsDead(Projectile *p){
 	return p->isDead();
 }
 
+#define BRANCH_FACTOR 2
+#include "TaskQueue.h"
+class BulletUpdater : public Task{
+private:
+	vector<Projectile *> toUpdate;
+
+public:
+	double dt; 
+	BulletUpdater(){} 
+	void AddBullet(Projectile *p){
+		toUpdate.push_back(p);
+	}
+	virtual void run(){
+		for(int i = 0; i < toUpdate.size(); i++){
+			Projectile *p = toUpdate[i];
+			if(p->isDead()){
+				continue; 
+			}
+			if(p->timeAlive() > 3000){
+				p->hit(p->getPosition()); 
+			}
+			p->update(dt);
+		}
+	}
+};
+
 void PSystems::updateAll(double dt){
 	list<Projectile *>::iterator it = projectiles.begin();
+	int idx = 0;
+	BulletUpdater jobs[BRANCH_FACTOR]; 
 	while(it != projectiles.end()){
-		Projectile *sb = *it;			
-		if(sb->isDead()){
-			it ++;
-			continue;
-		}else{ 			
-			//hitboxing here!
-			if(sb->timeAlive() > 3000){
-				sb->hit(sb->getPosition());
-			} 
-			sb->update(dt);
-			it ++; 
-		}  
+		jobs[idx].AddBullet(*it);
+		jobs[idx].dt = dt;
+		it ++; 	
+		idx ++;
+		idx %=BRANCH_FACTOR;  
 	} 
 	monitor.Enter('w');
+	for( int i = 0; i < BRANCH_FACTOR; i ++) {
+		TaskQueue::defQueue->enqueue(&jobs[i]); 
+	}
+	for( int i = 0; i < BRANCH_FACTOR; i ++) {
+		jobs[i].join(); 
+	}
 	projectiles.remove_if(pIsDead);
 	monitor.Exit('w');
+	cout << "finished" << endl;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  STATE MACIHNE ITERATTION
@@ -360,8 +388,11 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 				loc += dir.cross(strafe); //below camera
 				if (player.GetActiveWeapon()){
 					Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
-					if (p)
+					if (p){
+						ps->monitor.Enter('w');
 						ps->AddBullet(p);
+						ps->monitor.Exit('w');
+					}
 				} else {
 					cerr << "error: no active weapon" << endl;
 				}
@@ -420,7 +451,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//Player action
 	ProcessInput(input, dt);
-	UpdateParticleSystems((int)dt);
+	UpdateParticleSystems(dt);
 
 	vector<GameObject*>objects = room->GetGameObjects();
 	for(unsigned int o = 0; o<objects.size(); o++){
@@ -435,8 +466,9 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		axisOfRotation.normalize();
 		obj->SetRotation(Vec4f(newAngle, axisOfRotation[0], axisOfRotation[1], axisOfRotation[2]));
 	}
-
+	//room->monitor.Enter('w');
 	PerformCollisionDetection(room, &(GameState::player), dt);
+	//room->monitor.Exit('w');
 	//AI Calls
 	//To do: Collision detection, update forces
 	//Camera movement 

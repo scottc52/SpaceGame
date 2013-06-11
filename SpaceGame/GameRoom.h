@@ -22,7 +22,9 @@
 #include "GameDoor.h"
 #include "GamePlayer.h"
 #include <vector>
+#include <pthread.h>
 #include <map>
+#include "Monitor.h"
 
 #define OBJECT_NOT_FOUND -1
 
@@ -53,6 +55,7 @@ private:
 	//GamePlayer* player;
 
 public:
+	Monitor monitor;
 	map<GameObject*, vector<GameObject*> > collisionTier0List;
 	map<GameObject*, vector<GameObject*> > collisionTier1List;
 	map<GameObject*, vector<GameObject*> > collisionTier2List;

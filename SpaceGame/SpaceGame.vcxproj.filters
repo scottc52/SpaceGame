@@ -104,6 +104,7 @@
     <ClInclude Include="MetalineEnemy.h" />
     <ClInclude Include="MetaplaneEnemy.h" />
     <ClInclude Include="Monitor.h" />
+    <ClInclude Include="pthread_helpers.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameDebugOutput.txt" />

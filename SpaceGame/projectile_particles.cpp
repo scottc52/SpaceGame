@@ -2,6 +2,7 @@
 #include "projectile_particles.h"
 //particles using std::list (probably faster than vector, since it has a very high turn-over rate?)
 
+using namespace Eigen;
 //global variables
 Vector3f particleCameraPos;
 float distScale = 0.1; // we could pass in field-of-view to calculate this. But probably not worth it.
@@ -238,7 +239,7 @@ bool isParticleDead(Particle p){
 
 //Slug
 
-Slug::Slug(Vector3f &pos1, Vector3f &velocity1,  float r1, float g1, float b1, float a1) : Projectile(){
+Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, float a1) : Projectile(){
 	r = r1; 
 	g = g1;
 	b = b1;
@@ -283,4 +284,44 @@ double Slug::timeAlive(){
 
 Vector3f &Slug::getPosition(){
 	return position;
+}
+
+Ball::Ball(Vector3f &pos, Vector3f &vel, float radius, int stacks, int slices, float r1, float g1, float b1, float a1)
+	: Projectile()
+{
+	r = r1; 
+	g = g1;
+	b = b1;
+	a = a1;
+	this->radius = radius;
+	this->stacks = stacks;
+	this->slices = slices;
+	position = pos;
+	velocity = vel;
+	pTimeAlive = 0;
+}
+
+void Ball::update(double dt){
+	Vector3f delta = velocity * (((double)dt)/1000.0);
+	position += delta; 
+	pTimeAlive += dt;
+}
+
+void Ball::hit(Vector3f loc)
+{
+	return;
+}
+
+void Ball::display(Vector3f cam, bool glow){
+	if (!isDead()){
+		glColor4f(r, g, b, a);
+		glPushMatrix();
+		glTranslatef(position(0), position(1), position(2));
+		glutSolidSphere(radius, slices, stacks);
+		glPopMatrix();
+	}
+}
+
+bool Ball::isDead(){
+	return false;
 }

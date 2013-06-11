@@ -7,19 +7,14 @@
 
 Controller *Controller::gameController = NULL;
 
-#define STATS 
-#undef STATS
-
+double avg = FPS; 
+#define WEIGHT (1.0/(5.0 * (double)FPS))
 void Controller::run(){
 	while (1){
 		double delta = GameTime::DiffTimeMS(ref);		 
- 		while (delta < 5.0){ // so we don't kill cpu
+ 		while (delta < 4.0){ // so we don't kill cpu
  			//cout << "too fast! (in a good way)" << endl;
-#ifdef __linux__
- 			pthread_yield(); 
-#else
-			sched_yield();
-#endif
+ 			pthread_helper_sleep(1);
  			delta = GameTime::DiffTimeMS(ref);  
  		}
  		GameTime::GameTimer nextRef = GameTime::GetTime();
@@ -32,11 +27,17 @@ void Controller::run(){
 		state->PerformStateActions(events, delta); 
 	
 	//render here
-	//Render::myDisplay(); 		
-		if (GameTime::DiffTimeMS(lastFrame) > MSPF -1){
-			if(Render::requestFrame())
+	//Render::myDisplay(); 
+		double since_frame = GameTime::DiffTimeMS(lastFrame);	
+		if ( since_frame > MSPF - 2){
+			if(Render::requestFrame()){
 				lastFrame = GameTime::GetTime();
+				double afr = 1.0/(since_frame / 1000.0); 
+				avg = (1-WEIGHT) * avg + afr * WEIGHT;
+				cout << "FPS: " << afr << "EXP AVG FPS: " << avg << endl;  
+			}
 		}
+
 		double frame_time = GameTime::DiffTimeMS(ref);
 		if( ((double)(rand() % 10000)) / 1000.0 < 0.01)
 			cerr << "updates took" << (frame_time - 5.0) << endl; 

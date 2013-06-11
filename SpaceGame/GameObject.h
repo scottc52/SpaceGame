@@ -160,6 +160,9 @@ public:
 		meshFile.clear();
 		meshFile = meshFileName;
 	}
+	
+	float GameObject::GetMass() { return mass; };
+	float GameObject::SetMass(float newMass) { mass = newMass; };
 
 	/////////////////////////////////////////////////////////////////////////////////
 
