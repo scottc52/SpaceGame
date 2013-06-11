@@ -1,4 +1,5 @@
 #include "CharacterMesh.h"
+//#include </*exception*/>
 
 using namespace Eigen;
 using namespace std;
@@ -7,7 +8,7 @@ CharacterMesh::CharacterMesh(const string& filename) {
 		
 	ifstream infile(filename.c_str());
 	if(!infile.is_open())
-		throw exception(string("'" + filename + "' could not be opened").c_str());
+		throw /*exception*/(string("'" + filename + "' could not be opened").c_str());
 
 	string line;
 	int lineNum = 1; //for syntax error reporting
@@ -22,21 +23,21 @@ CharacterMesh::CharacterMesh(const string& filename) {
 			float data[3];
 			if(!(tokenizer >> data[0] >> data[1] >> data[2])) {
 				infile.close();
-				throw exception(string(lineNum + ":invalid syntax").c_str());
+				throw /*exception*/(string(lineNum + ":invalid syntax").c_str());
 			}
 			vertices.push_back(Point3f(data[0], data[1], data[2]));
 		} else if(lineType == "vn") {
 			float data[3];
 			if(!(tokenizer >> data[0] >> data[1] >> data[2])) {
 				infile.close();
-				throw exception(string(lineNum + ":invalid syntax").c_str());
+				throw /*exception*/(string(lineNum + ":invalid syntax").c_str());
 			}
 			normals.push_back(Vector3f(data[0], data[1], data[2]));		
 		} else if(lineType == "vt") {
 			float data[2];
 			if(!(tokenizer >> data[0] >> data[1])) { //there's one more tex coor
 				infile.close();
-				throw exception(string(lineNum + ":invalid syntax").c_str());
+				throw /*exception*/(string(lineNum + ":invalid syntax").c_str());
 			}
 			texture.push_back(TexCoor2D(data[0], data[1]));	
 		} else if(lineType == "f") { //face
@@ -44,13 +45,13 @@ CharacterMesh::CharacterMesh(const string& filename) {
 				ReadFace(tokenizer);
 			} catch(exception& e) {
 				infile.close();
-				throw exception(string(lineNum + ":invalid syntax").c_str());
+				throw /*exception*/(string(lineNum + ":invalid syntax").c_str());
 			}
 
 		} else {
 			continue; //ignore invalid lines
 			//infile.close();
-			//throw exception(string(lineNum + ":invalid syntax").c_str());
+			//throw /*exception*/(string(lineNum + ":invalid syntax").c_str());
 		}
 		//case of line with whitespace?
 		++lineNum;
@@ -109,7 +110,7 @@ void CharacterMesh::ReadFace(stringstream& tokenizer) {
 		unsigned int v1, v2, v3;
 		v1 = atoi(s.c_str()); //check for error
 		if(!(tokenizer >> v2 >> v3))
-			throw exception("invalid face syntax");
+			throw /*exception*/("invalid face syntax");
 		faces.push_back(Face(v1 - 1, v2 - 1, v3 - 1)); //- 1 for OBJ file compatibility
 	} else {
 		unsigned int v1, n1, t1, v2, n2, t2, v3, n3, t3;
@@ -117,19 +118,19 @@ void CharacterMesh::ReadFace(stringstream& tokenizer) {
 		int successCount;
 		successCount = sscanf(s.c_str(), format, &v1, &t1, &n1);
 		if(successCount != 3) {
-			throw exception("invalid face syntax");
+			throw /*exception*/("invalid face syntax");
 		}
 		s.clear();
 		tokenizer >> s;
 		successCount = sscanf(s.c_str(), format, &v2, &t2, &n2);
 		if(successCount != 3) {
-			throw exception("invalid face syntax");
+			throw /*exception*/("invalid face syntax");
 		}
 		s.clear();
 		tokenizer >> s;
 		successCount = sscanf(s.c_str(), format, &v3, &t3, &n3);
 		if(successCount != 3) {
-			throw exception("invalid face syntax");
+			throw /*exception*/("invalid face syntax");
 		}
 		faces.push_back(Face(		//- 1 for OBJ file compatibility
 			v1 - 1, v2 - 1, v3 - 1, 

@@ -489,7 +489,6 @@ void drawTestPrism(){
 	glEnd();
 }
 
-<<<<<<< HEAD
 void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	glEnable(GL_NORMALIZE);
 	for(size_t i = 0; i < players.size(); ++i) {
@@ -538,8 +537,6 @@ void DrawSkinnedPlayers(const vector<GamePlayer *>& players) {
 	}
 	glDisable(GL_NORMALIZE);
 }
-=======
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 
 void drawFrame(){
     Material material = exampleMaterial();
@@ -634,11 +631,7 @@ void drawFrame(){
 		//render Actors AKA metaball Warriors!
 
 	}
-<<<<<<< HEAD
 	DrawSkinnedPlayers(gr->GetPlayers());
-=======
-	DrawBoundingProjectileBox();
->>>>>>> 79d1182c7d2be4ebc7489a9794793cf57fca0ed0
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
 	list<AI *>::iterator it = Render::gameState->GetActors()->begin();
@@ -935,7 +928,7 @@ void Render::defaultDisplay(){
 	clearSurfaceColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear to black
 	glUseProgram(0);
 	setupCamera();	
-	//drawGlow();
+	drawGlow();
 	drawBullets(true);
 
 
