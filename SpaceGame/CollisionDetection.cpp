@@ -672,7 +672,7 @@ void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt){
 			V = GJKDistance(aBox, bBox, P);
 			if(P.GetSize() > 3 || V.norm() < tolerance){ //We have a collision.
 				if(!AlreadyIn(o1, o2, 1, room)) {
-					if(o1->objType == ACTIVE_OBJECT_TYPE && o2->objType == ACTIVE_OBJECT_TYPE) cin.ignore(1);
+					if(o1->objType == ACTIVE_OBJECT_TYPE && o2->objType == ACTIVE_OBJECT_TYPE) ;
 					Vec3f contact = ResolveContact(P);
 					room->collisionTier1List[o1].push_back(o2);
 					room->collisionTier1List[o2].push_back(o1);

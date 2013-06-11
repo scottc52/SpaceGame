@@ -451,11 +451,11 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 
 	//If change room, handle change room
 
-	dt/=1000;
+	dt/=1000.0;
 
 	//Player action
 	ProcessInput(input, dt);
-	UpdateParticleSystems(dt);
+	UpdateParticleSystems(dt * 1000.0);
 
 	room->monitor.Enter('w');
 	vector<GameObject*>objects = room->GetGameObjects();

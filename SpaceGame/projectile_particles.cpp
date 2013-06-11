@@ -264,9 +264,10 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, fl
 	pTimeAlive = 0;
 	pTimeSinceRedraw = 0; 
 	ttl = -1;
-
+	#ifndef __linux__
 	sound = new Sound("sounds/laser.wav");
 	sound->Play();
+	#endif
 }
 
 void Slug::update(double dt){
