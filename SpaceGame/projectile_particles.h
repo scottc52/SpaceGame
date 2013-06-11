@@ -48,7 +48,7 @@ using namespace Eigen;
 class Projectile{
 public: 
 	virtual ~Projectile(){}
-	virtual Projectile(): damage(0), mass(1.0){} 
+	Projectile(): damage(0), mass(1.0){} 
 	virtual void hit(Vector3f loc)=0;
 	virtual void display(Vector3f cam, bool glow) =0;
 	virtual bool isDead() = 0; 

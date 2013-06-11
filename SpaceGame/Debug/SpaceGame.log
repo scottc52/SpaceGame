@@ -1,22 +1,320 @@
-﻿Build started 6/10/2013 10:16:49 PM.
-     1>Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
+﻿Build started 6/10/2013 10:51:42 PM.
+     1>Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /ZI /nologo /W3 /WX- /Od /Oy- /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CollisionDetection.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Owner\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\src" /ISOIL/include /ZI /nologo /W3 /WX- /Od /Oy- /D _USE_MATH_DEFINES /D WIN32 /D _RELEASE /D _CRT_SECURE_NO_DEPRECATE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt bloom_utils.cpp Camera.cpp CollisionDetection.cpp Controller.cpp EnemyProjectile.cpp GameActiveObject.cpp GameDebug.cpp GameDoor.cpp GameEventObject.cpp GamePlayer.cpp GameRoom.cpp GameState.cpp main.cpp Mesh.cpp MetaballEnemy.cpp MetalineEnemy.cpp MetaplaneEnemy.cpp Monitor.cpp projectile_particles.cpp Render.cpp RoomBuilder.cpp shader_utils.cpp Sound.cpp TaskQueue.cpp UI.cpp
+         UI.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         TaskQueue.cpp
+         Sound.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\sound.cpp(14): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\sound.cpp(64): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\sound.cpp(67): warning C4244: 'argument' : conversion from 'float' to 'Uint8', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\sound.cpp(108): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         shader_utils.cpp
+         RoomBuilder.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         Render.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(44): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(45): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(317): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(321): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(323): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(325): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(346): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(348): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(350): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(354): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(390): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(393): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(394): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(396): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(397): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(399): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(400): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(402): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(403): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(405): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(406): warning C4305: 'argument' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(593): warning C4305: 'initializing' : truncation from 'double' to 'GLfloat'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(763): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(802): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(854): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(866): warning C4244: 'argument' : conversion from 'const double' to 'GLfloat', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(939): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(940): warning C4305: 'argument' : truncation from 'double' to 'const float'
+     1>c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(397) : see reference to function template instantiation 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const' being compiled
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(204) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(189) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(186) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\spacegame\render.cpp(255) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\trimesht.hh(89) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\trimesh_arraykernelt.hh(93) : see reference to class template instantiation 'OpenMesh::TriMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\spacegame\render.cpp(143) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
+         projectile_particles.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(8): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(33): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(100): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(103): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(108): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(161): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(162): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(164): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(165): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(166): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(171): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(203): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(212): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(273): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(289): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\projectile_particles.cpp(324): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+         Monitor.cpp
+         MetaplaneEnemy.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.h(42): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(54): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(59): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(153): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(154): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(155): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(158): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(159): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(160): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(556): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(638): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(639): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaplaneenemy.cpp(640): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         MetalineEnemy.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.h(41): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(54): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(59): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(134): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(135): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(136): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(139): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(140): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(141): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(517): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(599): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(600): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metalineenemy.cpp(601): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         MetaballEnemy.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.h(40): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(52): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(57): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(105): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(106): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(107): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(110): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(111): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(112): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(457): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(533): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(534): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(535): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Mesh.cpp
+     1>c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(323): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(318) : while compiling class template member function 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const'
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(397) : see reference to function template instantiation 'OpenMesh::VectorT<Scalar,N> OpenMesh::PolyMeshT<Kernel>::calc_vertex_normal(OpenMesh::VertexHandle) const' being compiled
+                 with
+                 [
+                     Scalar=float,
+                     N=3,
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(204) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(189) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_face_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\polymesht.cc(186) : while compiling class template member function 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)'
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\spacegame\mesh.cpp(19) : see reference to function template instantiation 'void OpenMesh::PolyMeshT<Kernel>::update_normals(void)' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\trimesht.hh(89) : see reference to class template instantiation 'OpenMesh::PolyMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\openmesh-2.3.1\src\openmesh\core\mesh\trimesh_arraykernelt.hh(93) : see reference to class template instantiation 'OpenMesh::TriMeshT<Kernel>' being compiled
+                 with
+                 [
+                     Kernel=OpenMesh::AttribKernelT<OpenMesh::FinalMeshItemsT<OpenMesh::DefaultTraits,true>,OpenMesh::TriConnectivity>
+                 ]
+                 c:\users\owner\documents\github\spacegame\spacegame\mesh.cpp(17) : see reference to class template instantiation 'OpenMesh::TriMesh_ArrayKernelT<>' being compiled
+         main.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.h(40): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\main.cpp(238): warning C4305: 'initializing' : truncation from 'double' to 'float'
+         GameState.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(70): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(309): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(438): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(441): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(457): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(464): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(466): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gamestate.cpp(468): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+         GameRoom.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(78): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(93): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(94): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(95): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(96): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(97): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(98): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(99): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(100): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(101): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(102): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(103): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(104): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(124): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(125): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(126): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(127): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(128): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(129): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(130): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(131): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(146): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(147): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(148): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(150): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(164): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(165): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(166): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(167): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(168): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(169): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(170): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(171): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(182): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(183): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(184): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(189): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(190): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(191): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(192): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameroom.cpp(196): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         GamePlayer.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameplayer.cpp(16): warning C4244: 'argument' : conversion from 'const double' to 'const float', possible loss of data
+         GameEventObject.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         GameDoor.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         GameDebug.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         GameActiveObject.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+         Generating Code...
+     1>c:\users\owner\documents\github\spacegame\spacegame\metaballenemy.cpp(144): warning C4700: uninitialized local variable 'blob' used
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(1004): warning C4715: 'loadPostProcessingProgram' : not all control paths return a value
+     1>c:\users\owner\documents\github\spacegame\spacegame\render.cpp(1116): warning C4715: 'loadFogProgram' : not all control paths return a value
+         Compiling...
+         EnemyProjectile.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+         Controller.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
          CollisionDetection.cpp
-     1>c:\users\austin\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(6): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(10): warning C4244: 'return' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(53): warning C4244: 'argument' : conversion from 'unsigned int' to 'const float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(82): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(459): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(592): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(607): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(646): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\austin\documents\github\spacegame\spacegame\collisiondetection.cpp(664): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameobject.h(107): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\gameitem.h(34): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(6): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(10): warning C4244: 'return' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(53): warning C4244: 'argument' : conversion from 'unsigned int' to 'const float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(82): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(459): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(592): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(607): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(646): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\owner\documents\github\spacegame\spacegame\collisiondetection.cpp(664): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         Camera.cpp
+     1>c:\users\owner\documents\github\spacegame\spacegame\camera.cpp(123): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+         bloom_utils.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Austin\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib libSOIL.a glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCored.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Owner\Documents\GitHub\SpaceGame\\OpenMesh-2.3.1\lib" /LIBPATH:freeglut/lib /LIBPATH:"glew-1.9.0/lib" /LIBPATH:pthread/lib /LIBPATH:"SDL-1.2.15/lib/x86" /LIBPATH:"SDL_mixer-1.2.12/lib/x86" /LIBPATH:SOIL/lib libSOIL.a glew32.lib freeglut.lib glu32.lib SDL_mixer.lib SDLmain.lib SDL.lib libOpenMeshCored.lib libOpenMeshToolsd.lib SOIL.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\SpaceGame.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\SpaceGame.lib" /MACHINE:X86 Debug\bloom_utils.obj
          Debug\Camera.obj
          Debug\CollisionDetection.obj
          Debug\Controller.obj
@@ -43,9 +341,30 @@
          Debug\UI.obj
          "SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib"
          "SDL_mixer-1.2.12\lib\x86\SDL_mixer.lib"
-         SpaceGame.vcxproj -> C:\Users\Austin\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
-     1>Done Building Project "C:\Users\Austin\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
+     1>libOpenMeshCored.lib(ArrayKernel.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(ArrayKernel.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseProperty.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseProperty.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BaseWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BaseWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(BinaryHelper.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(BinaryHelper.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(Endian.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(Endian.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(IOManager.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(IOManager.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OBJReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OBJReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OBJWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OBJWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OFFReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OFFReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OFFWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OFFWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMFormat.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMFormat.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(omstream.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(omstream.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(OMWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(OMWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PLYReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PLYReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PLYWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PLYWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(PolyConnectivity.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(PolyConnectivity.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(STLReader.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(STLReader.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(STLWriter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(STLWriter.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+     1>libOpenMeshCored.lib(TriConnectivity.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'libOpenMeshCored.lib(TriConnectivity.obj)' or at 'C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\vc110.pdb'; linking object as if no debug info
+         SpaceGame.vcxproj -> C:\Users\Owner\Documents\GitHub\SpaceGame\Debug\SpaceGame.exe
+     1>Done Building Project "C:\Users\Owner\Documents\GitHub\SpaceGame\SpaceGame\SpaceGame.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.13
+Time Elapsed 00:02:27.81
