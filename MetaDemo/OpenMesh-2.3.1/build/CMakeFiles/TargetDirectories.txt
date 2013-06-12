@@ -1,0 +1,14 @@
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/Analyzer/CMakeFiles/Analyzer.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Dualizer/CMakeFiles/Dualizer.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCore.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Core/CMakeFiles/OpenMeshCoreStatic.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshTools.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Tools/CMakeFiles/OpenMeshToolsStatic.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/CMakeFiles/PACKAGE_SOURCE.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Smoothing/CMakeFiles/Smoothing.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/CMakeFiles/commandlineAdaptiveSubdivider.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Decimating/commandlineDecimater/CMakeFiles/commandlineDecimater.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/CMakeFiles/commandlineSubdivider.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/CMakeFiles/fixbundle.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/mconvert/CMakeFiles/mconvert.dir
+/Users/jordandavidson/temp/SpaceGame/MetaDemo/OpenMesh-2.3.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/CMakeFiles/mkbalancedpm.dir
