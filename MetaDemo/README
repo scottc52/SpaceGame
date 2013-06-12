@@ -1,0 +1,9 @@
+This is a demo of the Metaball, Metaline, and Metaplane enemies that were created but weren't integrated into the rest of the game.
+
+To run cd to this directory and enter "make", then enter "./MetaDemo".
+
+By default, the demo shows a Metaball enemy. To see a Metaline enemy, press 2. To see a Metaplane enemy, press 3.
+
+To turn the camera, drag the mouse.
+
+This should work on any computer, but I made this on a Mac so I can't make any promises.
