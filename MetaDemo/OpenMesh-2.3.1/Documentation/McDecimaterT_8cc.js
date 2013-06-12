@@ -1,4 +1,0 @@
-var McDecimaterT_8cc =
-[
-    [ "OPENMESH_MULTIPLE_CHOICE_DECIMATER_DECIMATERT_CC", "McDecimaterT_8cc.html#a8dd772dc2c9fe3316236763f8b2a9a62", null ]
-];
