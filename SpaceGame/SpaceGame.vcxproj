@@ -58,7 +58,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\OpenMesh-2.3.1\lib;freeglut/lib;glew-1.9.0/lib;pthread/lib;SDL-1.2.15/lib/x86;SDL_mixer-1.2.12/lib/x86;SOIL/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libSOIL.a;glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;glu32.lib;SDL_mixer.lib;SDLmain.lib;SDL.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;SOIL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -103,6 +103,8 @@
     <ClCompile Include="RoomBuilder.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="ScottCollision.cpp" />
+    <ClCompile Include="projectile_enemies.cpp" />
     <ClCompile Include="TaskQueue.cpp" />
     <ClCompile Include="Torch.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -140,6 +142,7 @@
     <ClInclude Include="pthread_helpers.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RoomBuilder.h" />
+    <ClInclude Include="ScottCollision.h" />
     <ClInclude Include="SDL-1.2.15\include\begin_code.h" />
     <ClInclude Include="SDL-1.2.15\include\close_code.h" />
     <ClInclude Include="SDL-1.2.15\include\SDL.h" />

@@ -6,6 +6,7 @@
 #include <sched.h>
 
 Controller *Controller::gameController = NULL;
+Sound* Controller::sound = NULL;
 
 double avg = FPS; 
 #define WEIGHT ((double)(1.0/(5.0 * (double)FPS)))
@@ -25,6 +26,12 @@ void Controller::run(){
 	//cout<<"it took: " << delta << "ms to process events" << endl; 
 		delta = GameTime::DiffTimeMS(ref);	
 		state->PerformStateActions(events, delta); 
+
+
+	//scott : add player movement and add collision detection 
+	movePlayer();
+	SCollision::performCollision();
+
 		
 	//render here
 	//Render::myDisplay(); 
@@ -65,3 +72,35 @@ void Controller::GlutSync(int dt){
 	gameController->dt = dt;		
 	gameController->taskManager->enqueue(gameController);  
 }
+
+
+//move player hack
+void Controller::movePlayer(){
+		GameState * gameState = state;
+		if(NavShot::isPlayerMoving){
+			float speed = 0.1;
+			Camera *cam  = gameState->GetCamera();
+			Vector3f pos = cam->getPivotPoint();//gameState->GetPlayerPosition();
+			Vector3f newPos = Vector3f(0.0, 0.0, 0.0);
+			if((NavShot::targetPlayerPos - pos).norm() < speed){
+				newPos = NavShot::targetPlayerPos*1.0;
+				NavShot::isPlayerMoving = false;
+					if (sound) {
+						sound->Play();
+					}else{
+						sound = new Sound("sounds/impact.wav");
+						sound->Play();
+					}
+				//cin.ignore(1);
+			}else{
+				Vector3f dir = (NavShot::targetPlayerPos - pos).normalized();
+				newPos = pos+dir*speed;
+				//cout << "first\n" << pos << "\n";\
+				//cout << "new\n" << newPos << "\n";
+				//cin.ignore(1);
+			}
+			//cout << "\n\n\nhmmmmmm\n\n\n" ;
+			gameState->SetPlayerPosition(newPos);
+			cam->setPivotPoint(newPos);
+		}
+	}

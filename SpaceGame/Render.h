@@ -33,6 +33,8 @@
 #include <math.h>
 #include "Mesh.h"
 #include "GameState.h"
+#include "GameObjectHeaderList.h"
+//#include "projectile_particles.h"
 
 #define PI 3.14159265358979323846
 
@@ -68,6 +70,8 @@ private:
 	static bool pauseToggle;
 	static bool paused; 
 public:
+	static Sound *sound;
+	static float health;
 	static void pause(bool t = true);
 	static int w;
 	static int h;
@@ -87,5 +91,7 @@ public:
 	static bool requestFrame(); 
 	static void setHitTime(int t);
 	static void hitEffect();
+	
+
 };
 #endif _RENDER_H_

@@ -25,6 +25,7 @@
 #include <pthread.h>
 #include <map>
 #include "Monitor.h"
+#include "Mesh.h"
 
 #define OBJECT_NOT_FOUND -1
 

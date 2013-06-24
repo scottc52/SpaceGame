@@ -7,6 +7,12 @@ using namespace Eigen;
 Vector3f particleCameraPos;
 float distScale = 0.1; // we could pass in field-of-view to calculate this. But probably not worth it.
 
+//Scott's nav hack
+Vector3f NavShot::targetPlayerPos = Vector3f(0.0, 0.0, 0.0);
+bool NavShot::isPlayerMoving = false;
+MyMesh *NavShot:: room = NULL;
+Sound* NavShot::sound = NULL;
+
 //Particle class
 	Particle::Particle(){}
 	Particle::Particle(int lif, Vector3f loc, Vector3f vel, Vector3f accel){
@@ -127,20 +133,28 @@ bool isParticleDead(Particle p){
 
 
  //SmokyBullet class
+	Sound* SmokyBullet::sound1 = NULL;
+	Sound* SmokyBullet::sound2 = NULL;
+
 	SmokyBullet::SmokyBullet(){
 		deathT = -1;
 		t = 0;
 		#ifndef __linux__
-		sound = new Sound("sounds/smokybullet_2.wav");
-		sound->Play();
+		if(!sound1){sound1 = new Sound("sounds/smokybullet_2.wav");}
+		if(!sound2){sound2 = new Sound("sounds/smokybullet.wav");}
+		sound1->Play();
 		#endif
-		
+		//owner = "player";
+		hitRadius = 1.5;
 	} //default constructor doesn't set anything
 	SmokyBullet::SmokyBullet(Vector3f loc,Vector3f vel, float c0, float c1, float c2, float c3){
 		#ifndef __linux__
-		sound = new Sound("sounds/smokybullet_2.wav");
-		sound->Play();
+		if(!sound1){sound1 = new Sound("sounds/smokybullet_2.wav");}
+		if(!sound2){sound2 = new Sound("sounds/smokybullet.wav");}
+		sound1->Play();
 		#endif
+		//owner = "player";
+		hitRadius = 1.5;
 		//emitter has no velocity and acceleration of it's own.
 		//its location is decided by the bullet
 		location = loc;
@@ -190,10 +204,10 @@ bool isParticleDead(Particle p){
 
 	void SmokyBullet::update(double dt){
 		if(isDead()){ 
-			if (sound) {
-				delete sound;
-				sound = NULL;
-			}
+			//if (sound) {
+				//delete sound;
+				//sound = NULL;
+			//}
 			return; 
 		}
 		t = t+dt;
@@ -230,6 +244,7 @@ bool isParticleDead(Particle p){
 	//if hit. call hit() first, then update()
 	void SmokyBullet::hit(Vector3f hitLocation){
 		if (hitB) return; 
+		sound2->Play();
 		hitB = true;
 		hitted=true;
 		hitT = 0;
@@ -251,11 +266,12 @@ bool isParticleDead(Particle p){
 		//cout << "bullet draw\n";
 	}
 	bool SmokyBullet::isDead(){
-		return (hitT > hitLife && pSystem.isDead()) || (t > deathT);
+		return ((hitT > hitLife && pSystem.isDead()) || (t > deathT)) || t>MAX_TIME;
 	}
 
 //Slug
 
+Sound* Slug::sound = NULL;
 Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, float a1) : Projectile(){
 	r = r1; 
 	g = g1;
@@ -267,16 +283,18 @@ Slug::Slug(Vector3f &pos1, Vector3f &velocity1, float r1, float g1, float b1, fl
 	pTimeSinceRedraw = 0; 
 	ttl = -1;
 	#ifndef __linux__
-	sound = new Sound("sounds/laser.wav");
+	if(!sound){ sound = new Sound("sounds/laser.wav");}
 	sound->Play();
 	#endif
+	//owner = "player";
+	hitRadius = 0.01;
 }
 
 void Slug::update(double dt){
 	if (isDead()) {
 		if (sound) {
-			delete sound;
-			sound = NULL;
+			//delete sound;
+			//sound = NULL;
 		}
 	}
 	Vector3f delta = velocity * ((dt)/1000.0);
@@ -294,19 +312,29 @@ void Slug::hit(Vector3f loc)
 }
 
 void Slug::display(Vector3f cam, bool glow){
+	/*
 	if (!isDead()){
 		glBegin(GL_LINES);
 		glColor4f(r, g, b, a);
 		glVertex3f(position[0], position[1], position[2]); 
-		Vector3f tmp = position - velocity * ((double)pTimeSinceRedraw)/1000.0; 
+		//Vector3f tmp = position - velocity * ((double)pTimeSinceRedraw)/1000.0; 
+		Vector3f tmp = position - velocity*1.0; 
 		glVertex3f(tmp[0], tmp[1], tmp[2]);
 		pTimeSinceRedraw = 0;
 		glEnd(); 
 	}
+	*/
+	if (!isDead()){
+			glColor4f(r, g, b, a);
+			glPushMatrix();
+			glTranslatef(position(0), position(1), position(2));
+			glutSolidSphere(0.01, 10, 10);
+			glPopMatrix();
+		}
 }
-#define MAX_TIME (4000)
+
 bool Slug::isDead(){
-	return (pTimeAlive > MAX_TIME || (ttl > 0 && pTimeAlive > ttl)); 
+	return hitted || (pTimeAlive > MAX_TIME || (ttl > 0 && pTimeAlive > ttl)); 
 }
 
 double Slug::timeAlive(){

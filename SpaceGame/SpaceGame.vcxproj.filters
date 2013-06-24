@@ -27,6 +27,8 @@
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="GameRoom.cpp" />
     <ClCompile Include="Torch.cpp" />
+    <ClCompile Include="ScottCollision.cpp" />
+    <ClCompile Include="projectile_enemies.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -109,6 +111,7 @@
     <ClInclude Include="TextIOHelpers.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Torch.h" />
+    <ClInclude Include="ScottCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="SDL_mixer-1.2.12\lib\x64\SDL_mixer.lib" />

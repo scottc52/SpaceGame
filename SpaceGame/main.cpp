@@ -23,6 +23,7 @@
 #include "GameObjectHeaderList.h"
 #include "CollisionDetection.h"
 #include "Render.h"
+#include "scottCollision.h"
 #include "RoomBuilder.h"
 #include "TaskQueue.h"
 #include "LocationDefines.h"
@@ -164,7 +165,9 @@ void RegisterControls(){
 	controls->setKeyCallback(0, ' ', true, USER_COMMAND_JUMP);
 	controls->setKeyCallback(0, 'e', true, USER_COMMAND_SWITCH_WEAPON);
 	controls->setMouseButtonCallback(0, UI_LEFT_BUTTON, true, USER_COMMAND_FIRE_WEAPON); 
-	controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_TOGGLE_ZOOM); 
+	//controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_TOGGLE_ZOOM); 
+	controls->setMouseButtonCallback(0, UI_MIDDLE_BUTTON, true, USER_COMMAND_SWITCH_WEAPON); 
+	controls->setMouseButtonCallback(0, UI_RIGHT_BUTTON, true, USER_COMMAND_FIRE_NAV_WEAPON); 
 	controls->setMouseMoveCallback(0, false, USER_COMMAND_LOOK_UP);
 	controls->setKeyCallback(0, (unsigned char)(27) /*esc*/, true, USER_COMMAND_PAUSE_MENU);
 	controls->setActiveCommandSet();
@@ -221,13 +224,14 @@ int main(int argc, char *argv[]){
 				gwo->SetMesh(NULL);
 			}else{
 				gwo->SetMesh(tmp);
+				NavShot::room = tmp;
 			}
 		} 		
 	}
 
 	ComputeBoundingBoxesAndPhysicsConstants(obs);
 
-	cin.ignore(1);
+	//cin.ignore(1);
 	///////////////////////////////////////////////////
 	
 	//TODO: load from file	
@@ -243,6 +247,7 @@ int main(int argc, char *argv[]){
 	gs->AddActor(new MetaballEnemy(enemyPos, 2, 2.0f));
 	Render::gameState = gs;
 	Render::GlutInitialize();
+	SCollision::gameState = gs;
 	
 	RegisterControls(); 
 	Controller::Initialize(taskManager, gs); 	

@@ -12,6 +12,7 @@
 #include "LocationDefines.h"
 #include "TaskQueue.h"
 #include "CollisionDetection.h"
+#include "Render.h"
 using namespace std;
 
 #define STATE_FILE_DELIM ('$')
@@ -311,9 +312,9 @@ public:
 			if(p->isDead()){
 				continue; 
 			}
-			if(p->timeAlive() > 3000){
-				p->hit(p->getPosition()); 
-			}
+			//if(p->timeAlive() > 3000){
+			//	p->hit(p->getPosition()); 
+			//}
 			p->update(dt);
 		}
 	}
@@ -351,6 +352,14 @@ void PSystems::updateAll(double dt){
 #define LOOK_SENSITIVITY ((float)1.0f)
 #define MOVE_SENSITIVITY ((float)1.0f)
 
+void GameState::AddProjectile(Projectile *p){
+	if (p){
+		ps->monitor.Enter('w');
+			ps->AddBullet(p);
+		ps->monitor.Exit('w');
+	}
+}
+
 void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	list<UIEvent *>::iterator it = input.begin(); 
 	if (it == input.end())
@@ -361,12 +370,16 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 	Vector3f up = cam->getUpVector();
 	Vector3f dir = cam->getDirection(); 
 	Vector3f strafe(dir.cross(up).normalized());  
+
+	bool weaponFired = false;
+	float weaponDelta = 0.0001;
+
 	while (it != input.end()){
 		UIEvent *ev = *it; 
 		int action = ev->value;
 		if(action == USER_COMMAND_LOOK_UP || action == USER_COMMAND_LOOK_DOWN || 
 			action == USER_COMMAND_LOOK_RIGHT || action == USER_COMMAND_LOOK_LEFT){
-				deltaView += ev->delta;   
+				deltaView -= ev->delta;   
 		} else{
 			switch (action){
 			case (USER_COMMAND_STRAFE_RIGHT): {
@@ -386,9 +399,10 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 				deltaPos[1] -= 1; 
 				break;}
 			case (USER_COMMAND_FIRE_WEAPON):{ 
+				if(!weaponFired){weaponFired = true;}else{break;}
 				cout << "firing" << endl;
 				Vector3f loc(nPos);
-				loc += dir.cross(strafe); //below camera
+				loc += dir.cross(strafe).normalized() *weaponDelta; //below camera
 				if (player.GetActiveWeapon()){
 					Projectile *p = player.GetActiveWeapon()->fire(loc, dir); 
 					if (p){
@@ -399,8 +413,24 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 				} else {
 					cerr << "error: no active weapon" << endl;
 				}
-				break;
-											}
+				break;}
+			case (USER_COMMAND_FIRE_NAV_WEAPON):{ 
+				if(!weaponFired){weaponFired = true;}else{break;}
+				cout << "firing" << endl;
+				Vector3f loc(nPos);
+				//loc += dir.cross(strafe).normalized() *weaponDelta; //below camera
+				loc += dir.normalized() * weaponDelta;
+				if (player.GetNavWeapon()){
+					Projectile *p = player.GetNavWeapon()->fire(loc, dir); 
+					if (p){
+						ps->monitor.Enter('w');
+							ps->AddBullet(p);
+						ps->monitor.Exit('w');
+					}
+				} else {
+					cerr << "error: no active weapon" << endl;
+				}
+				break;								}
 			case (USER_COMMAND_SWITCH_WEAPON):{ 
 				cout << "weapons swapped" << endl; 
 				player.SwitchWeapons();
@@ -446,14 +476,19 @@ void GameState::ProcessInput(list<UIEvent *> input, double dt){
 		player.SetPosition(nPos);
 	}
 	Matrix3f Rphi = AngleAxisf(deltaView[1]/ (double)Render::h * 80.0 / 180.0 * PI * LOOK_SENSITIVITY, strafe).matrix();
-	//up = Rphi*up; 
+	//up = Rphi*up; //Scott TODO: try this out
 	dir = Rphi * dir;    
 	Matrix3f Rtheta = AngleAxisf(deltaView[0]/(double)Render::w * 100.0 / 180.0 * PI * LOOK_SENSITIVITY, up).matrix();
 	dir = Rtheta * dir;
 	cam->setPivotPoint(nPos);
 	//cam->setUpVector(up);
 	cam->setDirection(dir);    
-}
+
+	if(up.normalized().dot(dir.normalized()) < 1.1){ //Scott - this works trust me
+		up = strafe.cross(dir);
+	}
+	cam->setUpVector(up);
+} 
 
 void GameState::AnimatePlayers(double dt) {
 	vector<GamePlayer *> players = room->GetPlayers();
@@ -499,7 +534,7 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 		obj->ClearCollisionData();
 	}
 	Camera* c = GameState::GetCamera();
-	PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
+	//PerformCollisionDetection(room, &(GameState::player), dt, 4, 3, c->getNearViewPlane(), c->getFarViewPlane());
 	ps->monitor.Enter('w'); 
 	list<AI *>::iterator ait = actors.begin();
 	list<Projectile *>::iterator pit;   
@@ -511,9 +546,9 @@ void GameState::PerformStateActions(list<UIEvent *> input, double dt /*ms*/){
 			pit++;
 			if (proj->hitted) continue;
 			if (actor->intersect(proj->getPosition())){
-				cerr<< "hit!" << endl; 
-				proj->hit(proj->getPosition());
-				actor->hit(proj); 
+				//cerr<< "hit!" << endl; 
+				//proj->hit(proj->getPosition());
+				//actor->hit(proj); 
 			}  
 			 
 		}

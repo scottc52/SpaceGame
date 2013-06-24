@@ -9,11 +9,12 @@
 /* Room setup command via the console....*/
 void ConsoleCreateRoom(){
 	char response;
-	cout<<"Would you like to create a new room? (y for yes) ";
-	cin>>response;
-	cin.clear();
-	cin.ignore(10000, '\n');
-	cout<<endl;
+	//cout<<"Would you like to create a new room? (y for yes) ";
+	//cin>>response;
+	//cin.clear();
+	//cin.ignore(10000, '\n');
+	//cout<<endl;
+	response = 'n';
 	while(response == 'y'){
 		cout<<"Please name your room (max 32 chars): ";
 		char roomName[33];

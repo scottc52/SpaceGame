@@ -20,6 +20,7 @@
 #define USER_COMMAND_INVENTORY (14)
 #define USER_COMMAND_PAUSE_MENU (15)
 #define USER_COMMAND_ACTION_OR_CONFIRM (16)
+#define USER_COMMAND_FIRE_NAV_WEAPON (20)
 
 //forward declare; 
 class GameState;
@@ -46,7 +47,8 @@ class PSystems;
 
 #include "GameRoom.h"
 #include "GameObject.h"
-#include "Render.h" 
+//#include "Render.h" 
+#include "Mesh.h"
 #include "Camera.h" 
 #include "GamePlayer.h"
 #include <list>
@@ -56,12 +58,15 @@ class PSystems;
 #include "Monitor.h"
 #include "Torch.h"
 
+#define PLAYER_LOADOUT ("profileBegin.initP")
+#define INITIAL_STATE_LOAD ("initialState.stamac")
+
 class AI; 
 
 /*
 Particle Systems manager
 */
-class PSystems{
+class PSystems {
 	list<Projectile *> projectiles;
 public: 
 	//list<ParticleSystem> statics;
@@ -82,10 +87,9 @@ public:
  *
  */
 
-#define PLAYER_LOADOUT ("profileBegin.initP")
-#define INITIAL_STATE_LOAD ("initialState.stamac")
 
-class GameState{
+
+class GameState {
 private:
 	static GameState* m_pinstance;
 	list<AI *> actors; 
@@ -107,13 +111,15 @@ private:
 	void GameState::AnimatePlayers(double dt);
 public:
 	static GameState* GameState::GetInstance();
+	void GameState::AddProjectile(Projectile *p);
 	void SetRoom(GameRoom *gr){this->room = gr;}
 	void SetCamera(Camera *cam){this->cam =  cam;}
 	void AddActor(AI *actor){actors.push_back(actor);} 
 	list<AI *> *GetActors(){return &actors;} 
 	GameRoom *GetRoom(){return this->room;}
 	Camera *GetCamera(){return this->cam;} 
-	Vector3f GetPlayerPosition(){return Vector3f(0, 0, 0);}
+	Vector3f GetPlayerPosition(){return player.GetPosition();}
+	void SetPlayerPosition(Vector3f pos){ player.SetPosition(pos);}
 	bool GameState::ReadStateFile(const char *fname);
 	void GameState::PerformStateActions(list<UIEvent *> ev, double dt);
 	bool paused; 

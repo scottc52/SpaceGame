@@ -19,6 +19,7 @@ private:
 	int health;
 	Weapon* PrimaryWeapon;
 	Weapon* SecondaryWeapon;
+	Weapon* NavWeapon;
 	GameItem* activeItem;
 	Weapon* activeWeapon;
 	bool primaryActive;
@@ -35,6 +36,7 @@ public:
 	currentPose(aim_clip.keyframes[0]) {
 		PrimaryWeapon = new SmokeyBulletWeapon(10/*speed*/, 0.8f, 0.6f, 0.4f, 1.0f);
 		SecondaryWeapon = new SlugBulletWeapon(25);
+		NavWeapon = new NavBulletWeapon(15);
 		activeItem = NULL;
 		activeWeapon = PrimaryWeapon;
 		primaryActive = true;
@@ -48,12 +50,13 @@ public:
 	void GamePlayer::SetHealth(const int& h){health = h;}
 	int GamePlayer::GetHealth(){return health;}
 	Weapon* GamePlayer::GetPrimaryWeapon(){return PrimaryWeapon;}
-	void GamePlayer::GetPrimaryWeapon(Weapon* w){PrimaryWeapon = w;}
+	void GamePlayer::SetPrimaryWeapon(Weapon* w){PrimaryWeapon = w;}
 	Weapon* GamePlayer::GetSecondaryWeapon(){return SecondaryWeapon;}
 	void GamePlayer::SetSecondaryWeapon(Weapon* w){SecondaryWeapon = w;}
 	GameItem* GamePlayer::GetActiveItem(){return activeItem;}
 	void GamePlayer::SetActiveItem(GameItem* i){activeItem = i;}
 	Weapon* GamePlayer::GetActiveWeapon(){return activeWeapon;}
+	Weapon* GamePlayer::GetNavWeapon(){return NavWeapon;}
 	void GamePlayer::SwitchWeapons(){
 		if(primaryActive){
 			if(SecondaryWeapon != NULL){

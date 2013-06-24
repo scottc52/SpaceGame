@@ -26,10 +26,13 @@
 #include "TaskQueue.h"
 #include "GameDebug.h"
 #include "GameState.h"
+#include "Render.h"
 #include "UI.h"
 #include <ctime>
 #include "GameTime.h"
 #include "pthread_helpers.h" 
+
+#include "ScottCollision.h"
 
 #define FPS (60) 
 #define MSPF ((double)(1.0 / ((double) FPS) * 1000.0))  
@@ -52,11 +55,14 @@ private:
 	GameTime::GameTimer lastFrame; 
 	double dt;   
 	Controller(TaskQueue *tq, GameState *gs): taskManager(tq), state(gs){}
+	static Sound *sound;
 public:
 	/* 
 	polls events -- updates state -- updates geometry -- returns control to render
 	*/
 	virtual void run();
+
+	void movePlayer();
 	
 	static void Initialize(TaskQueue *tq, GameState *gs);//{}
 

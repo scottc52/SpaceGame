@@ -578,7 +578,7 @@ Vec3f ResolveContact(Simplex& P){
 void PerformCollisionDetection(GameRoom* room, GamePlayer* player, double dt,  float xScale, float yScale, float zNear, float zFar){
 	dt/=1000;
 	vector<GameObject*> Objects = room->GetGameObjects();
-	PSystems* ps = Render::gameState->GetParticleSystems();
+	PSystems* ps;// = Render::gameState->GetParticleSystems();
 	list<Projectile*>* projs = ps->GetBullets();
 	/////////////////////////////////////////////////////////////////////////////
 	// PARTICLE COLLISION DETECTION

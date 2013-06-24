@@ -7,6 +7,9 @@
 #include "GameObject.h"
 #include <limits.h>
 
+#include "GameTime.h"; 
+#include "projectile_particles.h"
+
 #define GAMEITEM_ACQUIRED (0)
 #define GAMEITEM_NOT_ACQUIRED (1)
 //If uses == -1, then don't decrement or increment.
@@ -31,8 +34,7 @@ public:
 	//to do: Fill in here
 };
 
-#include "GameTime.h"; 
-#include "projectile_particles.h"
+
 
 class Weapon : public GameObject{
 public:
@@ -53,14 +55,23 @@ class SmokeyBulletWeapon : public Weapon{
 	private:
 		float r, g, b, a; 
 		float speed;
+		Projectile* current;
 	public:
 		SmokeyBulletWeapon(float s1, float r1 = 0.5f, float g1 = 0.5f, float b1 = 0.5f, float a1 = 0.5f)
-		: Weapon(){speed=s1; r = r1; g = g1; b = b1; a = a1;
+		: Weapon(){
+			speed=s1; r = r1; g = g1; b = b1; a = a1;
+			current = NULL;
 		}  
 		Projectile* newProjectile(Vector3f &loc, Vector3f &direction){
+			if(current && !current->isDead()){
+				return NULL;
+			}
+
 			Vector3f tmp = direction * speed;
 			Projectile *p = new SmokyBullet(loc, tmp, r, g, b, a);
-			p->damage = 100;
+			p->owner = "player";
+			p->damage = 0.1;
+			current = p;
 			return p;
 		}
 };
@@ -73,12 +84,35 @@ class SlugBulletWeapon : public Weapon{
 	public:
 		double damage; 
 		SlugBulletWeapon(float s1, float scatter = 1.0f,  float r1 = 0.9f, float g1 = 0.7f, float b1 = 0.4f, float a1 = 0.8f)
-		: Weapon(){speed=s1; r = r1; g = g1; b = b1; a = a1; scatter = 0; 
+		: Weapon(){
+			speed=s1; r = r1; g = g1; b = b1; a = a1; scatter = 0; 
 		}  
 		Projectile* newProjectile(Vector3f &loc, Vector3f &direction){
 			Vector3f tmp = direction * speed;
 			Projectile *p = new Slug(loc, tmp, r, g, b, a);
-			p->damage = 50; 
+			p->owner = "player";
+			p->damage = 10; 
+			return p;
+		}
+}; 
+
+class NavBulletWeapon : public Weapon{
+	private:
+		float r, g, b, a; 
+		float speed;
+		float scatter; 
+	public:
+		double damage; 
+		NavBulletWeapon(float s1, float scatter = 1.0f,  float r1 = 0.2f, float g1 = 0.99f, float b1 = 0.2f, float a1 = 0.8f)
+		: Weapon(){
+			speed=s1; r = r1; g = g1; b = b1; a = a1; scatter = 0; 
+		}  
+		Projectile* newProjectile(Vector3f &loc, Vector3f &direction){
+			Vector3f tmp = direction * speed;
+			Projectile *p = new NavShot(loc, tmp, r, g, b, a); //should be NavShot
+			if(!p){return NULL;}
+			p->owner = "player"; //prevent collision with enemies
+			p->damage = 0; 
 			return p;
 		}
 }; 

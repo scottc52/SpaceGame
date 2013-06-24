@@ -106,6 +106,9 @@ private:
 		}
 	}*/
 public:
+	//Scott
+	float hitRadius;
+
 	vector<Vec3f> boundingBox;
 	float radius;
 	vector<Vec3f> meshBox;
@@ -137,6 +140,7 @@ public:
 	//default constructor
 	GameObject::GameObject(const char *n = "\0")
 	{
+		hitRadius = -1;
 		glowing = false; 
 		drawCollision = false;
 		radius = 1.f;
@@ -154,6 +158,7 @@ public:
 	//constructor with Object
 	GameObject::GameObject(GameObject* object)
 	{
+		hitRadius = -1;
 		glowing = false;
 		drawCollision = object->drawCollision;
 		objType = object->objType;

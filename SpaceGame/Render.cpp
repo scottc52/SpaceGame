@@ -6,13 +6,15 @@
 #include "Render.h"
 #include "shader_utils.h"
 #include "bloom_utils.h"
-#include "projectile_particles.h"
-#include "GameObjectHeaderList.h"
+//#include "projectile_particles.h"
+//#include "GameObjectHeaderList.h"
 #include "CollisionDetection.h"
 #include <list>
 
 //Allocate Statics
 GameState *Render::gameState = NULL;
+
+Sound *Render::sound = NULL;
 
 pthread_mutex_t Render::lock; 
 bool Render::drawing = false;
@@ -108,6 +110,18 @@ GLuint program_bloom, uniform_sourceBase_bloom, uniform_source0_bloom, uniform_s
 inline const GLubyte *BUFFER_OFFSET(size_t bytes)
 { return reinterpret_cast<const GLubyte *>(0) + bytes; }
 
+
+//player health management
+float Render::health = 100.0;
+
+//level management
+int level = 1;
+int tLevelStart = 0;
+bool levelStarted = false;
+int tLevelEnd = 0;
+bool levelEnded = false;
+vector<Projectile*> enemies;
+ 
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -626,15 +640,15 @@ void drawFrame(){
 		glEnd();
 
 		glPopMatrix(); // you need one of these for every glPushMatrix()
-		DrawBoundingBox(obs[w]);
+		//DrawBoundingBox(obs[w]);
 		glDisable(GL_NORMALIZE);
 		glDisable(GL_RESCALE_NORMAL);
 		//render Actors AKA metaball Warriors!
 
 	}
 
-	DrawSkinnedPlayers(gr->GetPlayers());
-	DrawBoundingProjectileBox();
+	//DrawSkinnedPlayers(gr->GetPlayers());
+	//DrawBoundingProjectileBox();
 
 	gr->monitor.Exit('r');
 	//cerr << "rendering objects took: "<< GameTime::DiffTimeMS(ref) <<  endl ;
@@ -969,6 +983,7 @@ void Render::defaultDisplay(){
 
 	//can do multiple passes
 	//performBlur(pass0, pass1, 4);
+	performBlur(pass0, pass1, 4);
 	//performBlur9(pass0, pass1, 4);
 	performBlur9(pass0, pass1, 4);
 
@@ -1002,7 +1017,7 @@ void Render::defaultDisplay(){
 
 	glUseProgram(program_postproc);
 	glUniform1f(uniform_hit_time_postproc, (dt>0)? dt : 100000);
-	float damage = 0;
+	float damage = 100-health;
 	glUniform1f(uniform_damage_postproc, min(damage/100.0, 1.0));
 	glEnable(GL_TEXTURE_2D); 
 	glBindTexture(GL_TEXTURE_2D, fbo1.texture);
@@ -1027,6 +1042,61 @@ void Render::myDisplay() {
 	drawing = false; 
 }
 
+
+//level management
+//
+//
+//
+bool allEnemiesDead(){
+	bool ret = true;
+	for(vector<Projectile*>::iterator it = enemies.begin(); it!=enemies.end(); ++it){
+		if((*it)->isDead()){
+			ret = false;
+		}
+	}
+	return ret;
+}
+
+void startLevel(GameState * gs, int l){
+	levelStarted = true;
+	tLevelStart = glutGet(GLUT_ELAPSED_TIME);
+	Projectile::cam = gs->GetCamera();
+	enemies.clear();
+
+	if(l == 1){
+		Render::health = 100;
+		
+		Projectile* e1 = new EnemyChaser(Vector3f(-4, 0, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e1);
+		gs->AddProjectile(e1);
+
+		Projectile* e2 = new EnemyChaser(Vector3f(-4, 8, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e2);
+		gs->AddProjectile(e2);
+
+		Projectile* e3 = new EnemyChaser(Vector3f(-4, 0, 5), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e3);
+		gs->AddProjectile(e3);
+
+	}
+
+	if(l == 2){
+		
+	}
+
+	if(l == 3){
+	
+	}
+
+}
+
+
+void endLevel(){
+	tLevelEnd = glutGet(GLUT_ELAPSED_TIME);
+	levelEnded = true;
+}
+
+
 //****************************************************
 // called by glut when there are no messages to handle
 //****************************************************
@@ -1039,7 +1109,24 @@ void Render::myIdle() {
 	}
 	pthread_mutex_unlock(&lock); 
 
+	//level management
+	if(!levelStarted){
+		startLevel(gameState, level);
+	}else{
+		if(allEnemiesDead()){
+			level = level+1;
+			startLevel(gameState, level);
+		}
+	}
+
+	//endlevel
+	if(health<=0.0){
+		endLevel();
+		exit(0);
+	}
 }
+
+
 
 /**
 Event notifications... 
