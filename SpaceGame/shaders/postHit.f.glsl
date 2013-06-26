@@ -2,6 +2,10 @@ uniform sampler2D fbo_texture;
 uniform float hit_time;
 uniform float damage;
 varying vec2 f_texcoord;
+
+uniform float tlstart;
+uniform float tlend;
+uniform float tlfade;
  
 void main(void) {
 	vec4 color = texture2D(fbo_texture, f_texcoord);
@@ -33,6 +37,14 @@ void main(void) {
 	// damage vignette
 	float vig = sqrt( ( pow((texcoord.x-0.5)/ 0.5,2) + pow((texcoord.y-0.5)/ 0.5,2) )/2 ) * damage * 1.2;
 	vig = min(vig, 1.0);
-	gl_FragColor = color * (1.0-vig) + vec4(0.5,0.0,0.0,1.0) *vig;
+	color = color * (1.0-vig) + vec4(0.5,0.0,0.0,1.0) *vig;
 	
+	//level fade
+	float fade = 0;
+	if(tlstart<tlfade){fade += 1.0-tlstart/tlfade;}
+	if(tlend<tlfade){fade += tlend/tlfade;}
+	color = color * (1.0-fade) + vec4(1.0,1.0,1.0,1.0) *fade;
+	
+	
+	gl_FragColor = color;
 }

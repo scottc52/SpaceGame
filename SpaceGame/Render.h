@@ -71,6 +71,7 @@ private:
 	static bool paused; 
 public:
 	static Sound *sound;
+	static Sound *soundDeath;
 	static float health;
 	static void pause(bool t = true);
 	static int w;

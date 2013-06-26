@@ -328,7 +328,11 @@ void Slug::display(Vector3f cam, bool glow){
 			glColor4f(r, g, b, a);
 			glPushMatrix();
 			glTranslatef(position(0), position(1), position(2));
-			glutSolidSphere(0.01, 10, 10);
+			if(owner == "enemy"){
+				glutSolidSphere(0.07, 10, 10);
+			}else{
+				glutSolidSphere(0.01, 10, 10);
+			}
 			glPopMatrix();
 		}
 }

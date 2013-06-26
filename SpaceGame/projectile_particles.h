@@ -60,7 +60,7 @@ public:
 	virtual ~Projectile(){}
 	bool drawCollision;
 	vector<Vec3f>boundingBox;
-	Projectile(): damage(0), mass(1.0), hitted(false), typeString(""), owner(""), health(0.0), firesOwnBullets(false){
+	Projectile(): damage(0), mass(1.0), hitted(false), typeString(""), owner(""), health(0.0), firesOwnBullets(false), fireBulletCountDown(1.0){
 		drawCollision = false;
 		boundingBox.push_back(Vec3f(-0.05, -0.05, -0.05));
 		boundingBox.push_back(Vec3f(0.05, -0.05, -0.05));
@@ -88,6 +88,7 @@ public:
 	string typeString;
 	string owner;
 	bool firesOwnBullets;
+	double fireBulletCountDown;
 };
 
 
@@ -317,11 +318,13 @@ private:
 	int slices;
 	Vector3f position;
 	Vector3f velocity;
+	Vector3f accel;
 	float r, g, b, a;
 	double pTimeAlive;
+	double hitColorCounter;
 public:
-	EnemyChaserBig(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
-		float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+	EnemyChaserBig(Vector3f &position, Vector3f &vel, float radius, int stacks = 20, int slices = 20,
+		float r1 = 0.99f, float g1 = 0.5f, float b1 = 0.0f, float a1 = 0.5f);
 	void hit(Vector3f loc);
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();
@@ -339,11 +342,13 @@ private:
 	int slices;
 	Vector3f position;
 	Vector3f velocity;
+	Vector3f accel;
 	float r, g, b, a;
 	double pTimeAlive;
+	double hitColorCounter;
 public:
-	EnemyShooter(Vector3f &position, Vector3f &vel, float radius, int stacks = 10, int slices = 10,
-		float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.15f, float a1 = 0.5f);
+	EnemyShooter(Vector3f &position, Vector3f &vel, float radius, int stacks = 20, int slices = 20,
+		float r1 = 0.15f, float g1 = 0.7f, float b1 = 0.7f, float a1 = 0.5f);
 	void hit(Vector3f loc);
 	void display(Vector3f cam, bool glow = false);
 	bool isDead();

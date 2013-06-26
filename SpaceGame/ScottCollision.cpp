@@ -59,9 +59,20 @@ void SCollision::performCollision(){
 
 
 		//process firing bullets
-		if(p1->firesOwnBullets){  //fire a bullet towards cam
-			
-
+		if(p1->firesOwnBullets && p1->fireBulletCountDown <= 0.0){  //fire a bullet towards cam
+			p1->fireBulletCountDown = 20000.0 * (rand()%100000 / 100000.0) ;;
+			Vector3f shootDir = (cam->getPosition() - p1->getPosition());
+			Vector3f delta =  Vector3f( ( (rand()%100000+1) / 100000.0)-0.5 , 
+										( (rand()%100000+1) / 100000.0)-0.5 , 
+										( (rand()%100000+1) / 100000.0)-0.5  );
+			shootDir = shootDir + delta*0.3;
+			shootDir = shootDir.normalized()*2;
+			Projectile *pNew = new Slug(p1->getPosition(),
+				shootDir, 0.8, 0.1, 0.1, 0.7);
+			pNew->owner = "enemy";
+			pNew->damage = 5.0;
+			//pNew->hit(p1->getPosition());
+			gameState->AddProjectile(pNew);
 		}
 
 		it1++; 

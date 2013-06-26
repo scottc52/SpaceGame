@@ -97,7 +97,7 @@ Surface pass0[4];
 Surface pass1[4];
 GLuint vbo_fbo_vertices;
 GLuint program_parallax;
-GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc, uniform_damage_postproc;
+GLuint program_postproc, attribute_v_coord_postproc, uniform_source_postproc, uniform_hit_time_postproc, uniform_damage_postproc, uniform_t_level_start_postproc, uniform_t_level_end_postproc, uniform_t_level_fade_postproc;
 GLuint program_fog, uniform_source_fog, uniform_depth_fog, uniform_z_offset_fog, uniform_z_scale_fog, uniform_z_pow_fog, uniform_min_fog, uniform_max_fog, uniform_color_fog, uniform_z_near_fog, uniform_z_far_fog;
 //5x5 gaussian blur filter (using 3 lookups per pass)
 GLuint program_blur, uniform_source_blur, uniform_offsetx_blur, uniform_offsety_blur, uniform_coefficients_blur;
@@ -120,6 +120,9 @@ int tLevelStart = 0;
 bool levelStarted = false;
 int tLevelEnd = 0;
 bool levelEnded = false;
+bool gameOver = false;
+bool gameCompleted = false;
+float tLevelFade = 500;
 vector<Projectile*> enemies;
  
 
@@ -1007,7 +1010,43 @@ void Render::defaultDisplay(){
 	glTexCoord2f(0.0f, 1.0f); glVertex2f(-1.0f, 1.0f);
 	glEnd();
 	drawCrossHair(w, h);
-
+	if((t-tLevelStart)< tLevelFade*5){
+		glColor3f(1.0, 1.0, 1.0);
+		string levelstr = "Level ";
+		levelstr = levelstr + std::to_string(level) + " Started!";
+		float offset = glutStrokeLength(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) levelstr.c_str());
+		glPushMatrix();
+		float scale = 0.4;
+		glTranslatef(-offset*scale/2, 0, 0);
+		glScalef(scale, scale, scale);
+		glLineWidth(5);
+		glutStrokeString(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) levelstr.c_str() );
+		glPopMatrix();
+	}
+	if(gameOver){
+		glColor3f(1.0, 1.0, 1.0);
+		string gameoverstr = "Game Over";
+		float offset = glutStrokeLength(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) gameoverstr.c_str());
+		glPushMatrix();
+		float scale = 0.4;
+		glTranslatef(-offset*scale/2, 0, 0);
+		glScalef(scale, scale, scale);
+		glLineWidth(5);
+		glutStrokeString(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) gameoverstr.c_str() );
+		glPopMatrix();
+	}
+	if(gameCompleted){
+		glColor3f(1.0, 1.0, 1.0);
+		string gamecompstr = "Game Completed! Yay!";
+		float offset = glutStrokeLength(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) gamecompstr.c_str());
+		glPushMatrix();
+		float scale = 0.35;
+		glTranslatef(-offset*scale/2, 0, 0);
+		glScalef(scale, scale, scale);
+		glLineWidth(5);
+		glutStrokeString(GLUT_STROKE_MONO_ROMAN, (const unsigned char*) gamecompstr.c_str() );
+		glPopMatrix();
+	}
 
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glViewport(0, 0, w, h);
@@ -1022,6 +1061,9 @@ void Render::defaultDisplay(){
 	glEnable(GL_TEXTURE_2D); 
 	glBindTexture(GL_TEXTURE_2D, fbo1.texture);
 	glUniform1i(uniform_source_postproc, /*GL_TEXTURE*/0);
+	glUniform1f(uniform_t_level_start_postproc, (tLevelStart>0)? (t-tLevelStart):0);
+	glUniform1f(uniform_t_level_end_postproc, (tLevelEnd>0)? (t-tLevelEnd):0  );
+	glUniform1f(uniform_t_level_fade_postproc, tLevelFade  );
 	glEnableVertexAttribArray(attribute_v_coord_postproc);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo_fbo_vertices);
@@ -1048,18 +1090,18 @@ void Render::myDisplay() {
 //
 //
 bool allEnemiesDead(){
-	bool ret = true;
+	if(!levelStarted){ return false;}
+	if(level >= 4){ return false;}
 	for(vector<Projectile*>::iterator it = enemies.begin(); it!=enemies.end(); ++it){
-		if((*it)->isDead()){
-			ret = false;
+		if(! ((*it)->isDead() ) ){
+			return false;
 		}
 	}
-	return ret;
+	return true;
 }
 
 void startLevel(GameState * gs, int l){
-	levelStarted = true;
-	tLevelStart = glutGet(GLUT_ELAPSED_TIME);
+	// l = 2;
 	Projectile::cam = gs->GetCamera();
 	enemies.clear();
 
@@ -1070,7 +1112,7 @@ void startLevel(GameState * gs, int l){
 		enemies.push_back(e1);
 		gs->AddProjectile(e1);
 
-		Projectile* e2 = new EnemyChaser(Vector3f(-4, 8, 0), Vector3f(0, 0, 0), 1);
+		Projectile* e2 = new EnemyChaser(Vector3f(-4, 5, 0), Vector3f(0, 0, 0), 1);
 		enemies.push_back(e2);
 		gs->AddProjectile(e2);
 
@@ -1081,13 +1123,46 @@ void startLevel(GameState * gs, int l){
 	}
 
 	if(l == 2){
+		Render::health = 100;
 		
+		Projectile* e1 = new EnemyShooter(Vector3f(-4, 0, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e1);
+		gs->AddProjectile(e1);
+
+		Projectile* e2 = new EnemyShooter(Vector3f(-4, 5, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e2);
+		gs->AddProjectile(e2);
+
+		Projectile* e3 = new EnemyShooter(Vector3f(-4, 0, 5), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e3);
+		gs->AddProjectile(e3);
 	}
 
 	if(l == 3){
-	
-	}
+		Projectile* e1 = new EnemyShooter(Vector3f(-4, 0, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e1);
+		gs->AddProjectile(e1);
 
+		Projectile* e2 = new EnemyShooter(Vector3f(-4, 5, 0), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e2);
+		gs->AddProjectile(e2);
+
+		Projectile* e3 = new EnemyShooter(Vector3f(-4, 0, 5), Vector3f(0, 0, 0), 1);
+		enemies.push_back(e3);
+		gs->AddProjectile(e3);
+
+		Projectile* e4 = new EnemyChaserBig(Vector3f(4, 0, 5), Vector3f(0, 0, 0), 2.0);
+		enemies.push_back(e4);
+		gs->AddProjectile(e4);
+	}
+	if(l == 4 && !gameOver){
+		gameCompleted = true;
+		return;
+	}
+	levelStarted = true;
+	tLevelStart = glutGet(GLUT_ELAPSED_TIME);
+	tLevelEnd = 0;
+	levelEnded = false;
 }
 
 
@@ -1100,6 +1175,8 @@ void endLevel(){
 //****************************************************
 // called by glut when there are no messages to handle
 //****************************************************
+Sound* Render::soundDeath = NULL;
+
 void Render::myIdle() {
 	pthread_mutex_lock(&lock);
 	if(!drawing && frameRequested){ 
@@ -1110,20 +1187,27 @@ void Render::myIdle() {
 	pthread_mutex_unlock(&lock); 
 
 	//level management
-	if(!levelStarted){
-		startLevel(gameState, level);
-	}else{
-		if(allEnemiesDead()){
-			level = level+1;
-			startLevel(gameState, level);
+	if(Render::health <0 ){
+		if(!gameOver){
+			gameOver = true;
+			//play any gameover sounds here
+			if(!soundDeath){soundDeath = new Sound("sounds/death.wav");}
+			soundDeath->Play();
 		}
 	}
 
-	//endlevel
-	if(health<=0.0){
-		endLevel();
-		exit(0);
+	if(!levelStarted){
+		startLevel(gameState, level);
+	}else{
+		if(allEnemiesDead() && !gameOver){
+			if(!tLevelEnd){ endLevel();}
+			if( (glutGet(GLUT_ELAPSED_TIME)-tLevelEnd) > tLevelFade ){
+				level = level+1;
+				startLevel(gameState, level);
+			}
+		}
 	}
+
 }
 
 
@@ -1225,6 +1309,28 @@ int loadPostProcessingProgram(){
 	uniform_damage_postproc = glGetUniformLocation(program_postproc, "damage");
 	if (uniform_damage_postproc == -1) {
 		fprintf(stderr, "Could not bind uniform %s\n", "damage");
+		return 0;
+	}
+
+	//
+	//
+	//Level Change effects
+	//
+	uniform_t_level_start_postproc = glGetUniformLocation(program_postproc, "tlstart");
+	if (uniform_t_level_start_postproc == -1) {
+		fprintf(stderr, "Could not bind uniform %s\n", "tlstart");
+		return 0;
+	}
+
+	uniform_t_level_end_postproc = glGetUniformLocation(program_postproc, "tlend");
+	if (uniform_t_level_end_postproc == -1) {
+		fprintf(stderr, "Could not bind uniform %s\n", "tlend");
+		return 0;
+	}
+
+	uniform_t_level_fade_postproc = glGetUniformLocation(program_postproc, "tlfade");
+	if (uniform_t_level_fade_postproc == -1) {
+		fprintf(stderr, "Could not bind uniform %s\n", "tlfade");
 		return 0;
 	}
 
